@@ -1,8 +1,6 @@
-Biosensor
-=========
+#Biosensor
 
-development
-===========
+##How to setup
    install postgres database
    or use the one from heroku by exporting environment variables.
 
