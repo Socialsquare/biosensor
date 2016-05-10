@@ -1,0 +1,6 @@
+venv/
+db.sqlite3
+.tmp
+staticfiles/
+node_modules/
+bower_components/
