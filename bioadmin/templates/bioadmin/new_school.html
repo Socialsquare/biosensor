@@ -1,0 +1,28 @@
+{% extends "bioadmin/admin_base.html" %}
+{% load bootstrap3 %}
+
+{% block content %}
+
+<h2>Add school</h2>
+
+<div class="row">
+
+<div class="col-md-8">
+
+<form method="POST" action="{% url 'bioadmin:new_school' %}" class="form">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+          Add school
+        </button>
+    {% endbuttons %}
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}
+

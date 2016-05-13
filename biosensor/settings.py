@@ -12,8 +12,11 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 
 import os
 
+SITE_ID = 1
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_DIR = os.path.join(BASE_DIR, 'biosensor')
 
 
 # Quick-start development settings - unsuitable for production
@@ -28,7 +31,13 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
-# Application definition
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -37,6 +46,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.facebook',
+    'bootstrap3',
+
+    'bioadmin',
+    'schools'
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -55,7 +76,9 @@ ROOT_URLCONF = 'biosensor.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [
+            os.path.join(PROJECT_DIR, 'templates'),
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,3 +143,6 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
+LOGOUT_URL = 'account_logout'
+LOGIN_URL = 'account_login'
