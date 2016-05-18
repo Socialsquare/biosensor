@@ -1,0 +1,31 @@
+{% load bootstrap3 %}
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block head_title %}{% endblock %} | Biosensor admin</title>
+        <script src="//code.jquery.com/jquery-1.12.3.min.js"></script>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+    </head>
+    <body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+              <h1>Biosensor administration</h1>
+
+              <ul class="nav nav-tabs">
+                <li><a href="{% url 'bioadmin:index' %}">Home</a></li>
+                <li><a href="{% url 'bioadmin:schools' %}">Manage schools</a></li>
+              </ul>
+
+              {% bootstrap_messages %}
+
+              {% block main %}
+              {% endblock %}
+            </div>
+        </div>
+    </div>
+    </body>
+</html>
+
+
