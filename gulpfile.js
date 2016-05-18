@@ -16,6 +16,8 @@ var rimraf = require('rimraf');
 
 var paths = {
     sass: [
+      'biosensor/static/biosensor/css/*.scss',
+      'bioadmin/static/bioadmin/css/*.scss',
     ],
     js: [
     ],
