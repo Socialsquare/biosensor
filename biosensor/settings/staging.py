@@ -10,7 +10,7 @@ SITE_ID = 1
 DOMAIN = 'biosensor-staging.herokuapp.com'
 ALLOWED_HOSTS = [DOMAIN, ]
 
-#STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 DATABASES = {
     'default': dj_database_url.config()
