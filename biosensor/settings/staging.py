@@ -16,7 +16,6 @@ DATABASES = {
     'default': dj_database_url.config()
 }
 DATABASES['default']['ENGINE'] = 'django_postgrespool'
-#DATABASES['default']['CONN_MAX_AGE'] = 5
 DATABASE_POOL_ARGS = {
     'max_overflow': 10,
     'pool_size': 5,
@@ -29,7 +28,7 @@ DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
 SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
 
 ADMINS = (
-    ('Simon', 'simon.carstensen+network-toolbox-staging-heroku@socialsquare.dk',),
+    ('Simon', 'simon.carstensen+biosensor-staging-heroku@socialsquare.dk',),
 )
 SITE_ADMIN_EMAIL = 'simonc@socialsquare.dk'
 
