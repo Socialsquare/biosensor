@@ -6,6 +6,9 @@ from django.contrib.admin.views.decorators import staff_member_required
 from .forms import SchoolForm
 from schools.models import School
 
+def homepage(request):
+  return redirect('/bio-admin/') #fixme
+
 @staff_member_required
 def index(request):
   context = {}
