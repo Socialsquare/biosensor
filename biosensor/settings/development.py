@@ -1,4 +1,3 @@
-
 import os
 import sys
 from .base import *
@@ -18,12 +17,9 @@ NOSE_ARGS = [
      '--cover-branches',
      '--with-coverage',
      '--cover-erase',
-     '--cover-package=netbox',
-     '--cover-package=common',
-     '--cover-package=tools',
-     '--cover-package=resources',
-     '--cover-package=profiles',
-     '--cover-package=comments',
+     '--cover-package=biosensor',
+     '--cover-package=bioadmin',
+     '--cover-package=schools',
      'biosensor',
      'bioadmin',
      'schools',
