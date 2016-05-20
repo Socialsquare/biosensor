@@ -28,7 +28,7 @@
           <ul class="nav nav-tabs">
           {% if user.is_authenticated %}
             {% if user.is_teacher %}
-              <li><a href="">Dashboard</a></li>
+              <li><a href="{% url 'profiles:show' %}">Profile</a></li>
             {% endif %}
             <li class="pull-right"><a href="{% url 'account_logout'%}">Log ud</a></li>
           {% else %}
