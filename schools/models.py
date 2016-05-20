@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib import auth
 
 class School(models.Model):
     class Meta:
@@ -20,3 +21,8 @@ class Teacher(models.Model):
     school = models.ForeignKey('School')
     subjects = models.TextField(max_length=400, blank=False)
     created = models.DateTimeField(auto_now_add=True)
+
+def is_teacher(user):
+    teacher = Teacher.objects.get(user=user)
+    return teacher != None
+auth.models.User.add_to_class('is_teacher', is_teacher)

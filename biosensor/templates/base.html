@@ -24,11 +24,18 @@
         <div class="col-md-10 col-md-offset-1">
 
           <h1>Biosensor</h1>
+
+          <ul class="nav nav-tabs">
           {% if user.is_authenticated %}
-            <p><a href="{% url 'account_logout'%}">Log ud</a></p>
+            {% if user.is_teacher %}
+              <li><a href="">Dashboard</a></li>
+            {% endif %}
+            <li class="pull-right"><a href="{% url 'account_logout'%}">Log ud</a></li>
           {% else %}
-            <p><a href="{% url 'account_login'%}">Log ind</a> eller <a href="/schools/teachers/signup">tilmeld dig som lærer</a>.</p>
+            <li class="pull-right"><a href="{% url 'account_login' %}">Log ind</a></li>
+            <li class="pull-right"><a href="/schools/teachers/signup">Tilmeld som lærer</a></li>
           {% endif %}
+          </ul>
 
           {% bootstrap_messages %}
 
