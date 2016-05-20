@@ -1,19 +1,18 @@
-from django.shortcuts import render
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from django.contrib.admin.views.decorators import staff_member_required
+from django.contrib.auth.decorators import login_required
 
 from .forms import SchoolForm
 from schools.models import School
 
-def homepage(request):
-  return redirect('/bio-admin/') #fixme
-
+@login_required
 @staff_member_required
 def index(request):
   context = {}
   return render(request, 'bioadmin/index.html', context)
 
+@login_required
 @staff_member_required
 def schools(request):
   schools = School.objects.all()
@@ -22,6 +21,7 @@ def schools(request):
   }
   return render(request, 'bioadmin/schools.html', context)
 
+@login_required
 @staff_member_required
 def new_school(request):
   form = SchoolForm()
