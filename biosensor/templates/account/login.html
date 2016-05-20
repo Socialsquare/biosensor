@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% load account %}
+
+{% block head_title %}Sign In{% endblock %}
+
+{% block main %}
+
+<h1>Sign In</h1>
+
+<p>If you have not created an account yet, then please
+<a href="{{ signup_url }}">sign up</a> first.</p>
+
+<div class="row">
+  <div class="col-md-6">
+    <form class="login" method="POST" action="{% url 'account_login' %}">
+      {% csrf_token %}
+      {% bootstrap_form form %}
+
+      {% if redirect_field_value %}
+          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button class="btn btn-primary primaryAction" type="submit">Sign In</button>
+    </form>
+  </div>
+</div>
+{% endblock %}
