@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block head_title %}Signup{% endblock %}
+
+{% block main %}
+
+<h2>Opret konto</h2>
+
+<p>
+Har du allerede en konto? <a href="{% url 'account_login' %}">Log ind</a> her.
+</p>
+
+<div class="row">
+    <div class="col-md-6">
+       <form class="signup" id="signup_form" method="post" action="{% url 'schools:signup_teacher' %}">
+         {% csrf_token %}
+         {% bootstrap_form form %}
+         {% if redirect_field_value %}
+         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+         {% endif %}
+         {% buttons %}
+         <button id="user-signup" class="btn btn-primary" type="submit">Sign Up &raquo;</button>
+         {% endbuttons %}
+       </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
