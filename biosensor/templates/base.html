@@ -27,10 +27,10 @@
 
           <ul class="nav nav-tabs">
           {% if user.is_authenticated %}
-            {% if user.is_teacher %}
-              <li><a href="{% url 'profiles:show' %}">Profile</a></li>
-            {% endif %}
             <li class="pull-right"><a href="{% url 'account_logout'%}">Log ud</a></li>
+            {% if user.is_teacher %}
+              <li class="pull-right"><a href="{% url 'profiles:show' %}">Profile</a></li>
+            {% endif %}
           {% else %}
             <li class="pull-right"><a href="{% url 'account_login' %}">Log ind</a></li>
             <li class="pull-right"><a href="/schools/teachers/signup">Tilmeld som lærer</a></li>
@@ -38,6 +38,11 @@
           </ul>
 
           {% bootstrap_messages %}
+
+
+          {% if user.is_authenticated %}
+            <p>Du er logget ind som {{user.email}}</p>
+          {% endif %}
 
           {% block main %}
           {% endblock %}
