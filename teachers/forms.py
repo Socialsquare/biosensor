@@ -33,6 +33,21 @@ class NewStudentGroupForm(SignupForm):
             required=True,
             widget=forms.Textarea()
             )
-    no_students = forms.fields.IntegerField(label='Antal studerende', min_value=1, max_value=9, required=True)
+    no_students = forms.fields.ChoiceField(
+            widget=forms.Select, choices=[(i,i) for i in range(1,11)],
+            label='Antal studerende',
+            required=True)
     subject = forms.fields.CharField(label='Fag', max_length=100, required=True)
-    year = forms.fields.IntegerField(label='Årgang', min_value=1, max_value=3, required=True)
+    year = forms.fields.ChoiceField(
+            widget=forms.Select, choices=[(i,i) for i in range(1,4)],
+            label='Årgang',
+            required=True)
+
+    def __init__(self, *args, **kwargs):
+        super(SignupForm, self).__init__(*args, **kwargs)
+        self.fields['email'].label = 'Kontakt email'
+        self.fields['email'].widget.attrs['placeholder'] = 'Kontakt email'
+        self.fields['password1'].label = 'Adgangskode'
+        self.fields['password1'].widget.attrs['placeholder'] = 'Adgangskode'
+        self.fields['password2'].label = 'Gentag adgangskode'
+        self.fields['password2'].widget.attrs['placeholder'] = 'Gentag adgangskode'
