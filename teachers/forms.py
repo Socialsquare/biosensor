@@ -35,7 +35,7 @@ class NewStudentGroupForm(SignupForm):
             )
     no_students = forms.fields.ChoiceField(
             widget=forms.Select, choices=[(i,i) for i in range(1,11)],
-            label='Antal studerende',
+            label='Antal elever',
             required=True)
     subject = forms.fields.CharField(label='Fag', max_length=100, required=True)
     year = forms.fields.ChoiceField(
