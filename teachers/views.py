@@ -22,7 +22,8 @@ def signup(request):
     return render(request, 'teachers/signup.html', context)
 
 def show(request):
-    context = {}
+    studentgroups = StudentGroup.objects.all()
+    context = { 'studentgroups': studentgroups }
     return render(request, 'teachers/show.html', context)
 
 def new_student_group(request):

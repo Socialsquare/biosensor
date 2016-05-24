@@ -5,8 +5,29 @@
 
 <h2>Profile</h2>
 
+<h3>Grupper</h3>
+
 <div class="row">
   <div class="col-md-10">
+    <table class="student-groups table table-striped">
+      <tr>
+        <th>Kontakt email</th>
+        <th>Navne</th>
+        <th>Antal studerende</th>
+        <th>Fag</th>
+        <th>Årgang</th>
+      </tr>
+      {% for group in studentgroups %}
+      <tr>
+        <td>{{group.user.email}}</td>
+        <td>{{group.names}}</td>
+        <td class="text-center">{{group.no_students}}</td>
+        <td>{{group.subject}}</td>
+        <td class="text-center">{{group.year}}.</td>
+      </tr>
+      {% endfor %}
+    </table>
+
     <a href="{% url 'teachers:new_student_group' %}">Opret gruppe</a>
   </div>
 </div>
