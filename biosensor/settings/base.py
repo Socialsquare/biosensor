@@ -58,8 +58,8 @@ INSTALLED_APPS = [
     'bootstrap3',
 
     'bioadmin',
-    'schools',
-    'profiles'
+    'teachers',
+    'studentgroups',
 ]
 
 MIDDLEWARE_CLASSES = [

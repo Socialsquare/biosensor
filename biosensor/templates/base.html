@@ -24,25 +24,25 @@
         <div class="col-md-10 col-md-offset-1">
 
           <h1 class="logo"><a href="{% url 'homepage' %}">Biosensor</a></h1>
+          {% if user.is_authenticated %}
+            <p class="pull-left">Du er logget ind som {{user.email}}</p>
+          {% endif %}
 
           <ul class="nav nav-tabs">
           {% if user.is_authenticated %}
             <li class="pull-right"><a href="{% url 'account_logout'%}">Log ud</a></li>
             {% if user.is_teacher %}
-              <li class="pull-right"><a href="{% url 'profiles:show' %}">Profile</a></li>
+              <li class="pull-right"><a href="{% url 'teachers:show' %}">Profile</a></li>
+            {% elif user.is_staff %}
+              <li class="pull-right"><a href="{% url 'bioadmin:index' %}">Admin</a></li>
             {% endif %}
           {% else %}
             <li class="pull-right"><a href="{% url 'account_login' %}">Log ind</a></li>
-            <li class="pull-right"><a href="/schools/teachers/signup">Tilmeld som lærer</a></li>
+            <li class="pull-right"><a href="{% url 'teachers:signup' %}">Tilmeld som lærer</a></li>
           {% endif %}
           </ul>
 
           {% bootstrap_messages %}
-
-
-          {% if user.is_authenticated %}
-            <p>Du er logget ind som {{user.email}}</p>
-          {% endif %}
 
           {% block main %}
           {% endblock %}

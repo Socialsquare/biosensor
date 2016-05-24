@@ -1,7 +1,7 @@
 from django import forms
 from allauth.account.forms import SignupForm
 
-from .models import School, Teacher
+from .models import School
 
 class TeacherSignupForm(SignupForm):
     school = forms.ModelChoiceField(label='Gymnasium',
@@ -26,3 +26,13 @@ class TeacherSignupForm(SignupForm):
         self.fields['password2'].widget.attrs['placeholder'] = 'Gentag adgangskode'
 
 
+class NewStudentGroupForm(SignupForm):
+    names = forms.fields.CharField(
+            label='Navne',
+            max_length=1000,
+            required=True,
+            widget=forms.Textarea()
+            )
+    no_students = forms.fields.IntegerField(label='Antal studerende', min_value=1, max_value=9, required=True)
+    subject = forms.fields.CharField(label='Fag', max_length=100, required=True)
+    year = forms.fields.IntegerField(label='Årgang', min_value=1, max_value=3, required=True)

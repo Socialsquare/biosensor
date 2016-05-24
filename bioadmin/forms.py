@@ -1,6 +1,6 @@
 from django import forms
 
-from schools.models import School
+from teachers.models import School
 
 class SchoolForm(forms.Form):
     name = forms.fields.CharField(max_length=100, required=True)

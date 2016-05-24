@@ -1,12 +1,12 @@
 from django.conf.urls import include, url
 from django.contrib import admin
-import bioadmin
+
 from . import views
 
 urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
-    url(r'^schools/', include('schools.urls', namespace='schools')),
-    url(r'^profile/', include('profiles.urls', namespace='profiles')),
+    url(r'^teachers/', include('teachers.urls', namespace='teachers')),
+    url(r'^students/', include('studentgroups.urls', namespace='studentgroups')),
     url(r'^admin/', admin.site.urls),
     url(r'^bio-admin/', include('bioadmin.urls', namespace='bioadmin')),
     url(r'^$', views.homepage, name='homepage'),

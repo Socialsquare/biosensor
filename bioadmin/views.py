@@ -4,7 +4,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 
 from .forms import SchoolForm
-from schools.models import School
+from teachers.models import School
 
 @login_required
 @staff_member_required
