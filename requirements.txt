@@ -12,3 +12,4 @@ django-nose
 coverage
 yanc
 whitenoise==2.0.2
+django-model-utils==2.5

@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     'bioadmin',
     'teachers',
     'studentgroups',
+    'biobricks',
 ]
 
 MIDDLEWARE_CLASSES = [
