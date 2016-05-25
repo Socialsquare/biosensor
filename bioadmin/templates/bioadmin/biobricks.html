@@ -12,11 +12,17 @@
   <tr>
     <th>Name</th>
     <th>Category type</th>
+    <th></th>
   </tr>
   {% for category in categories %}
     <tr>
       <td>{{category.name}}</td>
       <td>{{category.category_type|capfirst}}</td>
+      <td class="text-center">
+        <a href="{% url 'bioadmin:delete_category' category.id %}">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </td>
     </tr>
   {% endfor %}
 </table>

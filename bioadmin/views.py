@@ -1,7 +1,8 @@
 from django.contrib import messages
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
+from django.db import transaction
 
 from .forms import SchoolForm, CategoryForm
 from teachers.models import School
@@ -66,3 +67,18 @@ def new_category(request):
 
   context = {'form': form}
   return render(request, 'bioadmin/new_category.html', context)
+
+@transaction.atomic
+@staff_member_required
+@login_required
+def delete_category(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+
+    if request.method == 'GET':
+        context = {'category': category}
+        return render(request, 'bioadmin/delete_category.html', context)
+    else:
+        if 'yes' == request.POST.get('confirmation', 'no'):
+            category.delete()
+            messages.success(request, "You deleted a category")
+        return redirect('bioadmin:biobricks')

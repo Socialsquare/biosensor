@@ -9,4 +9,5 @@ urlpatterns = [
     url(r'^biobricks/$', views.biobricks, name='biobricks'),
     url(r'^biobricks/$', views.biobricks, name='biobricks'),
     url(r'^biobricks/categories/new$', views.new_category, name='new_category'),
+    url(r'^biobricks/categories/delete/(\d+)$', views.delete_category, name='delete_category'),
 ]
