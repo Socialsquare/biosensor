@@ -66,7 +66,7 @@ def new_category(request):
       return redirect('bioadmin:biobricks') #fixme
 
   context = {'form': form}
-  return render(request, 'bioadmin/new_category.html', context)
+  return render(request, 'bioadmin/category.html', context)
 
 @transaction.atomic
 @staff_member_required
@@ -82,3 +82,24 @@ def delete_category(request, category_id):
             category.delete()
             messages.success(request, "You deleted a category")
         return redirect('bioadmin:biobricks')
+
+@transaction.atomic
+@staff_member_required
+@login_required
+def edit_category(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            category.name = form.cleaned_data['name']
+            category.category_type = form.cleaned_data['category_type']
+            category.save()
+            messages.success(request, "You updated this category")
+            return redirect('bioadmin:biobricks')
+
+    form = CategoryForm({
+        'name': category.name,
+        'category_type': category.category_type
+        })
+    context = {'category': category, 'form': form}
+    return render(request, 'bioadmin/category.html', context)
