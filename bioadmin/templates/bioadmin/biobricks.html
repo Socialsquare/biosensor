@@ -1,0 +1,27 @@
+{% extends "bioadmin/base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}Manage biobricks{% endblock %}
+
+{% block main %}
+<h2>Manage biobricks</h2>
+
+<h3>Categories</h3>
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Category type</th>
+  </tr>
+  {% for category in categories %}
+    <tr>
+      <td>{{category.name}}</td>
+      <td>{{category.category_type|capfirst}}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<a class="btn btn-primary" href="{% url 'bioadmin:new_category' %}">Add category</a>
+
+{% endblock %}
+

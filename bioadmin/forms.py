@@ -1,6 +1,5 @@
 from django import forms
-
-from teachers.models import School
+from biobricks.models import Category
 
 class SchoolForm(forms.Form):
     name = forms.fields.CharField(max_length=100, required=True)
@@ -12,3 +11,10 @@ class SchoolForm(forms.Form):
         widget=forms.Textarea
     )
 
+class CategoryForm(forms.Form):
+    name = forms.fields.CharField(max_length=100, required=True)
+    category_type = forms.fields.ChoiceField(
+            widget=forms.Select,
+            choices=[(v, n.capitalize()) for (n, v) in
+                [('', '')] + Category.CATEGORY_TYPES],
+            required=True)

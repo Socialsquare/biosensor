@@ -1,0 +1,29 @@
+{% extends "bioadmin/base.html" %}
+{% load bootstrap3 %}
+
+{% block head_title %}Add category{% endblock %}
+
+{% block main %}
+
+<h2>Add category</h2>
+
+<div class="row">
+
+<div class="col-md-8">
+
+<form method="POST" action="{% url 'bioadmin:new_category' %}" class="form">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+    <button type="submit" class="btn btn-primary">
+      Add category
+    </button>
+</form>
+
+</div>
+
+</div>
+
+{% endblock %}
+
+
