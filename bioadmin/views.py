@@ -50,7 +50,6 @@ def biobricks(request):
   categories = Category.objects.all()
   detectors = Biobrick.objects.filter(biobrick_type='detector')
   responders = Biobrick.objects.filter(biobrick_type='responder')
-  entries = Biobrick.objects.filter(biobrick_type='entry')
   context = {
           'categories': categories,
           'detectors': detectors,
