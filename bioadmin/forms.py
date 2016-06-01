@@ -23,6 +23,7 @@ class BiobrickForm(forms.Form):
     category = forms.ModelChoiceField(
             queryset=Category.objects.all(),
             required=True)
+    name = forms.fields.CharField(max_length=100, required=True)
     description = forms.fields.CharField(
             max_length=1000,
             widget=forms.Textarea,

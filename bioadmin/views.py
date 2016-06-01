@@ -164,6 +164,7 @@ def edit_biobrick(request, biobrick_id):
         form = BiobrickForm(request.POST)
         if form.is_valid():
             biobrick.category = form.cleaned_data['category']
+            biobrick.name = form.cleaned_data['name']
             biobrick.description = form.cleaned_data['description']
             biobrick.design = form.cleaned_data['design']
             biobrick.igem_part_link = form.cleaned_data['igem_part_link']
@@ -175,6 +176,7 @@ def edit_biobrick(request, biobrick_id):
 
     form = BiobrickForm({
         'category': biobrick.category.id,
+        'name': biobrick.name,
         'description': biobrick.description,
         'design': biobrick.design,
         'igem_part_link': biobrick.igem_part_link,

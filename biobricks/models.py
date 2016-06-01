@@ -28,6 +28,7 @@ class Biobrick(models.Model):
 
     biobrick_type = StatusField(choices_name='BIOBRICK_TYPES')
     category = models.ForeignKey('Category')
+    name = models.TextField(max_length=100, blank=False)
     description = models.TextField(max_length=1000, blank=False)
     design = models.TextField(max_length=1000, blank=False)
     igem_part_link = models.TextField(max_length=200, blank=False)
