@@ -5,9 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django import forms
 
-from .forms import SchoolForm, CategoryForm, BiobrickForm
+from .forms import SchoolForm, CategoryForm, BiobrickForm, BiosensorForm
 from teachers.models import School
-from biobricks.models import Category, Biobrick
+from biobricks.models import Category, Biobrick, Biosensor
 
 @login_required
 @staff_member_required
@@ -42,20 +42,22 @@ def new_school(request):
   context = {'form': form}
   return render(request, 'bioadmin/new_school.html', context)
 
-# biobricks
+# catalog
 
 @login_required
 @staff_member_required
-def biobricks(request):
-  categories = Category.objects.all()
+def catalog(request):
+  biosensors = Biosensor.objects.all()
   detectors = Biobrick.objects.filter(biobrick_type='detector')
   responders = Biobrick.objects.filter(biobrick_type='responder')
+  categories = Category.objects.all()
   context = {
-          'categories': categories,
+          'biosensors': biosensors,
           'detectors': detectors,
-          'responders': responders
+          'responders': responders,
+          'categories': categories
   }
-  return render(request, 'bioadmin/biobricks.html', context)
+  return render(request, 'bioadmin/catalog.html', context)
 
 @login_required
 @staff_member_required
@@ -68,7 +70,7 @@ def new_category(request):
       category = Category.objects.create(**form.cleaned_data)
       category.save()
       messages.success(request, "You created a category")
-      return redirect('bioadmin:biobricks') #fixme
+      return redirect('bioadmin:catalog') #fixme
 
   context = {'form': form}
   return render(request, 'bioadmin/category.html', context)
@@ -78,19 +80,17 @@ def new_category(request):
 @login_required
 def delete_category(request, category_id):
     category = get_object_or_404(Category, id=category_id)
-    biobricks = Biobrick.objects.filter(category_id=category_id)
 
     if request.method == 'GET':
         context = {
-                'category': category,
-                'biobricks': biobricks
+                'category': category
                 }
         return render(request, 'bioadmin/delete_category.html', context)
     else:
-        if not biobricks and 'yes' == request.POST.get('confirmation', 'no'):
+        if category.is_empty() and 'yes' == request.POST.get('confirmation', 'no'):
             category.delete()
             messages.success(request, "You deleted a category")
-        return redirect('bioadmin:biobricks')
+        return redirect('bioadmin:catalog')
 
 @transaction.atomic
 @staff_member_required
@@ -103,7 +103,7 @@ def edit_category(request, category_id):
             category.name = form.cleaned_data['name']
             category.save()
             messages.success(request, "You updated this category")
-            return redirect('bioadmin:biobricks')
+            return redirect('bioadmin:catalog')
 
     form = CategoryForm({
         'name': category.name,
@@ -121,7 +121,6 @@ def edit_category(request, category_id):
 @staff_member_required
 def new_biobrick(request, biobrick_type):
     form = BiobrickForm()
-    form.filter_categories(biobrick_type)
 
     if request.method == 'POST':
         form = BiobrickForm(request.POST)
@@ -130,8 +129,9 @@ def new_biobrick(request, biobrick_type):
             biobrick.biobrick_type = biobrick_type
             biobrick.save()
             messages.success(request, "You created a biobrick")
-        return redirect('bioadmin:biobricks')
+        return redirect('bioadmin:catalog')
 
+    form.filter_categories(biobrick_type)
     context = {
         'form': form,
         'biobrick_type': biobrick_type
@@ -151,7 +151,7 @@ def delete_biobrick(request, biobrick_id):
         if 'yes' == request.POST.get('confirmation', 'no'):
             biobrick.delete()
             messages.success(request, "You deleted a biobrick")
-        return redirect('bioadmin:biobricks')
+        return redirect('bioadmin:catalog')
 
 @transaction.atomic
 @staff_member_required
@@ -170,7 +170,7 @@ def edit_biobrick(request, biobrick_id):
             biobrick.dna_sequence = form.cleaned_data['dna_sequence']
             biobrick.save()
             messages.success(request, "You updated this biobrick")
-            return redirect('bioadmin:biobricks')
+            return redirect('bioadmin:catalog')
 
     form = BiobrickForm({
         'category': biobrick.category.id,
@@ -188,3 +188,62 @@ def edit_biobrick(request, biobrick_id):
             'form': form
             }
     return render(request, 'bioadmin/biobrick.html', context)
+
+@login_required
+@staff_member_required
+def new_biosensor(request):
+    form = BiosensorForm()
+
+    if request.method == 'POST':
+        form = BiosensorForm(request.POST)
+        if form.is_valid():
+            biosensor = Biosensor.objects.create(**form.cleaned_data)
+            biosensor.save()
+            messages.success(request, "You created a biosensor")
+        return redirect('bioadmin:catalog')
+
+    context = {
+        'form': form
+        }
+    return render(request, 'bioadmin/biosensor.html', context)
+
+def delete_biosensor(request, biosensor_id):
+    biosensor = get_object_or_404(Biosensor, id=biosensor_id)
+
+    if request.method == 'GET':
+        context = {'biosensor': biosensor}
+        return render(request, 'bioadmin/delete_biosensor.html', context)
+    else:
+        if 'yes' == request.POST.get('confirmation', 'no'):
+            biosensor.delete()
+            messages.success(request, "You deleted a biosensor")
+        return redirect('bioadmin:catalog')
+
+def edit_biosensor(request, biosensor_id):
+    biosensor = get_object_or_404(Biosensor, id=biosensor_id)
+    if request.method == 'POST':
+        form = BiosensorForm(request.POST)
+        if form.is_valid():
+            biosensor.name = form.cleaned_data['name']
+            biosensor.detector = form.cleaned_data['detector']
+            biosensor.responder = form.cleaned_data['responder']
+            biosensor.category = form.cleaned_data['category']
+            biosensor.problem_description = form.cleaned_data['problem_description']
+            biosensor.risk_description = form.cleaned_data['risk_description']
+            biosensor.save()
+            messages.success(request, "You updated this biosensor")
+            return redirect('bioadmin:catalog')
+
+    form = BiosensorForm({
+        'name': biosensor.name,
+        'detector': biosensor.detector.id,
+        'responder': biosensor.responder.id,
+        'category': biosensor.category.id,
+        'problem_description': biosensor.problem_description,
+        'risk_description': biosensor.risk_description
+        })
+    context = {
+            'biosensor': biosensor,
+            'form': form
+            }
+    return render(request, 'bioadmin/biosensor.html', context)

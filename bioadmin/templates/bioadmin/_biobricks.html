@@ -1,7 +1,7 @@
 <table class="table table-striped">
   <tr>
-    <th>Category</th>
     <th>Name</th>
+    <th>Category</th>
     <th>Description</th>
     <th>Design</th>
     <th>iGEM part</th>
@@ -12,8 +12,8 @@
   </tr>
   {% for biobrick in biobricks %}
     <tr>
-      <td>{{biobrick.category}}</td>
       <td>{{biobrick.name}}</td>
+      <td>{{biobrick.category}}</td>
       <td>{{biobrick.description}}</td>
       <td>{{biobrick.design}}</td>
       <td>{{biobrick.igem_part_link}}</td>

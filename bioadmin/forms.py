@@ -1,5 +1,5 @@
 from django import forms
-from biobricks.models import Category
+from biobricks.models import Category, Biobrick
 
 class SchoolForm(forms.Form):
     name = forms.fields.CharField(max_length=100, required=True)
@@ -12,18 +12,18 @@ class SchoolForm(forms.Form):
     )
 
 class CategoryForm(forms.Form):
+    name = forms.fields.CharField(max_length=100, required=True)
     category_type = forms.fields.ChoiceField(
             widget=forms.Select,
             choices=[(v, n.capitalize()) for (n, v) in
                 [('', '')] + Category.CATEGORY_TYPES],
             required=True)
-    name = forms.fields.CharField(max_length=100, required=True)
 
 class BiobrickForm(forms.Form):
+    name = forms.fields.CharField(max_length=100, required=True)
     category = forms.ModelChoiceField(
             queryset=Category.objects.all(),
             required=True)
-    name = forms.fields.CharField(max_length=100, required=True)
     description = forms.fields.CharField(
             max_length=1000,
             widget=forms.Textarea,
@@ -45,3 +45,23 @@ class BiobrickForm(forms.Form):
     def filter_categories(self, biobrick_type):
         categories = self.fields['category'].queryset.filter(category_type=biobrick_type)
         self.fields['category'].queryset = categories
+
+class BiosensorForm(forms.Form):
+    name = forms.fields.CharField(max_length=100, required=True)
+    detector = forms.ModelChoiceField(
+            queryset=Biobrick.objects.filter(biobrick_type='detector'),
+            required=True)
+    responder = forms.ModelChoiceField(
+            queryset=Biobrick.objects.filter(biobrick_type='responder'),
+            required=True)
+    category = forms.ModelChoiceField(
+            queryset=Category.objects.filter(category_type='biosensor'),
+            required=True)
+    problem_description = forms.fields.CharField(
+            max_length=1000,
+            widget=forms.Textarea,
+            required=True)
+    risk_description = forms.fields.CharField(
+            max_length=1000,
+            widget=forms.Textarea,
+            required=True)
