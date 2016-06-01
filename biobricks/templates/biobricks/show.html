@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block head_title %}Home{% endblock %}
+
+{% block main %}
+
+<h2>{{biobrick.biobrick_type|capfirst}} {{biobrick.name}}</h2>
+
+<p>Category: {{biobrick.category}}</p>
+
+<p>Description: {{biobrick.description}}</p>
+
+<p>Design: {{biobrick.design}}</p>
+
+<p><a href="{{biobrick.igem_part_link}}">iGEM part</a></p>
+
+<p><a href="{{biobrick.team_website}}">Team website</a></p>
+
+<p>DNA sequence: {{biobrick.dna_sequence}}</p>
+
+{% endblock %}

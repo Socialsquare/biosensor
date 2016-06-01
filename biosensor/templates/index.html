@@ -4,4 +4,25 @@
 {% block head_title %}Home{% endblock %}
 
 {% block main %}
+
+<h2>Detectors</h2>
+
+<ul class="list-group">
+  {% for detector in detectors %}
+  <li class="list-group-item">
+    <a href="{% url 'biobricks:show' detector.id %}">{{detector.name}}</a>
+  </li>
+{% endfor %}
+</ul>
+
+<h2>Responders</h2>
+
+<ul class="list-group">
+  {% for responder in responders %}
+  <li class="list-group-item">
+    <a href="{% url 'biobricks:show' responder.id %}">{{responder.name}}</a>
+  </li>
+{% endfor %}
+</ul>
+
 {% endblock %}
