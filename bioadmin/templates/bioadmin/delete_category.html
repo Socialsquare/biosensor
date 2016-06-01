@@ -1,8 +1,18 @@
-{% extends 'base.html' %}
+{% extends "bioadmin/base.html" %}
 
 {% block head_title %}Delete Category{% endblock %}
 
 {% block main %}
+
+{% if biobricks %}
+
+<h2>Category cannot be deleted</h2>
+
+<p>Move all biobricks out of this category before deleting it.</p>
+
+<a class="btn btn-primary" href="{% url 'bioadmin:biobricks' %}">Return to overview</a>
+
+{% else %}
 
 <h2>Are you sure you want to remove this category?</h2>
 <form action="{% url 'bioadmin:delete_category' category.id%}" method='POST'>
@@ -10,4 +20,7 @@
   <button name='confirmation' type="submit" class="btn btn-danger" value="yes">DELETE</button>
   <button type="submit" class="btn btn-default" value='no'>Cancel</button>
 </form>
+
+{% endif %}
+
 {% endblock %}

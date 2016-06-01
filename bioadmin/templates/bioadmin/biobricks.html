@@ -1,12 +1,37 @@
 {% extends "bioadmin/base.html" %}
 {% load staticfiles %}
 
-{% block head_title %}Manage biobricks{% endblock %}
+{% block head_title %}Biobrick overview{% endblock %}
 
 {% block main %}
-<h2>Manage biobricks</h2>
+<h2>Biobrick overview</h2>
 
-<h3>Categories</h3>
+<section>
+<h3>Detectors</h3>
+
+{% include "bioadmin/_biobricks.html" with biobricks=detectors %}
+
+<a class="btn btn-primary" href="{% url 'bioadmin:new_biobrick' 'detector' %}">Add detector</a>
+</section>
+
+<section>
+<h3>Responders</h3>
+
+{% include "bioadmin/_biobricks.html" with biobricks=responders %}
+
+<a class="btn btn-primary" href="{% url 'bioadmin:new_biobrick' 'responder' %}">Add responder</a>
+</section>
+
+<section>
+<h3>Biobrick entries</h3>
+
+{% include "bioadmin/_biobricks.html" with biobricks=entries%}
+
+<a class="btn btn-primary" href="{% url 'bioadmin:new_biobrick' 'entry' %}">Add biobrick entry</a>
+</section>
+
+<section>
+<h3>Biobrick Categories</h3>
 
 <table class="table table-striped">
   <tr>
@@ -34,6 +59,7 @@
 </table>
 
 <a class="btn btn-primary" href="{% url 'bioadmin:new_category' %}">Add category</a>
+</section>
 
 {% endblock %}
 
