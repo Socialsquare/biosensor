@@ -10,7 +10,6 @@ urlpatterns = [
     url(r'^biobricks/$', views.biobricks, name='biobricks'),
     url(r'^biobricks/(detector)/new$', views.new_biobrick, name='new_biobrick'),
     url(r'^biobricks/(responder)/new$', views.new_biobrick, name='new_biobrick'),
-    url(r'^biobricks/(entry)/new$', views.new_biobrick, name='new_biobrick'),
     url(r'^biobricks/delete/(\d+)$', views.delete_biobrick, name='delete_biobrick'),
     url(r'^biobricks/edit/(\d+)$', views.edit_biobrick, name='edit_biobrick'),
     url(r'^biobricks/categories/new$', views.new_category, name='new_category'),
