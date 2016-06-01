@@ -5,17 +5,15 @@ from django.contrib import auth
 from model_utils.fields import StatusField
 from model_utils import Choices
 
-TYPES = Choices(
-    'detector',
-    'responder',
-    'entry'
-)
-
 class Category(models.Model):
     class Meta:
         ordering = ['name']
 
-    CATEGORY_TYPES = TYPES
+    CATEGORY_TYPES = Choices(
+        'detector',
+        'responder',
+        'biosensor'
+    )
 
     name = models.CharField(max_length=100, blank=False)
     category_type = StatusField(choices_name='CATEGORY_TYPES')
@@ -24,7 +22,10 @@ class Category(models.Model):
         return self.name
 
 class Biobrick(models.Model):
-    BIOBRICK_TYPES = TYPES
+    BIOBRICK_TYPES = Choices(
+        'detector',
+        'responder',
+    )
 
     biobrick_type = StatusField(choices_name='BIOBRICK_TYPES')
     category = models.ForeignKey('Category')
