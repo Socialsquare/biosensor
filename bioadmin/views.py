@@ -53,8 +53,7 @@ def biobricks(request):
   context = {
           'categories': categories,
           'detectors': detectors,
-          'responders': responders,
-          'entries': entries,
+          'responders': responders
   }
   return render(request, 'bioadmin/biobricks.html', context)
 
