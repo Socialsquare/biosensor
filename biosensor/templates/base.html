@@ -31,8 +31,12 @@
           <ul class="nav nav-tabs">
           {% if user.is_authenticated %}
             <li class="pull-right"><a href="{% url 'account_logout'%}">Log ud</a></li>
-            {% if user.is_teacher %}
-              <li class="pull-right"><a href="{% url 'teachers:show' %}">Profile</a></li>
+            {% if user.is_admin %}
+              <li class="pull-right"><a href="{% url 'bioadmin:index' %}">Dashboard</a></li>
+            {% elif user.is_teacher %}
+              <li class="pull-right"><a href="{% url 'teachers:dashboard' %}">Dashboard</a></li>
+            {% elif user.is_student_group %}
+              <li class="pull-right"><a href="{% url 'studentgroups:dashboard' %}">Dashboard</a></li>
             {% elif user.is_staff %}
               <li class="pull-right"><a href="{% url 'bioadmin:index' %}">Admin</a></li>
             {% endif %}

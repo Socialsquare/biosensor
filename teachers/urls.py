@@ -11,5 +11,5 @@ from . import views
 urlpatterns = [
     url(r'^signup$', views.signup, name='signup'),
     url(r'^student-groups/new$', views.new_student_group, name='new_student_group'),
-    url(r'^$', views.show, name='show'),
+    url(r'^$', views.dashboard, name='dashboard'),
 ]

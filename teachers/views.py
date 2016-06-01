@@ -21,10 +21,10 @@ def signup(request):
     }
     return render(request, 'teachers/signup.html', context)
 
-def show(request):
+def dashboard(request):
     studentgroups = StudentGroup.objects.all()
     context = { 'studentgroups': studentgroups }
-    return render(request, 'teachers/show.html', context)
+    return render(request, 'teachers/dashboard.html', context)
 
 def new_student_group(request):
     form = NewStudentGroupForm()
@@ -41,6 +41,6 @@ def new_student_group(request):
                     subject=form.cleaned_data['subject'],
                     year=form.cleaned_data['year'])
             student_group.save()
-            return redirect('teachers:show')
+            return redirect('teachers:dashboard')
     context = { 'form': form }
     return render(request, 'teachers/new_student_group.html', context)
