@@ -1,7 +1,7 @@
 """
-schools urlconf
+teachers urlconf
 
-schools:url_name
+teachers :url_name
 """
 
 from django.conf.urls import url
