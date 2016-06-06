@@ -207,6 +207,8 @@ def new_biosensor(request):
         }
     return render(request, 'bioadmin/biosensor.html', context)
 
+@login_required
+@staff_member_required
 def delete_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
 
@@ -219,6 +221,8 @@ def delete_biosensor(request, biosensor_id):
             messages.success(request, "You deleted a biosensor")
         return redirect('bioadmin:catalog')
 
+@login_required
+@staff_member_required
 def edit_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
     if request.method == 'POST':
