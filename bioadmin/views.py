@@ -197,7 +197,7 @@ def new_biosensor(request):
     if request.method == 'POST':
         form = BiosensorForm(request.POST)
         if form.is_valid():
-            biosensor = Biosensor.objects.create(**form.cleaned_data)
+            biosensor = Biosensor.objects.create(user_id=request.user.id, **form.cleaned_data)
             biosensor.save()
             messages.success(request, "You created a biosensor")
         return redirect('bioadmin:catalog')

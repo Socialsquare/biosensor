@@ -45,6 +45,7 @@ class Biobrick(models.Model):
         return self.name
 
 class Biosensor(models.Model):
+    user = models.ForeignKey('auth.User')
     detector = models.ForeignKey('Biobrick', related_name='detectors')
     responder = models.ForeignKey('Biobrick', related_name='responders')
     category = models.ForeignKey('Category')
