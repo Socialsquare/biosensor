@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Teacher
 from studentgroups.models import StudentGroup
 from .forms import TeacherSignupForm, NewStudentGroupForm
+from .decorators import teacher_required
 
 def signup(request):
     form = TeacherSignupForm()
@@ -23,12 +24,14 @@ def signup(request):
     return render(request, 'teachers/signup.html', context)
 
 @login_required
+@teacher_required
 def dashboard(request):
     studentgroups = StudentGroup.objects.all()
     context = { 'studentgroups': studentgroups }
     return render(request, 'teachers/dashboard.html', context)
 
 @login_required
+@teacher_required
 def new_student_group(request):
     form = NewStudentGroupForm()
     if request.method == 'POST':

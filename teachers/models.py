@@ -23,6 +23,6 @@ class Teacher(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
 def is_teacher(user):
-    teacher = Teacher.objects.get(user=user)
-    return teacher != None
+    teacher = Teacher.objects.filter(user=user).count()
+    return teacher != 0
 auth.models.User.add_to_class('is_teacher', is_teacher)

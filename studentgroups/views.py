@@ -4,9 +4,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .forms import BiosensorForm
+from .decorators import student_group_required
 from biobricks.models import Biosensor
 
 @login_required
+@student_group_required
 def dashboard(request):
     biosensors = Biosensor.objects.filter(user=request.user)
     context = {
@@ -15,6 +17,7 @@ def dashboard(request):
     return render(request, 'studentgroups/dashboard.html', context)
 
 @login_required
+@student_group_required
 def new_biosensor(request):
     form = BiosensorForm()
 
@@ -32,6 +35,7 @@ def new_biosensor(request):
     return render(request, 'studentgroups/biosensor.html', context)
 
 @login_required
+@student_group_required
 def delete_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
 
@@ -45,6 +49,7 @@ def delete_biosensor(request, biosensor_id):
         return redirect('studentgroups:dashboard')
 
 @login_required
+@student_group_required
 def edit_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
     if request.method == 'POST':

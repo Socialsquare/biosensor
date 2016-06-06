@@ -15,6 +15,6 @@ class StudentGroup(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
 def is_student_group(user):
-    student_group = StudentGroup.objects.get(user=user)
-    return student_group != None
+    student_group = StudentGroup.objects.filter(user=user).count()
+    return student_group != 0
 auth.models.User.add_to_class('is_student_group', is_student_group)
