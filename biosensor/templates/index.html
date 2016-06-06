@@ -5,6 +5,20 @@
 
 {% block main %}
 
+
+<section>
+<h2>Biosensors</h2>
+
+<ul class="list-group">
+  {% for biosensor in biosensors %}
+  <li class="list-group-item">
+    <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+  </li>
+{% endfor %}
+</ul>
+</section>
+
+<section>
 <h2>Detectors</h2>
 
 <ul class="list-group">
@@ -14,7 +28,9 @@
   </li>
 {% endfor %}
 </ul>
+</section>
 
+<section>
 <h2>Responders</h2>
 
 <ul class="list-group">
@@ -24,5 +40,6 @@
   </li>
 {% endfor %}
 </ul>
+</section>
 
 {% endblock %}
