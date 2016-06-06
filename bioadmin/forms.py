@@ -32,13 +32,13 @@ class BiobrickForm(forms.Form):
             max_length=1000,
             widget=forms.Textarea,
             required=True)
-    igem_part_link = forms.fields.CharField(max_length=200, required=True)
+    igem_part = forms.fields.CharField(max_length=200, required=True)
     team_website = forms.fields.CharField(max_length=200, required=True)
     dna_sequence = forms.fields.CharField(max_length=200, required=True)
 
     def __init__(self, *args, **kwargs):
         super(forms.Form, self).__init__(*args, **kwargs)
-        self.fields['igem_part_link'].widget.attrs['value'] = 'http://'
+        self.fields['igem_part'].widget.attrs['value'] = 'http://parts.igem.org/Part:'
         self.fields['team_website'].widget.attrs['value'] = 'http://'
         self.fields['dna_sequence'].widget.attrs['placeholder'] = 'DNA sequence'
 

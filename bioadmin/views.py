@@ -165,7 +165,7 @@ def edit_biobrick(request, biobrick_id):
             biobrick.name = form.cleaned_data['name']
             biobrick.description = form.cleaned_data['description']
             biobrick.design = form.cleaned_data['design']
-            biobrick.igem_part_link = form.cleaned_data['igem_part_link']
+            biobrick.igem_part = form.cleaned_data['igem_part']
             biobrick.team_website = form.cleaned_data['team_website']
             biobrick.dna_sequence = form.cleaned_data['dna_sequence']
             biobrick.save()
@@ -177,7 +177,7 @@ def edit_biobrick(request, biobrick_id):
         'name': biobrick.name,
         'description': biobrick.description,
         'design': biobrick.design,
-        'igem_part_link': biobrick.igem_part_link,
+        'igem_part': biobrick.igem_part,
         'team_website': biobrick.team_website,
         'dna_sequence': biobrick.dna_sequence,
         })

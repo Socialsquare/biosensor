@@ -36,7 +36,7 @@ class Biobrick(models.Model):
     name = models.TextField(max_length=100, blank=False)
     description = models.TextField(max_length=1000, blank=False)
     design = models.TextField(max_length=1000, blank=False)
-    igem_part_link = models.TextField(max_length=200, blank=False)
+    igem_part = models.TextField(max_length=20, blank=False)
     team_website = models.TextField(max_length=200, blank=False)
     dna_sequence = models.TextField(max_length=200, blank=False)
     created = models.DateTimeField(auto_now_add=True)
