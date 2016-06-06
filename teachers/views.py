@@ -21,11 +21,13 @@ def signup(request):
     }
     return render(request, 'teachers/signup.html', context)
 
+@login_required
 def dashboard(request):
     studentgroups = StudentGroup.objects.all()
     context = { 'studentgroups': studentgroups }
     return render(request, 'teachers/dashboard.html', context)
 
+@login_required
 def new_student_group(request):
     form = NewStudentGroupForm()
     if request.method == 'POST':
