@@ -5,4 +5,47 @@
 
 <h2>Dashboard</h2>
 
+<section>
+<h3>Mine biosensorer</h3>
+
+{% if biosensors %}
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Detector</th>
+    <th>Responder</th>
+    <th>Category</th>
+    <th>Problem description</th>
+    <th>Risk description</th>
+    <th></th>
+    <th></th>
+  </tr>
+  {% for biosensor in biosensors %}
+    <tr>
+      <td>{{biosensor.name}}</td>
+      <td>{{biosensor.detector}}</td>
+      <td>{{biosensor.responder}}</td>
+      <td>{{biosensor.category}}</td>
+      <td>{{biosensor.problem_description}}</td>
+      <td>{{biosensor.risk_description}}</td>
+      <td class="text-center">
+        <a href="{% url 'studentgroups:delete_biosensor' biosensor.id %}">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </td>
+      <td class="text-center">
+        <a href="{% url 'studentgroups:edit_biosensor' biosensor.id %}">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+      </td>
+    </tr>
+  {% endfor %}
+</table>
+{% else %}
+<p><em>Du har ingen biosensorer</em></p>
+{% endif %}
+
+<a class="btn btn-primary" href="{% url 'studentgroups:new_biosensor' %}">Opret biosensor</a>
+</section>
+
 {% endblock %}
