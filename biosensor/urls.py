@@ -4,6 +4,7 @@ from django.contrib import admin
 from . import views
 
 urlpatterns = [
+    url(r'^accounts/logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^teachers/', include('teachers.urls', namespace='teachers')),
     url(r'^students/', include('studentgroups.urls', namespace='studentgroups')),
