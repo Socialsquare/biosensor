@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 
 from .models import Teacher
@@ -12,12 +13,15 @@ def signup(request):
     if request.method == 'POST':
         form = TeacherSignupForm(request.POST)
         if form.is_valid():
-            user = form.save(request) #allauth creates a new user
+            new_user = form.save(request) #allauth creates a new user
             teacher = Teacher.objects.create(
-                    user=user,
+                    user=new_user,
                     school=form.cleaned_data['school'],
                     subjects=form.cleaned_data['subjects'])
             teacher.save()
+            user = authenticate(username=form.cleaned_data['email'],
+                    password=form.cleaned_data['password1'])
+            login(request, user)
             return redirect('homepage')
     context = {
         'form': form
