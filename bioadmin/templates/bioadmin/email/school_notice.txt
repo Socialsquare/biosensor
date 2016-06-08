@@ -1,0 +1,4 @@
+Adgangskode: {{password}}
+Signup link: {{signup_link}}
+
+- Biosensor

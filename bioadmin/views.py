@@ -9,6 +9,7 @@ from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
 
 from .forms import SchoolForm, CategoryForm, BiobrickForm, BiosensorForm
+from .tasks import send_school_notice
 from teachers.models import School, Teacher
 from studentgroups.models import StudentGroup
 from biobricks.models import Category, Biobrick, Biosensor
@@ -46,6 +47,7 @@ def new_school(request):
       passwd = User.objects.make_random_password()
       school.password = make_password(passwd) #hash password before storing it
       school.save()
+      send_school_notice(school, passwd)
       messages.success(request, "You created a school")
       return redirect('bioadmin:users')
 
