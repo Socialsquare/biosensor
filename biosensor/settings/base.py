@@ -13,6 +13,9 @@ https://docs.djangoproject.com/en/1.9/ref/settings/
 import os
 
 SITE_ID = 1
+DOMAIN = 'localhost'
+DEFAULT_FROM_EMAIL = 'Biosensor<hello@{}>'.format(DOMAIN)
+SITE_ADMIN_EMAIL = 'admin@{}'.format(DOMAIN)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 

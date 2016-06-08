@@ -7,6 +7,7 @@ from .models import Teacher
 from studentgroups.models import StudentGroup
 from .forms import TeacherSignupForm, NewStudentGroupForm, EditStudentGroupForm
 from .decorators import teacher_required
+from .tasks import send_student_group_notice
 
 def signup(request):
     form = TeacherSignupForm()
@@ -54,6 +55,7 @@ def new_student_group(request):
                     subject=form.cleaned_data['subject'],
                     year=form.cleaned_data['year'])
             student_group.save()
+            send_student_group_notice(student_group, form.cleaned_data['password1'])
             return redirect('teachers:dashboard')
     context = { 'form': form }
     return render(request, 'teachers/student_group.html', context)
