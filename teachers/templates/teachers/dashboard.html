@@ -9,7 +9,7 @@
 
 <div class="row">
   <div class="col-md-10">
-    {% if studentgroups %}
+    {% if student_groups %}
     <table class="student-groups table table-striped">
       <tr>
         <th>Gruppenavne</th>
@@ -21,7 +21,7 @@
         <th></th>
         <th></th>
       </tr>
-      {% for group in studentgroups %}
+      {% for group in student_groups %}
       <tr>
         <td>{{group.name}}</td>
         <td>{{group.user.email}}</td>

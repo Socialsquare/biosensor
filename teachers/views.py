@@ -31,8 +31,9 @@ def signup(request):
 @login_required
 @teacher_required
 def dashboard(request):
-    studentgroups = StudentGroup.objects.all()
-    context = { 'studentgroups': studentgroups }
+    teacher = Teacher.objects.get(user=request.user)
+    student_groups = StudentGroup.objects.filter(teacher=teacher)
+    context = { 'student_groups': student_groups }
     return render(request, 'teachers/dashboard.html', context)
 
 @login_required
