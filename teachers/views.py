@@ -50,7 +50,7 @@ def new_student_group(request):
             student_group.save()
             return redirect('teachers:dashboard')
     context = { 'form': form }
-    return render(request, 'teachers/new_student_group.html', context)
+    return render(request, 'teachers/student_group.html', context)
 
 @login_required
 @teacher_required
