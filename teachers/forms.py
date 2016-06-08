@@ -51,3 +51,23 @@ class NewStudentGroupForm(SignupForm):
         self.fields['password1'].widget.attrs['placeholder'] = 'Adgangskode'
         self.fields['password2'].label = 'Gentag adgangskode'
         self.fields['password2'].widget.attrs['placeholder'] = 'Gentag adgangskode'
+
+
+class EditStudentGroupForm(forms.Form):
+    email = forms.fields.CharField(label='Kontakt email', max_length=100, required=True)
+    names = forms.fields.CharField(
+            label='Navne',
+            max_length=1000,
+            required=True,
+            widget=forms.Textarea()
+            )
+    no_students = forms.fields.ChoiceField(
+            widget=forms.Select, choices=[(i,i) for i in range(1,11)],
+            label='Antal elever',
+            required=True)
+    subject = forms.fields.CharField(label='Fag', max_length=100, required=True)
+    year = forms.fields.ChoiceField(
+            widget=forms.Select, choices=[(i,i) for i in range(1,4)],
+            label='Årgang',
+            required=True)
+
