@@ -27,8 +27,9 @@ class TeacherSignupForm(SignupForm):
 
 
 class NewStudentGroupForm(SignupForm):
+    name = forms.fields.CharField(label='Gruppenavn', max_length=100, required=True)
     names = forms.fields.CharField(
-            label='Navne',
+            label='Elever',
             max_length=1000,
             required=True,
             widget=forms.Textarea()
@@ -54,9 +55,10 @@ class NewStudentGroupForm(SignupForm):
 
 
 class EditStudentGroupForm(forms.Form):
+    name = forms.fields.CharField(label='Gruppenavn', max_length=100, required=True)
     email = forms.fields.CharField(label='Kontakt email', max_length=100, required=True)
     names = forms.fields.CharField(
-            label='Navne',
+            label='Elever',
             max_length=1000,
             required=True,
             widget=forms.Textarea()

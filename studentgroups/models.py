@@ -5,8 +5,12 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 
 class StudentGroup(models.Model):
+    class Meta:
+        ordering = ['name']
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     teacher = models.ForeignKey('teachers.Teacher')
+    name = models.CharField(max_length=100, blank=False)
     email = models.CharField(max_length=100, blank=False)
     names = models.TextField(max_length=1000, blank=False)
     no_students = models.DecimalField(max_digits=1, decimal_places=0)

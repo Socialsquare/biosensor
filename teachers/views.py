@@ -43,6 +43,7 @@ def new_student_group(request):
             student_group = StudentGroup.objects.create(
                     user=user,
                     teacher=teacher,
+                    name=form.cleaned_data['name'],
                     names=form.cleaned_data['names'],
                     no_students=form.cleaned_data['no_students'],
                     subject=form.cleaned_data['subject'],
@@ -75,6 +76,7 @@ def edit_student_group(request, student_group_id):
         if form.is_valid():
             student_group.user.email = form.cleaned_data['email']
             student_group.user.save()
+            student_group.name = form.cleaned_data['name']
             student_group.names = form.cleaned_data['names']
             student_group.no_students = form.cleaned_data['no_students']
             student_group.subject = form.cleaned_data['subject']
@@ -85,6 +87,7 @@ def edit_student_group(request, student_group_id):
 
     form = EditStudentGroupForm({
         'email': student_group.user.email,
+        'name': student_group.name,
         'names': student_group.names,
         'no_students': student_group.no_students,
         'subject': student_group.subject,
