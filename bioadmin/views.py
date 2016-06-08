@@ -256,3 +256,14 @@ def edit_biosensor(request, biosensor_id):
             'form': form
             }
     return render(request, 'bioadmin/biosensor.html', context)
+
+def show_biosensor(request, biosensor_id):
+    biosensor = get_object_or_404(Biosensor, id=biosensor_id)
+    detector = Biobrick.objects.get(id=biosensor.detector.id)
+    responder = Biobrick.objects.get(id=biosensor.responder.id)
+    context = {
+            'biosensor': biosensor,
+            'detector': detector,
+            'responder': responder
+            }
+    return render(request, 'bioadmin/show_biosensor.html', context)

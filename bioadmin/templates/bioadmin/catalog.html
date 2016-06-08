@@ -15,19 +15,15 @@
     <th>Detector</th>
     <th>Responder</th>
     <th>Category</th>
-    <th>Problem description</th>
-    <th>Risk description</th>
     <th></th>
     <th></th>
   </tr>
   {% for biosensor in biosensors %}
     <tr>
-      <td>{{biosensor.name}}</td>
+      <td><a href="{% url 'bioadmin:show_biosensor' biosensor.id %}">{{biosensor.name}}</a></td>
       <td>{{biosensor.detector}}</td>
       <td>{{biosensor.responder}}</td>
       <td>{{biosensor.category}}</td>
-      <td>{{biosensor.problem_description}}</td>
-      <td>{{biosensor.risk_description}}</td>
       <td class="text-center">
         <a href="{% url 'bioadmin:delete_biosensor' biosensor.id %}">
           <i class="glyphicon glyphicon-trash"></i>
