@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django import forms
 
+from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+
 from .forms import SchoolForm, CategoryForm, BiobrickForm, BiosensorForm
 from teachers.models import School, Teacher
 from studentgroups.models import StudentGroup
@@ -40,6 +43,8 @@ def new_school(request):
     form = SchoolForm(request.POST)
     if form.is_valid():
       school = School.objects.create(**form.cleaned_data)
+      passwd = User.objects.make_random_password()
+      school.password = make_password(passwd) #hash password before storing it
       school.save()
       messages.success(request, "You created a school")
       return redirect('bioadmin:users')
