@@ -6,7 +6,8 @@ from django.db import transaction
 from django import forms
 
 from .forms import SchoolForm, CategoryForm, BiobrickForm, BiosensorForm
-from teachers.models import School
+from teachers.models import School, Teacher
+from studentgroups.models import StudentGroup
 from biobricks.models import Category, Biobrick, Biosensor
 
 @login_required
@@ -15,16 +16,20 @@ def index(request):
   context = {}
   return render(request, 'bioadmin/index.html', context)
 
-# schools
+# users overview
 
 @login_required
 @staff_member_required
-def schools(request):
+def users(request):
+  teachers = Teacher.objects.all()
+  student_groups = StudentGroup.objects.all()
   schools = School.objects.all()
   context = {
+      'teachers': teachers,
+      'student_groups': student_groups,
       'schools': schools
   }
-  return render(request, 'bioadmin/schools.html', context)
+  return render(request, 'bioadmin/users.html', context)
 
 @login_required
 @staff_member_required
@@ -37,12 +42,12 @@ def new_school(request):
       school = School.objects.create(**form.cleaned_data)
       school.save()
       messages.success(request, "You created a school")
-      return redirect('bioadmin:schools')
+      return redirect('bioadmin:users')
 
   context = {'form': form}
   return render(request, 'bioadmin/new_school.html', context)
 
-# catalog
+# catalog overview
 
 @login_required
 @staff_member_required
