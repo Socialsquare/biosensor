@@ -15,7 +15,7 @@ def send_student_group_notice(student_group, password):
     subject = 'Velkommen til Biosensor'
     msg = render_to_string('teachers/email/student_group_notice.txt', ctx)
     email_from = settings.DEFAULT_FROM_EMAIL
-    email_to = [student_group.email]
+    email_to = [student_group.user.email]
 
     msg = EmailMessage(subject, msg, email_from, email_to)
     msg.send()
