@@ -13,9 +13,9 @@ def send_student_group_notice(student_group, password):
         #'group_link': reverse('student_group:show', args=(student_group.id, ))
     }
     subject = 'Velkommen til Biosensor'
-    txt_msg = render_to_string('teachers/email/student_group_notice.txt', ctx)
+    msg = render_to_string('teachers/email/student_group_notice.txt', ctx)
     email_from = settings.DEFAULT_FROM_EMAIL
-    email_to = [student_group.email, ]
+    email_to = [student_group.email]
 
-    msg = EmailMessage(subject, txt_msg, email_from, email_to)
+    msg = EmailMessage(subject, msg, email_from, email_to)
     msg.send()
