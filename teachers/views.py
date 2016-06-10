@@ -70,6 +70,7 @@ def delete_student_group(request, student_group_id):
         return render(request, 'teachers/delete_student_group.html', context)
     else:
         if 'yes' == request.POST.get('confirmation', 'no'):
+            student_group.user.delete()
             student_group.delete()
             messages.success(request, "Du har slettet en elevgruppe")
         return redirect('teachers:dashboard')
