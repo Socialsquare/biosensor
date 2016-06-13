@@ -2,6 +2,8 @@ from django import forms
 from allauth.account.forms import SignupForm
 
 from .models import School
+from studentgroups.models import StudentGroup
+from string import ascii_lowercase
 
 class TeacherSignupForm(SignupForm):
     school = forms.ModelChoiceField(label='Gymnasium',
@@ -26,50 +28,32 @@ class TeacherSignupForm(SignupForm):
         self.fields['password2'].widget.attrs['placeholder'] = 'Gentag adgangskode'
 
 
-class NewStudentGroupForm(SignupForm):
-    name = forms.fields.CharField(label='Gruppenavn', max_length=100, required=True)
-    names = forms.fields.CharField(
+class StudentGroupForm(forms.Form):
+    name = forms.fields.CharField(
+            label='Gruppenavn',
+            max_length=100,
+            required=True)
+    email = forms.fields.CharField(
+            label='Kontaktemail',
+            max_length=100,
+            required=True)
+    students = forms.fields.CharField(
             label='Elever',
             max_length=1000,
             required=True,
             widget=forms.Textarea()
             )
-    no_students = forms.fields.ChoiceField(
-            widget=forms.Select, choices=[(i,i) for i in range(1,11)],
-            label='Antal elever',
+    subject = forms.fields.ChoiceField(
+            label='Fag',
+            widget=forms.Select,
+            choices=[(v, n.capitalize()) for (n, v) in
+                [('', '')] + StudentGroup.SUBJECTS],
             required=True)
-    subject = forms.fields.CharField(label='Fag', max_length=100, required=True)
-    year = forms.fields.ChoiceField(
+    grade = forms.fields.ChoiceField(
             widget=forms.Select, choices=[(i,i) for i in range(1,4)],
-            label='Årgang',
+            label='Klassetrin',
             required=True)
-
-    def __init__(self, *args, **kwargs):
-        super(SignupForm, self).__init__(*args, **kwargs)
-        self.fields['email'].label = 'Kontakt email'
-        self.fields['email'].widget.attrs['placeholder'] = 'Kontakt email'
-        self.fields['password1'].label = 'Adgangskode'
-        self.fields['password1'].widget.attrs['placeholder'] = 'Adgangskode'
-        self.fields['password2'].label = 'Gentag adgangskode'
-        self.fields['password2'].widget.attrs['placeholder'] = 'Gentag adgangskode'
-
-
-class EditStudentGroupForm(forms.Form):
-    name = forms.fields.CharField(label='Gruppenavn', max_length=100, required=True)
-    email = forms.fields.CharField(label='Kontakt email', max_length=100, required=True)
-    names = forms.fields.CharField(
-            label='Elever',
-            max_length=1000,
-            required=True,
-            widget=forms.Textarea()
-            )
-    no_students = forms.fields.ChoiceField(
-            widget=forms.Select, choices=[(i,i) for i in range(1,11)],
-            label='Antal elever',
+    letter = forms.fields.ChoiceField(
+            widget=forms.Select, choices=[(i,i) for i in list(ascii_lowercase)],
+            label='Bogstav',
             required=True)
-    subject = forms.fields.CharField(label='Fag', max_length=100, required=True)
-    year = forms.fields.ChoiceField(
-            widget=forms.Select, choices=[(i,i) for i in range(1,4)],
-            label='Årgang',
-            required=True)
-

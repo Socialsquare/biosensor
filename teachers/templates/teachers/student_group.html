@@ -18,15 +18,22 @@
        <form class="new-student-group" method="post" action="{% url 'teachers:new_student_group' %}">
     {% endif %}
         {% csrf_token %}
-        {% bootstrap_form form %}
+        {% bootstrap_form_errors form %}
+        {% bootstrap_field form.name %}
+        {% bootstrap_field form.email %}
+        {% bootstrap_field form.students %}
+        {% bootstrap_field form.subject %}
+        {% bootstrap_field form.grade %}
+        {% bootstrap_field form.letter %}
+
         {% if student_group %}
-          <button class="btn btn-primary" type="submit">Gem ændringer &raquo;</button>
+        <button class="btn btn-primary" type="submit">Gem ændringer &raquo;</button>
         {% else %}
-          <button class="btn btn-primary" type="submit">Opret &raquo;</button>
+        <button class="btn btn-primary" type="submit">Opret elevgruppe &raquo;</button>
         {% endif %}
        </form>
     </div>
-  </div>
+</div>
 </div>
 
 {% endblock %}

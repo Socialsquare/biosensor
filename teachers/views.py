@@ -2,10 +2,11 @@ from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Teacher
 from studentgroups.models import StudentGroup
-from .forms import TeacherSignupForm, NewStudentGroupForm, EditStudentGroupForm
+from .forms import TeacherSignupForm, StudentGroupForm
 from .decorators import teacher_required
 from .tasks import send_student_group_notice
 
@@ -40,23 +41,28 @@ def dashboard(request):
 @login_required
 @teacher_required
 def new_student_group(request):
-    form = NewStudentGroupForm()
     if request.method == 'POST':
-        form = NewStudentGroupForm(request.POST)
+        form = StudentGroupForm(request.POST)
         if form.is_valid():
-            user = form.save(request) #allauth creates a new user
+            username = form.cleaned_data['email'].split('@'),
+            passwd = User.objects.make_random_password()
+            user = User.objects.create_user(
+                username,
+                form.cleaned_data['email'],
+                passwd)
             teacher = Teacher.objects.get(user=request.user)
             student_group = StudentGroup.objects.create(
                     user=user,
                     teacher=teacher,
                     name=form.cleaned_data['name'],
-                    names=form.cleaned_data['names'],
-                    no_students=form.cleaned_data['no_students'],
+                    students=form.cleaned_data['students'],
                     subject=form.cleaned_data['subject'],
-                    year=form.cleaned_data['year'])
+                    grade=form.cleaned_data['grade'],
+                    letter=form.cleaned_data['letter'])
             student_group.save()
-            send_student_group_notice(student_group, form.cleaned_data['password1'])
+            send_student_group_notice(student_group, passwd)
             return redirect('teachers:dashboard')
+    form = StudentGroupForm()
     context = { 'form': form }
     return render(request, 'teachers/student_group.html', context)
 
@@ -80,26 +86,26 @@ def delete_student_group(request, student_group_id):
 def edit_student_group(request, student_group_id):
     student_group = get_object_or_404(StudentGroup, id=student_group_id)
     if request.method == 'POST':
-        form = EditStudentGroupForm(request.POST)
+        form = StudentGroupForm(request.POST)
         if form.is_valid():
             student_group.user.email = form.cleaned_data['email']
             student_group.user.save()
             student_group.name = form.cleaned_data['name']
-            student_group.names = form.cleaned_data['names']
-            student_group.no_students = form.cleaned_data['no_students']
+            student_group.students = form.cleaned_data['students']
             student_group.subject = form.cleaned_data['subject']
-            student_group.year = form.cleaned_data['year']
+            student_group.grade = form.cleaned_data['grade']
+            student_group.letter = form.cleaned_data['letter']
             student_group.save()
             messages.success(request, "Dine ændringer er gemt")
             return redirect('teachers:dashboard')
 
-    form = EditStudentGroupForm({
+    form = StudentGroupForm({
         'email': student_group.user.email,
         'name': student_group.name,
-        'names': student_group.names,
-        'no_students': student_group.no_students,
+        'students': student_group.students,
         'subject': student_group.subject,
-        'year': student_group.year
+        'grade': student_group.grade,
+        'letter': student_group.letter
         })
     context = {
             'student_group': student_group,

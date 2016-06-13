@@ -15,7 +15,6 @@
         <th>Gruppenavne</th>
         <th>Kontakt email</th>
         <th>Elever</th>
-        <th>Antal elever</th>
         <th>Fag</th>
         <th>Årgang</th>
         <th></th>
@@ -25,10 +24,9 @@
       <tr>
         <td>{{group.name}}</td>
         <td>{{group.user.email}}</td>
-        <td>{{group.names}}</td>
-        <td class="text-center">{{group.no_students}}</td>
-        <td>{{group.subject}}</td>
-        <td class="text-center">{{group.year}}.</td>
+        <td>{{group.students}}</td>
+        <td>{{group.subject|capfirst}}</td>
+        <td class="text-center">{{group.grade}}.{{group.letter}}</td>
         <td class="text-center">
           <a href="{% url 'teachers:delete_student_group' group.id %}">
             <i class="glyphicon glyphicon-trash"></i>
