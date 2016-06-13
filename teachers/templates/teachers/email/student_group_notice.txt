@@ -1,4 +1,14 @@
-Adgangskode: {{password}}
-Link: [coming soon]
+Hej.
 
-- Biosensor
+Du er blevet oprettet som kontaktperson for biosensor-gruppen "{{group_name}}".
+
+Du kan nu logge ind på: http://biosensor.dk
+Email: {{email}}
+Password: {{password}}
+
+Når du er logget ind kan du oprette din første biosensor. Hvis du mangler inspiration kan du finde masser af eksempler på biosensorer online. Du kan også læse andre rapporter og finde inspiration til din egen.
+
+Med venlig hilsen
+Pernille og Viktor
+Biotech Academy
+http://biotechacademy.dk/

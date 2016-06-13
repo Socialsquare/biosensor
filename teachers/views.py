@@ -48,7 +48,7 @@ def new_student_group(request):
     if request.method == 'POST':
         form = StudentGroupForm(request.POST)
         if form.is_valid():
-            username = form.cleaned_data['email'].split('@'),
+            username = form.cleaned_data['email']
             passwd = User.objects.make_random_password()
             user = User.objects.create_user(
                 username,
@@ -64,7 +64,10 @@ def new_student_group(request):
                     grade=form.cleaned_data['grade'],
                     letter=form.cleaned_data['letter'])
             student_group.save()
-            send_student_group_notice(student_group, passwd)
+            send_student_group_notice(
+                    student_group.name,
+                    student_group.user.email,
+                    passwd)
             return redirect('teachers:dashboard')
 
     context = { 'form': form }

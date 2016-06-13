@@ -1,5 +1,6 @@
 from django import forms
 from allauth.account.forms import SignupForm
+from django.contrib.auth.models import User
 
 from .models import School
 from studentgroups.models import StudentGroup
@@ -71,3 +72,10 @@ class StudentGroupForm(forms.Form):
             widget=forms.Select, choices=[(i,i) for i in list(ascii_lowercase)],
             label='Bogstav',
             required=True)
+
+    def clean(self):
+        if User.objects.filter(email=self.cleaned_data['email']).exists():
+            raise forms.ValidationError({
+                'email': ["Den angivne email er allerede i brug",]
+                })
+        return self.cleaned_data
