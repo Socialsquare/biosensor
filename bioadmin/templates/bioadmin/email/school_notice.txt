@@ -1,4 +1,23 @@
-Adgangskode: {{password}}
-Signup link: {{signup_link}}
+Hej {{school.contact_name}}
 
-- Biosensor
+Du er oprettet som kontaktperson for {{school.name}} på biosensor.dk. Du bedes tjekke om følgende information er korrekt:
+
+{{school.name}}
+{{school.address}}
+
+Lærere kan tilmelde sig som underviser på:
+{{signup_link}}
+Under tilmeldingen, skal følgende kode indtastes: {{password}}
+
+Der udsendes et forsøgskit til hver skole. Hvis I endnu ikke har modtaget et kit, så kontakt Biotech Academy på: biosensor@bio.dtu.dk. Så sørger vi for at sende et kit ud.
+
+Biotech Academy har sørget for at forsøgskittet er godkendt til brug i undervisningen på gymnasier. Husk, at læreren selv skal indsende et bilag senest tre uger før arbejdet med øvelsen går i gang. Biotech Academy har allerede sørget for bilaget er lavet. Det skal derfor bare printes og underskrives. Lærervejledning og bilag kan findes på:
+
+http://biosensor.dk/laerervejledning/
+
+Successen af biosensor projektet kræver, at lærere og elever aktivt bruger hjemmesiden. Når I har lavet en biosensor i lboaraotriet, beder vi jer derfor om at dokumentere jeres forsøg online med resultater. På denne måde kan andre gymnasier lære af jeres forsøg og finde inspiration til deres egne biosensorer.
+
+Med venlig hilsen
+Biotech Academy
+http://biotechacademy.dk
+Biosensor projektet er støttet af Lundbeck fonden, Novozymes, New England Biolabs, BioNordika og SnapGene.

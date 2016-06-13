@@ -9,6 +9,7 @@ from studentgroups.models import StudentGroup
 def send_school_notice(school, password):
     domain = Site.objects.get(id=settings.SITE_ID).domain
     ctx = {
+        'school': school,
         'password': password,
         'signup_link':'http://{}'.format(domain) + reverse('teachers:signup')
     }
@@ -19,3 +20,4 @@ def send_school_notice(school, password):
 
     msg = EmailMessage(subject, txt_msg, email_from, email_to)
     msg.send()
+
