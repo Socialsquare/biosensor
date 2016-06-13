@@ -5,17 +5,21 @@ from .models import School
 from studentgroups.models import StudentGroup
 from string import ascii_lowercase
 
+import hashlib
+
 class TeacherSignupForm(SignupForm):
     school = forms.ModelChoiceField(label='Gymnasium',
                                    queryset=School.objects.all(),
                                    required=True)
+    school_passwd = forms.fields.CharField(
+            widget=forms.PasswordInput(),
+            label='Skolens adgangskode',
+            max_length=100,
+            required=True)
     subjects = forms.fields.CharField(
-        label='Emner',
+        label='Dine fag',
         required=True,
-        max_length=400,
-        widget=forms.Textarea(attrs={
-            'placeholder': 'Emner du underviser i'
-            })
+        max_length=100
     )
 
     def __init__(self, *args, **kwargs):
@@ -27,6 +31,16 @@ class TeacherSignupForm(SignupForm):
         self.fields['password2'].label = 'Gentag adgangskode'
         self.fields['password2'].widget.attrs['placeholder'] = 'Gentag adgangskode'
 
+    def clean(self):
+        school_id = self.cleaned_data['school'].id
+        school_passwd = self.cleaned_data['school_passwd']
+        hashed_passwd = hashlib.sha512(school_passwd.encode('utf-8')).hexdigest()
+        school = School.objects.filter(id=school_id).filter(password=hashed_passwd)
+        if not school:
+            raise forms.ValidationError({
+                'school_passwd': ["Du har angivet en forkert adgangskode",]
+                })
+        return self.cleaned_data
 
 class StudentGroupForm(forms.Form):
     name = forms.fields.CharField(

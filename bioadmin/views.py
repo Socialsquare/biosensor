@@ -4,9 +4,10 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.contrib.auth.decorators import login_required
 from django.db import transaction
 from django import forms
-
 from django.contrib.auth.hashers import make_password
 from django.contrib.auth.models import User
+
+import hashlib
 
 from .forms import SchoolForm, CategoryForm, BiobrickForm, BiosensorForm
 from .tasks import send_school_notice
@@ -44,8 +45,8 @@ def new_school(request):
     form = SchoolForm(request.POST)
     if form.is_valid():
       school = School.objects.create(**form.cleaned_data)
-      passwd = User.objects.make_random_password()
-      school.password = make_password(passwd) #hash password before storing it
+      passwd = User.objects.make_random_password().encode('utf-8')
+      school.password = hashlib.sha512(passwd).hexdigest()
       school.save()
       send_school_notice(school, passwd)
       messages.success(request, "You created a school")

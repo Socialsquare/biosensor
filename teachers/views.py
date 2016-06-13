@@ -3,8 +3,11 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+from django.contrib.auth.hashers import make_password
 
-from .models import Teacher
+import hashlib
+
+from .models import Teacher, School
 from studentgroups.models import StudentGroup
 from .forms import TeacherSignupForm, StudentGroupForm
 from .decorators import teacher_required
@@ -41,6 +44,7 @@ def dashboard(request):
 @login_required
 @teacher_required
 def new_student_group(request):
+    form = StudentGroupForm()
     if request.method == 'POST':
         form = StudentGroupForm(request.POST)
         if form.is_valid():
@@ -62,7 +66,7 @@ def new_student_group(request):
             student_group.save()
             send_student_group_notice(student_group, passwd)
             return redirect('teachers:dashboard')
-    form = StudentGroupForm()
+
     context = { 'form': form }
     return render(request, 'teachers/student_group.html', context)
 
