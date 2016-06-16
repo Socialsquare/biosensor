@@ -55,5 +55,4 @@ class StudentReport(models.Model):
     conclusion = models.CharField(
             max_length=4000,
             blank=False)
-
-
+    created = models.DateTimeField(auto_now_add=True)

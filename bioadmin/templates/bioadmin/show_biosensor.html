@@ -50,4 +50,18 @@
   </div>
 </section>
 
+{% if student_reports %}
+<section>
+  <h3>Student reports</h3>
+
+  <ul class="list-group">
+    {% for r in student_reports %}
+    <li class="list-group-item">
+      <a href="{% url 'bioadmin:show_student_report' r.id %}">{{r.student_group.name}}, {{r.student_group.teacher.school.name}} ({{r.created|date:'F n, o'}})</a>
+    </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
 {% endblock %}

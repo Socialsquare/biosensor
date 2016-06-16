@@ -12,7 +12,7 @@ import hashlib
 from .forms import SchoolForm, CategoryForm, BiobrickForm, BiosensorForm
 from .tasks import send_school_notice
 from teachers.models import School, Teacher
-from studentgroups.models import StudentGroup
+from studentgroups.models import StudentGroup, StudentReport
 from biobricks.models import Category, Biobrick, Biosensor
 
 @login_required
@@ -269,9 +269,21 @@ def show_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
     detector = Biobrick.objects.get(id=biosensor.detector.id)
     responder = Biobrick.objects.get(id=biosensor.responder.id)
+    student_reports = StudentReport.objects.filter(biosensor=biosensor)
     context = {
             'biosensor': biosensor,
             'detector': detector,
-            'responder': responder
+            'responder': responder,
+            'student_reports': student_reports,
             }
     return render(request, 'bioadmin/show_biosensor.html', context)
+
+def show_student_report(request, report_id):
+    report = get_object_or_404(StudentReport, id=report_id)
+    context = {
+            'report': report,
+            }
+    return render(request, 'bioadmin/show_student_report.html', context)
+
+
+

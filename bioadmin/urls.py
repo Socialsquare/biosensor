@@ -11,6 +11,7 @@ urlpatterns = [
     url(r'^catalog/biosensors/new$', views.new_biosensor, name='new_biosensor'),
     url(r'^catalog/biosensors/delete/(\d+)$', views.delete_biosensor, name='delete_biosensor'),
     url(r'^catalog/biosensors/edit/(\d+)$', views.edit_biosensor, name='edit_biosensor'),
+    url(r'^catalog/student-reports/(\d+)$', views.show_student_report, name='show_student_report'),
     url(r'^catalog/(detector)s/new$', views.new_biobrick, name='new_biobrick'),
     url(r'^catalog/(responder)s/new$', views.new_biobrick, name='new_biobrick'),
     url(r'^catalog/delete/(\d+)$', views.delete_biobrick, name='delete_biobrick'),

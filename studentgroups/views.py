@@ -41,4 +41,3 @@ def new_report(request, biosensor_id):
             'form': form
             }
     return render(request, 'studentgroups/new_report.html', context)
-
