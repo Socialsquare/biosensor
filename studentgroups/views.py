@@ -28,7 +28,10 @@ def new_report(request, biosensor_id):
         form = ReportForm(request.POST)
         if form.is_valid():
             student_group = StudentGroup.objects.get(user=request.user)
-            report = StudentReport.objects.create(student_group=student_group, **form.cleaned_data)
+            report = StudentReport.objects.create(
+                    student_group=student_group,
+                    biosensor=biosensor,
+                    **form.cleaned_data)
             report.save()
             messages.success(request, "Du har uplopadet din rapport")
             return redirect(biosensor)

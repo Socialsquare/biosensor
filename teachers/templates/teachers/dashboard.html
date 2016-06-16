@@ -35,6 +35,22 @@
       <a class="btn btn-primary" href="{% url 'teachers:new_student_group' %}">Opret gruppe</a>
     </section>
 
+    <section>
+      <h3>Mine biosensorer</h3>
+
+      {% if biosensors %}
+      <ul class="list-group">
+        {% for biosensor in biosensors %}
+        <li class="list-group-item">
+          <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <a class="btn btn-primary" href="{% url 'biobricks:new_biosensor' %}">Opret biosensor</a>
+    </section>
+
   </div>
 </div>
 

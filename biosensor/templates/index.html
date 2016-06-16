@@ -11,9 +11,11 @@
 
 <ul class="list-group">
   {% for biosensor in biosensors %}
-  <li class="list-group-item">
-    <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
-  </li>
+    {% if biosensor.display %}
+      <li class="list-group-item">
+        <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+      </li>
+  {% endif %}
 {% endfor %}
 </ul>
 </section>

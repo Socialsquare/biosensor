@@ -38,7 +38,8 @@ def is_student_group(user):
 auth.models.User.add_to_class('is_student_group', is_student_group)
 
 class StudentReport(models.Model):
-    student_group = models.ForeignKey('studentgroups.StudentGroup')
+    student_group = models.ForeignKey('studentgroups.StudentGroup', related_name='student_reports')
+    biosensor = models.ForeignKey('biobricks.Biosensor', related_name='student_reports')
     introduction = models.CharField(
             max_length=4000,
             blank=False)

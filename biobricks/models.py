@@ -59,3 +59,7 @@ class Biosensor(models.Model):
 
     def get_absolute_url(self):
         return reverse('biobricks:show_biosensor', args=(self.id, ))
+
+    def display(self):
+        # display if created by admin or at least has one report
+        return self.user.is_staff or self.student_reports.exists()
