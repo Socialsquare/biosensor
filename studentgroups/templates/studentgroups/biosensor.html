@@ -16,9 +16,9 @@
 <div class="col-md-8">
 
 {% if biosensor %}
-  <form method="POST" action="{% url 'studentgroups:edit_biosensor' biosensor.id %}" class="form">
+  <form method="POST" action="{% url 'biobricks:edit_biosensor' biosensor.id %}" class="form">
 {% else %}
-  <form method="POST" action="{% url 'studentgroups:new_biosensor' %}" class="form">
+  <form method="POST" action="{% url 'biobricks:new_biosensor' %}" class="form">
 {% endif %}
     {% csrf_token %}
 

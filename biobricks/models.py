@@ -1,5 +1,5 @@
 from __future__ import unicode_literals
-
+from django.core.urlresolvers import reverse
 from django.db import models
 from django.contrib import auth
 from model_utils.fields import StatusField
@@ -56,3 +56,6 @@ class Biosensor(models.Model):
 
     def __str__(self):
         return self.name
+
+    def get_absolute_url(self):
+        return reverse('biobricks:show_biosensor', args=(self.id, ))

@@ -13,3 +13,4 @@ coverage
 yanc
 whitenoise==2.0.2
 django-model-utils==2.5
+django-summernote==0.8.5

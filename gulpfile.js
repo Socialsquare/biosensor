@@ -20,6 +20,7 @@ var paths = {
       'bioadmin/static/bioadmin/css/*.scss',
     ],
     js: [
+      'biosensor/static/biosensor/javascript/*.js',
     ],
     fonts: [
     ]

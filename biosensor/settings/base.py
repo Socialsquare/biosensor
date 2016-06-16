@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.twitter',
     'allauth.socialaccount.providers.facebook',
     'bootstrap3',
+    'django_summernote',
 
     'bioadmin',
     'teachers',
@@ -96,6 +97,50 @@ TEMPLATES = [
         },
     },
 ]
+
+SUMMERNOTE_CONFIG = {
+    # Using SummernoteWidget - iframe mode
+    'iframe': False,  # or set False to use SummernoteInplaceWidget - no iframe mode
+
+    # Using Summernote Air-mode
+    'airMode': False,
+
+    # Use native HTML tags (`<b>`, `<i>`, ...) instead of style attributes
+    # (Firefox, Chrome only)
+    'styleWithTags': True,
+
+    # Change editor size
+    'width': '100%',
+    'height': '480',
+
+    # Use proper language setting automatically (default)
+    'lang': None,
+
+    'toolbar': [
+        ['font', ['bold', 'italic', 'underline', 'clear']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['insert', ['link', 'picture','video']],
+        ['view', ['fullscreen']],
+        ['help', ['help']]
+    ],
+
+    'fontNames': [
+        #'American Typewriter'
+    ],
+    # Need authentication while uploading attachments.
+    'attachment_require_authentication': False,
+
+    # Set external media files for SummernoteInplaceWidget.
+    # !!! Be sure to put {{ form.media }} in template before initiate summernote.
+    'inplacewidget_external_css': (
+       # '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
+        #'//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css',
+    ),
+    'inplacewidget_external_js': (
+        #'//code.jquery.com/jquery-1.9.1.min.js',
+        #'//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
+    ),
+}
 
 WSGI_APPLICATION = 'biosensor.wsgi.application'
 

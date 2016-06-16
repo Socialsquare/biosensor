@@ -29,12 +29,12 @@
       <td>{{biosensor.problem_description}}</td>
       <td>{{biosensor.risk_description}}</td>
       <td class="text-center">
-        <a href="{% url 'studentgroups:delete_biosensor' biosensor.id %}">
+        <a href="{% url 'biobricks:delete_biosensor' biosensor.id %}">
           <i class="glyphicon glyphicon-trash"></i>
         </a>
       </td>
       <td class="text-center">
-        <a href="{% url 'studentgroups:edit_biosensor' biosensor.id %}">
+        <a href="{% url 'biobricks:edit_biosensor' biosensor.id %}">
           <i class="glyphicon glyphicon-edit"></i>
         </a>
       </td>
@@ -45,7 +45,7 @@
 <p><em>Du har ingen biosensorer</em></p>
 {% endif %}
 
-<a class="btn btn-primary" href="{% url 'studentgroups:new_biosensor' %}">Opret biosensor</a>
+<a class="btn btn-primary" href="{% url 'biobricks:new_biosensor' %}">Opret biosensor</a>
 </section>
 
 {% endblock %}

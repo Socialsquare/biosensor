@@ -33,3 +33,21 @@ def is_student_group(user):
     student_group = StudentGroup.objects.filter(user=user).count()
     return student_group != 0
 auth.models.User.add_to_class('is_student_group', is_student_group)
+
+class StudentReport(models.Model):
+    student_group = models.ForeignKey('studentgroups.StudentGroup')
+    introduction = models.CharField(
+            max_length=4000,
+            blank=False)
+    method = models.CharField(
+            max_length=4000,
+            blank=False)
+    results = models.CharField(
+            max_length=4000,
+            blank=False)
+    discussion = models.CharField(
+            max_length=4000,
+            blank=False)
+    conclusion = models.CharField(
+            max_length=4000,
+            blank=False)
