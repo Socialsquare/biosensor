@@ -24,3 +24,16 @@ class ReportForm(forms.Form):
             max_length=4000,
             widget=SummernoteInplaceWidget(),
             required=True)
+
+    def __init__(self, *args, **kwargs):
+        super(forms.Form, self).__init__(*args, **kwargs)
+        self.fields['introduction'].label = 'Introduktion'
+        self.fields['introduction'].widget.attrs['placeholder'] = 'Introduktion'
+        self.fields['method'].label = 'Metode'
+        self.fields['method'].widget.attrs['placeholder'] = 'Metode'
+        self.fields['results'].label = 'Resultater'
+        self.fields['results'].widget.attrs['placeholder'] = 'Resultater'
+        self.fields['discussion'].label = 'Diskussion'
+        self.fields['discussion'].widget.attrs['placeholder'] = 'Diskussion'
+        self.fields['conclusion'].label = 'Konklusion'
+        self.fields['conclusion'].widget.attrs['placeholder'] = 'Konklusion'
