@@ -21,18 +21,27 @@ def index(request):
   context = {}
   return render(request, 'bioadmin/index.html', context)
 
-# users overview
+# teacher overview
 
 @login_required
 @staff_member_required
-def users(request):
+def teachers(request):
   teachers = Teacher.objects.all()
-  student_groups = StudentGroup.objects.all()
   context = {
       'teachers': teachers,
+  }
+  return render(request, 'bioadmin/teachers.html', context)
+
+# student group overview
+
+@login_required
+@staff_member_required
+def student_groups(request):
+  student_groups = StudentGroup.objects.all()
+  context = {
       'student_groups': student_groups
   }
-  return render(request, 'bioadmin/users.html', context)
+  return render(request, 'bioadmin/student_groups.html', context)
 
 # schools overview
 

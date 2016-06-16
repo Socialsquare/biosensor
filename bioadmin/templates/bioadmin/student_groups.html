@@ -1,0 +1,33 @@
+{% extends "bioadmin/base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}Student group overview{% endblock %}
+
+{% block main %}
+<h2>Student group overview</h2>
+
+<section>
+<table class="table table-striped">
+  <tr>
+    <th>Group name</th>
+    <th>Students</th>
+    <th>Contact email</th>
+    <th>School</th>
+    <th>Subject</th>
+    <th>Year</th>
+  </tr>
+  {% for student_group in student_groups %}
+    <tr>
+      <td>{{student_group.name}}</td>
+      <td>{{student_group.names}}</td>
+      <td>{{student_group.user.email}}</td>
+      <td>{{student_group.teacher.school.name}}</td>
+      <td>{{student_group.subject}}</td>
+      <td>{{student_group.year}}</td>
+    </tr>
+  {% endfor %}
+</table>
+</section>
+
+{% endblock %}
+
