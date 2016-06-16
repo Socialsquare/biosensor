@@ -1,7 +1,9 @@
-from django.shortcuts import render, get_object_or_404
+from django.contrib import messages
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .models import Biobrick, Biosensor
+from studentgroups.models import StudentGroup
 from .forms import BiosensorForm
 from .decorators import is_owner
 
@@ -22,7 +24,6 @@ def show_biosensor(request, biosensor_id):
     return render(request, 'biobricks/show_biosensor.html', context)
 
 @login_required
-@is_owner
 def new_biosensor(request):
     form = BiosensorForm()
 
@@ -31,6 +32,9 @@ def new_biosensor(request):
         if form.is_valid():
             biosensor = Biosensor.objects.create(user_id=request.user.id, **form.cleaned_data)
             biosensor.save()
+            if request.user.is_student_group:
+                student_group = StudentGroup.objects.get(user=request.user)
+                student_group.biosensors.add(biosensor)
             messages.success(request, "Du har oprettet en biosensor")
         return redirect('studentgroups:dashboard')
 

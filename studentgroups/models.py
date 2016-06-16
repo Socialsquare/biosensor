@@ -6,6 +6,8 @@ from django.contrib import auth
 from model_utils.fields import StatusField
 from model_utils import Choices
 
+from biobricks.models import Biosensor
+
 class StudentGroup(models.Model):
     class Meta:
         ordering = ['name']
@@ -27,6 +29,7 @@ class StudentGroup(models.Model):
     subject = StatusField(choices_name='SUBJECTS')
     grade = models.DecimalField(max_digits=1, decimal_places=0)
     letter = models.CharField(max_length=1, blank=False)
+    biosensors = models.ManyToManyField(Biosensor)
     created = models.DateTimeField(auto_now_add=True)
 
 def is_student_group(user):
@@ -51,3 +54,5 @@ class StudentReport(models.Model):
     conclusion = models.CharField(
             max_length=4000,
             blank=False)
+
+

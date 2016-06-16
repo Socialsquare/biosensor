@@ -5,44 +5,35 @@
 
 <h2>Dashboard</h2>
 
-<h3>Elevgrupper</h3>
-
 <div class="row">
   <div class="col-md-10">
-    {% if student_groups %}
-    <table class="student-groups table table-striped">
-      <tr>
-        <th>Gruppenavne</th>
-        <th>Kontakt email</th>
-        <th>Elever</th>
-        <th>Fag</th>
-        <th>Årgang</th>
-        <th></th>
-        <th></th>
-      </tr>
-      {% for group in student_groups %}
-      <tr>
-        <td>{{group.name}}</td>
-        <td>{{group.user.email}}</td>
-        <td>{{group.students}}</td>
-        <td>{{group.subject|capfirst}}</td>
-        <td class="text-center">{{group.grade}}.{{group.letter}}</td>
-        <td class="text-center">
-          <a href="{% url 'teachers:delete_student_group' group.id %}">
-            <i class="glyphicon glyphicon-trash"></i>
-          </a>
-        </td>
-        <td class="text-center">
-          <a href="{% url 'teachers:edit_student_group' group.id %}">
-            <i class="glyphicon glyphicon-edit"></i>
-          </a>
-        </td>
-      </tr>
-      {% endfor %}
-    </table>
-    {% endif %}
 
-    <a class="btn btn-primary" href="{% url 'teachers:new_student_group' %}">Opret gruppe</a>
+    <section>
+      <h3>Elevgrupper</h3>
+
+      {% if student_groups %}
+      <ul class="list-group">
+        {% for group in student_groups %}
+        <li class="list-group-item">
+          <h4>{{group.name}}</h4>
+
+          {% if group.biosensors %}
+          <ul class="list-group">
+            {% for biosensor in group.biosensors.all %}
+            <li class="list-group-item">
+              <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+
+        </li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+
+      <a class="btn btn-primary" href="{% url 'teachers:new_student_group' %}">Opret gruppe</a>
+    </section>
 
   </div>
 </div>

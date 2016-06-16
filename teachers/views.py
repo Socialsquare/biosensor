@@ -8,6 +8,7 @@ from django.contrib.auth.hashers import make_password
 import hashlib
 
 from .models import Teacher, School
+from biobricks.models import Biosensor
 from studentgroups.models import StudentGroup
 from .forms import TeacherSignupForm, StudentGroupForm
 from .decorators import teacher_required
@@ -38,7 +39,11 @@ def signup(request):
 def dashboard(request):
     teacher = Teacher.objects.get(user=request.user)
     student_groups = StudentGroup.objects.filter(teacher=teacher)
-    context = { 'student_groups': student_groups }
+    biosensors = Biosensor.objects.filter(user=teacher.user)
+    context = {
+            'student_groups': student_groups,
+            'biosensors': biosensors
+            }
     return render(request, 'teachers/dashboard.html', context)
 
 @login_required
