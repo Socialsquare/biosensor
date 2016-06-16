@@ -1,0 +1,30 @@
+{% extends "bioadmin/base.html" %}
+{% load staticfiles %}
+
+{% block head_title %}School overview{% endblock %}
+
+{% block main %}
+<h2>School overview</h2>
+
+<section>
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Contact person</th>
+    <th>Contact email</th>
+    <th>Adress</th>
+  </tr>
+  {% for school in schools %}
+    <tr>
+      <td>{{school.name}}</td>
+      <td>{{school.contact_name}}</td>
+      <td>{{school.contact_email}}</td>
+      <td>{{school.address}}</td>
+    </tr>
+  {% endfor %}
+</table>
+
+<a class="btn btn-primary" href="{% url 'bioadmin:new_school' %}">Add school</a>
+</section>
+
+{% endblock %}

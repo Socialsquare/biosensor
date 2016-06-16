@@ -28,13 +28,22 @@ def index(request):
 def users(request):
   teachers = Teacher.objects.all()
   student_groups = StudentGroup.objects.all()
-  schools = School.objects.all()
   context = {
       'teachers': teachers,
-      'student_groups': student_groups,
-      'schools': schools
+      'student_groups': student_groups
   }
   return render(request, 'bioadmin/users.html', context)
+
+# schools overview
+
+@login_required
+@staff_member_required
+def schools(request):
+  schools = School.objects.all()
+  context = {
+      'schools': schools
+  }
+  return render(request, 'bioadmin/schools.html', context)
 
 @login_required
 @staff_member_required
@@ -50,7 +59,7 @@ def new_school(request):
       school.save()
       send_school_notice(school, passwd)
       messages.success(request, "You created a school")
-      return redirect('bioadmin:users')
+      return redirect('bioadmin:schools')
 
   context = {'form': form}
   return render(request, 'bioadmin/new_school.html', context)
