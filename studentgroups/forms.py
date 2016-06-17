@@ -7,22 +7,27 @@ class ReportForm(forms.Form):
     introduction = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
+            help_text='Max 4000 karakterer',
             required=True)
     method = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
+            help_text='Max 4000 karakterer',
             required=True)
     results = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
+            help_text='Max 4000 karakterer',
             required=True)
     discussion = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
+            help_text='Max 4000 karakterer',
             required=True)
     conclusion = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
+            help_text='Max 4000 karakterer',
             required=True)
 
     def __init__(self, *args, **kwargs):
