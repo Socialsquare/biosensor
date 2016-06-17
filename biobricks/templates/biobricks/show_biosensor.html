@@ -51,9 +51,9 @@
 </section>
 
 <section>
-<h3>Rapporter</h3>
-
-<a class="btn btn-primary" href="{% url 'studentgroups:new_report' biosensor.id %}">Upload rapport</a>
+{% if request.user.is_student_group %}
+  <a class="btn btn-primary" href="{% url 'studentgroups:new_report' biosensor.id %}">Upload rapport</a>
+{% endif %}
 </section>
 
 {% endblock %}
