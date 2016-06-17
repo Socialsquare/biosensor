@@ -11,6 +11,6 @@ urlpatterns = [
     url(r'^teachers/', include('teachers.urls', namespace='teachers')),
     url(r'^students/', include('studentgroups.urls', namespace='studentgroups')),
     url(r'^biobrick/', include('biobricks.urls', namespace='biobricks')),
-    url(r'^bio-admin/', include('bioadmin.urls', namespace='bioadmin')),
+    url(r'^bioadmin/', include('bioadmin.urls', namespace='bioadmin')),
     url(r'^$', views.homepage, name='homepage'),
 ]
