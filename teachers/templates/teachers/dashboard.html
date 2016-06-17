@@ -19,9 +19,12 @@
 
           {% if group.biosensors %}
           <ul class="list-group">
-            {% for biosensor in group.biosensors.all %}
+            {% for biosensor in group.biosensors_ %}
             <li class="list-group-item">
               <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+              {% if biosensor.has_report %}
+                <a href="{% url 'teachers:show_student_report' biosensor.report_id %}"><i class="glyphicon glyphicon-file"></i></a>
+              {% endif %}
             </li>
             {% endfor %}
           </ul>

@@ -9,7 +9,7 @@ import hashlib
 
 from .models import Teacher, School
 from biobricks.models import Biosensor
-from studentgroups.models import StudentGroup
+from studentgroups.models import StudentGroup, StudentReport
 from .forms import TeacherSignupForm, StudentGroupForm
 from .decorators import teacher_required
 from .tasks import send_student_group_notice
@@ -39,6 +39,15 @@ def signup(request):
 def dashboard(request):
     teacher = Teacher.objects.get(user=request.user)
     student_groups = StudentGroup.objects.filter(teacher=teacher)
+    for g in student_groups:
+        g.biosensors_ = list(g.biosensors.all())
+        for b in g.biosensors_:
+            b.has_report = False
+            for r in b.student_reports.all():
+                if not b.has_report:
+                    b.has_report = g.id == r.student_group.id
+                    b.report_id = r.id
+                    print(b.report_id)
     biosensors = Biosensor.objects.filter(user=teacher.user)
     context = {
             'student_groups': student_groups,
@@ -124,3 +133,12 @@ def edit_student_group(request, student_group_id):
             'form': form
             }
     return render(request, 'teachers/student_group.html', context)
+
+@login_required
+@teacher_required
+def show_student_report(request, report_id):
+    report = get_object_or_404(StudentReport, id=report_id)
+    context = {
+            'report': report,
+            }
+    return render(request, 'teachers/show_student_report.html', context)
