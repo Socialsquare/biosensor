@@ -3,3 +3,4 @@ db.sqlite3
 .tmp
 staticfiles/
 node_modules/
+*.pyc
