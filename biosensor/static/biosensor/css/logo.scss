@@ -1,9 +1,17 @@
 .logo {
   align-items: center;
+  color: $body-color;
   display: flex;
 
   &__image {
-    height: $navbar-height / 3;
+    height: $logo-height;
+    width: $logo-width;
+  }
+
+  &:focus,
+  &:hover {
+    color: inherit;
+    text-decoration: none;
   }
 }
 
@@ -12,10 +20,14 @@
   line-height: 1;
 
   &__title {
-    font-size: 30px;
+    font-size: 2rem;
+    font-weight: $headings-font-weight;
+    margin-left: -.05em;
+    margin-top: -.1em;
   }
 
   &__tagline {
-    font-size: 10px;
+    font-size: .7rem;
+    letter-spacing: .05em;
   }
 }

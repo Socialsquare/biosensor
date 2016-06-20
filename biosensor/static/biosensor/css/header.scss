@@ -3,8 +3,16 @@
 }
 
 .navbar {
+  border-bottom: 2px solid $border-color;
+  padding: $navbar-padding;
+
   &__container {
-    display: flex;
     align-items: center;
+    display: flex;
+    height: $navbar-height;
   }
+}
+
+.nav {
+  flex-grow: 1;
 }
