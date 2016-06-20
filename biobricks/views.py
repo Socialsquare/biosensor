@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 
 from .models import Biobrick, Biosensor
-from studentgroups.models import StudentGroup
+from studentgroups.models import StudentGroup, StudentReport
 from .forms import BiosensorForm
 from .decorators import is_owner
 
@@ -16,10 +16,12 @@ def show_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
     detector = Biobrick.objects.get(id=biosensor.detector.id)
     responder = Biobrick.objects.get(id=biosensor.responder.id)
+    student_reports = StudentReport.objects.filter(biosensor=biosensor)
     context = {
             'biosensor': biosensor,
             'detector': detector,
-            'responder': responder
+            'responder': responder,
+            'student_reports': student_reports
             }
     return render(request, 'biobricks/show_biosensor.html', context)
 
