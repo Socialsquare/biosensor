@@ -1,6 +1,6 @@
 // Variables
-@import 'node_modules/bootstrap/scss/variables';
 @import 'variables';
+@import 'node_modules/bootstrap/scss/variables';
 
 // Mixins
 @import 'node_modules/bootstrap/scss/mixins';
@@ -54,3 +54,4 @@
 
 // Custom styling + components
 @import 'header';
+@import 'logo';

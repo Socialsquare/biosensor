@@ -1,0 +1,21 @@
+.logo {
+  align-items: center;
+  display: flex;
+
+  &__image {
+    height: $navbar-height / 3;
+  }
+}
+
+.logo-text {
+  display: inline-block;
+  line-height: 1;
+
+  &__title {
+    font-size: 30px;
+  }
+
+  &__tagline {
+    font-size: 10px;
+  }
+}

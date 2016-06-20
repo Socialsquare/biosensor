@@ -21,14 +21,16 @@
   <body>
 
     <nav class="navbar navbar-light">
-      <div class="container">
-        <a class="navbar-brand logo" href="{% url 'homepage' %}">
-          <img src="{% static "biosensor/images/icons/logo.svg" %}" />
-          <div class="logo__title">
-            Biosensor
-          </div>
-          <div class="logo__tagline">
-            by Biotech Academy
+      <div class="container navbar__container">
+        <a class="logo" href="{% url 'homepage' %}">
+          <img class="logo__image" src="{% static "biosensor/images/icons/logo.svg" %}" />
+          <div class="logo-text">
+            <div class="logo-text__title">
+              Biosensor
+            </div>
+            <div class="logo-text__tagline">
+              by Biotech Academy
+            </div>
           </div>
         </a>
         <ul class="nav navbar-nav">
