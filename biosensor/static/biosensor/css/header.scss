@@ -3,7 +3,7 @@
 }
 
 .navbar {
-  border-bottom: 2px solid $border-color;
+  border-bottom: $border-width * 2 solid $border-color;
   padding: $navbar-padding;
 
   &__container {

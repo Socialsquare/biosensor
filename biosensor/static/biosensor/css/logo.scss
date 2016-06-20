@@ -21,13 +21,14 @@
 
   &__title {
     font-size: 2rem;
-    font-weight: $headings-font-weight;
+    font-weight: 900;
     margin-left: -.05em;
     margin-top: -.1em;
   }
 
   &__tagline {
     font-size: .7rem;
+    font-weight: $headings-font-weight;
     letter-spacing: .05em;
   }
 }

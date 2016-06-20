@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>{% block head_title %}{% endblock %} | Biosensor</title>
-    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/base.min.css" %}">
     {% block head_statics %}
     {% endblock %}
@@ -38,13 +38,22 @@
           </li>
           {% if user.is_authenticated %}
           <li class="nav-item pull-xs-right">
-            {% if user.is_teacher %}
-            <a class="nav-link" href="{% url 'teachers:dashboard' %}">Lærerens navn</a>
-            {% elif user.is_student_group %}
-            <a class="nav-link" href="{% url 'studentgroups:dashboard' %}">Gruppens navn</a>
-            {% elif user.is_staff %}
-            <a class="nav-link" href="{% url 'bioadmin:index' %}">Admin</a>
-            {% endif %}
+            <div class="dropdown">
+              <button class="btn btn-primary dropdown-toggle"
+              type="button" id="dropdownMenu" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+                Personens navn
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                {% if user.is_teacher %}
+                <a class="dropdown-item" href="{% url 'teachers:dashboard' %}">Lærerens navn</a>
+                {% elif user.is_student_group %}
+                <a class="dropdown-item" href="{% url 'studentgroups:dashboard' %}">Gruppens navn</a>
+                {% elif user.is_staff %}
+                <a class="dropdown-item" target="_blank" href="{% url 'bioadmin:index' %}">Admin</a>
+                {% endif %}
+              </div>
+            </div>
           </li>
           {% else %}
           <li class="nav-item pull-xs-right">

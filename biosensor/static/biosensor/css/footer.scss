@@ -1,6 +1,6 @@
 .footer {
   background-color: $white;
-  border-top: 2px solid $border-color;
+  border-top: $border-width * 2 solid $border-color;
   padding: $navbar-padding;
 
   &__container {
@@ -11,7 +11,7 @@
   }
 
   &__link {
-    color: $gray-light !important;
+    color: $gray !important;
     display: block;
   }
 
@@ -20,6 +20,6 @@
   }
 
   .logo-text {
-    color: $gray-light;
+    color: $gray;
   }
 }

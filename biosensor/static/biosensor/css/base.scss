@@ -20,8 +20,8 @@
 @import 'node_modules/bootstrap/scss/buttons';
 
 // Components
-//@import 'node_modules/bootstrap/scss/animation';
-//@import 'node_modules/bootstrap/scss/dropdown';
+@import 'node_modules/bootstrap/scss/animation';
+@import 'node_modules/bootstrap/scss/dropdown';
 //@import 'node_modules/bootstrap/scss/button-group';
 //@import 'node_modules/bootstrap/scss/input-group';
 //@import 'node_modules/bootstrap/scss/custom-forms';
@@ -42,7 +42,7 @@
 
 // Components w/ JavaScript
 //@import 'node_modules/bootstrap/scss/modal';
-//@import 'node_modules/bootstrap/scss/tooltip';
+// @import 'node_modules/bootstrap/scss/tooltip';
 //@import 'node_modules/bootstrap/scss/popover';
 //@import 'node_modules/bootstrap/scss/carousel';
 
@@ -54,6 +54,7 @@
 
 // Custom layouts
 @import 'layout';
+@import 'default';
 
 // Custom styling
 @import 'header';
@@ -61,3 +62,4 @@
 
 // Custom components
 @import 'logo';
+@import 'dropdown';
