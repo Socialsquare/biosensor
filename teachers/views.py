@@ -47,7 +47,6 @@ def dashboard(request):
                 if not b.has_report:
                     b.has_report = g.id == r.student_group.id
                     b.report_id = r.id
-                    print(b.report_id)
     biosensors = Biosensor.objects.filter(user=teacher.user)
     context = {
             'student_groups': student_groups,
