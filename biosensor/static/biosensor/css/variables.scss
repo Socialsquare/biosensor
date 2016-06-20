@@ -1,11 +1,12 @@
-$body-bg:                    #f7f7f7;
+@import 'node_modules/bootstrap/scss/variables';
+
+$body-bg: #f7f7f7;
 
 //fonts
-$font-family-sans-serif:     'Lato', sans-serif;
-$font-size-root:             16px;
-$headings-font-weight:       700;
-
+$font-family-sans-serif: 'Lato', sans-serif;
+$font-size-root: 16px;
+$headings-font-weight: 700;
 
 // navbar
-$navbar-light-color:          black;
+$navbar-light-color: $body-color;
 $navbar-height: 100px;
