@@ -21,6 +21,7 @@ var paths = {
     ],
     js: [
       'biosensor/static/biosensor/javascript/*.js',
+      'node_modules/bootstrap/dist/js/bootstrap.js',
     ],
     fonts: [
     ]
