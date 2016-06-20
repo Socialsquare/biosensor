@@ -15,7 +15,13 @@
       <ul class="list-group">
         {% for group in student_groups %}
         <li class="list-group-item">
-          <h4>{{group.name}}</h4>
+          <h4>{{group.name}}
+          <a href="{% url 'teachers:delete_student_group' group.id %}">
+            <i class="glyphicon glyphicon-trash"></i>
+          </a>
+          <a href="{% url 'teachers:edit_student_group' group.id %}">
+            <i class="glyphicon glyphicon-edit"></i>
+          </a></h4>
 
           {% if group.biosensors %}
           <ul class="list-group">
