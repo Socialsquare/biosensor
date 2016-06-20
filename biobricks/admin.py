@@ -1,3 +1,5 @@
 from django.contrib import admin
+from .models import Biobrick, Biosensor
 
-# Register your models here.
+admin.site.register(Biobrick)
+admin.site.register(Biosensor)
