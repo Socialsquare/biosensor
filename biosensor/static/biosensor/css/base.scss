@@ -52,6 +52,12 @@
 @import 'node_modules/bootstrap/scss/utilities-spacing';
 @import 'node_modules/bootstrap/scss/utilities-responsive';
 
-// Custom styling + components
+// Custom layouts
+@import 'layout';
+
+// Custom styling
 @import 'header';
+@import 'footer';
+
+// Custom components
 @import 'logo';

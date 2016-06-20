@@ -1,0 +1,14 @@
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.body-container {
+  flex-grow: 1;
+}
+
+.container-fluid {
+  margin: 0 auto;
+  max-width: map-get($container-max-widths, xl);
+}

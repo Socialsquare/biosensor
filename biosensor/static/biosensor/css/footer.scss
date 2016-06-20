@@ -1,0 +1,25 @@
+.footer {
+  background-color: $white;
+  border-top: 2px solid $border-color;
+  padding: $navbar-padding;
+
+  &__container {
+    align-items: center;
+    display: flex;
+    height: $navbar-height;
+    justify-content: flex-end;
+  }
+
+  &__link {
+    color: $gray-light !important;
+    display: block;
+  }
+
+  .logo__image {
+    display: none;
+  }
+
+  .logo-text {
+    color: $gray-light;
+  }
+}
