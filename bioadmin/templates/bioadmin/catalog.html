@@ -20,7 +20,7 @@
   </tr>
   {% for biosensor in biosensors %}
     <tr>
-      <td><a href="{% url 'bioadmin:show_biosensor' biosensor.id %}">{{biosensor.name}}</a></td>
+      <td><a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a></td>
       <td>{{biosensor.detector}}</td>
       <td>{{biosensor.responder}}</td>
       <td>{{biosensor.category}}</td>
