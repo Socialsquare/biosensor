@@ -16,14 +16,16 @@ var rimraf = require('rimraf');
 
 var paths = {
     sass: [
+      'biosensor/static/biosensor/css/base.scss',
+      'bioadmin/static/bioadmin/css/bioadmin.scss',
+    ],
+    sassWatch: [
       'biosensor/static/biosensor/css/*.scss',
       'bioadmin/static/bioadmin/css/*.scss',
     ],
     js: [
       'biosensor/static/biosensor/javascript/*.js',
       'node_modules/bootstrap/dist/js/bootstrap.js',
-    ],
-    fonts: [
     ]
 }
 
@@ -34,12 +36,6 @@ var paths = {
 gulp.task('clean', function(cb) {
   rimraf('./staticfiles/*', cb);
 })
-
-// Copies fonts
-gulp.task('fonts', function() {
-    return gulp.src(paths.fonts)
-    .pipe(gulp.dest('staticfiles/fonts'));
-});
 
 // Compiles Sass
 gulp.task('sass', function() {
@@ -72,11 +68,8 @@ gulp.task('copyjs', function() {
 gulp.task('watch', function() {
     livereload.listen();
 
-    // Watch fonts
-    gulp.watch(paths.fonts, ['fonts']);
-
     // Watch Sass
-    gulp.watch(paths.sass, ['sass']);
+    gulp.watch(paths.sassWatch, ['sass']);
 
     // Watch javascript
     gulp.watch(paths.js, ['copyjs']);
@@ -87,7 +80,7 @@ gulp.task('watch', function() {
 });
 
 // Builds your entire app once, without starting a server
-gulp.task('build', ['fonts', 'sass', 'uglify']);
+gulp.task('build', ['sass', 'uglify']);
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['fonts', 'sass', 'copyjs', 'watch']);
+gulp.task('default', ['sass', 'copyjs', 'watch']);
