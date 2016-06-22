@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% load bootstrap3 %}
 {% load static %}
-{% block head_title %}Upload rapport{% endblock %}
+
+{% block head_title %}
+{% if report %} Rediger rapport {% else %} Upload rapport{% endif %}
+{% endblock %}
 
 {% block head_statics %}
 {{ form.media }}
@@ -9,22 +12,32 @@
 
 {% block main %}
 
-<h2>Upload rapport</h2>
+<h2>
+{% if report %} Rediger rapport {% else %} Upload rapport{% endif %}
+
+</h2>
 
 <div class="row">
     <div class="col-md-10">
+    {% if report %}
+       <form class="edit-report" method="post" action="{% url 'studentgroups:edit_report' biosensor.id report.id %}">
+    {% else %}
        <form class="new-report" method="post" action="{% url 'studentgroups:new_report' biosensor.id %}">
+    {% endif %}
           {% csrf_token %}
           {% bootstrap_field form.introduction %}
           {% bootstrap_field form.method %}
           {% bootstrap_field form.results %}
           {% bootstrap_field form.discussion %}
           {% bootstrap_field form.conclusion %}
+        {% if report %}
+          <button class="btn btn-primary" type="submit">Gem ændringer &raquo;</button>
+        {% else %}
           <button class="btn btn-primary" type="submit">Upload rapport &raquo;</button>
+        {% endif %}
        </form>
     </div>
 </div>
 </div>
 
 {% endblock %}
-
