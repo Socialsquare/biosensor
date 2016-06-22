@@ -44,7 +44,7 @@
 @import 'node_modules/bootstrap/scss/modal';
 @import 'node_modules/bootstrap/scss/tooltip';
 @import 'node_modules/bootstrap/scss/popover';
-//@import 'node_modules/bootstrap/scss/carousel';
+@import 'node_modules/bootstrap/scss/carousel';
 
 // Utility classes
 @import 'node_modules/bootstrap/scss/utilities';
@@ -63,3 +63,4 @@
 // Custom components
 @import 'logo';
 @import 'dropdown';
+@import 'summernote';
