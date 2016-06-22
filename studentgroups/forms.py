@@ -19,11 +19,6 @@ class ReportForm(forms.Form):
             widget=SummernoteInplaceWidget(),
             help_text='Max 4000 karakterer',
             required=True)
-    discussion = forms.fields.CharField(
-            max_length=4000,
-            widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 karakterer',
-            required=True)
     conclusion = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
@@ -38,7 +33,5 @@ class ReportForm(forms.Form):
         self.fields['method'].widget.attrs['placeholder'] = 'Metode'
         self.fields['results'].label = 'Resultater'
         self.fields['results'].widget.attrs['placeholder'] = 'Resultater'
-        self.fields['discussion'].label = 'Diskussion'
-        self.fields['discussion'].widget.attrs['placeholder'] = 'Diskussion'
-        self.fields['conclusion'].label = 'Konklusion'
-        self.fields['conclusion'].widget.attrs['placeholder'] = 'Konklusion'
+        self.fields['conclusion'].label = 'Diskussion/konklusion'
+        self.fields['conclusion'].widget.attrs['placeholder'] = 'Diskussion/konklusion'

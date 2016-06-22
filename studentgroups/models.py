@@ -49,9 +49,6 @@ class StudentReport(models.Model):
     results = models.CharField(
             max_length=4000,
             blank=False)
-    discussion = models.CharField(
-            max_length=4000,
-            blank=False)
     conclusion = models.CharField(
             max_length=4000,
             blank=False)

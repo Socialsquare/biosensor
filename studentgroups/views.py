@@ -52,7 +52,6 @@ def edit_report(request, biosensor_id, report_id):
             report.resume = form.cleaned_data['resume']
             report.method = form.cleaned_data['method']
             report.results = form.cleaned_data['results']
-            report.discussion = form.cleaned_data['discussion']
             report.conclusion = form.cleaned_data['conclusion']
             report.save()
             messages.success(request, "Dine ændringer er gemt")
@@ -62,7 +61,6 @@ def edit_report(request, biosensor_id, report_id):
         'resume': report.resume,
         'method': report.method,
         'results': report.results,
-        'discussion': report.discussion,
         'conclusion': report.conclusion
         })
     context = {
