@@ -8,7 +8,6 @@ from django.contrib.auth.hashers import make_password
 import hashlib
 
 from .models import Teacher, School
-from biobricks.models import Biosensor
 from studentgroups.models import StudentGroup, StudentReport
 from .forms import TeacherSignupForm, StudentGroupForm
 from .decorators import teacher_required
@@ -47,10 +46,8 @@ def dashboard(request):
                 if not b.has_report:
                     b.has_report = g.id == r.student_group.id
                     b.report_id = r.id
-    biosensors = Biosensor.objects.filter(user=teacher.user)
     context = {
             'student_groups': student_groups,
-            'biosensors': biosensors
             }
     return render(request, 'teachers/dashboard.html', context)
 
@@ -119,9 +116,9 @@ def edit_student_group(request, student_group_id):
             messages.success(request, "Dine ændringer er gemt")
             return redirect('teachers:dashboard')
 
-    form = StudentGroupForm({
-        'email': student_group.user.email,
+    form = StudentGroupForm(request.GET, {
         'name': student_group.name,
+        'email': student_group.user.email,
         'students': student_group.students,
         'subject': student_group.subject,
         'grade': student_group.grade,

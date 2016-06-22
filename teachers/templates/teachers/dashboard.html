@@ -17,10 +17,10 @@
         <li class="list-group-item">
           <h4>{{group.name}}
           <a href="{% url 'teachers:delete_student_group' group.id %}">
-            <i class="glyphicon glyphicon-trash"></i>
+            [del]
           </a>
           <a href="{% url 'teachers:edit_student_group' group.id %}">
-            <i class="glyphicon glyphicon-edit"></i>
+            [edit]
           </a></h4>
 
           {% if group.biosensors_ %}
@@ -42,22 +42,6 @@
       {% endif %}
 
       <a class="btn btn-primary" href="{% url 'teachers:new_student_group' %}">Opret gruppe</a>
-    </section>
-
-    <section>
-      <h3>Mine biosensorer</h3>
-
-      {% if biosensors %}
-      <ul class="list-group">
-        {% for biosensor in biosensors %}
-        <li class="list-group-item">
-          <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
-        </li>
-        {% endfor %}
-      </ul>
-      {% endif %}
-
-      <a class="btn btn-primary" href="{% url 'biobricks:new_biosensor' %}">Opret biosensor</a>
     </section>
 
   </div>
