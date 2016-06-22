@@ -118,28 +118,14 @@ SUMMERNOTE_CONFIG = {
 
     'toolbar': [
         ['font', ['bold', 'italic', 'underline', 'clear']],
-        ['para', ['ul', 'ol', 'paragraph']],
         ['insert', ['link', 'picture','video']],
-        ['view', ['fullscreen']],
-        ['help', ['help']]
     ],
 
     'fontNames': [
         #'American Typewriter'
     ],
     # Need authentication while uploading attachments.
-    'attachment_require_authentication': False,
-
-    # Set external media files for SummernoteInplaceWidget.
-    # !!! Be sure to put {{ form.media }} in template before initiate summernote.
-    'inplacewidget_external_css': (
-       # '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css',
-        #'//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css',
-    ),
-    'inplacewidget_external_js': (
-        #'//code.jquery.com/jquery-1.9.1.min.js',
-        #'//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js',
-    ),
+    'attachment_require_authentication': False
 }
 
 WSGI_APPLICATION = 'biosensor.wsgi.application'
