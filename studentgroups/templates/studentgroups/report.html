@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head_title %}
-{% if report %} Rediger rapport {% else %} Upload rapport{% endif %}
+{% if report %} Rediger rapport {% else %} Opret rapport{% endif %}
 {% endblock %}
 
 {% block head_statics %}
@@ -13,12 +13,12 @@
 {% block main %}
 
 <h2>
-{% if report %} Rediger rapport {% else %} Upload rapport{% endif %}
+{% if report %} Rediger rapport {% else %} Opret rapport{% endif %}
 
 </h2>
 
 <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-8">
     {% if report %}
        <form class="edit-report" method="post" action="{% url 'studentgroups:edit_report' biosensor.id report.id %}">
     {% else %}
@@ -32,9 +32,20 @@
         {% if report %}
           <button class="btn btn-primary" type="submit">Gem ændringer &raquo;</button>
         {% else %}
-          <button class="btn btn-primary" type="submit">Upload rapport &raquo;</button>
+          <button class="btn btn-primary" type="submit">Opret rapport &raquo;</button>
         {% endif %}
        </form>
+    </div>
+
+    <div class="col-md-4">
+       <h3>Kategori:</h3>
+       <p>{{biosensor.category.name}}</p>
+
+       <h3>Detector:</h3>
+       <p><a href="{% url 'biobricks:show' biosensor.detector.id %}">{{biosensor.detector.name}}</a></p>
+
+       <h3>Responder:</h3>
+       <p><a href="{% url 'biobricks:show' biosensor.responder.id %}">{{biosensor.responder.name}}</a></p>
     </div>
 </div>
 </div>
