@@ -49,7 +49,7 @@ def edit_report(request, biosensor_id, report_id):
     if request.method == 'POST':
         form = ReportForm(request.POST)
         if form.is_valid():
-            report.introduction = form.cleaned_data['introduction']
+            report.resume = form.cleaned_data['resume']
             report.method = form.cleaned_data['method']
             report.results = form.cleaned_data['results']
             report.discussion = form.cleaned_data['discussion']
@@ -59,7 +59,7 @@ def edit_report(request, biosensor_id, report_id):
             return redirect(report.biosensor)
 
     form = ReportForm({
-        'introduction': report.introduction,
+        'resume': report.resume,
         'method': report.method,
         'results': report.results,
         'discussion': report.discussion,

@@ -25,7 +25,7 @@
        <form class="new-report" method="post" action="{% url 'studentgroups:new_report' biosensor.id %}">
     {% endif %}
           {% csrf_token %}
-          {% bootstrap_field form.introduction %}
+          {% bootstrap_field form.resume %}
           {% bootstrap_field form.method %}
           {% bootstrap_field form.results %}
           {% bootstrap_field form.discussion %}

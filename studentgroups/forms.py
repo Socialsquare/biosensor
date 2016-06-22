@@ -4,7 +4,7 @@ from django_summernote.widgets import SummernoteInplaceWidget
 from biobricks.models import Category, Biobrick
 
 class ReportForm(forms.Form):
-    introduction = forms.fields.CharField(
+    resume = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
             help_text='Max 4000 karakterer',
@@ -32,8 +32,8 @@ class ReportForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(forms.Form, self).__init__(*args, **kwargs)
-        self.fields['introduction'].label = 'Introduktion'
-        self.fields['introduction'].widget.attrs['placeholder'] = 'Introduktion'
+        self.fields['resume'].label = 'Resume'
+        self.fields['resume'].widget.attrs['placeholder'] = 'Resume'
         self.fields['method'].label = 'Metode'
         self.fields['method'].widget.attrs['placeholder'] = 'Metode'
         self.fields['results'].label = 'Resultater'
