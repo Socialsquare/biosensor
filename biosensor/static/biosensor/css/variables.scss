@@ -4,19 +4,15 @@ $gray: #6b6b6b;
 $gray-light: #818a91 !default;
 $gray-lighter: #b8b8b8;
 $gray-lightest: #f7f7f7;
-
 $brand-primary: #17a7db;
 $brand-success: #5cb85c !default;
 $brand-info: #5bc0de !default;
 $brand-warning: #f0ad4e !default;
 $brand-danger: #d9534f !default;
-
 $body-bg: $gray-lightest;
 $body-color: $gray-dark !default;
-
 $white: #fff;
 $black: #000;
-
 $border-color: $gray-lighter;
 
 // Sizes
@@ -25,8 +21,13 @@ $dropdown-min-width: 10rem;
 
 //fonts
 $font-family-sans-serif: 'Lato', sans-serif;
-$font-size-root: 1rem;
+$font-size-root: 1.25rem;
+$body-font-weight: 300;
+$h3-font-weight: 400;
 $headings-font-weight: 700;
+$font-size-h1: 1.8rem;
+$font-size-h2: 1.2rem;
+$font-size-h3: 1.2rem;
 $btn-font-weight: $headings-font-weight;
 
 // navbar

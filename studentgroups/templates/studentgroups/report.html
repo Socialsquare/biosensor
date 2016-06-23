@@ -12,12 +12,12 @@
 
 {% block main %}
 
-<h2>
-  {% if report %} Rediger rapport {% else %} Opret rapport for {{biosensor.name}}{% endif %}
+<div class="m-y-3">
+  <h1>
+    {% if report %} Rediger rapport {% else %} Opret rapport for {{biosensor.name}}{% endif %}
+  </h1>
 
-</h2>
-
-<div class="row">
+  <div class="row">
     <div class="col-md-8">
     {% if report %}
        <form class="edit-report" method="post" action="{% url 'studentgroups:edit_report' biosensor.id report.id %}">
@@ -25,10 +25,18 @@
        <form class="new-report" method="post" action="{% url 'studentgroups:new_report' biosensor.id %}">
     {% endif %}
           {% csrf_token %}
-          {% bootstrap_field form.resume %}
-          {% bootstrap_field form.method %}
-          {% bootstrap_field form.results %}
-          {% bootstrap_field form.conclusion %}
+          <div class="m-y-2">
+            {% bootstrap_field form.resume %}
+          </div>
+          <div class="m-y-2">
+            {% bootstrap_field form.method %}
+          </div>
+          <div class="m-y-2">
+            {% bootstrap_field form.results %}
+          </div>
+          <div class="m-y-2">
+            {% bootstrap_field form.conclusion %}
+          </div>
         {% if report %}
           <button class="btn btn-primary" type="submit">Gem ændringer &raquo;</button>
         {% else %}
@@ -38,7 +46,7 @@
     </div>
 
     <div class="col-md-4">
-       <h3>Kategori:</h3>
+       <h2 class="m-t-2">Kategori:</h2>
        <p>{{biosensor.category.name}}</p>
 
        <h3>Detector:</h3>
@@ -47,7 +55,7 @@
        <h3>Responder:</h3>
        <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
     </div>
-</div>
+  </div>
 </div>
 
 {% endblock %}
