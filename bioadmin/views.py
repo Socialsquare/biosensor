@@ -199,6 +199,8 @@ def edit_biobrick(request, biobrick_id):
             biobrick.igem_part = form.cleaned_data['igem_part']
             biobrick.team_website = form.cleaned_data['team_website']
             biobrick.dna_sequence = form.cleaned_data['dna_sequence']
+            biobrick.coord_x = form.cleaned_data['coord_x']
+            biobrick.coord_y = form.cleaned_data['coord_y']
             biobrick.save()
             messages.success(request, "You updated this biobrick")
             return redirect('bioadmin:catalog')
@@ -211,6 +213,8 @@ def edit_biobrick(request, biobrick_id):
         'igem_part': biobrick.igem_part,
         'team_website': biobrick.team_website,
         'dna_sequence': biobrick.dna_sequence,
+        'coord_x': biobrick.coord_x,
+        'coord_y': biobrick.coord_y,
         })
     form.filter_categories(biobrick.biobrick_type)
     context = {

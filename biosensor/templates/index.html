@@ -26,7 +26,7 @@
 <ul class="list-group">
   {% for detector in detectors %}
   <li class="list-group-item">
-    <a href="{% url 'biobricks:show' detector.id %}">{{detector.name}}</a>
+    <a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a>
   </li>
 {% endfor %}
 </ul>
@@ -38,7 +38,7 @@
 <ul class="list-group">
   {% for responder in responders %}
   <li class="list-group-item">
-    <a href="{% url 'biobricks:show' responder.id %}">{{responder.name}}</a>
+    <a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a>
   </li>
 {% endfor %}
 </ul>

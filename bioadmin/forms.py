@@ -1,3 +1,4 @@
+import string
 from django import forms
 from biobricks.models import Category, Biobrick
 
@@ -35,10 +36,17 @@ class BiobrickForm(forms.Form):
     igem_part = forms.fields.CharField(max_length=200, required=True)
     team_website = forms.fields.CharField(max_length=200, required=True)
     dna_sequence = forms.fields.CharField(max_length=200, required=True)
+    coord_x = forms.fields.ChoiceField(
+            widget=forms.Select,
+            choices=[('', '-'*9)]+[(i, i) for i in range(1,13)],
+            required=True)
+    coord_y = forms.fields.ChoiceField(
+            widget=forms.Select,
+            choices=[('', '-'*9)]+[(l, l.upper()) for l in string.ascii_lowercase][:8],
+            required=True)
 
     def __init__(self, *args, **kwargs):
         super(forms.Form, self).__init__(*args, **kwargs)
-        self.fields['igem_part'].widget.attrs['value'] = 'http://parts.igem.org/Part:'
         self.fields['team_website'].widget.attrs['value'] = 'http://'
         self.fields['dna_sequence'].widget.attrs['placeholder'] = 'DNA sequence'
 

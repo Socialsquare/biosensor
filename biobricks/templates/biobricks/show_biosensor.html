@@ -25,7 +25,7 @@
         <ul class="list-group">
           {% for r in student_reports %}
           <li class="list-group-item">
-            <a href="{% url 'studentgroups:edit_report' r.biosensor.id r.id %}">{{r.student_group.name}}, {{r.student_group.teacher.school.name}} ({{r.created|date:'F n, o'}})</a>
+            <a href="{% url 'biobricks:show_report' r.id %}">{{r.student_group.name}}, {{r.student_group.teacher.school.name}} ({{r.created|date:'F n, o'}})</a>
           </li>
           {% endfor %}
         </ul>
@@ -44,10 +44,10 @@
     <p>{{biosensor.category}}</p>
 
     <h3>Detektorgen:</h3>
-    <p><a href="{% url 'biobricks:show' detector.id %}">{{detector.name}}</a></p>
+    <p><a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a></p>
 
     <h3>Respondergen:</h3>
-    <p><a href="{% url 'biobricks:show' responder.id %}">{{responder.name}}</a></p>
+    <p><a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a></p>
 
   </div>
 

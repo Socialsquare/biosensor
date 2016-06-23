@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import Http404
 from django.contrib.auth.decorators import login_required
 
 from .models import Biobrick, Biosensor
@@ -7,9 +8,16 @@ from studentgroups.models import StudentGroup, StudentReport
 from .forms import BiosensorForm
 from .decorators import is_owner
 
-def show(request, biobrick_id):
-    biobrick = get_object_or_404(Biobrick, id=biobrick_id)
-    context = { 'biobrick': biobrick}
+def show(request, slug):
+    biobrick = Biobrick.get_biobrick(slug)
+    if not biobrick:
+        raise Http404
+
+    coords = ['{}{}'.format(b.coord_x, b.coord_y) for b in Biobrick.objects.all()]
+    context = {
+            'biobrick': biobrick,
+            'coords': coords,
+            }
     return render(request, 'biobricks/show.html', context)
 
 def show_biosensor(request, biosensor_id):

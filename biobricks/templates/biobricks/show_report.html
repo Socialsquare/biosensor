@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block head_title %}{{report.biosensor.name}}{% endblock %}
+
+{% block main %}
+
+<div class="row">
+
+  <div class="col-md-8">
+
+    <section>
+      <h2>{{report.biosensor.name}}</h2>
+
+      <h3>Resumé</h3>
+      <p class="summernote-content">{{report.resume|safe }}</p>
+
+      <h3>Metode</h3>
+      <p class="summernote-content">{{report.method|safe }}</p>
+      <p>{{report.method}}</p>
+
+      <h3>Resultater</h3>
+      <p>{{report.results}}</p>
+
+      <h3>Diskussion og konklusion</h3>
+      <p>{{report.conclusion}}</p>
+    </section>
+
+  </div>
+
+  <div class="col-md-4">
+
+  </div>
+
+</div>
+
+{% endblock %}

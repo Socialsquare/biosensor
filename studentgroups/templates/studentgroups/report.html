@@ -42,10 +42,10 @@
        <p>{{biosensor.category.name}}</p>
 
        <h3>Detector:</h3>
-       <p><a href="{% url 'biobricks:show' biosensor.detector.id %}">{{biosensor.detector.name}}</a></p>
+       <p><a href="{% url 'biobricks:show' biosensor.detector.slug %}">{{biosensor.detector.name}}</a></p>
 
        <h3>Responder:</h3>
-       <p><a href="{% url 'biobricks:show' biosensor.responder.id %}">{{biosensor.responder.name}}</a></p>
+       <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
     </div>
 </div>
 </div>

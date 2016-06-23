@@ -31,6 +31,8 @@ class Biobrick(models.Model):
         'responder',
     )
 
+    coord_x = models.DecimalField(max_digits=2, decimal_places=0, blank=False)
+    coord_y = models.CharField(max_length=1, blank=False)
     biobrick_type = StatusField(choices_name='BIOBRICK_TYPES')
     category = models.ForeignKey('Category')
     name = models.TextField(max_length=100, blank=False)
@@ -43,6 +45,16 @@ class Biobrick(models.Model):
 
     def __str__(self):
         return self.name
+
+    def slug(self):
+        return '{}{}'.format(self.coord_x, self.coord_y)
+
+    def get_biobrick(slug):
+        if len(slug) < 2:
+            return None
+
+        b = Biobrick.objects.filter(coord_x=slug[0], coord_y=slug[1])
+        return b and b[0] or None
 
 class Biosensor(models.Model):
     user = models.ForeignKey('auth.User')
