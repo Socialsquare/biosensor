@@ -43,15 +43,23 @@
               <button class="btn btn-primary dropdown-toggle"
               type="button" id="dropdownMenu" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-                Personens navn
+                {% if user.is_teacher %}
+                  Lærerens navn
+                {% elif user.is_student_group %}
+                  Gruppens navn
+                {% elif user.is_staff %}
+                  Admin
+                {% endif %}
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                 {% if user.is_teacher %}
-                <a class="dropdown-item" href="{% url 'teachers:dashboard' %}">Lærerens navn</a>
+                <a class="dropdown-item" href="{% url 'teachers:dashboard' %}">Dashboard</a>
+                <a class="dropdown-item" href="{% url 'teachers:new_student_group' %}">Opret gruppe</a>
                 {% elif user.is_student_group %}
-                <a class="dropdown-item" href="{% url 'studentgroups:dashboard' %}">Gruppens navn</a>
+                <a class="dropdown-item" href="{% url 'studentgroups:dashboard' %}">Dashboard</a>
+                <a class="dropdown-item" href="{% url 'biobricks:new_biosensor' %}">Opret biosensor</a>
                 {% elif user.is_staff %}
-                <a class="dropdown-item" target="_blank" href="{% url 'bioadmin:index' %}">Admin</a>
+                <a class="dropdown-item" target="_blank" href="{% url 'bioadmin:index' %}">Dashboard</a>
                 {% endif %}
                 <a class="dropdown-item" target="_blank" href="{% url 'account_logout' %}">Log ud</a>
               </div>
