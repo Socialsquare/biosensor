@@ -45,11 +45,12 @@
               type="button" id="dropdownMenu" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
                 {% if user.is_teacher %}
-                  Lærerens navn
+                  {{ user.username }}
                 {% elif user.is_student_group %}
-                  Gruppens navn
+                  <!-- TODO det her virker ikke -->
+                  {{ StudentGroup.name }}
                 {% elif user.is_staff %}
-                  Admin
+                  {{ user.username }}
                 {% endif %}
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownMenu">
