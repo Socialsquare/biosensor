@@ -17,11 +17,11 @@
         </div>
       {% endifchanged %}
       <div class="col-md-4 m-y-1">
-        <h3>{{group.name}}
-          <a href="{% url 'teachers:delete_student_group' group.id %}">
+        <h3 class="student-group">{{group.name}}
+          <a class="student-group__delete" href="{% url 'teachers:delete_student_group' group.id %}">
             [del]
           </a>
-          <a href="{% url 'teachers:edit_student_group' group.id %}">
+          <a class="student-group__edit" href="{% url 'teachers:edit_student_group' group.id %}">
             [edit]
           </a>
         </h3>
