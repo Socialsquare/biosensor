@@ -37,7 +37,7 @@ def signup(request):
 @teacher_required
 def dashboard(request):
     teacher = Teacher.objects.get(user=request.user)
-    student_groups = StudentGroup.objects.filter(teacher=teacher)
+    student_groups = StudentGroup.objects.filter(teacher=teacher).order_by('year', 'grade', 'letter')
     for g in student_groups:
         g.biosensors_ = list(g.biosensors.all())
         for b in g.biosensors_:
