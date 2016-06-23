@@ -72,7 +72,8 @@ def new_student_group(request):
                     students=form.cleaned_data['students'],
                     subject=form.cleaned_data['subject'],
                     grade=form.cleaned_data['grade'],
-                    letter=form.cleaned_data['letter'])
+                    letter=form.cleaned_data['letter'],
+                    year=form.cleaned_data['year'])
             student_group.save()
             send_student_group_notice(
                     student_group.name,
@@ -112,17 +113,19 @@ def edit_student_group(request, student_group_id):
             student_group.subject = form.cleaned_data['subject']
             student_group.grade = form.cleaned_data['grade']
             student_group.letter = form.cleaned_data['letter']
+            student_group.year = form.cleaned_data['year']
             student_group.save()
             messages.success(request, "Dine ændringer er gemt")
             return redirect('teachers:dashboard')
 
-    form = StudentGroupForm(request.GET, {
+    form = StudentGroupForm({
         'name': student_group.name,
         'email': student_group.user.email,
         'students': student_group.students,
         'subject': student_group.subject,
         'grade': student_group.grade,
-        'letter': student_group.letter
+        'letter': student_group.letter,
+        'year': student_group.year
         })
     context = {
             'student_group': student_group,

@@ -29,6 +29,7 @@ class StudentGroup(models.Model):
     subject = StatusField(choices_name='SUBJECTS')
     grade = models.DecimalField(max_digits=1, decimal_places=0)
     letter = models.CharField(max_length=1, blank=False)
+    year = models.DecimalField(max_digits=4, decimal_places=0)
     biosensors = models.ManyToManyField(Biosensor)
     created = models.DateTimeField(auto_now_add=True)
 

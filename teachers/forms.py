@@ -1,6 +1,7 @@
 from django import forms
 from allauth.account.forms import SignupForm
 from django.contrib.auth.models import User
+import datetime
 
 from .models import School
 from studentgroups.models import StudentGroup
@@ -43,6 +44,7 @@ class TeacherSignupForm(SignupForm):
                 })
         return self.cleaned_data
 
+YEAR_CHOICES = [(y, y) for y in range(datetime.datetime.now().year, (datetime.datetime.now().year + 4))]
 class StudentGroupForm(forms.Form):
     name = forms.fields.CharField(
             label='Gruppenavn',
@@ -72,10 +74,14 @@ class StudentGroupForm(forms.Form):
             widget=forms.Select, choices=[(i,i) for i in list(ascii_lowercase)],
             label='Bogstav',
             required=True)
+    year = forms.fields.ChoiceField(
+            widget=forms.Select, choices=YEAR_CHOICES,
+            label='Afgangsår',
+            required=True)
 
-    def clean(self):
-        if User.objects.filter(email=self.cleaned_data['email']).exists():
-            raise forms.ValidationError({
-                'email': ["Den angivne email er allerede i brug",]
-                })
-        return self.cleaned_data
+    #def clean(self):
+        #if User.objects.filter(email=self.cleaned_data['email']).exists():
+            #raise forms.ValidationError({
+                #'email': ["Den angivne email er allerede i brug",]
+                #})
+        #return self.cleaned_data

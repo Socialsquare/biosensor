@@ -9,37 +9,39 @@
   <div class="col-md-10">
 
     <section>
-      <h3>Elevgrupper</h3>
 
       {% if student_groups %}
       <ul class="list-group">
         {% for group in student_groups %}
-        <li class="list-group-item">
-          <h4>{{group.name}}
-          <a href="{% url 'teachers:delete_student_group' group.id %}">
-            [del]
-          </a>
-          <a href="{% url 'teachers:edit_student_group' group.id %}">
-            [edit]
-          </a></h4>
+          {% ifchanged group.grade group.letter group.year %}
+          <h3>{{group.grade}}.{{group.letter}} {{group.year}}</h3>
+          {% endifchanged %}
+          <li class="list-group-item">
+            <h4>{{group.name}}
+              <a href="{% url 'teachers:delete_student_group' group.id %}">
+                [del]
+              </a>
+              <a href="{% url 'teachers:edit_student_group' group.id %}">
+                [edit]
+              </a></h4>
 
-          {% if group.biosensors_ %}
-          <ul class="list-group">
-            {% for biosensor in group.biosensors_ %}
-            <li class="list-group-item">
-              <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
-              {% if biosensor.has_report %}
-                <a href="{% url 'teachers:show_student_report' biosensor.report_id %}">[report]</a>
-              {% else %}
-                [report]
+              {% if group.biosensors_ %}
+              <ul class="list-group">
+                {% for biosensor in group.biosensors_ %}
+                <li class="list-group-item">
+                  <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+                  {% if biosensor.has_report %}
+                  <a href="{% url 'teachers:show_student_report' biosensor.report_id %}">[report]</a>
+                  {% else %}
+                  [report]
+                  {% endif %}
+                </li>
+                {% endfor %}
+              </ul>
               {% endif %}
-            </li>
-            {% endfor %}
-          </ul>
-          {% endif %}
 
-        </li>
-        {% endfor %}
+          </li>
+          {% endfor %}
       </ul>
       {% endif %}
 
