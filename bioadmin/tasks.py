@@ -3,6 +3,7 @@ from django.template.loader import render_to_string
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMessage
 from django.core.urlresolvers import reverse
+import os
 
 from studentgroups.models import StudentGroup
 
