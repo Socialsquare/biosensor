@@ -4,70 +4,53 @@
 
 {% block main %}
 
-<section>
-<h2>{{biosensor.name}}</h2>
+<div class="row">
 
-<p>Kategori: {{biosensor.category}}</p>
+  <div class="col-md-8">
 
-<h3>Problembeskrivelse</h3>
-<p>{{biosensor.problem_description}}</p>
+    <section>
+      <h2>{{biosensor.name}}</h2>
 
-<h3>Risikobeskrivelse</h3>
+      <h3>Problembeskrivelse</h3>
+      <p>{{biosensor.problem_description}}</p>
 
-<p>{{biosensor.risk_description}}</p>
-</section>
+      <h3>Risikobeskrivelse</h3>
+      <p>{{biosensor.risk_description}}</p>
+    </section>
 
-<section class="row">
+    <section>
+      {% if student_reports %}
+        <h3>Rapporter</h3>
 
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Detector</div>
-      <div class="panel-body">
-        <p>Navn: {{detector.name}}</p>
-        <p>Kategori: {{detector.category}}</p>
-        <p>Beskrivelse: {{detector.description}}</p>
-        <p>Design: {{detector.design}}</p>
-        <p><a href="http://parts.igem.org/Part:{{detector.igem_part}}">iGEM-part</a></p>
-        <p><a href="{{detector.team_website}}">Team-website</a></p>
-        <p>DNA-sekvens: {{detector.dna_sequence}}</p>
-      </div>
-    </div>
+        <ul class="list-group">
+          {% for r in student_reports %}
+          <li class="list-group-item">
+            <a href="{% url 'studentgroups:edit_report' r.biosensor.id r.id %}">{{r.student_group.name}}, {{r.student_group.teacher.school.name}} ({{r.created|date:'F n, o'}})</a>
+          </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+
+      {% if request.user.is_student_group %}
+        <a class="btn btn-primary" href="{% url 'studentgroups:new_report' biosensor.id %}">Opret rapport</a>
+      {% endif %}
+    </section>
+
   </div>
 
-  <div class="col-md-6">
-    <div class="panel panel-default">
-      <div class="panel-heading">Responder</div>
-      <div class="panel-body">
-        <p>Navn: {{responder.name}}</p>
-        <p>Kategori: {{responder.category}}</p>
-        <p>Beskrivelse: {{responder.description}}</p>
-        <p>Design: {{responder.design}}</p>
-        <p><a href="http://parts.igem.org/Part:{{responder.igem_part}}">iGEM-part</a></p>
-        <p><a href="{{responder.team_website}}">Team-website</a></p>
-        <p>DNA-sekvens: {{responder.dna_sequence}}</p>
-      </div>
-    </div>
+  <div class="col-md-4">
+
+    <h3>Kategori:</h3>
+    <p>{{biosensor.category}}</p>
+
+    <h3>Detektorgen:</h3>
+    <p><a href="{% url 'biobricks:show' detector.id %}">{{detector.name}}</a></p>
+
+    <h3>Respondergen:</h3>
+    <p><a href="{% url 'biobricks:show' responder.id %}">{{responder.name}}</a></p>
+
   </div>
-</section>
 
-{% if student_reports %}
-<section>
-  <h3>Rapporter</h3>
-
-  <ul class="list-group">
-    {% for r in student_reports %}
-    <li class="list-group-item">
-      <a href="{% url 'studentgroups:edit_report' r.biosensor.id r.id %}">{{r.student_group.name}}, {{r.student_group.teacher.school.name}} ({{r.created|date:'F n, o'}})</a>
-    </li>
-    {% endfor %}
-  </ul>
-</section>
-{% endif %}
-
-<section>
-{% if request.user.is_student_group %}
-  <a class="btn btn-primary" href="{% url 'studentgroups:new_report' biosensor.id %}">Opret rapport</a>
-{% endif %}
-</section>
+</div>
 
 {% endblock %}
