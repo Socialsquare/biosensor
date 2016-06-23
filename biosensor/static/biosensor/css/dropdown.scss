@@ -33,9 +33,15 @@
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
     border-color: $gray !important;
+    &::after {
+      transform: rotate(180deg);
+    }
   }
 }
 
 .dropdown-toggle {
   min-width: $dropdown-min-width;
+  &::after {
+    transition: .3s ease;
+  }
 }
