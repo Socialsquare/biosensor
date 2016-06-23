@@ -6,7 +6,6 @@
     <th>Design</th>
     <th>iGEM part</th>
     <th>Team website</th>
-    <th>DNA sequence</th>
     <th></th>
     <th></th>
   </tr>
@@ -18,7 +17,6 @@
       <td>{{biobrick.design}}</td>
       <td><a href="http://parts.igem.org/Part:{{biobrick.igem_part}}">{{biobrick.igem_part}}</a></td>
       <td>{{biobrick.team_website}}</td>
-      <td>{{biobrick.dna_sequence}}</td>
       <td class="text-center">
         <a href="{% url 'bioadmin:delete_biobrick' biobrick.id %}">
           <i class="glyphicon glyphicon-trash"></i>
