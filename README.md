@@ -27,10 +27,10 @@ if the database has been updated then
 ```
 . venv/bin/activate
 ./manage.py migrate
-./manage/py runserver
+./manage.py runserver
 ```
 else
 ```
 . venv/bin/activate
-./manage/py runserver
+./manage.py runserver
 ```
