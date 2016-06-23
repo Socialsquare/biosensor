@@ -27,7 +27,7 @@ class ReportForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         super(forms.Form, self).__init__(*args, **kwargs)
-        self.fields['resume'].label = 'Resume'
+        self.fields['resume'].label = 'Resumé'
         self.fields['resume'].widget.attrs['placeholder'] = 'Resume'
         self.fields['method'].label = 'Metode'
         self.fields['method'].widget.attrs['placeholder'] = 'Metode'
