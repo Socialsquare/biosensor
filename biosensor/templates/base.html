@@ -53,6 +53,7 @@
                 {% elif user.is_staff %}
                 <a class="dropdown-item" target="_blank" href="{% url 'bioadmin:index' %}">Admin</a>
                 {% endif %}
+                <a class="dropdown-item" target="_blank" href="{% url 'account_logout' %}">Log ud</a>
               </div>
             </div>
           </li>
