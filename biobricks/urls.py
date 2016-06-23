@@ -14,4 +14,5 @@ urlpatterns = [
     url(r'^catalog/biosensors/new$', views.new_biosensor, name='new_biosensor'),
     url(r'^catalog/biosensors/delete/(\d+)$', views.delete_biosensor, name='delete_biosensor'),
     url(r'^catalog/biosensors/edit/(\d+)$', views.edit_biosensor, name='edit_biosensor'),
+    url(r'^catalog/reports/(\d+)$', views.show_report, name='show_report'),
 ]

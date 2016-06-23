@@ -97,3 +97,8 @@ def edit_biosensor(request, biosensor_id):
             'form': form
             }
     return render(request, 'studentgroups/biosensor.html', context)
+
+def show_report(request, report_id):
+    report = get_object_or_404(StudentReport, id=report_id)
+    context = { 'report': report }
+    return render(request, 'biobricks/show_report.html', context)
