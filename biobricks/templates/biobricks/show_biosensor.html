@@ -4,27 +4,24 @@
 
 {% block main %}
 
+<section>
+  <h1>{{biosensor.name}}</h1>
+</section>
+
 <div class="row">
-
   <div class="col-md-8">
-
     <section>
-      <h2>{{biosensor.name}}</h2>
-
-      <h3>Problembeskrivelse</h3>
+      <h2>Problembeskrivelse</h2>
       <p>{{biosensor.problem_description}}</p>
 
-      <h3>Risikobeskrivelse</h3>
+      <h2>Risikobeskrivelse</h2>
       <p>{{biosensor.risk_description}}</p>
-    </section>
-
-    <section>
       {% if student_reports %}
-        <h3>Rapporter</h3>
+        <h2>Rapporter</h2>
 
-        <ul class="list-group">
+        <ul class="no-list-style">
           {% for r in student_reports %}
-          <li class="list-group-item">
+          <li>
             <a href="{% url 'biobricks:show_report' r.id %}">{{r.student_group.name}}, {{r.student_group.teacher.school.name}} ({{r.created|date:'F n, o'}})</a>
           </li>
           {% endfor %}
@@ -40,13 +37,13 @@
 
   <div class="col-md-4">
 
-    <h3>Kategori:</h3>
+    <h2>Kategori:</h2>
     <p>{{biosensor.category}}</p>
 
-    <h3>Detektorgen:</h3>
+    <h2>Detektorgen:</h2>
     <p><a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a></p>
 
-    <h3>Respondergen:</h3>
+    <h2>Respondergen:</h2>
     <p><a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a></p>
 
   </div>
