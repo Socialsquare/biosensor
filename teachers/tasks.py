@@ -7,6 +7,10 @@ from django.core.urlresolvers import reverse
 from studentgroups.models import StudentGroup
 
 def send_student_group_notice(group_name, email, password):
+    # TODO: remove this when email is set up on staging
+    if django_env == 'staging':
+        return
+
     domain = Site.objects.get(id=settings.SITE_ID).domain
     ctx = {
         'group_name': group_name,
