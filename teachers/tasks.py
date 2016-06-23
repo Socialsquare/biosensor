@@ -8,6 +8,7 @@ from studentgroups.models import StudentGroup
 
 def send_student_group_notice(group_name, email, password):
     # TODO: remove this when email is set up on staging
+    django_env = os.getenv('DJANGO_ENV', 'development')
     if django_env == 'staging':
         return
 
