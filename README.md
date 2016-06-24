@@ -65,7 +65,7 @@ In order for email notifications to be sent out, the following environment varia
 
 #### Database migations
 
-If changes are made to a django model, make sure to migrate the database to reflect these changes.
+If you make changes to one of the models, make sure to also migrate the database to reflect your changes.
 
 `cd` into the project root dir and run  
 `. venv/bin/activate`  
