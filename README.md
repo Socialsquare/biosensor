@@ -61,9 +61,16 @@ In order for email notifications to be sent out, the following environment varia
 #### Run command
 
 `cd` into the project root dir and run
-```
-. venv/bin/activate && ./manage.py migrate && ./manage.py runserver
-```
+`. venv/bin/activate && ./manage.py runserver`
+
+#### Database migations
+
+If changes are made to a django model, make sure to migrate the database to reflect changes.
+
+`cd` into the project root dir and run
+`. venv/bin/activa
+./manage.py makemigrations *create new migrations based on the changes you have made to your models.*  
+./manage.py migrate **
 
 #### Update server
 
