@@ -31,13 +31,15 @@
   }
 
   .form-control {
+    -moz-appearance: none;
     -webkit-appearance: none;
     cursor: pointer;
     height: calc(1rem * #{$line-height} + .375rem * 2 + 2px);
   }
+
   @media screen and (-webkit-min-device-pixel-ratio:0) {
     .form-control {
-      padding-right: 18px
+      padding-right: 1rem;
     }
   }
 }

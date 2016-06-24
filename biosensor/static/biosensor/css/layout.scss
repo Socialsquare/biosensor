@@ -4,11 +4,10 @@ body {
   min-height: 100vh;
 }
 
-.body-container {
+.content {
   flex-grow: 1;
 }
 
 .container-fluid {
-  margin: 0 auto;
   max-width: map-get($container-max-widths, xl);
 }

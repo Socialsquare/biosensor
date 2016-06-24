@@ -108,20 +108,20 @@
       </div>
     </nav>
 
-    <div class="container-fluid body-container m-y-3">
+    <div class="content m-y-3">
+      <div class="container-fluid">
 
-      {% bootstrap_messages %}
+        {% bootstrap_messages %}
 
-      {% block main %}
-      {% endblock %}
+        {% block main %}
+        {% endblock %}
 
-     <!--
+        <!-- TODO - vi skal forholde os til det her:
+         <ul>
+           <li class="pull-right"><a href="{% url 'teachers:signup' %}">Tilmeld som lærer</a></li>
+           </ul>-->
 
-     TODO - vi skal forholde os til det her:
-      <ul>
-        <li class="pull-right"><a href="{% url 'teachers:signup' %}">Tilmeld som lærer</a></li>
-        </ul>-->
-
+      </div>
     </div>
 
     <footer class="footer">
