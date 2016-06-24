@@ -4,11 +4,12 @@
 var gulp = require('gulp');
 var autoprefixer = require('gulp-autoprefixer');
 var concat = require('gulp-concat');
-var minifycss = require('gulp-minify-css');
+var del = require('del');
 var livereload = require('gulp-livereload');
 var minify = require('gulp-minify');
+var minifycss = require('gulp-minify-css');
 var rename = require('gulp-rename');
-var rimraf = require('rimraf');
+var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
 var svgmin = require('gulp-svgmin');
 var svgstore = require('gulp-svgstore');
@@ -36,6 +37,9 @@ var paths = {
     ],
     svg: [
       'biosensor/static/biosensor/images/sprite/*.svg'
+    ],
+    static: [
+      'staticfiles/'
     ]
 }
 
@@ -43,8 +47,8 @@ var paths = {
 // - - - - - - - - - - - - - - -
 
 // Cleans the build directory
-gulp.task('clean', function(cb) {
-  rimraf('./staticfiles/*', cb);
+gulp.task('clean', function() {
+  return del(paths.static + '*');
 })
 
 // Compiles Sass
@@ -55,7 +59,7 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('.tmp/css'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
-    .pipe(gulp.dest('staticfiles/css'))
+    .pipe(gulp.dest(paths.static + 'css'))
     .pipe(livereload());
 });
 
@@ -63,17 +67,17 @@ gulp.task('sass', function() {
 gulp.task('js', function() {
   return gulp.src(paths.js)
     .pipe(concat('base.js'))
-    .pipe(gulp.dest('staticfiles/js'))
+    .pipe(gulp.dest(paths.static + 'js'))
     .pipe(rename('base.js'))
     .pipe(minify())
-    .pipe(gulp.dest('staticfiles/js'))
+    .pipe(gulp.dest(paths.static + 'js'))
     .pipe(livereload());
 });
 
 // Copy favicon
 gulp.task('copyfav', function() {
   return gulp.src(paths.favicon)
-    .pipe(gulp.dest('staticfiles/'))
+    .pipe(gulp.dest(paths.static + ''))
     .pipe(livereload());
 });
 
@@ -83,7 +87,7 @@ gulp.task('svg-sprite', function() {
     .pipe(svgmin())
     .pipe(rename({prefix: 'sprite_'}))
     .pipe(svgstore())
-    .pipe(gulp.dest('staticfiles/'))
+    .pipe(gulp.dest(paths.static + ''))
     .pipe(livereload());
 });
 
@@ -106,7 +110,18 @@ gulp.task('watch', function() {
 });
 
 // Builds your entire app once, without starting a server
-gulp.task('build', ['sass', 'js', 'svg-sprite', 'copyfav']);
+gulp.task('build', function(callback) {
+  runSequence(
+    'clean',
+    ['sass', 'js', 'svg-sprite', 'copyfav'],
+    callback);
+});
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['sass', 'js', 'svg-sprite', 'copyfav', 'watch']);
+gulp.task('default', function(callback) {
+  runSequence(
+    'clean',
+    ['sass', 'js', 'svg-sprite', 'copyfav'],
+    'watch',
+    callback);
+});
