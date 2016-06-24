@@ -31,7 +31,7 @@ You need to have these installed on your development machine and on the server
 
 #### Environment variables
 
-Be sure to set the following environment variables
+Be sure to set the following environment variables when setting up the app for staging or production:
 
 `export DJANGO_ENV={development|staging|production}` *set up the app to run in development, staging or production mode*
 `export SECRET_KEY=[random string of characters]` *a secret key used to provide cryptographic signing*  
