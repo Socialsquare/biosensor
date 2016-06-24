@@ -68,9 +68,9 @@ In order for email notifications to be sent out, the following environment varia
 If changes are made to a django model, make sure to migrate the database to reflect these changes.
 
 `cd` into the project root dir and run
-`. venv/bin/activate`
+`. venv/bin/activate`  
 `./manage.py makemigrations` *create new migrations based on the changes you have made to your models.*  
-`./manage.py migrate` *apply migrations to update the database*
+`./manage.py migrate` *apply migrations to update the database*  
 
 #### Update server
 
