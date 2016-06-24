@@ -20,25 +20,25 @@ You need to have these installed on your development machine and on the server
 #### Command line
 
 `cd` into the project root dir  
-`virtualenv -p python3 venv` initialise python 3 virtual environment  
-`. venv/bin/activate` start the virtual environment  
-`pip install -r requirements.txt` install required python modules  
-`npm install` install required node modules  
-`export DJANGO_SETTINGS_MODULE=biosensor.settings` tell django where to find the configuration file  
-`./manage.py migrate` initialise the postgress database  
-`./manage.py runserver` start the app  
+`virtualenv -p python3 venv` *initialise python 3 virtual environment*  
+`. venv/bin/activate` *start the virtual environment*  
+`pip install -r requirements.txt` *install required python modules*  
+`npm install` *install required node modules*  
+`export DJANGO_SETTINGS_MODULE=biosensor.settings` *tell django where to find the configuration file*  
+`./manage.py migrate` *initialise the postgress database*  
+`./manage.py runserver` *start the app*  
 
 &nbsp;
 
 ## Development
 
 #### Frameworks and components used
-- [Django](https://www.djangoproject.com) python based web app framework
-- [Node](https://nodejs.org/) javascript runtime
-- [NPM](https://www.npmjs.com) javascript package manager
-- [Gulp](http://gulpjs.com) build system
-- [Sass](http://sass-lang.com) css preprocessor
-- [Bootstrap 4](http://v4-alpha.getbootstrap.com) css framework
+- [Django](https://www.djangoproject.com) *python based web app framework*
+- [Node](https://nodejs.org/) *javascript runtime*
+- [NPM](https://www.npmjs.com) *javascript package manager*
+- [Gulp](http://gulpjs.com) *build system*
+- [Sass](http://sass-lang.com) *css preprocessor*
+- [Bootstrap 4](http://v4-alpha.getbootstrap.com) *css framework*
 
 #### Run command
 
