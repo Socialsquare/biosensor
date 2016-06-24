@@ -1,5 +1,7 @@
 {% load staticfiles %}
 {% load bootstrap3 %}
+{% load account %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -68,7 +70,34 @@
           </li>
           {% else %}
           <li class="nav-item pull-xs-right">
-            <a class="btn btn-primary" href="{% url 'account_login' %}">Log ind</a>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
+              Log ind
+            </button>
+            <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
+                 aria-labelledby="loginModalLabel" aria-hidden="true">
+              <div class="modal-dialog " role="document">
+                <form class="login modal-content" method="POST" action="{% url 'account_login' %}">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h2 class="modal-title" id="loginModalLabel">Log ind</h2>
+                  </div>
+                  <div class="modal-body">
+                      {% csrf_token %}
+                      {% bootstrap_form login_form %}
+
+                      {% if redirect_field_value %}
+                          <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                      {% endif %}
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Annullér</button>
+                    <button class="btn btn-primary primaryAction" type="submit">Log ind</button>
+                  </div>
+                </form>
+              </div>
+            </div>
           </li>
           {% endif %}
         </ul>
@@ -83,6 +112,8 @@
       {% endblock %}
 
      <!--
+
+     TODO - vi skal forholde os til det her:
       <ul>
         <li class="pull-right"><a href="{% url 'teachers:signup' %}">Tilmeld som lærer</a></li>
         </ul>-->

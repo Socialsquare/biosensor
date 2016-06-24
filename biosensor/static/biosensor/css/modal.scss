@@ -1,0 +1,19 @@
+.modal-content {
+  background-color: none;
+  overflow: hidden; // bacause we apply bg to child elements but want radius
+}
+
+.modal-header {
+  background-color: $brand-primary;
+  border-bottom: 0;
+  color: $white;
+}
+
+.modal-body,
+.modal-footer {
+  background-color: $white;
+}
+
+.modal-footer {
+  border-top: 0;
+}

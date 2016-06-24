@@ -60,9 +60,12 @@
 @import 'header';
 @import 'footer';
 
+// Modified bootstrap components
+@import 'dropdown';
+@import 'form';
+@import 'modal';
+
 // Custom components
 @import 'logo';
-@import 'dropdown';
 @import 'summernote';
-@import 'form';
 @import 'dashboard';
