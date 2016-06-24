@@ -24,7 +24,8 @@ You need to have these installed on your development machine and on the server
 `. venv/bin/activate` *start the virtual environment*  
 `pip install -r requirements.txt` *install required python modules*  
 `npm install` *install required node modules*  
-`export DJANGO_SETTINGS_MODULE=biosensor.settings` *tell django where to find the configuration file*  
+`export DJANGO_SETTINGS_MODULE=biosensor.settings` *tell django where to find the configuration file*
+`export DJANGO_ENV={development|staging|production}` *set the app in development, staging or production mode*  
 `./manage.py migrate` *initialise the postgress database*  
 `./manage.py runserver` *start the app*  
 
