@@ -4,24 +4,33 @@
 
 {% block main %}
 
-<h2>{{biobrick.biobrick_type|capfirst}} {{biobrick.name}}</h2>
+<div class="col-md-8">
 
-<p>Category: {{biobrick.category}}</p>
+  <h1>{{biobrick.biobrick_type|capfirst}} {{biobrick.name}}</h1>
 
-<p>Description: {{biobrick.description}}</p>
+  <h2>Beskrivelse</h2>
+  <p>{{biobrick.description}}</p>
 
-<p>Design: {{biobrick.design}}</p>
+  <h2>Design</h2>
+  < p>{{biobrick.design}}</p>
 
-<p><a href="http://parts.igem.org/Part:{{biobrick.igem_part}}">iGEM part</a></p>
-
-<p><a href="{{biobrick.team_website}}">Team website</a></p>
-
-<p>DNA sequence: {{biobrick.dna_sequence}}</p>
-
-<div>
-  Eksisterende: {% for c in coords %}{{ c }} {% endfor %}
 </div>
 
-<div>Aktiv: {{biobrick.coord_x}}{{biobrick.coord_y}}</div>
+<div class="col-md-4">
+
+  {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
+
+  <h2>Kategori:</h2>
+  <p>{{biobrick.category}}</p>
+
+  <h2>iGEM part:</h2>
+  <p><a href="http://parts.igem.org/Part:{{biobrick.igem_part}}">iGEM part</a></p>
+
+  <h2>Team-website:</h2>
+  <p><a href="{{biobrick.team_website}}">{{biobrick.team_website}}</a></p>
+
+  <h2>DNA-sekvens:</h2>
+  <p>{{biobrick.dna_sequence}}</p>
+</div>
 
 {% endblock %}

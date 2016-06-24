@@ -13,10 +13,12 @@ def show(request, slug):
     if not biobrick:
         raise Http404
 
-    coords = ['{}{}'.format(b.coord_x, b.coord_y) for b in Biobrick.objects.all()]
+    all_coords = ['{}{}'.format(b.coord_x, b.coord_y) for b in Biobrick.objects.all()]
+    active_coords = ['{}{}'.format(biobrick.coord_x, biobrick.coord_y)]
     context = {
             'biobrick': biobrick,
-            'coords': coords,
+            'all_coords': all_coords,
+            'active_coords': active_coords,
             }
     return render(request, 'biobricks/show.html', context)
 
@@ -24,11 +26,18 @@ def show_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
     detector = Biobrick.objects.get(id=biosensor.detector.id)
     responder = Biobrick.objects.get(id=biosensor.responder.id)
+    all_coords = ['{}{}'.format(b.coord_x, b.coord_y) for b in Biobrick.objects.all()]
+    active_coords = [
+            '{}{}'.format(detector.coord_x, detector.coord_y),
+            '{}{}'.format(responder.coord_x, responder.coord_y)
+            ]
     student_reports = StudentReport.objects.filter(biosensor=biosensor)
     context = {
             'biosensor': biosensor,
             'detector': detector,
             'responder': responder,
+            'all_coords': all_coords,
+            'active_coords': active_coords,
             'student_reports': student_reports
             }
     return render(request, 'biobricks/show_biosensor.html', context)

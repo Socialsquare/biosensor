@@ -40,6 +40,8 @@
 
   <div class="col-md-4">
 
+    {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
+
     <h3>Kategori:</h3>
     <p>{{biosensor.category}}</p>
 
