@@ -13,6 +13,7 @@
     <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
     <script type="text/javascript" src="{% static "js/bootstrap.js" %}"></script>
     <script type="text/javascript" src="{% static "js/base.js" %}"></script>
+    <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
     {% block head_statics %}
     {% endblock %}
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -44,9 +45,9 @@
               type="button" id="dropdownMenu" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
                 {% if user.is_teacher %}
-                  Lærerens navn
+                  Lærer
                 {% elif user.is_student_group %}
-                  Gruppens navn
+                  Elevgruppe
                 {% elif user.is_staff %}
                   Admin
                 {% endif %}
@@ -74,17 +75,14 @@
       </div>
     </nav>
 
-    <div class="container-fluid body-container">
+    <div class="container-fluid body-container m-y-3">
 
       {% bootstrap_messages %}
 
       {% block main %}
       {% endblock %}
 
-     <!-- {% if user.is_authenticated %}
-        <p class="pull-left">Du er logget ind som {{user.email}}</p>
-      {% endif %}
-
+     <!--
       <ul>
         <li class="pull-right"><a href="{% url 'teachers:signup' %}">Tilmeld som lærer</a></li>
         </ul>-->

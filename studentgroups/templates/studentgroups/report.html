@@ -12,49 +12,47 @@
 
 {% block main %}
 
-<div class="m-y-3">
-  <h1>
-    {% if report %} Rediger rapport {% else %} Opret rapport for {{biosensor.name}}{% endif %}
-  </h1>
+<h1>
+  {% if report %} Rediger rapport {% else %} Opret rapport for {{biosensor.name}}{% endif %}
+</h1>
 
-  <div class="row">
-    <div class="col-md-8">
-    {% if report %}
-       <form class="edit-report" method="post" action="{% url 'studentgroups:edit_report' biosensor.id report.id %}">
-    {% else %}
-       <form class="new-report" method="post" action="{% url 'studentgroups:new_report' biosensor.id %}">
-    {% endif %}
-          {% csrf_token %}
-          <div class="m-y-2">
-            {% bootstrap_field form.resume %}
-          </div>
-          <div class="m-y-2">
-            {% bootstrap_field form.method %}
-          </div>
-          <div class="m-y-2">
-            {% bootstrap_field form.results %}
-          </div>
-          <div class="m-y-2">
-            {% bootstrap_field form.conclusion %}
-          </div>
-        {% if report %}
-          <button class="btn btn-primary" type="submit">Gem ændringer &raquo;</button>
-        {% else %}
-          <button class="btn btn-primary" type="submit">Opret rapport &raquo;</button>
-        {% endif %}
-       </form>
-    </div>
+<div class="row">
+  <div class="col-md-8">
+  {% if report %}
+    <form class="edit-report" method="post" action="{% url 'studentgroups:edit_report' biosensor.id report.id %}">
+  {% else %}
+    <form class="new-report" method="post" action="{% url 'studentgroups:new_report' biosensor.id %}">
+  {% endif %}
+      {% csrf_token %}
+      <div class="m-y-2">
+        {% bootstrap_field form.resume %}
+      </div>
+      <div class="m-y-2">
+        {% bootstrap_field form.method %}
+      </div>
+      <div class="m-y-2">
+        {% bootstrap_field form.results %}
+      </div>
+      <div class="m-y-2">
+        {% bootstrap_field form.conclusion %}
+      </div>
+      {% if report %}
+      <button class="btn btn-primary" type="submit">Gem ændringer &raquo;</button>
+      {% else %}
+      <button class="btn btn-primary" type="submit">Opret rapport &raquo;</button>
+      {% endif %}
+    </form>
+  </div>
 
-    <div class="col-md-4">
-       <h2 class="m-t-2">Kategori:</h2>
-       <p>{{biosensor.category.name}}</p>
+  <div class="col-md-4">
+    <h2 class="m-t-2">Kategori:</h2>
+    <p>{{biosensor.category.name}}</p>
 
-       <h3>Detector:</h3>
-       <p><a href="{% url 'biobricks:show' biosensor.detector.slug %}">{{biosensor.detector.name}}</a></p>
+    <h2>Detector:</h2>
+    <p><a href="{% url 'biobricks:show' biosensor.detector.slug %}">{{biosensor.detector.name}}</a></p>
 
-       <h3>Responder:</h3>
-       <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
-    </div>
+    <h2>Responder:</h2>
+    <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
   </div>
 </div>
 

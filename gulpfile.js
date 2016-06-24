@@ -26,6 +26,9 @@ var paths = {
     js: [
       'biosensor/static/biosensor/javascript/*.js',
       'node_modules/bootstrap/dist/js/bootstrap.js',
+    ],
+    favicon: [
+      'biosensor/static/biosensor/favicon.ico'
     ]
 }
 
@@ -59,9 +62,17 @@ gulp.task('uglify', function() {
     .pipe(livereload());
 });
 
+// Copy JS
 gulp.task('copyjs', function() {
     return gulp.src(paths.js)
     .pipe(gulp.dest('staticfiles/js'))
+    .pipe(livereload());
+});
+
+// Copy favicon
+gulp.task('copyfav', function() {
+    return gulp.src(paths.favicon)
+    .pipe(gulp.dest('staticfiles/'))
     .pipe(livereload());
 });
 
@@ -79,8 +90,10 @@ gulp.task('watch', function() {
 
 });
 
+// TODO: Ask simon why no copyJS here:
+
 // Builds your entire app once, without starting a server
 gulp.task('build', ['sass', 'uglify']);
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['sass', 'copyjs', 'watch']);
+gulp.task('default', ['sass', 'copyjs', 'copyfav', 'watch']);

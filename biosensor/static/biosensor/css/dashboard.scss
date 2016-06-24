@@ -1,0 +1,14 @@
+.student-group:not(:focus):not(:hover) {
+  .student-group__delete,
+  .student-group__edit {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+.student-group__delete,
+.student-group__edit {
+  opacity: 1;
+  transition: .5s ease;
+  transition-property: opacity, visibility;
+}

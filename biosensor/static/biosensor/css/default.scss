@@ -4,6 +4,11 @@ body {
   font-weight: $body-font-weight;
 }
 
+h2,
+h3 {
+  margin-top: $spacer;
+}
+
 h3 {
   font-weight: $h3-font-weight;
 }

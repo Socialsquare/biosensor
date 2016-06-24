@@ -4,11 +4,12 @@
 
 {% block main %}
 
+<section>
+  <h1>{{biosensor.name}}</h1>
+</section>
+
 <div class="row">
-
   <div class="col-md-8">
-
-    <h1>{{biosensor.name}}</h1>
 
     <section>
 
@@ -23,9 +24,9 @@
       {% if student_reports %}
         <h2>Rapporter</h2>
 
-        <ul class="list-group">
+        <ul class="no-list-style">
           {% for r in student_reports %}
-          <li class="list-group-item">
+          <li>
             <a href="{% url 'biobricks:show_report' r.id %}">{{r.student_group.name}}, {{r.student_group.teacher.school.name}} ({{r.created|date:'F n, o'}})</a>
           </li>
           {% endfor %}

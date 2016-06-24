@@ -23,14 +23,6 @@ export DJANGO_SETTINGS_MODULE=biosensor.settings
 ```
 
 ###Every time
-if the database has been updated then
 ```
-. venv/bin/activate
-./manage.py migrate
-./manage.py runserver
-```
-else
-```
-. venv/bin/activate
-./manage.py runserver
+. venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
