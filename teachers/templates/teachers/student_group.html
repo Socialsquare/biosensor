@@ -39,15 +39,22 @@
             {% bootstrap_field form.letter %}
           </div>
         </div>
-        <div class="pull-xs-right m-t-1">
-          {% if student_group %}
-          <button class="btn btn-primary" type="submit">Gem ændringer</button>
-          {% else %}
-          <a class="btn btn-link" href="{% url 'teachers:dashboard' %}">Annullér</a>
-          <button class="btn btn-primary" type="submit">Opret elevgruppe</button>
-          {% endif %}
-        </div>
       </div>
+    </div>
+    <div class="m-t-1">
+      {% if student_group %}
+      <button class="btn btn-primary" type="submit">Gem ændringer</button>
+      {% else %}
+      <button class="btn btn-primary" type="submit">
+        <span class="center-y">
+          Opret elevgruppe
+          <svg role="img" class="icon" title="Opret ny gruppe">
+            <use xlink:href="/static/sprite.svg#sprite_group_add"/>
+          </svg>
+        </span>
+      </button>
+      <a class="btn btn-link" href="{% url 'teachers:dashboard' %}">Annullér</a>
+      {% endif %}
     </div>
   </form>
 

@@ -3,10 +3,18 @@
 
 {% block main %}
 
-<h2>Dashboard</h2>
+<h1>Dashboard</h1>
+<a class="btn btn-primary m-y-1" href="{% url 'biobricks:new_biosensor' %}">
+  <span class="center-y">
+    Opret biosensor
+    <svg role="img" class="icon" title="Opret ny gruppe">
+      <use xlink:href="/static/sprite.svg#sprite_description_add"/>
+    </svg>
+  </span>
+</a>
 
 <section>
-<h3>Mine biosensorer</h3>
+<h2>Mine biosensorer</h2>
 
 {% if biosensors %}
 <table class="table table-striped">
@@ -30,12 +38,16 @@
       <td>{{biosensor.risk_description}}</td>
       <td class="text-center">
         <a href="{% url 'biobricks:delete_biosensor' biosensor.id %}">
-          <i class="glyphicon glyphicon-trash"></i>
+          <svg role="img" class="icon" title="Slet biosensor">
+            <use xlink:href="/static/sprite.svg#sprite_delete"/>
+          </svg>
         </a>
       </td>
       <td class="text-center">
         <a href="{% url 'biobricks:edit_biosensor' biosensor.id %}">
-          <i class="glyphicon glyphicon-edit"></i>
+          <svg role="img" class="icon" title="Rediger biosensor">
+            <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
+          </svg>
         </a>
       </td>
     </tr>
@@ -45,7 +57,6 @@
 <p><em>Du har ingen biosensorer</em></p>
 {% endif %}
 
-<a class="btn btn-primary" href="{% url 'biobricks:new_biosensor' %}">Opret biosensor</a>
 </section>
 
 {% endblock %}
