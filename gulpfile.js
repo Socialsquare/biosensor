@@ -8,6 +8,7 @@ var del = require('del');
 var livereload = require('gulp-livereload');
 var minify = require('gulp-minify');
 var minifycss = require('gulp-minify-css');
+var plumber = require('gulp-plumber');
 var rename = require('gulp-rename');
 var runSequence = require('run-sequence');
 var sass = require('gulp-sass');
@@ -54,6 +55,12 @@ gulp.task('clean', function() {
 // Compiles Sass
 gulp.task('sass', function() {
     return gulp.src(paths.sass)
+    .pipe(plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
     .pipe(sass())
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie 10']}))
     .pipe(gulp.dest('.tmp/css'))
@@ -66,6 +73,12 @@ gulp.task('sass', function() {
 // Compiles JS
 gulp.task('js', function() {
   return gulp.src(paths.js)
+    .pipe(plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
     .pipe(concat('base.js'))
     .pipe(gulp.dest(paths.static + 'js'))
     .pipe(rename('base.js'))
@@ -84,6 +97,12 @@ gulp.task('copyfav', function() {
 // Create SVG sprite
 gulp.task('svg-sprite', function() {
   return gulp.src(paths.svg)
+    .pipe(plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
     .pipe(svgmin())
     .pipe(rename({prefix: 'sprite_'}))
     .pipe(svgstore())
