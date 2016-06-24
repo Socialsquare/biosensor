@@ -21,6 +21,16 @@ svg {
   fill: currentColor !important;
 }
 
+.form-control {
+  color: $body-color;
+  border-color: $body-color;
+}
+
+input:not([type=submit]):not([type=file]).form-control,
+textarea.form-control {
+  border-radius: 0;
+}
+
 .center-y {
   align-items: center;
   display: flex;

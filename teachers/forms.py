@@ -68,7 +68,7 @@ class StudentGroupForm(forms.Form):
             required=True)
     grade = forms.fields.ChoiceField(
             widget=forms.Select, choices=[(i,i) for i in range(1,4)],
-            label='Klassetrin',
+            label='Klasse',
             required=True)
     letter = forms.fields.ChoiceField(
             widget=forms.Select, choices=[(i,i) for i in list(ascii_lowercase)],

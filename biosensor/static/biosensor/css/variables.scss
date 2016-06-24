@@ -16,6 +16,11 @@ $white: #fff;
 $black: #000;
 $border-color: $gray-lighter;
 
+// Border
+$border-radius: .4rem;
+$border-radius-lg: .6rem !default;
+$border-radius-sm: .2rem !default;
+
 // Sizes
 $border-width: 1px !default;
 $dropdown-min-width: 10rem;

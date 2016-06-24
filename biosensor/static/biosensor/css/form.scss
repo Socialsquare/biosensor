@@ -14,3 +14,30 @@
   font-size: .75rem;
   font-style: italic;
 }
+
+.custom-forms {
+  .form-group {
+    position: relative;
+
+    &:after {
+      bottom: .4rem;
+      content: '>';
+      font-weight: $headings-font-weight;
+      pointer-events: none;
+      position: absolute;
+      right: .4rem;
+      transform: rotate(90deg);
+    }
+  }
+
+  .form-control {
+    -webkit-appearance: none;
+    cursor: pointer;
+    height: calc(1rem * #{$line-height} + .375rem * 2 + 2px);
+  }
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+    .form-control {
+      padding-right: 18px
+    }
+  }
+}
