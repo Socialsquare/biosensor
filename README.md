@@ -1,12 +1,12 @@
 # Biosensor
 
-<p>&nbsp;</p>
+&nbsp;
 
 ## Introduction
 
 Biosensor is a django based web app built as an open source project under a MIT license
 
-<p>&nbsp;</p>
+&nbsp;
 
 ## Setup  
 
@@ -19,17 +19,16 @@ You need to have these installed on your development machine and on the server
 
 #### Command line
 
-`cd` into the project root dir and run
-```
-virtualenv -p python3 venv
-. venv/bin/activate
-pip install -r requirements.txt
-npm install
-export DJANGO_SETTINGS_MODULE=biosensor.settings
-. venv/bin/activate && ./manage.py migrate && ./manage.py runserver
-```
+`cd` into the project root dir  
+`virtualenv -p python3 venv` initialise python 3 virtual environment  
+`. venv/bin/activate` start the virtual environment  
+`pip install -r requirements.txt` install required python modules  
+`npm install` install required node modules  
+`export DJANGO_SETTINGS_MODULE=biosensor.settings` tell django where to find the configuration file  
+`./manage.py migrate` initialise the postgress database  
+`./manage.py runserver` start the app  
 
-<p>&nbsp;</p>
+&nbsp;
 
 ## Development
 
@@ -48,7 +47,7 @@ export DJANGO_SETTINGS_MODULE=biosensor.settings
 . venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
 
-<p>&nbsp;</p>
+&nbsp;
 
 ## License
 
