@@ -7,22 +7,22 @@ class ReportForm(forms.Form):
     resume = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 karakterer',
+            help_text='Max 4000 tegn',
             required=True)
     method = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 karakterer',
+            help_text='Max 4000 tegn',
             required=True)
     results = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 karakterer',
+            help_text='Max 4000 tegn',
             required=True)
     conclusion = forms.fields.CharField(
             max_length=4000,
             widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 karakterer',
+            help_text='Max 4000 tegn',
             required=True)
 
     def __init__(self, *args, **kwargs):

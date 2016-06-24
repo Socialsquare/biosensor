@@ -1,5 +1,6 @@
 import string
 from django import forms
+from django_summernote.widgets import SummernoteInplaceWidget
 from biobricks.models import Category, Biobrick
 
 class SchoolForm(forms.Form):
@@ -27,20 +28,24 @@ class BiobrickForm(forms.Form):
             required=True)
     description = forms.fields.CharField(
             max_length=1000,
-            widget=forms.Textarea,
+            widget=SummernoteInplaceWidget(),
+            help_text='Max 1000 tegn',
             required=True)
     design = forms.fields.CharField(
             max_length=1000,
-            widget=forms.Textarea,
+            widget=SummernoteInplaceWidget(),
+            help_text='Max 1000 tegn',
             required=True)
     igem_part = forms.fields.CharField(max_length=200, required=True)
     team_website = forms.fields.CharField(max_length=200, required=True)
     dna_sequence = forms.fields.CharField(max_length=200, required=True)
     coord_x = forms.fields.ChoiceField(
+            label='X-koordinat',
             widget=forms.Select,
             choices=[('', '-'*9)]+[(i, i) for i in range(1,13)],
             required=True)
     coord_y = forms.fields.ChoiceField(
+            label='Y-koordinat',
             widget=forms.Select,
             choices=[('', '-'*9)]+[(l, l.upper()) for l in string.ascii_lowercase][:8],
             required=True)
