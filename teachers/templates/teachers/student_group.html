@@ -25,17 +25,17 @@
       </div>
       <div class="col-md-8">
         <div class="row">
-          <div class="col-md-4 custom-forms">
+          <div class="col-md-4">
             <!-- TODO - hvorfor er første felt blankt? -->
             {% bootstrap_field form.subject %}
           </div>
-          <div class="col-md-4 custom-forms">
+          <div class="col-md-4">
             {% bootstrap_field form.year %}
           </div>
-          <div class="col-md-2 custom-forms">
+          <div class="col-md-2">
             {% bootstrap_field form.grade %}
           </div>
-          <div class="col-md-2 custom-forms">
+          <div class="col-md-2">
             {% bootstrap_field form.letter %}
           </div>
         </div>
@@ -43,6 +43,7 @@
           {% if student_group %}
           <button class="btn btn-primary" type="submit">Gem ændringer</button>
           {% else %}
+          <a class="btn btn-link" href="{% url 'teachers:dashboard' %}">Annullér</a>
           <button class="btn btn-primary" type="submit">Opret elevgruppe</button>
           {% endif %}
         </div>
