@@ -1,0 +1,53 @@
+.mtp-container {
+  height: 0;
+  margin-bottom: $spacer;
+  padding-bottom: 100% * (209 / 304); // svg viewport
+  position: relative;
+  width: 100%;
+}
+
+.mtp {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  &__text {
+    fill: $body-color;
+    font-size: 11px;
+    font-weight: $headings-font-weight;
+  }
+
+  &__well {
+    fill: $gray-lighter;
+
+    circle {
+      cursor: pointer;
+      display: none;
+    }
+  }
+
+  &__substance {
+    fill: $brand-secondary;
+
+    circle {
+      display: none;
+      pointer-events: none;
+    }
+  }
+}
+
+$coord-x: 1 2 3 4 5 6 7 8 9 10 11 12;
+$coord-y: a b c d e f g h;
+
+@each $number in $coord-x {
+  @each $letter in $coord-y {
+    .mtp__well-#{$number}#{$letter},
+    .mtp__substance-#{$number}#{$letter} {
+      .circle-#{$number}#{$letter} {
+        display: block;
+      }
+    }
+  }
+}

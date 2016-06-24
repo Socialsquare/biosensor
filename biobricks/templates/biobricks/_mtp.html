@@ -1,2 +1,232 @@
-Eksisterende: {% for c in all_coords %}{{ c }} {% endfor %}
-Aktiv: {% for c in active_coords %}{{ c }} {% endfor %}
+<h2>MTP placering</h2>
+
+<div class="mtp-container"> <!-- Needed because fuck IE -->
+  <svg class="mtp" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 304 209">
+    <text class="mtp__text" text-anchor="middle">
+      <tspan x="5" y="33">A</tspan>
+      <tspan x="5" y="57">B</tspan>
+      <tspan x="5" y="81">C</tspan>
+      <tspan x="5" y="105">D</tspan>
+      <tspan x="5" y="129">E</tspan>
+      <tspan x="5" y="153">F</tspan>
+      <tspan x="5" y="177">G</tspan>
+      <tspan x="5" y="201">H</tspan>
+      <tspan x="27" y="10">1</tspan>
+      <tspan x="51" y="10">2</tspan>
+      <tspan x="75" y="10">3</tspan>
+      <tspan x="99" y="10">4</tspan>
+      <tspan x="123" y="10">5</tspan>
+      <tspan x="147" y="10">6</tspan>
+      <tspan x="171" y="10">7</tspan>
+      <tspan x="195" y="10">8</tspan>
+      <tspan x="219" y="10">9</tspan>
+      <tspan x="243" y="10">10</tspan>
+      <tspan x="267" y="10">11</tspan>
+      <tspan x="291" y="10">12</tspan>
+    </text>
+    <g class="mtp__well {% for c in all_coords %}mtp__well-{{ c }} {% endfor %}">
+      <circle cx="291" cy="197" r="12" class="circle-12h" />
+      <circle cx="291" cy="173" r="12" class="circle-12g" />
+      <circle cx="291" cy="149" r="12" class="circle-12f" />
+      <circle cx="291" cy="125" r="12" class="circle-12e" />
+      <circle cx="291" cy="101" r="12" class="circle-12d" />
+      <circle cx="291" cy="77" r="12" class="circle-12c" />
+      <circle cx="291" cy="53" r="12" class="circle-12b" />
+      <circle cx="291" cy="29" r="12" class="circle-12a" />
+      <circle cx="267" cy="197" r="12" class="circle-11h" />
+      <circle cx="267" cy="173" r="12" class="circle-11g" />
+      <circle cx="267" cy="149" r="12" class="circle-11f" />
+      <circle cx="267" cy="125" r="12" class="circle-11e" />
+      <circle cx="267" cy="101" r="12" class="circle-11d" />
+      <circle cx="267" cy="77" r="12" class="circle-11c" />
+      <circle cx="267" cy="53" r="12" class="circle-11b" />
+      <circle cx="267" cy="29" r="12" class="circle-11a" />
+      <circle cx="243" cy="197" r="12" class="circle-10h" />
+      <circle cx="243" cy="173" r="12" class="circle-10g" />
+      <circle cx="243" cy="149" r="12" class="circle-10f" />
+      <circle cx="243" cy="125" r="12" class="circle-10e" />
+      <circle cx="243" cy="101" r="12" class="circle-10d" />
+      <circle cx="243" cy="77" r="12" class="circle-10c" />
+      <circle cx="243" cy="53" r="12" class="circle-10b" />
+      <circle cx="243" cy="29" r="12" class="circle-10a" />
+      <circle cx="219" cy="197" r="12" class="circle-9h" />
+      <circle cx="219" cy="173" r="12" class="circle-9g" />
+      <circle cx="219" cy="149" r="12" class="circle-9f" />
+      <circle cx="219" cy="125" r="12" class="circle-9e" />
+      <circle cx="219" cy="101" r="12" class="circle-9d" />
+      <circle cx="219" cy="77" r="12" class="circle-9c" />
+      <circle cx="219" cy="53" r="12" class="circle-9b" />
+      <circle cx="219" cy="29" r="12" class="circle-9a" />
+      <circle cx="195" cy="197" r="12" class="circle-8h" />
+      <circle cx="195" cy="173" r="12" class="circle-8g" />
+      <circle cx="195" cy="149" r="12" class="circle-8f" />
+      <circle cx="195" cy="125" r="12" class="circle-8e" />
+      <circle cx="195" cy="101" r="12" class="circle-8d" />
+      <circle cx="195" cy="77" r="12" class="circle-8c" />
+      <circle cx="195" cy="53" r="12" class="circle-8b" />
+      <circle cx="195" cy="29" r="12" class="circle-8a" />
+      <circle cx="171" cy="197" r="12" class="circle-7h" />
+      <circle cx="171" cy="173" r="12" class="circle-7g" />
+      <circle cx="171" cy="149" r="12" class="circle-7f" />
+      <circle cx="171" cy="125" r="12" class="circle-7e" />
+      <circle cx="171" cy="101" r="12" class="circle-7d" />
+      <circle cx="171" cy="77" r="12" class="circle-7c" />
+      <circle cx="171" cy="53" r="12" class="circle-7b" />
+      <circle cx="171" cy="29" r="12" class="circle-7a" />
+      <circle cx="147" cy="197" r="12" class="circle-6h" />
+      <circle cx="147" cy="173" r="12" class="circle-6g" />
+      <circle cx="147" cy="149" r="12" class="circle-6f" />
+      <circle cx="147" cy="125" r="12" class="circle-6e" />
+      <circle cx="147" cy="101" r="12" class="circle-6d" />
+      <circle cx="147" cy="77" r="12" class="circle-6c" />
+      <circle cx="147" cy="53" r="12" class="circle-6b" />
+      <circle cx="147" cy="29" r="12" class="circle-6a" />
+      <circle cx="123" cy="197" r="12" class="circle-5h" />
+      <circle cx="123" cy="173" r="12" class="circle-5g" />
+      <circle cx="123" cy="149" r="12" class="circle-5f" />
+      <circle cx="123" cy="125" r="12" class="circle-5e" />
+      <circle cx="123" cy="101" r="12" class="circle-5d" />
+      <circle cx="123" cy="77" r="12" class="circle-5c" />
+      <circle cx="123" cy="53" r="12" class="circle-5b" />
+      <circle cx="123" cy="29" r="12" class="circle-5a" />
+      <circle cx="99" cy="197" r="12" class="circle-4h" />
+      <circle cx="99" cy="173" r="12" class="circle-4g" />
+      <circle cx="99" cy="149" r="12" class="circle-4f" />
+      <circle cx="99" cy="125" r="12" class="circle-4e" />
+      <circle cx="99" cy="101" r="12" class="circle-4d" />
+      <circle cx="99" cy="77" r="12" class="circle-4c" />
+      <circle cx="99" cy="53" r="12" class="circle-4b" />
+      <circle cx="99" cy="29" r="12" class="circle-4a" />
+      <circle cx="75" cy="197" r="12" class="circle-3h" />
+      <circle cx="75" cy="173" r="12" class="circle-3g" />
+      <circle cx="75" cy="149" r="12" class="circle-3f" />
+      <circle cx="75" cy="125" r="12" class="circle-3e" />
+      <circle cx="75" cy="101" r="12" class="circle-3d" />
+      <circle cx="75" cy="77" r="12" class="circle-3c" />
+      <circle cx="75" cy="53" r="12" class="circle-3b" />
+      <circle cx="75" cy="29" r="12" class="circle-3a" />
+      <circle cx="51" cy="197" r="12" class="circle-2h" />
+      <circle cx="51" cy="173" r="12" class="circle-2g" />
+      <circle cx="51" cy="149" r="12" class="circle-2f" />
+      <circle cx="51" cy="125" r="12" class="circle-2e" />
+      <circle cx="51" cy="101" r="12" class="circle-2d" />
+      <circle cx="51" cy="77" r="12" class="circle-2c" />
+      <circle cx="51" cy="53" r="12" class="circle-2b" />
+      <circle cx="51" cy="29" r="12" class="circle-2a" />
+      <circle cx="27" cy="197" r="12" class="circle-1h" />
+      <circle cx="27" cy="173" r="12" class="circle-1g" />
+      <circle cx="27" cy="149" r="12" class="circle-1f" />
+      <circle cx="27" cy="125" r="12" class="circle-1e" />
+      <circle cx="27" cy="101" r="12" class="circle-1d" />
+      <circle cx="27" cy="77" r="12" class="circle-1c" />
+      <circle cx="27" cy="53" r="12" class="circle-1b" />
+      <circle cx="27" cy="29" r="12" class="circle-1a" />
+    </g>
+    <g class="mtp__substance {% for c in active_coords %}mtp__substance-{{ c }} {% endfor %}">
+      <circle cx="291" cy="197" r="12" class="circle-12h" />
+      <circle cx="291" cy="173" r="12" class="circle-12g" />
+      <circle cx="291" cy="149" r="12" class="circle-12f" />
+      <circle cx="291" cy="125" r="12" class="circle-12e" />
+      <circle cx="291" cy="101" r="12" class="circle-12d" />
+      <circle cx="291" cy="77" r="12" class="circle-12c" />
+      <circle cx="291" cy="53" r="12" class="circle-12b" />
+      <circle cx="291" cy="29" r="12" class="circle-12a" />
+      <circle cx="267" cy="197" r="12" class="circle-11h" />
+      <circle cx="267" cy="173" r="12" class="circle-11g" />
+      <circle cx="267" cy="149" r="12" class="circle-11f" />
+      <circle cx="267" cy="125" r="12" class="circle-11e" />
+      <circle cx="267" cy="101" r="12" class="circle-11d" />
+      <circle cx="267" cy="77" r="12" class="circle-11c" />
+      <circle cx="267" cy="53" r="12" class="circle-11b" />
+      <circle cx="267" cy="29" r="12" class="circle-11a" />
+      <circle cx="243" cy="197" r="12" class="circle-10h" />
+      <circle cx="243" cy="173" r="12" class="circle-10g" />
+      <circle cx="243" cy="149" r="12" class="circle-10f" />
+      <circle cx="243" cy="125" r="12" class="circle-10e" />
+      <circle cx="243" cy="101" r="12" class="circle-10d" />
+      <circle cx="243" cy="77" r="12" class="circle-10c" />
+      <circle cx="243" cy="53" r="12" class="circle-10b" />
+      <circle cx="243" cy="29" r="12" class="circle-10a" />
+      <circle cx="219" cy="197" r="12" class="circle-9h" />
+      <circle cx="219" cy="173" r="12" class="circle-9g" />
+      <circle cx="219" cy="149" r="12" class="circle-9f" />
+      <circle cx="219" cy="125" r="12" class="circle-9e" />
+      <circle cx="219" cy="101" r="12" class="circle-9d" />
+      <circle cx="219" cy="77" r="12" class="circle-9c" />
+      <circle cx="219" cy="53" r="12" class="circle-9b" />
+      <circle cx="219" cy="29" r="12" class="circle-9a" />
+      <circle cx="195" cy="197" r="12" class="circle-8h" />
+      <circle cx="195" cy="173" r="12" class="circle-8g" />
+      <circle cx="195" cy="149" r="12" class="circle-8f" />
+      <circle cx="195" cy="125" r="12" class="circle-8e" />
+      <circle cx="195" cy="101" r="12" class="circle-8d" />
+      <circle cx="195" cy="77" r="12" class="circle-8c" />
+      <circle cx="195" cy="53" r="12" class="circle-8b" />
+      <circle cx="195" cy="29" r="12" class="circle-8a" />
+      <circle cx="171" cy="197" r="12" class="circle-7h" />
+      <circle cx="171" cy="173" r="12" class="circle-7g" />
+      <circle cx="171" cy="149" r="12" class="circle-7f" />
+      <circle cx="171" cy="125" r="12" class="circle-7e" />
+      <circle cx="171" cy="101" r="12" class="circle-7d" />
+      <circle cx="171" cy="77" r="12" class="circle-7c" />
+      <circle cx="171" cy="53" r="12" class="circle-7b" />
+      <circle cx="171" cy="29" r="12" class="circle-7a" />
+      <circle cx="147" cy="197" r="12" class="circle-6h" />
+      <circle cx="147" cy="173" r="12" class="circle-6g" />
+      <circle cx="147" cy="149" r="12" class="circle-6f" />
+      <circle cx="147" cy="125" r="12" class="circle-6e" />
+      <circle cx="147" cy="101" r="12" class="circle-6d" />
+      <circle cx="147" cy="77" r="12" class="circle-6c" />
+      <circle cx="147" cy="53" r="12" class="circle-6b" />
+      <circle cx="147" cy="29" r="12" class="circle-6a" />
+      <circle cx="123" cy="197" r="12" class="circle-5h" />
+      <circle cx="123" cy="173" r="12" class="circle-5g" />
+      <circle cx="123" cy="149" r="12" class="circle-5f" />
+      <circle cx="123" cy="125" r="12" class="circle-5e" />
+      <circle cx="123" cy="101" r="12" class="circle-5d" />
+      <circle cx="123" cy="77" r="12" class="circle-5c" />
+      <circle cx="123" cy="53" r="12" class="circle-5b" />
+      <circle cx="123" cy="29" r="12" class="circle-5a" />
+      <circle cx="99" cy="197" r="12" class="circle-4h" />
+      <circle cx="99" cy="173" r="12" class="circle-4g" />
+      <circle cx="99" cy="149" r="12" class="circle-4f" />
+      <circle cx="99" cy="125" r="12" class="circle-4e" />
+      <circle cx="99" cy="101" r="12" class="circle-4d" />
+      <circle cx="99" cy="77" r="12" class="circle-4c" />
+      <circle cx="99" cy="53" r="12" class="circle-4b" />
+      <circle cx="99" cy="29" r="12" class="circle-4a" />
+      <circle cx="75" cy="197" r="12" class="circle-3h" />
+      <circle cx="75" cy="173" r="12" class="circle-3g" />
+      <circle cx="75" cy="149" r="12" class="circle-3f" />
+      <circle cx="75" cy="125" r="12" class="circle-3e" />
+      <circle cx="75" cy="101" r="12" class="circle-3d" />
+      <circle cx="75" cy="77" r="12" class="circle-3c" />
+      <circle cx="75" cy="53" r="12" class="circle-3b" />
+      <circle cx="75" cy="29" r="12" class="circle-3a" />
+      <circle cx="51" cy="197" r="12" class="circle-2h" />
+      <circle cx="51" cy="173" r="12" class="circle-2g" />
+      <circle cx="51" cy="149" r="12" class="circle-2f" />
+      <circle cx="51" cy="125" r="12" class="circle-2e" />
+      <circle cx="51" cy="101" r="12" class="circle-2d" />
+      <circle cx="51" cy="77" r="12" class="circle-2c" />
+      <circle cx="51" cy="53" r="12" class="circle-2b" />
+      <circle cx="51" cy="29" r="12" class="circle-2a" />
+      <circle cx="27" cy="197" r="12" class="circle-1h" />
+      <circle cx="27" cy="173" r="12" class="circle-1g" />
+      <circle cx="27" cy="149" r="12" class="circle-1f" />
+      <circle cx="27" cy="125" r="12" class="circle-1e" />
+      <circle cx="27" cy="101" r="12" class="circle-1d" />
+      <circle cx="27" cy="77" r="12" class="circle-1c" />
+      <circle cx="27" cy="53" r="12" class="circle-1b" />
+      <circle cx="27" cy="29" r="12" class="circle-1a" />
+    </g>
+  </svg>
+</div>
+
+<script>
+  $('[class^=circle-]').on( 'click', function() {
+    var thisClass = $(this).attr('class');
+    thisClass = thisClass.replace('circle-','');
+    window.location.href = "/biobrick/" + thisClass;
+  });
+</script>
