@@ -8,11 +8,11 @@
 
   <h1>{{biobrick.biobrick_type|capfirst}} {{biobrick.name}}</h1>
 
-  <h2>Beskrivelse</h2>
-  <p>{{biobrick.description}}</p>
+  <h2>Beskrivelse:</h2>
+  <div class="summernote-content">{{biobrick.description|safe}}</div>
 
-  <h2>Design</h2>
-  < p>{{biobrick.design}}</p>
+  <h2>Design:</h2>
+  <div class="summernote-content">{{biobrick.design|safe}}</div>
 
 </div>
 
@@ -23,14 +23,12 @@
   <h2>Kategori:</h2>
   <p>{{biobrick.category}}</p>
 
-  <h2>iGEM part:</h2>
-  <p><a href="http://parts.igem.org/Part:{{biobrick.igem_part}}">iGEM part</a></p>
+  <p><a href="http://parts.igem.org/Part:{{biobrick.igem_part}}">iGEM-part</a></p>
 
-  <h2>Team-website:</h2>
-  <p><a href="{{biobrick.team_website}}">{{biobrick.team_website}}</a></p>
+  <p><a href="{{biobrick.team_website}}">Team-website</a></p>
 
   <h2>DNA-sekvens:</h2>
-  <p>{{biobrick.dna_sequence}}</p>
+  <code>{{biobrick.dna_sequence}}</code>
 </div>
 
 {% endblock %}
