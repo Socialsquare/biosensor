@@ -4,7 +4,7 @@
 
 Biosensor is a django based web app built as an open source project under a MIT license
 
----
+<p>&nbsp;</p>
 
 ## Setup  
 
@@ -25,7 +25,7 @@ export DJANGO_SETTINGS_MODULE=biosensor.settings
 . venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
 
----
+<p>&nbsp;</p>
 
 ## Development
 
@@ -42,7 +42,7 @@ export DJANGO_SETTINGS_MODULE=biosensor.settings
 . venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
 
----
+<p>&nbsp;</p>
 
 ## License
 
