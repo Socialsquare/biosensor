@@ -34,7 +34,7 @@
       {% endif %}
 
       {% if request.user.is_student_group %}
-        <a class="btn btn-primary" href="{% url 'studentgroups:new_report' biosensor.id %}">Opret rapport</a>
+        <a class="btn btn-primary m-t-1" href="{% url 'studentgroups:new_report' biosensor.id %}">Opret rapport</a>
       {% endif %}
     </section>
 
