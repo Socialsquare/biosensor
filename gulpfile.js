@@ -2,16 +2,17 @@
 // - - - - - - - - - - - - - - -
 
 var gulp = require('gulp');
-var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
+var concat = require('gulp-concat');
 var minifycss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
-var uglify = require('gulp-uglify');
+var minify = require('gulp-minify');
+var rename = require('gulp-rename');
 var rimraf = require('rimraf');
+var sass = require('gulp-sass');
 var svgmin = require('gulp-svgmin');
 var svgstore = require('gulp-svgstore');
+var watch = require('gulp-watch');
 
 // 2. FILE PATHS
 // - - - - - - - - - - - - - - -
@@ -28,6 +29,7 @@ var paths = {
     js: [
       'biosensor/static/biosensor/javascript/*.js',
       'node_modules/bootstrap/dist/js/bootstrap.js',
+      'node_modules/svg4everybody/dist/svg4everybody.js'
     ],
     favicon: [
       'biosensor/static/biosensor/favicon.ico'
@@ -58,25 +60,19 @@ gulp.task('sass', function() {
 });
 
 // Compiles JS
-gulp.task('uglify', function() {
+gulp.task('js', function() {
   return gulp.src(paths.js)
-    //.pipe(uglify().on('error', function(e){
-    //    console.log(e);
-    // }))
+    .pipe(concat('base.js'))
     .pipe(gulp.dest('staticfiles/js'))
-    .pipe(livereload());
-});
-
-// Copy JS
-gulp.task('copyjs', function() {
-    return gulp.src(paths.js)
+    .pipe(rename('base.js'))
+    .pipe(minify())
     .pipe(gulp.dest('staticfiles/js'))
     .pipe(livereload());
 });
 
 // Copy favicon
 gulp.task('copyfav', function() {
-    return gulp.src(paths.favicon)
+  return gulp.src(paths.favicon)
     .pipe(gulp.dest('staticfiles/'))
     .pipe(livereload());
 });
@@ -85,7 +81,7 @@ gulp.task('copyfav', function() {
 gulp.task('svg-sprite', function() {
   return gulp.src(paths.svg)
     .pipe(svgmin())
-    .pipe(rename({prefix: 'sprite-'}))
+    .pipe(rename({prefix: 'sprite_'}))
     .pipe(svgstore())
     .pipe(gulp.dest('staticfiles/'))
     .pipe(livereload());
@@ -109,10 +105,8 @@ gulp.task('watch', function() {
 
 });
 
-// TODO: Ask simon why no copyJS here:
-
 // Builds your entire app once, without starting a server
-gulp.task('build', ['sass', 'uglify']);
+gulp.task('build', ['sass', 'js', 'svg-sprite', 'copyfav']);
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['sass', 'copyjs', 'svg-sprite', 'copyfav', 'watch']);
+gulp.task('default', ['sass', 'js', 'svg-sprite', 'copyfav', 'watch']);

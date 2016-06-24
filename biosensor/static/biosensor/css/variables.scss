@@ -22,14 +22,18 @@ $dropdown-min-width: 10rem;
 
 //fonts
 $font-family-sans-serif: 'Lato', sans-serif;
-$font-size-root: 1.25rem;
+$font-size-root: 1.25rem; // 20px
 $body-font-weight: 300;
 $h3-font-weight: 400;
 $headings-font-weight: 700;
-$font-size-h1: 1.8rem;
-$font-size-h2: 1.2rem;
+$font-size-h1: 1.8rem; // 36px
+$font-size-h2: 1.2rem; // 24px
 $font-size-h3: 1.2rem;
 $btn-font-weight: $headings-font-weight;
+
+// Icons
+$icon-height: $font-size-h2;
+$icon-width: $icon-height;
 
 // navbar
 $navbar-light-color: $body-color;

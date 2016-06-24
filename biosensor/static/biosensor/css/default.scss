@@ -17,6 +17,20 @@ pre {
   white-space: normal;
 }
 
+svg {
+  fill: currentColor !important;
+}
+
+.center-y {
+  align-items: center;
+  display: flex;
+}
+
+.align-baseline {
+  align-items: baseline;
+  display: flex;
+}
+
 .no-list-style {
   list-style: none;
   padding: 0;

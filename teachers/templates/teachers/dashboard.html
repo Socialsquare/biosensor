@@ -6,7 +6,14 @@
 <div class="row">
   <div class="col-xs-12">
     <h1>Dashboard</h1>
-    <a class="btn btn-primary m-y-1" href="{% url 'teachers:new_student_group' %}">Opret ny gruppe</a>
+    <a class="m-y-1 btn btn-primary" href="{% url 'teachers:new_student_group' %}">
+      <span class="center-y">
+        Opret ny gruppe
+        <svg role="img" class="icon" title="Opret ny gruppe">
+          <use xlink:href="/static/sprite.svg#sprite_group_add"/>
+        </svg>
+      </span>
+    </a>
   </div>
 
   {% if student_groups %}
@@ -17,23 +24,33 @@
         </div>
       {% endifchanged %}
       <div class="col-md-4 m-y-1">
-        <h3 class="student-group">{{group.name}}
+        <div class="student-group">
+          <h3 class="student-group__heading">{{group.name}}</h3>
           <a class="student-group__delete" href="{% url 'teachers:delete_student_group' group.id %}">
-            [del]
+            <svg role="img" class="icon" title="Slet gruppe">
+              <use xlink:href="/static/sprite.svg#sprite_delete"/>
+            </svg>
           </a>
           <a class="student-group__edit" href="{% url 'teachers:edit_student_group' group.id %}">
-            [edit]
+            <svg role="img" class="icon" title="Rediger gruppe">
+              <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
+            </svg>
           </a>
-        </h3>
+        </div>
+
 
         {% if group.biosensors_ %}
         <ul class="no-list-style">
           {% for biosensor in group.biosensors_ %}
-          <li>
+          <li class="center-y">
             {% if biosensor.has_report %}
-            <a href="{% url 'teachers:show_student_report' biosensor.report_id %}">[report]</a>
-            {% else %}
-            [report]
+              <a href="{% url 'teachers:show_student_report' biosensor.report_id %}">
+            {% endif %}
+                <svg role="img" class="icon" title="Opret ny gruppe">
+                  <use xlink:href="/static/sprite.svg#sprite_description"/>
+                </svg>
+            {% if biosensor.has_report %}
+              </a>
             {% endif %}
             <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
           </li>

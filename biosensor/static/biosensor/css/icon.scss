@@ -1,0 +1,20 @@
+.icon {
+  height: $icon-height;
+  margin-right: $spacer / 4;
+  width: $icon-width;
+
+  &-md {
+    height: $icon-height * 1.5;
+    width: $icon-width * 1.5;
+  }
+
+  &-lg {
+    height: $icon-height * 2;
+    width: $icon-width * 2;
+  }
+}
+
+.btn .icon {
+  margin-left: $spacer * (3 / 4);
+  margin-right: 0;
+}
