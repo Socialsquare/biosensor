@@ -16,6 +16,9 @@ $white: #fff;
 $black: #000;
 $border-color: $gray-lighter;
 
+// Fix dashboard grid issues
+$enable-flex: true;
+
 // Border
 $border-radius: .4rem;
 $border-radius-lg: .6rem !default;
