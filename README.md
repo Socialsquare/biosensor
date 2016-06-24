@@ -13,7 +13,8 @@ Biosensor is a django based web app built as an open source project under a MIT 
 #### Requirements  
 You need to have these installed on your development machine and on the server
 - [python3](https://www.python.org)  
-- [postgres](https://www.postgresql.org)
+- [postgres](https://www.postgresql.org) (used for staging and production)
+- [sqlite](https://www.sqlite.org/) (used for development only)
 - [node](https://nodejs.org/)
 - [virtualenv](https://virtualenv.pypa.io/en/stable/)
 
@@ -27,6 +28,14 @@ You need to have these installed on your development machine and on the server
 `export DJANGO_SETTINGS_MODULE=biosensor.settings` *tell django where to find the configuration file*  
 `./manage.py migrate` *initialise the postgress database*  
 `./manage.py runserver` *start the app*  
+
+#### Environment variables
+
+Be sure to set the following environment variables when setting up the app for staging or production:
+
+`export DJANGO_ENV={development|staging|production}` *set up the app to run in development, staging or production mode*
+`export SECRET_KEY=[random string of characters]` *a secret key used to provide cryptographic signing*  
+`export DATABASE_URL=postgres://username:password@server:port/databasename` *database connection information*
 
 #### Email
 
@@ -52,9 +61,16 @@ In order for email notifications to be sent out, the following environment varia
 #### Run command
 
 `cd` into the project root dir and run
-```
-. venv/bin/activate && ./manage.py migrate && ./manage.py runserver
-```
+`. venv/bin/activate && ./manage.py runserver`
+
+#### Database migations
+
+If you make changes to one of the models, make sure to also migrate the database to reflect your changes.
+
+`cd` into the project root dir and run  
+`. venv/bin/activate`  
+`./manage.py makemigrations` *create new migrations based on the changes you have made to your models.*  
+`./manage.py migrate` *apply migrations to update the database*  
 
 #### Update server
 
