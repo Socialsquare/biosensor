@@ -18,6 +18,8 @@ You need to have these installed on your development machine and on the server
 - [virtualenv](https://virtualenv.pypa.io/en/stable/)
 
 #### Command line
+
+`cd` into the project root dir and run
 ```
 virtualenv -p python3 venv
 . venv/bin/activate
@@ -40,6 +42,8 @@ export DJANGO_SETTINGS_MODULE=biosensor.settings
 - [Bootstrap 4](http://v4-alpha.getbootstrap.com) css framework
 
 #### Run command
+
+`cd` into the project root dir and run
 ```
 . venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
