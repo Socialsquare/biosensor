@@ -11,8 +11,10 @@
 
 .help-block {
   color: $gray;
-  font-size: .75rem;
+  display: block;
+  font-size: 80%;
   font-style: italic;
+  margin-top: $spacer / 4;
 }
 
 ::placeholder {
@@ -30,33 +32,21 @@ textarea.form-control {
   border-radius: 0;
 }
 
-.custom-forms {
-  .form-group {
-    position: relative;
-
-    &::after {
-      background-image: url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M16.6%208.6L12%2013.2%207.4%208.6%206%2010l6%206%206-6z%22%20fill%3D%22#{$body-color}%22%2F%3E%3C%2Fsvg%3E');
-      background-size: $icon-height $icon-height;
-      bottom: $spacer / 2;
-      content: '';
-      font-weight: $headings-font-weight;
-      height: $icon-height;
-      pointer-events: none;
-      position: absolute;
-      right: $spacer * (3 / 8);
-      width: $icon-height;
-    }
-  }
-
-  .form-control {
+form {
+  select.form-control {
     -moz-appearance: none;
     -webkit-appearance: none;
-    cursor: pointer;
+    appearance: none;
+    background-image: url('data:image/svg+xml,%3Csvg%20viewBox%3D%220%200%2024%2024%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M10.6%208.6L6%2013.2%201.4%208.6%200%2010l6%206%206-6z%22%20fill%3D%22#{$body-color}%22%2F%3E%3C%2Fsvg%3E');
+    background-position: right center;
+    background-repeat: no-repeat;
+    background-size: $icon-height;
+    cursor: cell;
     height: calc(1rem * #{$line-height} + .375rem * 2 + 2px);
   }
 
   @media screen and (-webkit-min-device-pixel-ratio:0) {
-    .form-control {
+    select.form-control {
       padding-right: 1rem;
     }
   }
