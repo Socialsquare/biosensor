@@ -28,6 +28,10 @@ You need to have these installed on your development machine and on the server
 `./manage.py migrate` *initialise the postgress database*  
 `./manage.py runserver` *start the app*  
 
+#### Mail server
+
+TODO - Simon skriver her.
+
 &nbsp;
 
 ## Development
@@ -46,6 +50,10 @@ You need to have these installed on your development machine and on the server
 ```
 . venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
+
+#### Update server
+
+We recommend setting up continous deployment using github [webhooks](https://developer.github.com/webhooks/) so any changes pushed to master and/or production branch are automatically reflected on the server. 
 
 &nbsp;
 
