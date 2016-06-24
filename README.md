@@ -1,26 +1,21 @@
-#Biosensor
+# Biosensor
 
-##Introduction
-Biosensor is built as an open source project under a MIT license
+## Introduction
 
-###Frameworks and components used
-- [Django](https://www.djangoproject.com) python based web app framework
-- [Node](https://nodejs.org/en/) javascript runtime
-- [NPM](https://www.npmjs.com) javascript package manager
-- [Gulp](http://gulpjs.com) build system
-- [Sass](http://sass-lang.com) css preprocessor
-- [Bootstrap 4](http://v4-alpha.getbootstrap.com) css framework
+Biosensor is a django based web app built as an open source project under a MIT license
 
-##Setup  
+---
 
-###Requirements  
+## Setup  
+
+### Requirements  
 You need to have these installed on your development machine and on the server
 - [python3](https://www.python.org)  
 - [postgres](https://www.postgresql.org)
 - [node](https://nodejs.org/)
 - [virtualenv](https://virtualenv.pypa.io/en/stable/)
 
-###Command line
+### Command line
 ```
 virtualenv -p python3 venv
 . venv/bin/activate
@@ -30,12 +25,26 @@ export DJANGO_SETTINGS_MODULE=biosensor.settings
 . venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
 
-##Run
+---
+
+## Development
+
+### Frameworks and components used
+- [Django](https://www.djangoproject.com) python based web app framework
+- [Node](https://nodejs.org/) javascript runtime
+- [NPM](https://www.npmjs.com) javascript package manager
+- [Gulp](http://gulpjs.com) build system
+- [Sass](http://sass-lang.com) css preprocessor
+- [Bootstrap 4](http://v4-alpha.getbootstrap.com) css framework
+
+### Run command
 ```
 . venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
 
-##License
+---
+
+## License
 
 The MIT License (MIT)
 
