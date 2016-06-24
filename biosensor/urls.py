@@ -1,5 +1,11 @@
+from django.conf import settings
 from django.conf.urls import include, url
+from django.conf.urls.static import static
 from django.contrib import admin
+
+from wagtail.wagtailadmin import urls as wagtailadmin_urls
+from wagtail.wagtaildocs import urls as wagtaildocs_urls
+from wagtail.wagtailcore import urls as wagtail_urls
 
 from . import views
 
@@ -13,4 +19,6 @@ urlpatterns = [
     url(r'^biobrick/', include('biobricks.urls', namespace='biobricks')),
     url(r'^bioadmin/', include('bioadmin.urls', namespace='bioadmin')),
     url(r'^$', views.homepage, name='homepage'),
-]
+    url(r'^cms/', include(wagtailadmin_urls)),
+    url(r'^side/', include(wagtail_urls)),
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
