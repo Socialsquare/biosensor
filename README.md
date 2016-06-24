@@ -35,7 +35,7 @@ Be sure to set the following environment variables when setting up the app for s
 
 `export DJANGO_ENV={development|staging|production}` *set up the app to run in development, staging or production mode*
 `export SECRET_KEY=[random string of characters]` *a secret key used to provide cryptographic signing*  
-`export DATABASE_URL=postgres:postgres://username:password@server:port/databasename` *database connection information*
+`export DATABASE_URL=postgres://username:password@server:port/databasename` *database connection information*
 
 #### Email
 
