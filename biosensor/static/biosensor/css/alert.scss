@@ -14,15 +14,7 @@
   z-index: 100;
 
   .close {
-    color: $white;
     margin-left: $spacer / 2;
-    opacity: .4;
-    text-shadow: none;
-
-    &:hover,
-    &:focus {
-      opacity: 1;
-    }
   }
 }
 

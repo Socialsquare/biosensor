@@ -39,3 +39,15 @@ svg {
     margin: $spacer / 4 0;
   }
 }
+
+.close {
+  color: $white;
+  opacity: .4;
+  text-shadow: none;
+
+  &:hover,
+  &:focus {
+    color: $white;
+    opacity: 1;
+  }
+}
