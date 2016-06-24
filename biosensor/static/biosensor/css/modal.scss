@@ -7,6 +7,10 @@
   background-color: $brand-primary;
   border-bottom: 0;
   color: $white;
+
+  .close {
+    margin-top: .1rem;
+  }
 }
 
 .modal-body,
