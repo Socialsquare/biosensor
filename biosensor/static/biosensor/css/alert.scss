@@ -5,7 +5,9 @@
   animation-name: fadeOutDown;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
+  border-width: 0;
   bottom: 0;
+  font-weight: $h3-font-weight;
   left: 50%;
   margin-bottom: 0;
   max-width: map-get($container-max-widths, xl);
@@ -14,7 +16,15 @@
   z-index: 100;
 
   .close {
+    color: $white;
     margin-left: $spacer / 2;
+    opacity: .4;
+    text-shadow: none;
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+    }
   }
 }
 

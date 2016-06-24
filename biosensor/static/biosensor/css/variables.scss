@@ -4,17 +4,30 @@ $gray: #6b6b6b;
 $gray-light: #818a91 !default;
 $gray-lighter: #b8b8b8;
 $gray-lightest: #f7f7f7;
+
 $brand-primary: #17a7db;
 $brand-secondary: #f40076;
-$brand-success: #5cb85c !default;
-$brand-info: #5bc0de !default;
-$brand-warning: #f0ad4e !default;
-$brand-danger: #d9534f !default;
+$brand-success: hsl(61, 80%, 34%);
+$brand-info: $brand-primary;
+$brand-warning: hsl(45, 100%, 38%);
+$brand-danger: #de0b78;
+
 $body-bg: $gray-lightest;
 $body-color: $gray-dark !default;
+
 $white: #fff;
 $black: #000;
+
 $border-color: $gray-lighter;
+
+$state-success-text: $white;
+$state-success-bg: $brand-success;
+$state-info-text: $white;
+$state-info-bg: $brand-primary;
+$state-warning-text: $white;
+$state-warning-bg: $brand-warning;
+$state-danger-text: $white;
+$state-danger-bg: $brand-danger;
 
 // Fix dashboard grid issues
 $enable-flex: true;
