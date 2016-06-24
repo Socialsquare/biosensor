@@ -28,9 +28,14 @@ You need to have these installed on your development machine and on the server
 `./manage.py migrate` *initialise the postgress database*  
 `./manage.py runserver` *start the app*  
 
-#### Mail server
+#### Email
 
-TODO - Simon skriver her.
+In order for email notifications to be sent out, the following environment variables need to be set:
+
+`SMTP_SERVER` *the host to use for sending email*  
+`SMTP_LOGIN` *password to use for the SMTP server defined in SMTP_SERVER*  
+`SMTP_PASSWORD` *username to use for the SMTP server defined in SMTP_SERVER*  
+`SMTP_PORT` *port to use for the SMTP server defined in SMTP_SERVER*  
 
 &nbsp;
 
