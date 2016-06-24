@@ -10,14 +10,14 @@ Biosensor is a django based web app built as an open source project under a MIT 
 
 ## Setup  
 
-### Requirements  
+#### Requirements  
 You need to have these installed on your development machine and on the server
 - [python3](https://www.python.org)  
 - [postgres](https://www.postgresql.org)
 - [node](https://nodejs.org/)
 - [virtualenv](https://virtualenv.pypa.io/en/stable/)
 
-### Command line
+#### Command line
 ```
 virtualenv -p python3 venv
 . venv/bin/activate
@@ -31,7 +31,7 @@ export DJANGO_SETTINGS_MODULE=biosensor.settings
 
 ## Development
 
-### Frameworks and components used
+#### Frameworks and components used
 - [Django](https://www.djangoproject.com) python based web app framework
 - [Node](https://nodejs.org/) javascript runtime
 - [NPM](https://www.npmjs.com) javascript package manager
@@ -39,7 +39,7 @@ export DJANGO_SETTINGS_MODULE=biosensor.settings
 - [Sass](http://sass-lang.com) css preprocessor
 - [Bootstrap 4](http://v4-alpha.getbootstrap.com) css framework
 
-### Run command
+#### Run command
 ```
 . venv/bin/activate && ./manage.py migrate && ./manage.py runserver
 ```
