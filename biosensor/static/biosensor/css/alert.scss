@@ -5,7 +5,8 @@
   animation-name: fadeOutDown;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
-  border-width: 0;
+  border-bottom-width: 0;
+  border-color: rgba($black, .2);
   bottom: 0;
   font-weight: $h3-font-weight;
   margin-bottom: 0;
