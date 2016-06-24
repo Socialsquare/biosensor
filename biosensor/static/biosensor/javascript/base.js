@@ -5,3 +5,6 @@ $('[class^=circle-]').on( 'click', function() {
   thisClass = thisClass.replace('circle-','');
   window.location.href = "/biobrick/" + thisClass;
 });
+
+// Initiate svg4everybody https://github.com/jonathantneal/svg4everybody
+svg4everybody();

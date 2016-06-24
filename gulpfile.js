@@ -27,9 +27,9 @@ var paths = {
       'bioadmin/static/bioadmin/css/*.scss',
     ],
     js: [
-      'biosensor/static/biosensor/javascript/*.js',
       'node_modules/bootstrap/dist/js/bootstrap.js',
-      'node_modules/svg4everybody/dist/svg4everybody.js'
+      'node_modules/svg4everybody/dist/svg4everybody.js',
+      'biosensor/static/biosensor/javascript/*.js'
     ],
     favicon: [
       'biosensor/static/biosensor/favicon.ico'

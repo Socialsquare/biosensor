@@ -22,8 +22,8 @@ svg {
 }
 
 .form-control {
-  color: $body-color;
   border-color: $body-color;
+  color: $body-color;
 }
 
 input:not([type=submit]):not([type=file]).form-control,

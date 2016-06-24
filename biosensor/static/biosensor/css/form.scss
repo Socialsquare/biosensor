@@ -19,7 +19,7 @@
   .form-group {
     position: relative;
 
-    &:after {
+    &::after {
       bottom: .4rem;
       content: '>';
       font-weight: $headings-font-weight;
