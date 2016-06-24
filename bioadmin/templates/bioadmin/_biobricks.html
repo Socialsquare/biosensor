@@ -5,9 +5,7 @@
     <th>Description</th>
     <th>Design</th>
     <th>iGEM part</th>
-    <th>Team website</th>
-    <th></th>
-    <th></th>
+    <th colspan="3">Team website</th>
   </tr>
   {% for biobrick in biobricks %}
     <tr>
@@ -15,8 +13,8 @@
       <td>{{biobrick.category}}</td>
       <td>{{biobrick.description|truncatechars_html:100}}</td>
       <td>{{biobrick.design|truncatechars_html:100}}</td>
-      <td><a href="http://parts.igem.org/Part:{{biobrick.igem_part}}">{{biobrick.igem_part}}</a></td>
-      <td>{{biobrick.team_website}}</td>
+      <td><a target="_blank" href="http://parts.igem.org/Part:{{biobrick.igem_part}}">{{biobrick.igem_part}}</a></td>
+      <td><a target="_blank" href="{{biobrick.team_website}}">{{biobrick.team_website}}</a></td>
       <td class="text-center">
         <a href="{% url 'bioadmin:delete_biobrick' biobrick.id %}">
           <i class="glyphicon glyphicon-trash"></i>

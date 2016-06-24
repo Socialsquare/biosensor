@@ -5,6 +5,10 @@
 {% if biobrick %} Edit {% else %} Add {% endif %} {{biobrick_type|capfirst}}
 {% endblock %}
 
+{% block head_statics %}
+{{ form.media }}
+{% endblock %}
+
 {% block main %}
 
 <h2>
@@ -22,7 +26,16 @@
 {% endif %}
     {% csrf_token %}
 
-    {% bootstrap_form form %}
+    {% bootstrap_field form.name %}
+    {% bootstrap_field form.category %}
+    {% bootstrap_field form.description %}
+    {% bootstrap_field form.design %}
+    {% bootstrap_field form.igem_part %}
+    {% bootstrap_field form.team_website %}
+    {% bootstrap_field form.dna_sequence %}
+    {% bootstrap_field form.coord_x %}
+    {% bootstrap_field form.coord_y %}
+
     <button type="submit" class="btn btn-primary">
     {% if biobrick %}
       Save changes
