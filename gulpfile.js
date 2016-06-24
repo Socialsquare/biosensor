@@ -10,6 +10,8 @@ var watch = require('gulp-watch');
 var livereload = require('gulp-livereload');
 var uglify = require('gulp-uglify');
 var rimraf = require('rimraf');
+var svgmin = require('gulp-svgmin');
+var svgstore = require('gulp-svgstore');
 
 // 2. FILE PATHS
 // - - - - - - - - - - - - - - -
@@ -29,6 +31,9 @@ var paths = {
     ],
     favicon: [
       'biosensor/static/biosensor/favicon.ico'
+    ],
+    svg: [
+      'biosensor/static/biosensor/images/sprite/*.svg'
     ]
 }
 
@@ -76,6 +81,17 @@ gulp.task('copyfav', function() {
     .pipe(livereload());
 });
 
+// Create SVG sprite
+gulp.task('svg-sprite', function() {
+  return gulp.src(paths.svg)
+    .pipe(svgmin())
+    .pipe(rename({prefix: 'sprite-'}))
+    .pipe(svgstore())
+    .pipe(gulp.dest('staticfiles/'))
+    .pipe(livereload());
+});
+
+
 gulp.task('watch', function() {
     livereload.listen();
 
@@ -84,6 +100,9 @@ gulp.task('watch', function() {
 
     // Watch javascript
     gulp.watch(paths.js, ['copyjs']);
+
+    // Watch svg
+    gulp.watch(paths.svg, ['svg-sprite']);
 
     // Watch Django temlates
     gulp.watch('**/templates/*').on('change', livereload.changed);
@@ -96,4 +115,4 @@ gulp.task('watch', function() {
 gulp.task('build', ['sass', 'uglify']);
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['sass', 'copyjs', 'copyfav', 'watch']);
+gulp.task('default', ['sass', 'copyjs', 'svg-sprite', 'copyfav', 'watch']);
