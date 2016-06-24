@@ -8,11 +8,9 @@
   border-width: 0;
   bottom: 0;
   font-weight: $h3-font-weight;
-  left: 50%;
   margin-bottom: 0;
   max-width: map-get($container-max-widths, xl);
   position: fixed;
-  transform: translate3d(-50%, 0, 0);
   z-index: 100;
 
   .close {
@@ -35,6 +33,6 @@
 
   to {
     opacity: 0;
-    transform: translate3d(-50%, 100%, 0);
+    transform: translate3d(0, 100%, 0);
   }
 }
