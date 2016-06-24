@@ -1,0 +1,30 @@
+.alert {
+  animation-delay: 3s;
+  animation-duration: 1s;
+  animation-fill-mode: both;
+  animation-name: fadeOutDown;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  bottom: 0;
+  left: 50%;
+  margin-bottom: 0;
+  max-width: map-get($container-max-widths, xl);
+  position: fixed;
+  transform: translate3d(-50%, 0, 0);
+  z-index: 100;
+
+  .close {
+    margin-left: $spacer / 2;
+  }
+}
+
+@keyframes fadeOutDown {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+    transform: translate3d(-50%, 100%, 0);
+  }
+}
