@@ -13,7 +13,8 @@ Biosensor is a django based web app built as an open source project under a MIT 
 #### Requirements  
 You need to have these installed on your development machine and on the server
 - [python3](https://www.python.org)  
-- [postgres](https://www.postgresql.org)
+- [postgres](https://www.postgresql.org) (used for staging and production)
+- [sqlite](https://www.sqlite.org/) (used for development only)
 - [node](https://nodejs.org/)
 - [virtualenv](https://virtualenv.pypa.io/en/stable/)
 
@@ -25,9 +26,16 @@ You need to have these installed on your development machine and on the server
 `pip install -r requirements.txt` *install required python modules*  
 `npm install` *install required node modules*  
 `export DJANGO_SETTINGS_MODULE=biosensor.settings` *tell django where to find the configuration file*  
-`export DJANGO_ENV={development|staging|production}` *set up the app to run in development, staging or production mode*  
 `./manage.py migrate` *initialise the postgress database*  
 `./manage.py runserver` *start the app*  
+
+#### Environment variables
+
+Be sure to set the following environment variables
+
+`export DJANGO_ENV={development|staging|production}` *set up the app to run in development, staging or production mode*
+`export SECRET_KEY=[random string of characters]` *a secret key used to provide cryptographic signing*  
+`export DATABASE_URL=postgres:postgres://username:password@server:port/databasename` *database connection information*
 
 #### Email
 
