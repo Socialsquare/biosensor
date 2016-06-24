@@ -9,18 +9,18 @@
   <div class="col-md-8">
 
     <section>
-      <h2>{{biosensor.name}}</h2>
+      <h1>{{biosensor.name}}</h1>
 
-      <h3>Problembeskrivelse</h3>
-      <p>{{biosensor.problem_description}}</p>
+      <h2>Problembeskrivelse</h2>
+      <div class="summernote-content">{{biosensor.problem_description|safe}}</div>
 
-      <h3>Risikobeskrivelse</h3>
-      <p>{{biosensor.risk_description}}</p>
+      <h2>Risikobeskrivelse</h2>
+      <div class="summernote-content">{{biosensor.risk_description|safe}}</div>
     </section>
 
     <section>
       {% if student_reports %}
-        <h3>Rapporter</h3>
+        <h2>Rapporter</h2>
 
         <ul class="list-group">
           {% for r in student_reports %}
@@ -42,13 +42,13 @@
 
     {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
 
-    <h3>Kategori:</h3>
+    <h2>Kategori:</h2>
     <p>{{biosensor.category}}</p>
 
-    <h3>Detektorgen:</h3>
+    <h2>Detektorgen:</h2>
     <p><a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a></p>
 
-    <h3>Respondergen:</h3>
+    <h2>Respondergen:</h2>
     <p><a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a></p>
 
   </div>
