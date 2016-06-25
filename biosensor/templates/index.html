@@ -21,9 +21,10 @@
 </section>
 
 <section class="row m-t-3">
-  <div class="col-md-4">
-    <h2>Biosensors</h2>
-    <ul class="no-list-style">
+
+  <div class="col-md-4 frontpage-list">
+    <h2 class="frontpage-list__heading">Biosensors</h2>
+    <ul class="frontpage-list__list no-list-style">
       {% for biosensor in biosensors %}
         {% if biosensor.display %}
           <li>
@@ -34,9 +35,9 @@
     </ul>
   </div>
 
-  <div class="col-md-4">
-    <h2>Detectors</h2>
-    <ul class="no-list-style">
+  <div class="col-md-4 frontpage-list">
+    <h2 class="frontpage-list__heading">Detectors</h2>
+    <ul class="frontpage-list__list no-list-style">
       {% for detector in detectors %}
       <li>
         <a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a>
@@ -45,9 +46,9 @@
     </ul>
   </div>
 
-  <div class="col-md-4">
-    <h2>Responders</h2>
-    <ul class="no-list-style">
+  <div class="col-md-4 frontpage-list">
+    <h2 class="frontpage-list__heading">Responders</h2>
+    <ul class="frontpage-list__list no-list-style">
       {% for responder in responders %}
       <li>
         <a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a>

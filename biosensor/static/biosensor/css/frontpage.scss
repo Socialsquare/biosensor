@@ -1,0 +1,17 @@
+.frontpage-list {
+  &__heading {
+    background-color: $brand-primary;
+    color: $white;
+    height: $navbar-height;
+    line-height: $navbar-height;
+    margin: 0;
+    text-align: center;
+  }
+
+  &__list {
+    background-color: $white;
+    border: $border-width solid $border-color;
+    border-top: 0;
+    padding: $spacer / 4 $spacer / 2;
+  }
+}
