@@ -4,13 +4,13 @@ body {
   font-weight: $body-font-weight;
 }
 
-h2,
-h3 {
-  margin-top: $spacer;
+h2 {
+  margin-top: $spacer * 1.5;
 }
 
 h3 {
   font-weight: $h3-font-weight;
+  margin-top: $spacer;
 }
 
 pre {
@@ -22,9 +22,18 @@ svg {
   fill: currentColor;
 }
 
+a {
+  font-weight: $h3-font-weight;
+}
+
 .center-y {
   align-items: center;
   display: flex;
+}
+
+.btn-dna {
+  margin-bottom: $spacer / 4;
+  margin-top: $spacer / 2;
 }
 
 .align-baseline {
