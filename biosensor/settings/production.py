@@ -3,12 +3,15 @@ import dj_database_url
 
 from .base import *
 
-DEBUG = True
+DEBUG = False
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
-DOMAIN = 'biosensor-staging.herokuapp.com'
-ALLOWED_HOSTS = [DOMAIN, ]
+DOMAIN = 'biosensor.dk'
+ALLOWED_HOSTS = [
+    DOMAIN,
+    'www.' + DOMAIN,
+]
 
 DATABASES = {
     'default': dj_database_url.config()
@@ -26,7 +29,7 @@ DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
 SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
 
 ADMINS = (
-    ('Simon', 'simon.carstensen+biosensor-staging@socialsquare.dk',),
+    ('Simon', 'simon.carstensen+biosensor-productiong@socialsquare.dk',),
 )
 SITE_ADMIN_EMAIL = 'pemye@bio.dtu.dk'
 
