@@ -41,7 +41,7 @@ form {
     background-position: right center;
     background-repeat: no-repeat;
     background-size: $icon-height;
-    cursor: cell;
+    cursor: pointer;
     height: calc(1rem * #{$line-height} + .375rem * 2 + 2px);
   }
 
