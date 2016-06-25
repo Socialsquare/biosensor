@@ -2,38 +2,48 @@
 {% load bootstrap3 %}
 
 {% block head_title %}
-{% if biosensor %} Edit {% else %} Add {% endif %} | {{ block.super }}
-{% endblock %}
+{% if biosensor %}
+  Redigér biosensor
+{% else %}
+  Tilføj biosensor
+{% endif %}
+ | {{ block.super }}
+ {% endblock %}
+
 
 {% block main %}
-
-<h1>
-{% if biosensor %} Edit {% else %} Add {% endif %} biosensor
+<h1 class="m-b-2">
+{% if biosensor %}
+  Redigér biosensor
+{% else %}
+  Tilføj biosensor
+{% endif %}
 </h1>
 
 <div class="row">
+  <div class="col-md-8">
 
-<div class="col-md-8">
+  {% if biosensor %}
+    <form method="POST" action="{% url 'bioadmin:edit_biosensor' biosensor.id %}" class="form">
+  {% else %}
+    <form method="POST" action="{% url 'bioadmin:new_biosensor' %}" class="form">
+  {% endif %}
+      {% csrf_token %}
 
-{% if biosensor %}
-  <form method="POST" action="{% url 'bioadmin:edit_biosensor' biosensor.id %}" class="form">
-{% else %}
-  <form method="POST" action="{% url 'bioadmin:new_biosensor' %}" class="form">
-{% endif %}
-    {% csrf_token %}
+      {% bootstrap_form form %}
+      <div class="m-t-3">
+        <button type="submit" class="btn btn-primary">
+        {% if biosensor %}
+          Gem ændringer
+        {% else %}
+          Tilføj biosensor
+        {% endif %}
+        </button>
+        <a class="btn btn-link" href="{% url 'bioadmin:catalog' %}">Annullér</a>
+      </div>
+    </form>
 
-    {% bootstrap_form form %}
-    <button type="submit" class="btn btn-primary">
-    {% if biosensor %}
-      Save changes
-    {% else %}
-      Add biosensor
-    {% endif %}
-    </button>
-</form>
-
-</div>
-
+  </div>
 </div>
 
 {% endblock %}
