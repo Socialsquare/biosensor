@@ -24,38 +24,102 @@
 
   <div class="col-md-4 frontpage-list">
     <h2 class="frontpage-list__heading">Biosensors</h2>
-    <ul class="frontpage-list__list no-list-style">
-      {% for biosensor in biosensors %}
-        {% if biosensor.display %}
-          <li>
-            <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
-          </li>
-      {% endif %}
-    {% endfor %}
-    </ul>
+    <div class="frontpage-list__content" role="tablist" aria-multiselectable="true">
+      <div class="panel">
+        <div class="panel-heading" role="tab" id="biosensorHeading1">
+          <h3 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#biosensorCollapse1"
+               aria-expanded="false" aria-controls="biosensorCollapse1">
+              Generelt
+            </a>
+          </h3>
+        </div>
+        <div id="biosensorCollapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="biosensorHeading1">
+          <ul class="no-list-style">
+            {% for biosensor in biosensors %}
+              {% if biosensor.display %}
+                <li>
+                  <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-heading" role="tab" id="biosensorHeading2">
+          <h3 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#biosensorCollapse2"
+               aria-expanded="false" aria-controls="biosensorCollapse2">
+              Miljø
+            </a>
+          </h3>
+        </div>
+        <div id="biosensorCollapse2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="biosensorHeading2">
+          <ul class="no-list-style">
+            {% for biosensor in biosensors %}
+              {% if biosensor.display %}
+                <li>
+                  <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+                </li>
+              {% endif %}
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="col-md-4 frontpage-list">
     <h2 class="frontpage-list__heading">Detectors</h2>
-    <ul class="frontpage-list__list no-list-style">
-      {% for detector in detectors %}
-      <li>
-        <a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a>
-      </li>
-    {% endfor %}
-    </ul>
+    <div class="frontpage-list__content" role="tablist" aria-multiselectable="true">
+      <div class="panel">
+        <div class="panel-heading" role="tab" id="detectorHeading1">
+          <h3 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#detectorCollapse1"
+               aria-expanded="false" aria-controls="detectorCollapse1">
+              Generelt
+            </a>
+          </h3>
+        </div>
+        <div id="detectorCollapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="detectorHeading1">
+          <ul class="no-list-style">
+            {% for detector in detectors %}
+              <li>
+                <a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div class="col-md-4 frontpage-list">
     <h2 class="frontpage-list__heading">Responders</h2>
-    <ul class="frontpage-list__list no-list-style">
-      {% for responder in responders %}
-      <li>
-        <a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a>
-      </li>
-    {% endfor %}
-    </ul>
+    <div class="frontpage-list__content" role="tablist" aria-multiselectable="true">
+      <div class="panel">
+        <div class="panel-heading" role="tab" id="responderHeading1">
+          <h3 class="panel-title">
+            <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#responderCollapse1"
+               aria-expanded="false" aria-controls="responderCollapse1">
+              Generelt
+            </a>
+          </h3>
+        </div>
+        <div id="responderCollapse1" class="panel-collapse collapse" role="tabpanel" aria-labelledby="responderHeading1">
+          <ul class="no-list-style">
+            {% for responder in responders %}
+              <li>
+                <a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
+
 </section>
 
 {% endblock %}

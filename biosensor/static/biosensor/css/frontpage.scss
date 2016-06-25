@@ -8,10 +8,10 @@
     text-align: center;
   }
 
-  &__list {
+  &__content {
     background-color: $white;
     border: $border-width solid $border-color;
     border-top: 0;
-    padding: $spacer / 4 $spacer / 2;
+    padding: $spacer / (3 / 2) $spacer / 2 $spacer / 2;
   }
 }
