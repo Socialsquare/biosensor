@@ -28,13 +28,19 @@
     }
   }
 
-  &__substance {
-    fill: $brand-secondary;
-
+  &__content {
     circle {
       display: none;
       pointer-events: none;
     }
+  }
+
+  &__responder {
+    fill: $brand-yellow;
+  }
+
+  &__detector {
+    fill: $brand-purple;
   }
 }
 
@@ -44,7 +50,7 @@ $coord-y: a b c d e f g h;
 @each $number in $coord-x {
   @each $letter in $coord-y {
     .mtp__well-#{$number}#{$letter},
-    .mtp__substance-#{$number}#{$letter} {
+    .mtp__content-#{$number}#{$letter} {
       .circle-#{$number}#{$letter} {
         display: block;
       }
