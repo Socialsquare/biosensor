@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block head_title %}
-{% if report %} Rediger rapport {% else %} Opret rapport{% endif %}
+{% if report %} Rediger rapport {% else %} Opret rapport{% endif %} | {{ block.super }}
 {% endblock %}
 
 {% block head_statics %}
