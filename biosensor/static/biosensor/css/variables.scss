@@ -1,9 +1,9 @@
 // Colors
 $gray-dark: #2b2b2b;
 $gray: #6b6b6b;
-$gray-light: #818a91 !default;
-$gray-lighter: #b8b8b8;
-$gray-lightest: #f7f7f7;
+$gray-light: #b8b8b8;
+$gray-lighter: #f7f7f7;
+$gray-lightest: #f9f9f9;
 
 $brand-primary: #17a7db;
 $brand-purple: #f40076;
@@ -13,13 +13,14 @@ $brand-info: $brand-primary;
 $brand-warning: hsl(45, 100%, 38%);
 $brand-danger: #de0b78;
 
-$body-bg: $gray-lightest;
+$body-bg: $gray-lighter;
 $body-color: $gray-dark !default;
 
 $white: #fff;
 $black: #000;
 
-$border-color: $gray-lighter;
+$border-color: $gray-light;
+$table-border-color: $white;
 
 $state-success-text: $white;
 $state-success-bg: $brand-success;
