@@ -3,43 +3,58 @@
 
 {% block main %}
 
+<section class="row">
+  <div class="col-md-6">
+    <h1>Velkommen til biosensor</h1>
+    <p>
+      Etiam sed posuere dolor. Aenean aliquet tellus sit amet elementum sollicitudin. Integer tempor leo sem, in condimentum nulla tempor suscipit. Etiam eget imperdiet nisl. Morbi consectetur finibus felis, et ullamcorper risus congue elementum. Morbi eu convallis lorem. Phasellus sed ligula ante. Mauris gravida est et est euismod, sed pretium mi malesuada. Nam blandit nibh non justo vestibulum, sed commodo justo malesuada. Aenean mollis nec elit ut ultrices.
+    </p>
+  </div>
+  <div class="col-md-6">
+    <div class="embed-responsive embed-responsive-16by9">
+      <iframe
+        class="embed-responsive-item" allowfullscreen
+        src="//www.youtube.com/embed/IvUU8joBb1Q?rel=0&amp;showinfo=0" >
+      </iframe>
+    </div>
+  </div>
+</section>
 
-<section>
-<h2>Biosensors</h2>
+<section class="row m-t-3">
+  <div class="col-md-4">
+    <h2>Biosensors</h2>
+    <ul class="no-list-style">
+      {% for biosensor in biosensors %}
+        {% if biosensor.display %}
+          <li>
+            <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+          </li>
+      {% endif %}
+    {% endfor %}
+    </ul>
+  </div>
 
-<ul class="list-group">
-  {% for biosensor in biosensors %}
-    {% if biosensor.display %}
-      <li class="list-group-item">
-        <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+  <div class="col-md-4">
+    <h2>Detectors</h2>
+    <ul class="no-list-style">
+      {% for detector in detectors %}
+      <li>
+        <a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a>
       </li>
-  {% endif %}
-{% endfor %}
-</ul>
-</section>
+    {% endfor %}
+    </ul>
+  </div>
 
-<section class="m-y-3">
-<h2>Detectors</h2>
-
-<ul class="list-group">
-  {% for detector in detectors %}
-  <li class="list-group-item">
-    <a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a>
-  </li>
-{% endfor %}
-</ul>
-</section>
-
-<section>
-<h2>Responders</h2>
-
-<ul class="list-group">
-  {% for responder in responders %}
-  <li class="list-group-item">
-    <a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a>
-  </li>
-{% endfor %}
-</ul>
+  <div class="col-md-4">
+    <h2>Responders</h2>
+    <ul class="no-list-style">
+      {% for responder in responders %}
+      <li>
+        <a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
 </section>
 
 {% endblock %}
