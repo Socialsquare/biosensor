@@ -1,13 +1,13 @@
 {% extends "bioadmin/base.html" %}
 {% load staticfiles %}
 
-{% block head_title %}Teacher overview{% endblock %}
+{% block head_title %}Teacher overview | {{ block.super }}{% endblock %}
 
 {% block main %}
-<h2>Teacher overview</h2>
+<h1>Lærere</h1>
 
-<section>
-<table class="table table-striped">
+<section class="m-y-3">
+<table class="table table-zebra">
   <tr>
     <th>Email</th>
     <th>School</th>
@@ -24,4 +24,3 @@
 </section>
 
 {% endblock %}
-

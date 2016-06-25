@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 
 {% block head_title %}
-{% if biosensor %} Edit {% else %} Add {% endif %}
+{% if biosensor %} Edit {% else %} Add {% endif %} | {{ block.super }}
 {% endblock %}
 
 {% block main %}

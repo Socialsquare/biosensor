@@ -1,7 +1,7 @@
 {% extends "bioadmin/base.html" %}
 {% load bootstrap3 %}
 
-{% block head_title %}Add category{% endblock %}
+{% block head_title %}Add category | {{ block.super }}{% endblock %}
 
 {% block main %}
 
@@ -39,5 +39,3 @@
 </div>
 
 {% endblock %}
-
-

@@ -1,15 +1,15 @@
 {% extends "bioadmin/base.html" %}
 {% load staticfiles %}
 
-{% block head_title %}Biobrick overview{% endblock %}
+{% block head_title %}Biobrick overview | {{ block.super }}{% endblock %}
 
 {% block main %}
 <h1>Katalog</h1>
 
 <section class="m-y-3">
-<h2>Biosensorer</h2>
+<h2 class="m-b-2">Biosensorer</h2>
 
-<table class="table table-striped">
+<table class="table table-zebra">
   <tr>
     <th>Navn</th>
     <th>Detektor</th>
@@ -42,7 +42,7 @@
 </section>
 
 <section class="m-y-3">
-<h2>Detektorer</h2>
+<h2 class="m-b-2">Detektorer</h2>
 
 {% include "bioadmin/_biobricks.html" with biobricks=detectors %}
 
@@ -50,7 +50,7 @@
 </section>
 
 <section class="m-y-3">
-<h2>Respondere</h2>
+<h2 class="m-b-2">Respondere</h2>
 
 {% include "bioadmin/_biobricks.html" with biobricks=responders %}
 
@@ -58,9 +58,9 @@
 </section>
 
 <section class="m-y-3">
-<h2>Biobrick kategorier</h2>
+<h2 class="m-b-2">Biobrick kategorier</h2>
 
-<table class="table table-striped">
+<table class="table table-zebra">
   <tr>
     <th>Navn</th>
     <th>Kategoritype</th>

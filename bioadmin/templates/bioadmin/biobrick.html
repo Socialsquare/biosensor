@@ -2,7 +2,7 @@
 {% load bootstrap3 %}
 
 {% block head_title %}
-{% if biobrick %} Edit {% else %} Add {% endif %} {{biobrick_type|capfirst}}
+{% if biobrick %} Edit {% else %} Add {% endif %} {{biobrick_type|capfirst}} | {{ block.super }}
 {% endblock %}
 
 {% block head_statics %}
@@ -12,7 +12,7 @@
 {% block main %}
 
 <h1>
-{% if biobrick %} Edit {% else %} Add {% endif %} {{biobrick_type|capfirst}}
+{% if biobrick %} Redigér {% else %} Tilføj {% endif %} {{biobrick_type|capfirst}}
 </h1>
 
 <div class="row">
@@ -38,9 +38,9 @@
 
     <button type="submit" class="btn btn-primary">
     {% if biobrick %}
-      Save changes
+      Gem ændringer
     {% else %}
-      Add biobrick
+      Tilføj biobrik
     {% endif %}
     </button>
 </form>
