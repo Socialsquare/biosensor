@@ -6,7 +6,7 @@
 {% block main %}
 <h1>Skoler</h1>
 
-<section class="m-y-2">
+<section class="m-y-3">
 <table class="table table-zebra">
   <tr>
     <th>Navn</th>
@@ -24,7 +24,7 @@
   {% endfor %}
 </table>
 
-<a class="btn btn-primary" href="{% url 'bioadmin:new_school' %}">Add school</a>
+<a class="btn btn-primary" href="{% url 'bioadmin:new_school' %}">Tilføj skole</a>
 </section>
 
 {% endblock %}

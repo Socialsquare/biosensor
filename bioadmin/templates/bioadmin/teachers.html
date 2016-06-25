@@ -1,7 +1,7 @@
 {% extends "bioadmin/base.html" %}
 {% load staticfiles %}
 
-{% block head_title %}Teacher overview | {{ block.super }}{% endblock %}
+{% block head_title %}Lærere | {{ block.super }}{% endblock %}
 
 {% block main %}
 <h1>Lærere</h1>
@@ -10,8 +10,8 @@
 <table class="table table-zebra">
   <tr>
     <th>Email</th>
-    <th>School</th>
-    <th>Subjects</th>
+    <th>Skoler</th>
+    <th>Emner</th>
   </tr>
   {% for teacher in teachers %}
     <tr>

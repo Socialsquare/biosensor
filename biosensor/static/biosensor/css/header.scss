@@ -1,10 +1,15 @@
-.navbar-light {
-  background-color: $white;
-  border-bottom: $border-width * 2 solid $border-color;
-}
-
 .navbar {
   padding: $navbar-padding;
+
+  &-light {
+    background-color: $white;
+    border-bottom: $border-width * 2 solid $border-color;
+  }
+
+  &-brand {
+    line-height: 1.1;
+    padding: 0;
+  }
 
   &__container {
     align-items: center;
