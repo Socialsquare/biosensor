@@ -9,7 +9,7 @@
 </section>
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-7">
 
     <section>
 
@@ -34,13 +34,13 @@
       {% endif %}
 
       {% if request.user.is_student_group %}
-        <a class="btn btn-primary" href="{% url 'studentgroups:new_report' biosensor.id %}">Opret rapport</a>
+        <a class="btn btn-primary m-t-1" href="{% url 'studentgroups:new_report' biosensor.id %}">Opret rapport</a>
       {% endif %}
     </section>
 
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-4 col-md-offset-1">
 
     {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
 

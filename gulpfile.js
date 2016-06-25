@@ -2,14 +2,19 @@
 // - - - - - - - - - - - - - - -
 
 var gulp = require('gulp');
-var sass = require('gulp-sass');
 var autoprefixer = require('gulp-autoprefixer');
-var minifycss = require('gulp-minify-css');
-var rename = require('gulp-rename');
-var watch = require('gulp-watch');
+var concat = require('gulp-concat');
+var del = require('del');
 var livereload = require('gulp-livereload');
-var uglify = require('gulp-uglify');
-var rimraf = require('rimraf');
+var minify = require('gulp-minify');
+var minifycss = require('gulp-minify-css');
+var plumber = require('gulp-plumber');
+var rename = require('gulp-rename');
+var runSequence = require('run-sequence');
+var sass = require('gulp-sass');
+var svgmin = require('gulp-svgmin');
+var svgstore = require('gulp-svgstore');
+var watch = require('gulp-watch');
 
 // 2. FILE PATHS
 // - - - - - - - - - - - - - - -
@@ -24,11 +29,18 @@ var paths = {
       'bioadmin/static/bioadmin/css/*.scss',
     ],
     js: [
-      'biosensor/static/biosensor/javascript/*.js',
       'node_modules/bootstrap/dist/js/bootstrap.js',
+      'node_modules/svg4everybody/dist/svg4everybody.js',
+      'biosensor/static/biosensor/javascript/*.js'
     ],
     favicon: [
       'biosensor/static/biosensor/favicon.ico'
+    ],
+    svg: [
+      'biosensor/static/biosensor/images/sprite/*.svg'
+    ],
+    static: [
+      'staticfiles/'
     ]
 }
 
@@ -36,45 +48,68 @@ var paths = {
 // - - - - - - - - - - - - - - -
 
 // Cleans the build directory
-gulp.task('clean', function(cb) {
-  rimraf('./staticfiles/*', cb);
+gulp.task('clean', function() {
+  return del(paths.static + '*');
 })
 
 // Compiles Sass
 gulp.task('sass', function() {
     return gulp.src(paths.sass)
+    .pipe(plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
     .pipe(sass())
     .pipe(autoprefixer({browsers: ['last 2 versions', 'ie 10']}))
     .pipe(gulp.dest('.tmp/css'))
     .pipe(rename({suffix: '.min'}))
     .pipe(minifycss())
-    .pipe(gulp.dest('staticfiles/css'))
+    .pipe(gulp.dest(paths.static + 'css'))
     .pipe(livereload());
 });
 
 // Compiles JS
-gulp.task('uglify', function() {
+gulp.task('js', function() {
   return gulp.src(paths.js)
-    //.pipe(uglify().on('error', function(e){
-    //    console.log(e);
-    // }))
-    .pipe(gulp.dest('staticfiles/js'))
-    .pipe(livereload());
-});
-
-// Copy JS
-gulp.task('copyjs', function() {
-    return gulp.src(paths.js)
-    .pipe(gulp.dest('staticfiles/js'))
+    .pipe(plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(concat('base.js'))
+    .pipe(gulp.dest(paths.static + 'js'))
+    .pipe(rename('base.js'))
+    .pipe(minify())
+    .pipe(gulp.dest(paths.static + 'js'))
     .pipe(livereload());
 });
 
 // Copy favicon
 gulp.task('copyfav', function() {
-    return gulp.src(paths.favicon)
-    .pipe(gulp.dest('staticfiles/'))
+  return gulp.src(paths.favicon)
+    .pipe(gulp.dest(paths.static + ''))
     .pipe(livereload());
 });
+
+// Create SVG sprite
+gulp.task('svg-sprite', function() {
+  return gulp.src(paths.svg)
+    .pipe(plumber({
+        errorHandler: function (err) {
+            console.log(err);
+            this.emit('end');
+        }
+    }))
+    .pipe(svgmin())
+    .pipe(rename({prefix: 'sprite_'}))
+    .pipe(svgstore())
+    .pipe(gulp.dest(paths.static + ''))
+    .pipe(livereload());
+});
+
 
 gulp.task('watch', function() {
     livereload.listen();
@@ -83,17 +118,29 @@ gulp.task('watch', function() {
     gulp.watch(paths.sassWatch, ['sass']);
 
     // Watch javascript
-    gulp.watch(paths.js, ['copyjs']);
+    gulp.watch(paths.js, ['js']);
+
+    // Watch svg
+    gulp.watch(paths.svg, ['svg-sprite']);
 
     // Watch Django temlates
     gulp.watch('**/templates/*').on('change', livereload.changed);
 
 });
 
-// TODO: Ask simon why no copyJS here:
-
 // Builds your entire app once, without starting a server
-gulp.task('build', ['sass', 'uglify']);
+gulp.task('build', function(callback) {
+  runSequence(
+    'clean',
+    ['sass', 'js', 'svg-sprite', 'copyfav'],
+    callback);
+});
 
 // Default task: builds your app, starts a server, and recompiles assets when they change
-gulp.task('default', ['sass', 'copyjs', 'copyfav', 'watch']);
+gulp.task('default', function(callback) {
+  runSequence(
+    'clean',
+    ['sass', 'js', 'svg-sprite', 'copyfav'],
+    'watch',
+    callback);
+});

@@ -13,11 +13,41 @@ h3 {
   font-weight: $h3-font-weight;
 }
 
+pre {
+  white-space: normal;
+}
+
+svg {
+  fill: currentColor;
+}
+
+.center-y {
+  align-items: center;
+  display: flex;
+}
+
+.align-baseline {
+  align-items: baseline;
+  display: flex;
+}
+
 .no-list-style {
   list-style: none;
   padding: 0;
 
   > li {
     margin: $spacer / 4 0;
+  }
+}
+
+.close {
+  color: $white;
+  opacity: .4;
+  text-shadow: none;
+
+  &:hover,
+  &:focus {
+    color: $white;
+    opacity: 1;
   }
 }

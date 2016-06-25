@@ -7,9 +7,9 @@
 
 {% block main %}
 
-<h2>
+<h1 class="m-b-2">
 {% if biosensor %} Rediger {% else %} Opret {% endif %} biosensor
-</h2>
+</h1>
 
 <div class="row">
 
@@ -24,12 +24,15 @@
 
     {% bootstrap_form form %}
     <button type="submit" class="btn btn-primary">
-    {% if biosensor %}
-      Gem ændringer
-    {% else %}
-      Opret biosensor
-    {% endif %}
+      <span class="center-y">
+        {% if biosensor %}
+          Gem ændringer
+        {% else %}
+          Opret biosensor
+        {% endif %}
+      </span>
     </button>
+    <a class="btn btn-link" href="{% url 'studentgroups:dashboard' %}">Annullér</a>
 </form>
 
 </div>
@@ -37,7 +40,3 @@
 </div>
 
 {% endblock %}
-
-
-
-
