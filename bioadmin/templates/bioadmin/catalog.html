@@ -4,17 +4,17 @@
 {% block head_title %}Biobrick overview{% endblock %}
 
 {% block main %}
-<h2>Catalog overview</h2>
+<h1>Katalog</h1>
 
-<section>
-<h3>Biosensors</h3>
+<section class="m-y-3">
+<h2>Biosensorer</h2>
 
 <table class="table table-striped">
   <tr>
-    <th>Name</th>
-    <th>Detector</th>
+    <th>Navn</th>
+    <th>Detektor</th>
     <th>Responder</th>
-    <th>Category</th>
+    <th>Kategori</th>
     <th></th>
     <th></th>
   </tr>
@@ -38,55 +38,57 @@
   {% endfor %}
 </table>
 
-<a class="btn btn-primary" href="{% url 'bioadmin:new_biosensor' %}">Add biosensor</a>
+<a class="btn btn-primary" href="{% url 'bioadmin:new_biosensor' %}">Tilføj biosensor</a>
 </section>
 
-<section>
-<h3>Detectors</h3>
+<section class="m-y-3">
+<h2>Detektorer</h2>
 
 {% include "bioadmin/_biobricks.html" with biobricks=detectors %}
 
-<a class="btn btn-primary" href="{% url 'bioadmin:new_biobrick' 'detector' %}">Add detector</a>
+<a class="btn btn-primary" href="{% url 'bioadmin:new_biobrick' 'detector' %}">Tilføj detektor</a>
 </section>
 
-<section>
-<h3>Responders</h3>
+<section class="m-y-3">
+<h2>Respondere</h2>
 
 {% include "bioadmin/_biobricks.html" with biobricks=responders %}
 
-<a class="btn btn-primary" href="{% url 'bioadmin:new_biobrick' 'responder' %}">Add responder</a>
+<a class="btn btn-primary" href="{% url 'bioadmin:new_biobrick' 'responder' %}">Tilføj responder</a>
 </section>
 
-<section>
-<h3>Biobrick Categories</h3>
+<section class="m-y-3">
+<h2>Biobrick kategorier</h2>
 
 <table class="table table-striped">
   <tr>
-    <th>Name</th>
-    <th>Category type</th>
-    <th></th>
+    <th>Navn</th>
+    <th>Kategoritype</th>
     <th></th>
   </tr>
   {% for category in categories %}
     <tr>
       <td>{{category.name}}</td>
       <td>{{category.category_type|capfirst}}</td>
-      <td class="text-center">
-        <a href="{% url 'bioadmin:delete_category' category.id %}">
-          <i class="glyphicon glyphicon-trash"></i>
-        </a>
-      </td>
-      <td class="text-center">
-        <a href="{% url 'bioadmin:edit_category' category.id %}">
-          <i class="glyphicon glyphicon-edit"></i>
-        </a>
+      <td class="text-xs-right">
+        <div>
+          <a href="{% url 'bioadmin:delete_category' category.id %}">
+            <svg role="img" class="icon" title="Slet">
+              <use xlink:href="/static/sprite.svg#sprite_delete"/>
+            </svg>
+          </a>
+          <a href="{% url 'bioadmin:edit_category' category.id %}">
+            <svg role="img" class="icon" title="Redigér">
+              <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
+            </svg>
+          </a>
+        </div>
       </td>
     </tr>
   {% endfor %}
 </table>
 
-<a class="btn btn-primary" href="{% url 'bioadmin:new_category' %}">Add category</a>
+<a class="btn btn-primary" href="{% url 'bioadmin:new_category' %}">Tilføj kategori</a>
 </section>
 
 {% endblock %}
-

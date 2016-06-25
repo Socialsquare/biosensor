@@ -1,9 +1,9 @@
 .navbar-light {
   background-color: $white;
+  border-bottom: $border-width * 2 solid $border-color;
 }
 
 .navbar {
-  border-bottom: $border-width * 2 solid $border-color;
   padding: $navbar-padding;
 
   &__container {
@@ -19,4 +19,13 @@
 
 .nav-link {
   font-weight: $headings-font-weight;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: rgba($white, .75);
+
+  &:focus,
+  &:hover {
+    color: rgba($white, 1);
+  }
 }
