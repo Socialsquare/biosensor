@@ -28,6 +28,11 @@
     }
   }
 
+  &__empty-well {
+    fill: none;
+    stroke: $gray-light;
+  }
+
   &__content {
     circle {
       display: none;
