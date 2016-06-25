@@ -13,24 +13,6 @@
   </span>
 </a>
 
-<<<<<<< HEAD
-        {% if group.biosensors_ %}
-        <ul class="no-list-style">
-          {% for biosensor in group.biosensors_ %}
-          <li>
-            {% if biosensor.has_report %}
-            <a href="{% url 'teachers:show_student_report' biosensor.report_id %}">[report]</a>
-            {% else %}
-            [report]
-            {% endif %}
-            <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
-          </li>
-          {% endfor %}
-        </ul>
-        {% else %}
-          <p>Gruppen har ikke oprettet en biosensor</p>
-        {% endif %}
-=======
 {% if student_groups %}
   <div class="row">
   {% for group in student_groups %}
@@ -52,7 +34,6 @@
             <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
           </svg>
         </a>
->>>>>>> 42444a45659481825b492b77bbb172ea2ed8eb28
       </div>
 
       {% if group.biosensors_ %}
