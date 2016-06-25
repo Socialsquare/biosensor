@@ -33,19 +33,32 @@
     <nav class="navbar navbar-light">
       <div class="container-fluid navbar__container">
         {% include "_logo.html" %}
-        <ul class="m-l-3 nav navbar-nav">
-          <li class="nav-item m-r-1">
-            <a class="nav-link" href="#">Lærervejledning</a>
-          </li>
-          <li class="nav-item m-r-1">
-            <a class="nav-link" href="#">Om Biosensor</a>
+        <ul class="m-l-2 nav navbar-nav">
+          <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle"
+              type="button" id="dropdownTeacher" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+                Lærervejledning
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownTeacher">
+                <a class="dropdown-item" href="#">Indberetningsskema</a>
+                <a class="dropdown-item" href="#">Bestilling af biosensor kit</a>
+                <a class="dropdown-item" href="#">Rapporter</a>
+                <a class="dropdown-item" href="#">Forberedelse til forsøg</a>
+                <a class="dropdown-item" href="#">Forsøgsmanual og plan</a>
+              </div>
+            </div>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Sponsorer</a>
+            <a class="btn btn-secondary" href="#">Om Biosensor</a>
+          </li>
+          <li class="nav-item">
+            <a class="btn btn-secondary" href="#">Sponsorer</a>
           </li>
           <li class="nav-item pull-xs-right">
             {% if user.is_authenticated %}
-              <div class="dropdown">
+              <div class="dropdown dropdown-right">
                 <button class="btn btn-primary dropdown-toggle"
                 type="button" id="dropdownMenu" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
@@ -73,11 +86,11 @@
             {% else %}
               <div class="dropdown">
                 <button class="btn btn-primary dropdown-toggle"
-                type="button" id="dropdownMenu" data-toggle="dropdown"
+                type="button" id="dropdownLogin" data-toggle="dropdown"
                 aria-haspopup="true" aria-expanded="false">
                   Log ind
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu">
+                <div class="dropdown-menu" aria-labelledby="dropdownLogin">
                   <a class="dropdown-item" data-toggle="modal" data-target="#loginTeacher">
                     Lærer
                   </a>
