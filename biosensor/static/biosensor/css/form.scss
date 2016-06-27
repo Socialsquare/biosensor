@@ -27,6 +27,12 @@
   font-weight: $h3-font-weight;
 }
 
+.has-error {
+  .form-control {
+    border-color: $brand-danger !important;
+  }
+}
+
 input:not([type=submit]):not([type=file]).form-control,
 textarea.form-control {
   border-radius: 0;
