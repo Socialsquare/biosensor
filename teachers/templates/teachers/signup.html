@@ -4,31 +4,32 @@
 
 {% block main %}
 
-<h2>Opret konto</h2>
-
-<p>
-Har du allerede en konto? <a href="{% url 'account_login' %}">Log ind</a> her.
-</p>
-
 <div class="row">
-    <div class="col-md-6">
-       <form class="signup" id="signup_form" method="post" action="{% url 'teachers:signup' %}">
-         {% csrf_token %}
-         {% bootstrap_form_errors form %}
-         {% bootstrap_field form.school %}
-         {% bootstrap_field form.school_passwd %}
-         <hr />
-         {% bootstrap_field form.email %}
-         {% bootstrap_field form.password1 %}
-         {% bootstrap_field form.password2 %}
-         {% bootstrap_field form.confirmation_key %}
-         {% bootstrap_field form.subjects %}
-         {% if redirect_field_value %}
-         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-         {% endif %}
-         <button id="user-signup" class="btn btn-primary" type="submit">Sign Up</button>
-       </form>
-    </div>
+  <div class="col-md-6">
+    <h1>Opret lærerkonto</h1>
+
+    <p>
+    Du kan oprette en lærerkonto, hvis din skole allerede er tilmeldt og på listen nedenunder.
+    Læs mere via menuen lærevejledning i toppen af denne side.
+    Hvis du allerede har en konto, kan du logge ind via knap øverst til højre.
+    </p>
+    <form class="signup p-t-1" id="signup_form" method="post" action="{% url 'teachers:signup' %}">
+      {% csrf_token %}
+      {% bootstrap_form_errors form %}
+      {% bootstrap_field form.school %}
+      {% bootstrap_field form.school_passwd %}
+      <div class="p-y-1"></div>
+      {% bootstrap_field form.email %}
+      {% bootstrap_field form.password1 %}
+      {% bootstrap_field form.password2 %}
+      {% bootstrap_field form.confirmation_key %}
+      {% bootstrap_field form.subjects %}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button id="user-signup" class="btn btn-primary m-t-2" type="submit">Opret lærerkonto</button>
+    </form>
   </div>
 </div>
+
 {% endblock %}

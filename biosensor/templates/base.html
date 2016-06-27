@@ -43,6 +43,7 @@
                 <a class="dropdown-item" href="#">Rapporter</a>
                 <a class="dropdown-item" href="#">Forberedelse til forsøg</a>
                 <a class="dropdown-item" href="#">Forsøgsmanual og plan</a>
+                <a class="dropdown-item" href="{% url 'teachers:signup' %}">Tilmeld</a>
               </div>
             </div>
           </li>
@@ -108,11 +109,6 @@
 
         {% block main %}
         {% endblock %}
-
-        <!-- TODO - vi skal forholde os til det her:
-         <ul>
-           <li class="pull-right"><a href="{% url 'teachers:signup' %}">Tilmeld som lærer</a></li>
-           </ul>-->
 
       </div>
     </div>

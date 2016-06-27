@@ -99,6 +99,10 @@ TEMPLATES = [
     },
 ]
 
+BOOTSTRAP3 = {
+    'set_placeholder': False
+}
+
 SUMMERNOTE_CONFIG = {
     # Using SummernoteWidget - iframe mode
     'iframe': False,  # or set False to use SummernoteInplaceWidget - no iframe mode
