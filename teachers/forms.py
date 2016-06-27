@@ -10,7 +10,7 @@ from string import ascii_lowercase
 import hashlib
 
 class TeacherSignupForm(SignupForm):
-    school = forms.ModelChoiceField(label='Gymnasium',
+    school = forms.ModelChoiceField(label='Skole',
                                    queryset=School.objects.all(),
                                    required=True)
     school_passwd = forms.fields.CharField(
@@ -26,12 +26,12 @@ class TeacherSignupForm(SignupForm):
 
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__(*args, **kwargs)
-        self.fields['email'].label = 'Email'
-        self.fields['email'].widget.attrs['placeholder'] = 'Email'
-        self.fields['password1'].label = 'Adgangskode'
-        self.fields['password1'].widget.attrs['placeholder'] = 'Adgangskode'
-        self.fields['password2'].label = 'Gentag adgangskode'
-        self.fields['password2'].widget.attrs['placeholder'] = 'Gentag adgangskode'
+        self.fields['email'].label = 'Din email'
+        self.fields['email'].widget.attrs['placeholder'] = ''
+        self.fields['password1'].label = 'Din adgangskode'
+        self.fields['password1'].widget.attrs['placeholder'] = ''
+        self.fields['password2'].label = 'Gentag din adgangskode'
+        self.fields['password2'].widget.attrs['placeholder'] = ''
 
     def clean(self):
         school_id = self.cleaned_data['school'].id
