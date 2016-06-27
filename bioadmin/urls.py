@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.conf.urls import url
 
 from . import views
@@ -8,7 +9,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^skoler/$', views.schools, name='schools'),
     url(r'^skoler/ny$', views.new_school, name='new_school'),
-    url(r'^laerer/$', views.teachers, name='teachers'),
+    url(r'^lærer/$', views.teachers, name='teachers'),
     url(r'^elevgrupper/$', views.student_groups, name='student_groups'),
     url(r'^katalog/$', views.catalog, name='catalog'),
     url(r'^katalog/biosensorer/(\d+)$', views.show_biosensor, name='show_biosensor'),
