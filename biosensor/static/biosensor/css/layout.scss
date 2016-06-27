@@ -10,4 +10,6 @@ body {
 
 .container-fluid {
   max-width: map-get($container-max-widths, xl);
+  // chrome bugfix
+  width: 100%;
 }

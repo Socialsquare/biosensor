@@ -73,7 +73,7 @@ def delete_biosensor(request, biosensor_id):
     else:
         if 'yes' == request.POST.get('confirmation', 'no'):
             biosensor.delete()
-            messages.success(request, "You deleted a biosensor")
+            messages.success(request, "Du har slettet biosensoren")
         return redirect('studentgroups:dashboard')
 
 @login_required
@@ -90,7 +90,7 @@ def edit_biosensor(request, biosensor_id):
             biosensor.problem_description = form.cleaned_data['problem_description']
             biosensor.risk_description = form.cleaned_data['risk_description']
             biosensor.save()
-            messages.success(request, "You updated this biosensor")
+            messages.success(request, "Du har opdateret biosensoren")
             return redirect('studentgroups:dashboard')
 
     form = BiosensorForm({
