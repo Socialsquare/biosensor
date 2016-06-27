@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block summernote_scripts %}
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 {{ form.media }}
 {% endblock %}
 
@@ -42,6 +41,7 @@
       {% else %}
       <button class="btn btn-primary" type="submit">Opret rapport</button>
       {% endif %}
+      <a class="btn btn-link" href="{% url 'studentgroups:dashboard' %}">Annullér</a>
     </form>
   </div>
 
