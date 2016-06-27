@@ -33,6 +33,9 @@ class StudentGroup(models.Model):
     biosensors = models.ManyToManyField(Biosensor)
     created = models.DateTimeField(auto_now_add=True)
 
+    def students_as_list(self):
+        return self.students.split('\n')
+
 def is_student_group(user):
     student_group = StudentGroup.objects.filter(user=user).count()
     return student_group != 0

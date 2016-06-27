@@ -11,8 +11,10 @@ from biobricks.models import Biosensor
 @login_required
 @student_group_required
 def dashboard(request):
+    student_group = StudentGroup.objects.get(user=request.user)
     biosensors = Biosensor.objects.filter(user=request.user)
     context = {
+            'student_group': student_group,
             'biosensors': biosensors
             }
     return render(request, 'studentgroups/dashboard.html', context)

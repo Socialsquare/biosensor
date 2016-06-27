@@ -3,7 +3,12 @@
 
 {% block main %}
 
-<h1>Dashboard</h1>
+<h1>{{student_group.name}}
+  <span>
+    {{student_group.grade}}.{{student_group.letter}} {{student_group.year}},
+    {{student_group.subject}}
+  </span>
+</h1>
 <a class="btn btn-primary m-y-1" href="{% url 'biobricks:new_biosensor' %}">
   <span class="center-y">
     Opret biosensor
@@ -14,28 +19,25 @@
 </a>
 
 <section>
-<h2>Mine biosensorer</h2>
+<h2>Biosensorer</h2>
 
 {% if biosensors %}
 <table class="table table-zebra">
-  <tr>
-    <th>Name</th>
-    <th>Detector</th>
-    <th>Responder</th>
-    <th>Category</th>
-    <th>Problem description</th>
-    <th>Risk description</th>
-    <th></th>
-    <th></th>
-  </tr>
   {% for biosensor in biosensors %}
     <tr>
       <td><a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a></td>
-      <td>{{biosensor.detector}}</td>
-      <td>{{biosensor.responder}}</td>
-      <td>{{biosensor.category}}</td>
       <td>{{biosensor.problem_description}}</td>
-      <td>{{biosensor.risk_description}}</td>
+      <td>
+          {% if biosensor.student_reports.exists %}
+            <a href="{% url 'studentgroups:edit_report' biosensor.id student_group.id %}">
+          {% endif %}
+              <svg role="img" class="icon" title="Se rapport">
+                <use xlink:href="/static/sprite.svg#sprite_description"/>
+              </svg>
+          {% if biosensor.student_reports.exists %}
+            </a>
+          {% endif %}
+      </td>
       <td class="text-center">
         <a href="{% url 'biobricks:delete_biosensor' biosensor.id %}">
           <svg role="img" class="icon" title="Slet biosensor">
@@ -56,7 +58,16 @@
 {% else %}
 <p><em>Du har ingen biosensorer</em></p>
 {% endif %}
+</section>
 
+<section>
+  <h2>Gruppemedlemmer</h2>
+
+  <ul>
+  {% for name in student_group.students_as_list %}
+    <li>{{name}}</li>
+  {% endfor %}
+  <ul>
 </section>
 
 {% endblock %}
