@@ -6,28 +6,24 @@
 
 <div class="row">
 
-  <div class="col-md-8">
+  <div class="col-md-8 col-sm-10 col-xs-12">
 
     <section>
-      <h2>{{report.biosensor.name}}</h2>
+      <h1>{{report.biosensor.name}}</h1>
 
-      <h3>Resumé</h3>
-      <p class="summernote-content">{{report.resume|safe }}</p>
+      <h2>Resumé</h2>
+      <p>{{report.resume|safe }}</p>
 
-      <h3>Metode</h3>
-      <p class="summernote-content">{{report.method|safe }}</p>
+      <h2>Metode</h2>
+      <p>{{report.method|safe }}</p>
       <p>{{report.method}}</p>
 
-      <h3>Resultater</h3>
+      <h2>Resultater</h2>
       <p>{{report.results}}</p>
 
-      <h3>Diskussion og konklusion</h3>
+      <h2>Diskussion og konklusion</h2>
       <p>{{report.conclusion}}</p>
     </section>
-
-  </div>
-
-  <div class="col-md-4">
 
   </div>
 

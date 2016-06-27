@@ -6,26 +6,28 @@
 
 <div class="row">
   <div class="col-xs-12">
-    <h1>{{biobrick.biobrick_type|capfirst}} {{biobrick.name}}</h1>
+    <h1>{{biobrick.name}}</h1>
+    <!-- TODO skal printes ud som hhv "Respons gen" og "Detektor gen" -->
+    <p>{{biobrick.biobrick_type|capfirst}}</p>
   </div>
-  <div class="col-md-7">
+  <div class="col-md-7 col-xs-12">
 
-    <h2>Beskrivelse:</h2>
-    <div class="summernote-content">{{biobrick.description|safe}}</div>
+    <h2>Beskrivelse</h2>
+    <p>{{biobrick.description|safe}}</p>
 
-    <h2>Design:</h2>
-    <div class="summernote-content">{{biobrick.design|safe}}</div>
+    <h2>Design</h2>
+    <p>{{biobrick.design|safe}}</p>
 
   </div>
 
-  <div class="col-md-4 col-md-offset-1">
+  <div class="col-md-4 col-md-offset-1 col-sm-6 col-xs-12">
 
     {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
 
-    <h2>Kategori:</h2>
+    <h2>Kategori</h2>
     <p>{{biobrick.category}}</p>
 
-    <h2>Yderligere info:</h2>
+    <h2>Yderligere info</h2>
     <ul class="no-list-style">
       <li>
         <button type="button" class="btn btn-primary btn-sm btn-dna" data-toggle="modal" data-target="#dnaModal">

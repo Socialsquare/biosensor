@@ -6,18 +6,19 @@
 
 <section>
   <h1>{{biosensor.name}}</h1>
+  <p>Biosensor</p>
 </section>
 
 <div class="row">
-  <div class="col-md-7">
+  <div class="col-md-7 col-sm-12">
 
     <section>
 
       <h2>Problembeskrivelse</h2>
-      <div class="summernote-content">{{biosensor.problem_description|safe}}</div>
+      <p>{{biosensor.problem_description|safe}}</p>
 
       <h2>Risikobeskrivelse</h2>
-      <div class="summernote-content">{{biosensor.risk_description|safe}}</div>
+      <p>{{biosensor.risk_description|safe}}</p>
     </section>
 
     <section>
@@ -40,17 +41,17 @@
 
   </div>
 
-  <div class="col-md-4 col-md-offset-1">
+  <div class="col-md-4 col-md-offset-1 col-sm-6 col-xs-12">
 
     {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
 
-    <h2>Kategori:</h2>
+    <h2>Kategori</h2>
     <p>{{biosensor.category}}</p>
 
-    <h2>Detektorgen:</h2>
+    <h2>Detektor gen</h2>
     <p><a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a></p>
 
-    <h2>Respondergen:</h2>
+    <h2>Respons gen</h2>
     <p><a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a></p>
 
   </div>

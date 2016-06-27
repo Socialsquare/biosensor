@@ -12,11 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/base.min.css" %}">
     <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
-
-    <!-- TODO vi skal have flyttet wysiwyg editor ned i bunden og ikke i block head så vi også kan flytte jquery ned -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    {% block head_statics %}
-    {% endblock %}
+    {% block summernote_scripts %}{% endblock %}
 
     <script>
       (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
@@ -186,6 +182,8 @@
       </div>
     </div>
 
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
     <script type="text/javascript" src="{% static "js/base-min.js" %}"></script>
   </body>
