@@ -25,6 +25,9 @@ class Category(models.Model):
         model = self.category_type == 'biosensor' and Biosensor or Biobrick
         return not bool(model.objects.filter(category_id=self.id))
 
+    def items(self):
+        return self.category_type == 'biosensor' and self.biosensors.all() or self.biobricks.all()
+
 class Biobrick(models.Model):
     BIOBRICK_TYPES = Choices(
         'detector',
@@ -34,7 +37,7 @@ class Biobrick(models.Model):
     coord_x = models.DecimalField(max_digits=2, decimal_places=0, blank=False)
     coord_y = models.CharField(max_length=1, blank=False)
     biobrick_type = StatusField(choices_name='BIOBRICK_TYPES')
-    category = models.ForeignKey('Category')
+    category = models.ForeignKey('Category', related_name='biobricks')
     name = models.TextField(max_length=100, blank=False)
     description = models.TextField(max_length=1000, blank=False)
     design = models.TextField(max_length=1000, blank=False)
@@ -60,7 +63,7 @@ class Biosensor(models.Model):
     user = models.ForeignKey('auth.User')
     detector = models.ForeignKey('Biobrick', related_name='detectors')
     responder = models.ForeignKey('Biobrick', related_name='responders')
-    category = models.ForeignKey('Category')
+    category = models.ForeignKey('Category', related_name='biosensors')
     name = models.TextField(max_length=100, blank=False)
     problem_description = models.TextField(max_length=1000, blank=False)
     risk_description = models.TextField(max_length=1000, blank=False)

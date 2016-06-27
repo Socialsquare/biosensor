@@ -1,13 +1,13 @@
 from django.shortcuts import render
-from biobricks.models import Biobrick, Biosensor
+from biobricks.models import Category, Biobrick, Biosensor
 
 def homepage(request):
-    detectors = Biobrick.objects.filter(biobrick_type='detector')
-    responders = Biobrick.objects.filter(biobrick_type='responder')
-    biosensors = Biosensor.objects.all()
+    d_categories = Category.objects.filter(category_type='detector')
+    r_categories = Category.objects.filter(category_type='responder')
+    b_categories = Category.objects.filter(category_type='biosensor')
     context = {
-            'detectors': detectors,
-            'responders': responders,
-            'biosensors': biosensors,
+            'd_categories': d_categories,
+            'r_categories': r_categories,
+            'b_categories': b_categories,
     }
     return render(request, 'index.html', context)

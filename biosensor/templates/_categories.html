@@ -1,0 +1,30 @@
+  <div class="col-md-4 col-xs-12 frontpage-list m-b-2">
+    <h2 class="frontpage-list__heading">{{heading}}</h2>
+    <div class="frontpage-list__content" role="tablist" aria-multiselectable="true">
+      {% for cat in categories %}
+        <div class="panel">
+          <div class="panel-heading" role="tab" id="biosensorHeading{{cat.id}}">
+            <h3 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#biosensorCollapse{{cat.id}}"
+                                                                                   aria-expanded="false" aria-controls="biosensorCollapse{{cat.id}}">
+                {{cat.name}}
+              </a>
+            </h3>
+          </div>
+          <div id="biosensorCollapse{{cat.id}}" class="panel-collapse collapse" role="tabpanel" aria-labelledby="biosensorHeading{{cat.id}}">
+            <ul class="no-list-style">
+              {% for item in cat.items %}
+                  <li>
+                    {% if cat.category_type == 'biosensor' %}
+                      <a href="{% url 'biobricks:show_biosensor' item.id %}">{{item.name}}</a>
+                    {% else %}
+                      <a href="{% url 'biobricks:show' item.slug %}">{{item.name}}</a>
+                    {% endif %}
+                  </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
