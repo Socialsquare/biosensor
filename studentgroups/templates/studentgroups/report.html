@@ -6,7 +6,8 @@
 {% if report %} Rediger rapport {% else %} Opret rapport{% endif %} | {{ block.super }}
 {% endblock %}
 
-{% block head_statics %}
+{% block summernote_scripts %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 {{ form.media }}
 {% endblock %}
 
@@ -45,13 +46,13 @@
   </div>
 
   <div class="col-md-4">
-    <h2 class="m-t-2">Kategori:</h2>
+    <h2 class="m-t-2">Kategori</h2>
     <p>{{biosensor.category.name}}</p>
 
-    <h2>Detector:</h2>
+    <h2>Detektor gen</h2>
     <p><a href="{% url 'biobricks:show' biosensor.detector.slug %}">{{biosensor.detector.name}}</a></p>
 
-    <h2>Responder:</h2>
+    <h2>Respons gen</h2>
     <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
   </div>
 </div>
