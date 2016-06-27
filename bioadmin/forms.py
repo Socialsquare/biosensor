@@ -64,7 +64,10 @@ class BiobrickForm(forms.Form):
             label='iGEM Team Wiki',
             max_length=200,
             required=True)
-    dna_sequence = forms.fields.CharField(max_length=200, required=True)
+    dna_sequence = forms.fields.CharField(
+            label='DNA sekvens',
+            max_length=200,
+            required=True)
     coord_x = forms.fields.ChoiceField(
             label='MTP x-koordinat',
             widget=forms.Select,
