@@ -30,10 +30,11 @@ class BiosensorForm(forms.Form):
         super(forms.Form, self).__init__(*args, **kwargs)
         self.fields['name'].label = 'Navn'
         self.fields['name'].widget.attrs['placeholder'] = 'Navn'
+        self.fields['detector'].label = 'Detektor gen'
+        self.fields['responder'].label = 'Respons gen'
         self.fields['category'].label = 'Kategori'
         self.fields['category'].widget.attrs['placeholder'] = 'Kategori'
         self.fields['problem_description'].label = 'Problembeskrivelse'
         self.fields['problem_description'].widget.attrs['placeholder'] = 'Problembeskrivelse'
         self.fields['risk_description'].label = 'Risikobeskrivelse'
         self.fields['risk_description'].widget.attrs['placeholder'] = 'Risikobeskrivelse'
-
