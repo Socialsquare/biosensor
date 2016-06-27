@@ -58,8 +58,24 @@ INSTALLED_APPS = [
     'allauth.socialaccount.providers.google',
     'allauth.socialaccount.providers.twitter',
     'allauth.socialaccount.providers.facebook',
+
     'bootstrap3',
     'django_summernote',
+
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+
+    'modelcluster',
+    'taggit',
 
     'bioadmin',
     'teachers',
@@ -76,6 +92,8 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'wagtail.wagtailcore.middleware.SiteMiddleware',
+    'wagtail.wagtailredirects.middleware.RedirectMiddleware',
 ]
 
 ROOT_URLCONF = 'biosensor.urls'
@@ -214,3 +232,5 @@ ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_PASSWORD_MIN_LENGTH = 8
 LOGIN_REDIRECT_URL = 'homepage'
 ACCOUNT_LOGOUT_ON_GET=True
+
+WAGTAIL_SITE_NAME = 'Biosensor'
