@@ -17,8 +17,8 @@
   }
 }
 
-.table {
-  .icon {
+.table :not(.center-y){
+  > .icon {
     margin-bottom: -$spacer / 5;
     margin-top: $spacer / 5;
   }
