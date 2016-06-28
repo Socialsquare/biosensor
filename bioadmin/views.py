@@ -128,6 +128,10 @@ def delete_category(request, category_id):
 @login_required
 def edit_category(request, category_id):
     category = get_object_or_404(Category, id=category_id)
+    form = CategoryForm({
+        'name': category.name,
+        'category_type': category.category_type
+        })
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -136,10 +140,6 @@ def edit_category(request, category_id):
             messages.success(request, "You updated this category")
             return redirect('bioadmin:catalog')
 
-    form = CategoryForm({
-        'name': category.name,
-        'category_type': category.category_type
-        })
     # do not allow category to be changed
     form.fields['category_type'].widget = forms.HiddenInput()
     context = {
@@ -189,6 +189,17 @@ def delete_biobrick(request, biobrick_id):
 @login_required
 def edit_biobrick(request, biobrick_id):
     biobrick = get_object_or_404(Biobrick, id=biobrick_id)
+    form = BiobrickForm({
+        'category': biobrick.category.id,
+        'name': biobrick.name,
+        'description': biobrick.description,
+        'design': biobrick.design,
+        'igem_part': biobrick.igem_part,
+        'team_website': biobrick.team_website,
+        'dna_sequence': biobrick.dna_sequence,
+        'coord_x': biobrick.coord_x,
+        'coord_y': biobrick.coord_y,
+        })
     if request.method == 'POST':
         form = BiobrickForm(request.POST)
         if form.is_valid():
@@ -205,17 +216,6 @@ def edit_biobrick(request, biobrick_id):
             messages.success(request, "You updated this biobrick")
             return redirect('bioadmin:catalog')
 
-    form = BiobrickForm({
-        'category': biobrick.category.id,
-        'name': biobrick.name,
-        'description': biobrick.description,
-        'design': biobrick.design,
-        'igem_part': biobrick.igem_part,
-        'team_website': biobrick.team_website,
-        'dna_sequence': biobrick.dna_sequence,
-        'coord_x': biobrick.coord_x,
-        'coord_y': biobrick.coord_y,
-        })
     form.filter_categories(biobrick.biobrick_type)
     context = {
             'biobrick': biobrick,
@@ -260,6 +260,14 @@ def delete_biosensor(request, biosensor_id):
 @staff_member_required
 def edit_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
+    form = BiosensorForm({
+        'name': biosensor.name,
+        'detector': biosensor.detector.id,
+        'responder': biosensor.responder.id,
+        'category': biosensor.category.id,
+        'problem_description': biosensor.problem_description,
+        'risk_description': biosensor.risk_description
+        })
     if request.method == 'POST':
         form = BiosensorForm(request.POST)
         if form.is_valid():
@@ -273,14 +281,6 @@ def edit_biosensor(request, biosensor_id):
             messages.success(request, "You updated this biosensor")
             return redirect('bioadmin:catalog')
 
-    form = BiosensorForm({
-        'name': biosensor.name,
-        'detector': biosensor.detector.id,
-        'responder': biosensor.responder.id,
-        'category': biosensor.category.id,
-        'problem_description': biosensor.problem_description,
-        'risk_description': biosensor.risk_description
-        })
     context = {
             'biosensor': biosensor,
             'form': form

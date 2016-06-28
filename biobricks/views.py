@@ -80,6 +80,14 @@ def delete_biosensor(request, biosensor_id):
 @is_owner
 def edit_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
+    form = BiosensorForm({
+        'name': biosensor.name,
+        'detector': biosensor.detector.id,
+        'responder': biosensor.responder.id,
+        'category': biosensor.category.id,
+        'problem_description': biosensor.problem_description,
+        'risk_description': biosensor.risk_description
+        })
     if request.method == 'POST':
         form = BiosensorForm(request.POST)
         if form.is_valid():
@@ -93,14 +101,6 @@ def edit_biosensor(request, biosensor_id):
             messages.success(request, "Du har opdateret biosensoren")
             return redirect('studentgroups:dashboard')
 
-    form = BiosensorForm({
-        'name': biosensor.name,
-        'detector': biosensor.detector.id,
-        'responder': biosensor.responder.id,
-        'category': biosensor.category.id,
-        'problem_description': biosensor.problem_description,
-        'risk_description': biosensor.risk_description
-        })
     context = {
             'biosensor': biosensor,
             'form': form

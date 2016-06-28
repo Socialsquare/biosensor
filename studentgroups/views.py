@@ -48,6 +48,12 @@ def new_report(request, biosensor_id):
 @student_group_required
 def edit_report(request, biosensor_id, report_id):
     report = get_object_or_404(StudentReport, id=report_id)
+    form = ReportForm({
+        'resume': report.resume,
+        'method': report.method,
+        'results': report.results,
+        'conclusion': report.conclusion
+        })
     if request.method == 'POST':
         form = ReportForm(request.POST)
         if form.is_valid():
@@ -59,12 +65,6 @@ def edit_report(request, biosensor_id, report_id):
             messages.success(request, "Dine ændringer er gemt")
             return redirect('studentgroups:dashboard')
 
-    form = ReportForm({
-        'resume': report.resume,
-        'method': report.method,
-        'results': report.results,
-        'conclusion': report.conclusion
-        })
     context = {
             'biosensor': report.biosensor,
             'report': report,
