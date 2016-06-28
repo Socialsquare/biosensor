@@ -32,7 +32,8 @@ $state-danger-text: $white;
 $state-danger-bg: $brand-danger;
 
 // Fix dashboard grid issues
-$enable-flex: true;
+// Had to disable again because IE + Edge issues
+$enable-flex: false;
 
 // Border
 $border-radius: .4rem;

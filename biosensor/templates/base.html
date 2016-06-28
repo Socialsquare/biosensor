@@ -12,6 +12,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,400i,700,900" rel="stylesheet">
     <link rel="stylesheet" href="{% static "css/base.min.css" %}">
     <link rel="shortcut icon" href="{% static "favicon.ico" %}"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     {% block summernote_scripts %}{% endblock %}
 
     <script>
@@ -19,7 +20,6 @@
       (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
       m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-
       ga('create', 'UA-77897870-1', 'auto');
       ga('send', 'pageview');
     </script>
@@ -70,10 +70,8 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                   {% if user.is_teacher %}
                   <a class="dropdown-item" href="{% url 'teachers:dashboard' %}">Dashboard</a>
-                  <a class="dropdown-item" href="{% url 'teachers:new_student_group' %}">Opret gruppe</a>
                   {% elif user.is_student_group %}
                   <a class="dropdown-item" href="{% url 'studentgroups:dashboard' %}">Dashboard</a>
-                  <a class="dropdown-item" href="{% url 'biobricks:new_biosensor' %}">Opret biosensor</a>
                   {% elif user.is_staff %}
                   <a class="dropdown-item" href="{% url 'bioadmin:index' %}">Dashboard</a>
                   {% endif %}
@@ -92,7 +90,7 @@
                     Lærer
                   </a>
                   <a class="dropdown-item" data-toggle="modal" data-target="#loginStudent">
-                    Studerendegruppe
+                    Elevgruppe
                   </a>
                 </div>
               </div>
@@ -106,23 +104,11 @@
       <div class="container-fluid">
 
         {% bootstrap_messages %}
-
         {% block main %}
         {% endblock %}
 
       </div>
     </div>
-
-    <!-- <footer class="footer">
-      <div class="container-fluid footer__container">
-        <div class="m-r-1">
-          <a href="#" class="footer__link">Læs om Biosensor</a>
-          <a href="#" class="footer__link">Vores sponsorer</a>
-        </div>
-        { % include "_logo.html" % }
-      </div>
-    </footer> -->
-
 
     <!-- Teacher Modal -->
     <div class="modal fade" id="loginTeacher" tabindex="-1" role="dialog"
@@ -178,8 +164,6 @@
       </div>
     </div>
 
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.2/js/tether.min.js"></script>
     <script type="text/javascript" src="{% static "js/base-min.js" %}"></script>
   </body>

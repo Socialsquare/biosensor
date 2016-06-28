@@ -84,6 +84,10 @@ INSTALLED_APPS = [
     'content',
 ]
 
+LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale/allauth'),
+]
+
 MIDDLEWARE_CLASSES = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -188,15 +192,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
-
+LANGUAGE_CODE = 'da-dk'
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
+
+from django.utils.translation import ugettext_lazy as _
+
+LANGUAGES = [
+    ('da', _('Danish')),
+    ('en', _('English')),
+]
 
 
 # Static files (CSS, JavaScript, Images)

@@ -33,6 +33,9 @@ class StudentGroup(models.Model):
     biosensors = models.ManyToManyField(Biosensor)
     created = models.DateTimeField(auto_now_add=True)
 
+    def __str__(self):
+        return self.name
+
     def students_as_list(self):
         return self.students.split('\n')
 
