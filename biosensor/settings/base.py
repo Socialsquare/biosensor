@@ -81,21 +81,7 @@ INSTALLED_APPS = [
     'teachers',
     'studentgroups',
     'biobricks',
-
-    'wagtail.wagtailforms',
-    'wagtail.wagtailredirects',
-    'wagtail.wagtailembeds',
-    'wagtail.wagtailsites',
-    'wagtail.wagtailusers',
-    'wagtail.wagtailsnippets',
-    'wagtail.wagtaildocs',
-    'wagtail.wagtailimages',
-    'wagtail.wagtailsearch',
-    'wagtail.wagtailadmin',
-    'wagtail.wagtailcore',
-
-    'modelcluster',
-    'taggit',
+    'content',
 ]
 
 MIDDLEWARE_CLASSES = [
