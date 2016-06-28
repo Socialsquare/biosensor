@@ -8,11 +8,6 @@ import os
 from studentgroups.models import StudentGroup
 
 def send_student_group_notice(group_name, email, password):
-    # TODO: remove this when email is set up on staging
-    django_env = os.getenv('DJANGO_ENV', 'development')
-    if django_env == 'staging':
-        return
-
     domain = Site.objects.get(id=settings.SITE_ID).domain
     ctx = {
         'group_name': group_name,
@@ -25,4 +20,9 @@ def send_student_group_notice(group_name, email, password):
     email_to = [email]
 
     msg = EmailMessage(subject, msg, email_from, email_to)
-    msg.send()
+    try:
+        msg.send()
+    except:
+        django_env = os.getenv('DJANGO_ENV', 'development')
+        if django_env != 'staging':
+            messages.error(request, 'Fejl: kunne ikke afsende velkomst-email til {}'.format(group_name))
