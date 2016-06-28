@@ -3,110 +3,105 @@
 
 {% block main %}
 
-<h1>{{student_group.name}}
-  <span>
-    {{student_group.grade}}.{{student_group.letter}} {{student_group.year}},
-    {{student_group.subject}}
-  </span>
-</h1>
-<a class="btn btn-primary m-y-1" href="{% url 'biobricks:new_biosensor' %}">
-  <span class="center-y">
-    Opret biosensor
-    <svg role="img" class="icon" title="Opret ny biosensor">
-      <use xlink:href="/static/sprite.svg#sprite_description_add"/>
-    </svg>
-  </span>
-</a>
+<div class="row">
+  <div class="col-xs-12">
 
-<section>
-<h2>Biosensorer</h2>
+    <h1>{{student_group.name}}
+      <span>
+        {{student_group.grade}}.{{student_group.letter}} {{student_group.year}},
+        {{student_group.subject}}
+      </span>
+    </h1>
+    <a class="btn btn-primary m-y-1" href="{% url 'biobricks:new_biosensor' %}">
+      <span class="center-y">
+        Opret biosensor
+        <svg role="img" class="icon" title="Opret ny biosensor">
+          <use xlink:href="/static/sprite.svg#sprite_description_add"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+  <div class="col-md-7 col-xs-12">
 
-{% if biosensors %}
-<table class="table table-zebra">
-  {% for biosensor in biosensors %}
-    <tr>
-      <td colspan="2">
-        <h3 class="m-t-0">
-          <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">
-            {{biosensor.name}}
-          </a>
-        </h3>
-        <p>
-          {{biosensor.problem_description}}
-        </p>
-      </td>
-      <td class="nowrap">
-        <a href="{% url 'biobricks:delete_biosensor' biosensor.id %}">
-          <svg role="img" class="icon" title="Slet biosensor">
-            <use xlink:href="/static/sprite.svg#sprite_delete"/>
-          </svg>
-        </a>
-        <a href="{% url 'biobricks:edit_biosensor' biosensor.id %}">
-          <svg role="img" class="icon" title="Rediger biosensor">
-            <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
-          </svg>
-        </a>
-      </td>
-    </tr>
-    <tr>
-      {% if biosensor.has_student_report %}
-        <td></td>
-        <td>
-          <h3>
-            <a href="{% url 'studentgroups:edit_report' biosensor.id biosensor.student_report.id %}">
-              Rapport til {{ biosensor.name}}
-            </a>
-          </h3>
-          <p>
-            {{ biosensor.student_report.resume|safe|truncatechars_html:200}}
-          </p>
-        </td>
-        <td></td>
+    <section>
+      <h2>Biosensorer</h2>
+
+      {% if biosensors %}
+        <table class="table table-zebra">
+          {% for biosensor in biosensors %}
+            <tr>
+              <td colspan="2">
+                <h3 class="m-t-0">
+                  <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">
+                    {{biosensor.name}}
+                  </a>
+                </h3>
+                <p>
+                {{biosensor.problem_description}}
+                </p>
+              </td>
+              <td class="nowrap">
+                <a href="{% url 'biobricks:delete_biosensor' biosensor.id %}">
+                  <svg role="img" class="icon" title="Slet biosensor">
+                    <use xlink:href="/static/sprite.svg#sprite_delete"/>
+                  </svg>
+                </a>
+                <a href="{% url 'biobricks:edit_biosensor' biosensor.id %}">
+                  <svg role="img" class="icon" title="Rediger biosensor">
+                    <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
+                  </svg>
+                </a>
+              </td>
+            </tr>
+            <tr>
+              {% if biosensor.has_student_report %}
+                <td></td>
+                <td>
+                  <h3>
+                    <a href="{% url 'studentgroups:edit_report' biosensor.id biosensor.student_report.id %}">
+                      Rapport til {{ biosensor.name}}
+                    </a>
+                  </h3>
+                  <p>
+                  {{ biosensor.student_report.resume|safe|truncatechars_html:200}}
+                  </p>
+                </td>
+                <td></td>
+              {% else %}
+                <td></td>
+                <td>
+                  <a class="btn btn-primary"
+                     href="{% url 'studentgroups:new_report' biosensor.id %}">
+                    <span class="center-y">
+                      Opret rapport til {{biosensor.name}}
+                      <svg role="img" class="icon" title="Opret ny biosensor">
+                        <use xlink:href="/static/sprite.svg#sprite_description_add"/>
+                      </svg>
+                    </span>
+                  </a>
+                </td>
+                <td></td>
+              {% endif %}
+            </tr>
+          {% endfor %}
+        </table>
       {% else %}
-        <td></td>
-        <td>
-          <a class="btn btn-primary"
-            href="{% url 'studentgroups:new_report' biosensor.id %}">
-            <span class="center-y">
-              Opret rapport til {{biosensor.name}}
-              <svg role="img" class="icon" title="Opret ny biosensor">
-                <use xlink:href="/static/sprite.svg#sprite_description_add"/>
-              </svg>
-            </span>
-          </a>
-        </td>
-        <td></td>
+      <p><em>Du har ingen biosensorer</em></p>
       {% endif %}
-    </tr>
-  {% endfor %}
-</table>
-{% else %}
-<p><em>Du har ingen biosensorer</em></p>
-{% endif %}
-</section>
+    </section>
+  </div>
 
-<section>
-  <h2>Gruppemedlemmer</h2>
+  <div class="col-md-4 col-md-offset-1 col-sm-6 col-xs-12">
+    <section>
+      <h2>Gruppemedlemmer</h2>
 
-  <ul>
-  {% for name in student_group.students_as_list %}
-    <li>{{name}}</li>
-  {% endfor %}
-  <ul>
-</section>
+      <ul>
+        {% for name in student_group.students_as_list %}
+        <li>{{name}}</li>
+        {% endfor %}
+        <ul>
+    </section>
+  </div>
+</div>
 
 {% endblock %}
-
-
-
-<td>
-    {% if biosensor.student_report %}
-      <a href="{% url 'studentgroups:edit_report' biosensor.id student_group.id %}">
-    {% endif %}
-        <svg role="img" class="icon" title="Se rapport">
-          <use xlink:href="/static/sprite.svg#sprite_description"/>
-        </svg>
-    {% if biosensor.student_report %}
-      </a>
-    {% endif %}
-</td>
