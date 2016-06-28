@@ -81,6 +81,21 @@ INSTALLED_APPS = [
     'teachers',
     'studentgroups',
     'biobricks',
+
+    'wagtail.wagtailforms',
+    'wagtail.wagtailredirects',
+    'wagtail.wagtailembeds',
+    'wagtail.wagtailsites',
+    'wagtail.wagtailusers',
+    'wagtail.wagtailsnippets',
+    'wagtail.wagtaildocs',
+    'wagtail.wagtailimages',
+    'wagtail.wagtailsearch',
+    'wagtail.wagtailadmin',
+    'wagtail.wagtailcore',
+
+    'modelcluster',
+    'taggit',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -205,6 +220,9 @@ STATIC_URL_PATTERN = '/static/'
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
+
 STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
@@ -233,4 +251,5 @@ ACCOUNT_PASSWORD_MIN_LENGTH = 8
 LOGIN_REDIRECT_URL = 'homepage'
 ACCOUNT_LOGOUT_ON_GET=True
 
+# WAGTAIL SETTINGS
 WAGTAIL_SITE_NAME = 'Biosensor'
