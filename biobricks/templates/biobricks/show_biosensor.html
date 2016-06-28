@@ -33,11 +33,6 @@
           {% endfor %}
         </ul>
       {% endif %}
-
-      <!-- TODO her mangler logik ift. kun at vise knap, hvis gruppe ikke allerede har en rapport -->
-      {% if request.user.is_student_group %}
-        <a class="btn btn-primary m-t-1" href="{% url 'studentgroups:new_report' biosensor.id %}">Opret rapport</a>
-      {% endif %}
     </section>
 
   </div>

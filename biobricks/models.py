@@ -77,4 +77,7 @@ class Biosensor(models.Model):
 
     def display(self):
         # display if created by admin or at least has one report
-        return self.user.is_staff or self.student_reports.exists()
+        return self.user.is_staff or self.student_report.exists()
+
+    def has_student_report(self):
+        return hasattr(self, 'student_report') or False

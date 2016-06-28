@@ -49,17 +49,16 @@
       </td>
     </tr>
     <tr>
-      {% if biosensor.student_reports.exists %}
+      {% if biosensor.has_student_report %}
         <td></td>
         <td>
-          <!-- TODO https://www.pivotaltracker.com/story/show/121864397 -->
           <h3>
-            <a href="link til rapport">
-              {{ biosensor.student_reports.name}}
+            <a href="{% url 'studentgroups:edit_report' biosensor.id biosensor.student_report.id %}">
+              Rapport til {{ biosensor.name}}
             </a>
           </h3>
           <p>
-            {{ biosensor.student_reports.resume|safe }}
+            {{ biosensor.student_report.resume|safe|truncatechars_html:200}}
           </p>
         </td>
         <td></td>
@@ -101,13 +100,13 @@
 
 
 <td>
-    {% if biosensor.student_reports.exists %}
+    {% if biosensor.student_report %}
       <a href="{% url 'studentgroups:edit_report' biosensor.id student_group.id %}">
     {% endif %}
         <svg role="img" class="icon" title="Se rapport">
           <use xlink:href="/static/sprite.svg#sprite_description"/>
         </svg>
-    {% if biosensor.student_reports.exists %}
+    {% if biosensor.student_report %}
       </a>
     {% endif %}
 </td>

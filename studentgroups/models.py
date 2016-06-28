@@ -46,7 +46,7 @@ auth.models.User.add_to_class('is_student_group', is_student_group)
 
 class StudentReport(models.Model):
     student_group = models.ForeignKey('studentgroups.StudentGroup', related_name='student_reports')
-    biosensor = models.ForeignKey('biobricks.Biosensor', related_name='student_reports')
+    biosensor = models.OneToOneField('biobricks.Biosensor', related_name='student_report')
     resume = models.CharField(
             max_length=4000,
             blank=False)
@@ -60,3 +60,6 @@ class StudentReport(models.Model):
             max_length=4000,
             blank=False)
     created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return '{}: {}'.format(self.student_group.name, self.biosensor.name)

@@ -25,6 +25,7 @@ def dashboard(request):
 @student_group_required
 def new_report(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
+    form = ReportForm()
     if request.method == 'POST':
         form = ReportForm(request.POST)
         if form.is_valid():
@@ -34,10 +35,9 @@ def new_report(request, biosensor_id):
                     biosensor=biosensor,
                     **form.cleaned_data)
             report.save()
-            messages.success(request, "Du har uplopadet din rapport")
-            return redirect(biosensor)
+            messages.success(request, "Du har oprettet en rapport")
+            return redirect('studentgroups:dashboard')
 
-    form = ReportForm()
     context = {
             'biosensor': biosensor,
             'form': form
@@ -57,7 +57,7 @@ def edit_report(request, biosensor_id, report_id):
             report.conclusion = form.cleaned_data['conclusion']
             report.save()
             messages.success(request, "Dine ændringer er gemt")
-            return redirect(report.biosensor)
+            return redirect('studentgroups:dashboard')
 
     form = ReportForm({
         'resume': report.resume,
