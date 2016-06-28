@@ -17,7 +17,7 @@ urlpatterns = [
     url(r'^students/', include('studentgroups.urls', namespace='studentgroups')),
     url(r'^biobrick/', include('biobricks.urls', namespace='biobricks')),
     url(r'^bioadmin/', include('bioadmin.urls', namespace='bioadmin')),
-    url(r'^$', views.homepage, name='homepage'),
     url(r'^cms/', include(wagtailadmin_urls)),
-    url(r'^side/', include(wagtail_urls)),
+    url(r'^$', views.homepage, name='homepage'),
+    url(r'', include(wagtail_urls)),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

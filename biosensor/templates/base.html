@@ -38,20 +38,20 @@
                 Lærervejledning
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownTeacher">
-                <a class="dropdown-item" href="#">Indberetningsskema</a>
-                <a class="dropdown-item" href="#">Bestilling af biosensor kit</a>
-                <a class="dropdown-item" href="#">Rapporter</a>
-                <a class="dropdown-item" href="#">Forberedelse til forsøg</a>
-                <a class="dropdown-item" href="#">Forsøgsmanual og plan</a>
+                <a class="dropdown-item" href="/laerervejledning/indberetningsskema/">Indberetningsskema</a>
+                <a class="dropdown-item" href="/laerervejledning/bestilling/">Bestilling af biosensor kit</a>
+                <a class="dropdown-item" href="/laerervejledning/rapporter/">Rapporter</a>
+                <a class="dropdown-item" href="/laerervejledning/forberedelse">Forberedelse til forsøg</a>
+                <a class="dropdown-item" href="/laerervejledning/manual">Forsøgsmanual og plan</a>
                 <a class="dropdown-item" href="{% url 'teachers:signup' %}">Tilmeld</a>
               </div>
             </div>
           </li>
           <li class="nav-item">
-            <a class="btn btn-secondary" href="#">Om Biosensor</a>
+            <a class="btn btn-secondary" href="/om-biosensor/">Om Biosensor</a>
           </li>
           <li class="nav-item">
-            <a class="btn btn-secondary" href="#">Sponsorer</a>
+            <a class="btn btn-secondary" href="/sponsorer/">Sponsorer</a>
           </li>
           <li class="nav-item pull-xs-right">
             {% if user.is_authenticated %}
