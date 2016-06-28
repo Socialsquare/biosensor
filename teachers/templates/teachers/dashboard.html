@@ -48,13 +48,13 @@
       <ul class="no-list-style">
         {% for biosensor in group.biosensors_ %}
         <li class="center-y">
-          {% if biosensor.has_report %}
-            <a href="{% url 'teachers:show_student_report' biosensor.report_id %}">
+          {% if biosensor.has_student_report %}
+            <a href="{% url 'teachers:show_student_report' biosensor.student_report.id %}">
           {% endif %}
               <svg role="img" class="icon" title="Se rapport">
                 <use xlink:href="/static/sprite.svg#sprite_description"/>
               </svg>
-          {% if biosensor.has_report %}
+          {% if biosensor.has_student_report %}
             </a>
           {% endif %}
           <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
