@@ -95,6 +95,17 @@ def delete_student_group(request, student_group_id):
 @teacher_required
 def edit_student_group(request, student_group_id):
     student_group = get_object_or_404(StudentGroup, id=student_group_id)
+    attributes = {
+        'group_id': student_group.id,
+        'email': student_group.user.email,
+        'name': student_group.name,
+        'students': student_group.students,
+        'subject': student_group.subject,
+        'grade': student_group.grade,
+        'letter': student_group.letter,
+        'year': student_group.year
+        }
+    form = StudentGroupForm(attributes)
     if request.method == 'POST':
         form = StudentGroupForm(request.POST)
         if form.is_valid():
@@ -110,15 +121,6 @@ def edit_student_group(request, student_group_id):
             messages.success(request, "Dine ændringer er gemt")
             return redirect('teachers:dashboard')
 
-    form = StudentGroupForm({
-        'name': student_group.name,
-        'email': student_group.user.email,
-        'students': student_group.students,
-        'subject': student_group.subject,
-        'grade': student_group.grade,
-        'letter': student_group.letter,
-        'year': student_group.year
-        })
     context = {
             'student_group': student_group,
             'form': form

@@ -46,6 +46,9 @@ class TeacherSignupForm(SignupForm):
 
 YEAR_CHOICES = [(y, y) for y in range(datetime.datetime.now().year, (datetime.datetime.now().year + 4))]
 class StudentGroupForm(forms.Form):
+    group_id = forms.fields.IntegerField(
+            widget=forms.HiddenInput(),
+            required=False)
     name = forms.fields.CharField(
             label='Gruppenavn',
             max_length=100,
@@ -79,9 +82,16 @@ class StudentGroupForm(forms.Form):
             label='Afgangsår',
             required=True)
 
-    #def clean(self):
-        #if User.objects.filter(email=self.cleaned_data['email']).exists():
-            #raise forms.ValidationError({
-                #'email': ["Den angivne email er allerede i brug",]
-                #})
-        #return self.cleaned_data
+    def clean_email(self):
+        email = self.cleaned_data['email']
+        group_id = self.cleaned_data['group_id']
+        if group_id:
+            group = StudentGroup.objects.get(id=group_id)
+            if email == group.user.email:
+                return email
+
+        try:
+            user = User.objects.get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise forms.ValidationError(u'Der findes allerede en elevgruppe med denne email')
