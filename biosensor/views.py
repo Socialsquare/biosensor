@@ -6,7 +6,7 @@ def homepage(request):
     try:
         frontpage = ContentPage.objects.get(slug='front')
     except:
-        frontpage = 'Fejl: Velkomstteksten til forsiden mangler!'
+        frontpage = { 'body': 'Fejl: Velkomstteksten til forsiden mangler!' }
     d_categories = Category.objects.filter(category_type='detector')
     r_categories = Category.objects.filter(category_type='responder')
     b_categories = Category.objects.filter(category_type='biosensor')
