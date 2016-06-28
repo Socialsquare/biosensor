@@ -43,6 +43,7 @@ class BiobrickForm(forms.Form):
     category = forms.ModelChoiceField(
             label='Kategori',
             queryset=Category.objects.all(),
+            empty_label='',
             required=True)
     description = forms.fields.CharField(
             label='Beskrivelse',
@@ -95,14 +96,17 @@ class BiosensorForm(forms.Form):
     detector = forms.ModelChoiceField(
             label='Detektor gen',
             queryset=Biobrick.objects.filter(biobrick_type='detector'),
+            empty_label='',
             required=True)
     responder = forms.ModelChoiceField(
             label='Respons gen',
             queryset=Biobrick.objects.filter(biobrick_type='responder'),
+            empty_label='',
             required=True)
     category = forms.ModelChoiceField(
             label='Kategori',
             queryset=Category.objects.filter(category_type='biosensor'),
+            empty_label='',
             required=True)
     problem_description = forms.fields.CharField(
             label='Problembeskrivelse',

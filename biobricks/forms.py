@@ -6,12 +6,15 @@ class BiosensorForm(forms.Form):
     name = forms.fields.CharField(max_length=100, required=True)
     detector = forms.ModelChoiceField(
             queryset=Biobrick.objects.filter(biobrick_type='detector'),
+            empty_label='',
             required=True)
     responder = forms.ModelChoiceField(
             queryset=Biobrick.objects.filter(biobrick_type='responder'),
+            empty_label='',
             required=True)
     category = forms.ModelChoiceField(
             queryset=Category.objects.filter(category_type='biosensor'),
+            empty_label='',
             required=True)
     problem_description = forms.fields.CharField(
             max_length=1000,

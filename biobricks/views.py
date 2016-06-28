@@ -55,7 +55,7 @@ def new_biosensor(request):
                 student_group = StudentGroup.objects.get(user=request.user)
                 student_group.biosensors.add(biosensor)
             messages.success(request, "Du har oprettet en biosensor")
-        return redirect('studentgroups:dashboard')
+            return redirect('studentgroups:dashboard')
 
     context = {
         'form': form

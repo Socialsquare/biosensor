@@ -44,7 +44,7 @@ class TeacherSignupForm(SignupForm):
                 })
         return self.cleaned_data
 
-YEAR_CHOICES = [(y, y) for y in range(datetime.datetime.now().year, (datetime.datetime.now().year + 4))]
+YEAR_CHOICES = [('', '')] + [(y, y) for y in range(datetime.datetime.now().year, (datetime.datetime.now().year + 4))]
 class StudentGroupForm(forms.Form):
     group_id = forms.fields.IntegerField(
             widget=forms.HiddenInput(),
@@ -70,11 +70,11 @@ class StudentGroupForm(forms.Form):
                 [('', '')] + StudentGroup.SUBJECTS],
             required=True)
     grade = forms.fields.ChoiceField(
-            widget=forms.Select, choices=[(i,i) for i in range(1,4)],
+            widget=forms.Select, choices=[('','')]+[(i,i) for i in range(1,4)],
             label='Klasse',
             required=True)
     letter = forms.fields.ChoiceField(
-            widget=forms.Select, choices=[(i,i) for i in list(ascii_lowercase)],
+            widget=forms.Select, choices=[(i,i) for i in ['']+list(ascii_lowercase)],
             label='Bogstav',
             required=True)
     year = forms.fields.ChoiceField(
