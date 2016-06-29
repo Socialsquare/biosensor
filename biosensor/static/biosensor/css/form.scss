@@ -56,7 +56,7 @@ input[type=file] {
     content: 'Browse';
   }
 
-  .picture-upload.file-custom::after {
+  .file-custom::after {
     content: '';
   }
 }
