@@ -57,27 +57,37 @@
       <h2>Respons gen</h2>
       <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
 
+      <h2>Billede</h2>
       <div class="form-group">
-        <h2>Billede</h2>
         {% if report and report.image %}
           <p>
             <img src="{{report.image.url}}" />
             <a href="#" class="upload-mode">Vælg andet billede</a>
           </p>
         {% endif %}
-        <label class="file" {% if report and report.image %} style="display:none" {% endif %}>
+        <label class="file" {% if report and report.image and not form.image.errors %} style="display:none" {% endif %}>
           <input class="inputfile" type="file" name="image">
           <span class="file-custom">Vælg png/jpg...</span>
         </label>
+        {{form.image.errors}}
       </div>
 
-      <h2>Fil</h2>
-      <a href="">
-        <svg role="img" class="icon" title="Opret ny biosensor">
-          <use xlink:href="/static/sprite.svg#sprite_description_add"/>
-        </svg>
-        Tilføj fil
-      </a>
+      <h2>Regneark</h2>
+      <div class="form-group">
+        {% if report and report.attachment %}
+          <p>
+            <a href="{{report.attachment.url}}">Download fil</a>
+            <span class="upload-mode">eller <a href="#">upload en ny</a></span>
+          </p>
+        {% endif %}
+        <label class="file" {% if report and report.attachment and not form.attachment.errors %} style="display:none" {% endif %}>
+          <input class="inputfile" type="file" name="attachment">
+          <span class="file-custom">Vælg xls/xlsx...</span>
+        </label>
+        {{form.attachment.errors}}
+
+
+      </div>
     </div>
   </div>
 </form>
