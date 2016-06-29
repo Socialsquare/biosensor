@@ -65,12 +65,6 @@
                 </p>
               </td>
               <td class="nowrap p-t-2">
-                <!-- TODO delete virker ikke, hvis det er fordi feature ikke eksisterer så skal dette bare slettes, ellers gerne fix -->
-                <!-- <a href="{ % url 'studentgroups:delete_report' biosensor.id biosensor.student_report.id % }">
-                  <svg role="img" class="icon" title="Slet biosensor">
-                    <use xlink:href="/static/sprite.svg#sprite_delete"/>
-                  </svg>
-                </a> -->
                 <a href="{% url 'studentgroups:edit_report' biosensor.id biosensor.student_report.id %}">
                   <svg role="img" class="icon" title="Rediger biosensor">
                     <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
