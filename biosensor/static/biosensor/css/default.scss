@@ -28,6 +28,14 @@ a {
   font-weight: $h3-font-weight;
 }
 
+img {
+  max-width: 100%;
+}
+
+.cursor-zoom {
+  cursor: zoom-in;
+}
+
 .center-y {
   align-items: center;
   display: flex;

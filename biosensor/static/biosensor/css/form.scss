@@ -38,6 +38,29 @@ textarea.form-control {
   border-radius: 0;
 }
 
+input[type=file] {
+  max-width: 100%;
+}
+
+.file {
+  margin-top: $spacer / 4;
+  max-width: 100%;
+
+  .file-custom {
+    border-color: $body-color;
+    border-right-width: 0;
+  }
+
+  .file-custom::before {
+    border-color: $body-color;
+    content: 'Browse';
+  }
+
+  .file-custom::after {
+    content: '';
+  }
+}
+
 form {
   select.form-control {
     $svg-color: str-replace(#{$body-color}, '#', '%23');
@@ -51,7 +74,6 @@ form {
     cursor: pointer;
     height: calc(1rem * #{$line-height} + .375rem * 2 + 2px);
   }
-
   @media screen and (-webkit-min-device-pixel-ratio:0) {
     select.form-control {
       padding-right: 1rem;

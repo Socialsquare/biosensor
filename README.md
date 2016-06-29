@@ -79,6 +79,20 @@ We recommend setting up continous deployment using github [webhooks](https://dev
 
 &nbsp;
 
+## Edit/update text/content
+
+#### TODO: guide for setting up the CMS (content pages + frontpage text)
+
+#### Menu
+
+The menu is hard-coded within the div with the `navbar-nav` class in [base.html](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/base.html) 
+
+#### Frontpage video
+
+Change the file ID e.g. `IvUU8joBb1Q` between `embed/` and `?` here on [this line](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/index.html#L16) 
+
+&nbsp;
+
 ## License
 
 The MIT License (MIT)
