@@ -3,8 +3,6 @@ from django.conf.urls import url
 
 from . import views
 
-# TODO Kunne være rart at oversætte var detector og responder, hvis det er muligt?
-
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^skoler/$', views.schools, name='schools'),
