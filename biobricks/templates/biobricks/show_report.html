@@ -7,7 +7,21 @@
 <div class="row">
   <div class="col-md-8 col-sm-10 col-xs-12">
     <section>
-      <h1>{{report.biosensor.name}}</h1>
+      <h1>Rapport til: {{report.biosensor.name}}</h1>
+      <p>
+        Af:
+          {{report.student_group.name}},
+          {{report.student_group.teacher.school.name}}
+          ({{report.created|date:'n. F o'}})
+      </p>
+
+      <a href="{% url 'biobricks:show_biosensor' report.biosensor.id %}">
+        <svg role="img" class="icon inline-icon"
+          title="Tilbage {{report.biosensor.name}}">
+          <use xlink:href="/static/sprite.svg#sprite_arrow_back"/>
+        </svg>
+        {{report.biosensor.name}}
+      </a>
 
       <h2>Resumé</h2>
       <p>{{report.resume|safe }}</p>
@@ -22,7 +36,9 @@
       <p>{{report.conclusion|safe }}</p>
 
       {% if report.image %}
-        <a class="cursor-zoom" href="{{report.image.url}}"><img src="{{report.image.url}}" /></a>
+        <a class="cursor-zoom" href="{{report.image.url}}">
+          <img src="{{report.image.url}}" />
+        </a>
       {% endif %}
     </section>
   </div>
