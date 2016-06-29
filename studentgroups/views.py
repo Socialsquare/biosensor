@@ -56,7 +56,10 @@ def edit_report(request, biosensor_id, report_id):
         'conclusion': report.conclusion
         }
     if report.image and default_storage.exists(report.image.name):
-        files = { 'image': report.image }
+        files = {
+                'image': report.image,
+                'attachment': report.attachment
+                }
     else:
         files = {}
     form = ReportForm(attributes, files)
@@ -65,15 +68,23 @@ def edit_report(request, biosensor_id, report_id):
         if form.is_valid():
             if form.cleaned_data['image']:
                 if report.has_existing_image():
-                        default_storage.delete(report.image.name)
+                    default_storage.delete(report.image.name)
                 image = form.cleaned_data['image']
             else:
                 image = report.image
+
+            if form.cleaned_data['attachment']:
+                if report.has_existing_attachment():
+                    default_storage.delete(report.attachment.name)
+                attachment = form.cleaned_data['attachment']
+            else:
+                attachment = report.attachment
             report.resume = form.cleaned_data['resume']
             report.method = form.cleaned_data['method']
             report.results = form.cleaned_data['results']
             report.conclusion = form.cleaned_data['conclusion']
             report.image = image
+            report.attachment = attachment
             report.save()
             messages.success(request, "Dine ændringer er gemt")
             return redirect('studentgroups:dashboard')

@@ -55,6 +55,9 @@ auth.models.User.add_to_class('is_student_group', is_student_group)
 def do_upload_image(inst, filename):
     return generate_upload_path(inst, filename, 'images')
 
+def do_upload_attachment(inst, filename):
+    return generate_upload_path(inst, filename, 'attachments')
+
 def generate_upload_path(instance, filename, dirname):
     """
         Generate random path name for file.
@@ -85,6 +88,10 @@ class StudentReport(models.Model):
             upload_to=do_upload_image,
             blank=True,
             null=True)
+    attachment = models.FileField(
+            upload_to=do_upload_attachment,
+            blank=True,
+            null=True)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -92,3 +99,6 @@ class StudentReport(models.Model):
 
     def has_existing_image(self):
         return self.image and default_storage.exists(self.image.name)
+
+    def has_existing_attachment(self):
+        return self.attachment and default_storage.exists(self.attachment.name)

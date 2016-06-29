@@ -57,28 +57,37 @@
       <h2>Respons gen</h2>
       <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
 
+      <h2>Billede</h2>
       <div class="form-group">
-        <h2>Billede</h2>
         {% if report and report.image %}
           <p>
             <a target="_blank" href="{{report.image.url}}">Hent billedet</a>
             <span class="upload-mode">eller <a href="#">upload et nyt</a></span>
           </p>
         {% endif %}
-        <div class="row bootstrap3-multi-input" {% if report and report.image %}style="display: none" {% endif %}>
+        <div class="row bootstrap3-multi-input" {% if report and report.image and not form.image.errors %}style="display: none" {% endif %}>
           <div class="col-xs-12">
             <input class="btn btn-secondary" name="image" title="" type="file" />
+            <p>{{form.image.errors}}</p>
           </div>
         </div>
       </div>
 
-      <h2>Fil</h2>
-      <a href="">
-        <svg role="img" class="icon" title="Opret ny biosensor">
-          <use xlink:href="/static/sprite.svg#sprite_description_add"/>
-        </svg>
-        Tilføj fil
-      </a>
+      <h2>Regneark</h2>
+      <div class="form-group">
+        {% if report and report.attachment %}
+          <p>
+            <a target="_blank" href="{{report.attachment.url}}">Download fil</a>
+            <span class="upload-mode">eller <a href="#">upload en ny</a></span>
+          </p>
+        {% endif %}
+        <div class="row bootstrap3-multi-input" {% if report and report.attachment and not form.image.errors %}style="display: none" {% endif %}>
+          <div class="col-xs-12">
+            <input class="btn btn-secondary" name="attachment" title="" type="file" />
+            {{form.attachment.errors}}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </form>
