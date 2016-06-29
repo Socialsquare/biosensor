@@ -9,3 +9,8 @@
 .note-popover {
   display: none;
 }
+
+.note-statusbar,
+.panel-heading {
+  background-color: $white !important;
+}
