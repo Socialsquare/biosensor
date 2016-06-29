@@ -8,7 +8,13 @@
   <div class="col-xs-12">
     <h1>{{biobrick.name}}</h1>
     <!-- TODO skal printes ud som hhv "Respons gen" og "Detektor gen" -->
-    <p>{{biobrick.biobrick_type|capfirst}}</p>
+    <p>
+      {% if biobrick.biobrick_type == 'responder' %}
+        Responsgen
+      {% else %}
+        Detektorgen
+      {% endif %}
+    </p>
   </div>
   <div class="col-md-7 col-xs-12">
 
