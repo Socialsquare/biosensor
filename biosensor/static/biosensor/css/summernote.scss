@@ -4,6 +4,10 @@
 
 .note-editor {
   border-color: $body-color !important;
+
+  .btn-default {
+    background-color: $body-bg;
+  }
 }
 
 .note-popover {
