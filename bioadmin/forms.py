@@ -109,7 +109,7 @@ class BiosensorForm(forms.Form):
             empty_label='',
             required=True)
     problem_description = forms.fields.CharField(
-            label='Problembeskrivelse',
+            label='Problemformulering',
             max_length=1000,
             widget=forms.Textarea,
             required=True)
