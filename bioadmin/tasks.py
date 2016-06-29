@@ -9,7 +9,6 @@ import os
 from studentgroups.models import StudentGroup
 
 def send_school_notice(school, password):
-    # TODO: remove this when email is set up on staging
     ctx = {
         'school': school,
         'password': password,
