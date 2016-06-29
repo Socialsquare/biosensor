@@ -26,6 +26,18 @@
       <h2>Resumé</h2>
       <p>{{report.resume|safe }}</p>
 
+      {% if report.image %}
+        <a class="cursor-zoom" href="{{report.image.url}}">
+          <img src="{{report.image.url}}" />
+        </a>
+      {% endif %}
+
+      <h2>Problemformulering</h2>
+      <p>{{report.biosensor.problem_description|safe}}</p>
+
+      <h2>Risikobeskrivelse</h2>
+      <p>{{report.biosensor.risk_description|safe}}</p>
+
       <h2>Metode</h2>
       <p>{{report.method|safe }}</p>
 
@@ -35,11 +47,6 @@
       <h2>Diskussion og konklusion</h2>
       <p>{{report.conclusion|safe }}</p>
 
-      {% if report.image %}
-        <a class="cursor-zoom" href="{{report.image.url}}">
-          <img src="{{report.image.url}}" />
-        </a>
-      {% endif %}
     </section>
   </div>
 </div>
