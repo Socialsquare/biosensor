@@ -30,16 +30,6 @@ You need to have these installed on your development machine and on the server
 `./manage.py createsuperuser` *create admin user*  
 `./manage.py runserver` *start the app*  
 
-#### CMS
-
-We use [Wagtail](wagtail.io) to serve all content pages, including the welcome text on the front page. You can access Wagtail at `/cms` and then go through the following steps to start setting up the necessary content pages:
-
-1. First go Settings->Sites and delete the example site that has already been set up.
-2. Create a new site named Biosensor as well as the Host and Port that you will be hosting Biosensor from (usually `localhost` and `8000` during development). Pick the page that has already been created as the root page for the site.
-3. Next go to the root page by clicking "Explorer" in the menu. First rename the root page to something more sensible, e.g. "Root page".
-4. Then create a child page of the root page and name it "Front" (make sure that the slug of this page is “front”, by going to the  "Promote" tab - this will ensure that it gets displayed on the front page as the welcome text).
-5. You can now go on and create more child pages of the root page to set up the pages needed in the main menu. 
-
 #### Environment variables
 
 Be sure to set the following environment variables when setting up the app for staging or production:
@@ -91,7 +81,15 @@ We recommend setting up continous deployment using github [webhooks](https://dev
 
 ## Edit/update text/content
 
-#### TODO: guide for setting up the CMS (content pages + frontpage text)
+#### CMS
+
+We use [Wagtail](wagtail.io) to serve all content pages, including the welcome text on the front page. You can access Wagtail at `/cms` and then go through the following steps to start setting up the necessary content pages:
+
+1. First go Settings->Sites and delete the example site that has already been set up.
+2. Create a new site named Biosensor as well as the Host and Port that you will be hosting Biosensor from (usually `localhost` and `8000` during development). Pick the page that has already been created as the root page for the site.
+3. Next go to the root page by clicking "Explorer" in the menu. First rename the root page to something more sensible, e.g. "Root page".
+4. Then create a child page of the root page and name it "Front" (make sure that the slug of this page is “front”, by going to the  "Promote" tab - this will ensure that it gets displayed on the front page as the welcome text).
+5. You can now go on and create more child pages of the root page to set up the pages needed in the main menu. 
 
 #### Menu
 
