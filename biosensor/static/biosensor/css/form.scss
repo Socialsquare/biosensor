@@ -38,6 +38,10 @@ textarea.form-control {
   border-radius: 0;
 }
 
+input[type=file] {
+  max-width: 100%;
+}
+
 .file {
   margin-top: $spacer / 4;
   max-width: 100%;
@@ -53,7 +57,7 @@ textarea.form-control {
   }
 
   .picture-upload.file-custom::after {
-    content: 'Vælg png/jpg...';
+    content: '';
   }
 }
 
