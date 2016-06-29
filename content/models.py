@@ -8,7 +8,9 @@ from wagtail.wagtailadmin.edit_handlers import FieldPanel
 
 class ContentPage(Page):
     body = RichTextField(blank=True)
+    sidebar = RichTextField(blank=True)
 
     content_panels = Page.content_panels + [
-        FieldPanel('body', classname="full")
+        FieldPanel('body', classname="full"),
+        FieldPanel('sidebar', classname="full")
     ]
