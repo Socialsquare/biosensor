@@ -64,12 +64,17 @@
             <a target="_blank" href="{{report.image.url}}">Hent billedet</a>
             <span class="upload-mode">eller <a href="#">upload et nyt</a></span>
           </p>
+        {% else %}
+          <label class="file">
+            <input type="file" name="image">
+            <span class="file-custom"></span>
+          </label>
+          <!-- <div class="row bootstrap3-multi-input">
+            <div class="col-xs-12">
+              <input class="btn btn-secondary" name="image" title="" type="file" />
+            </div>
+          </div> -->
         {% endif %}
-        <div class="row bootstrap3-multi-input" {% if report and report.image %}style="display: none" {% endif %}>
-          <div class="col-xs-12">
-            <input class="btn btn-secondary" name="image" title="" type="file" />
-          </div>
-        </div>
       </div>
 
       <h2>Fil</h2>
