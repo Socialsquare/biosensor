@@ -11,5 +11,12 @@ $('.edit-mode').on( 'click', function() {
   $(this).fadeOut();
 });
 
+$('.upload-mode').on( 'click', function(e) {
+  e.preventDefault();
+  $('body').addClass('upload-mode');
+  $(this).fadeOut();
+  $(this).parent().next().fadeIn();
+});
+
 // Initiate svg4everybody https://github.com/jonathantneal/svg4everybody
 svg4everybody();

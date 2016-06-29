@@ -16,13 +16,16 @@
   {% if report %} Rediger rapport {% else %} Opret rapport for {{biosensor.name}}{% endif %}
 </h1>
 
-<div class="row">
-  <div class="col-md-8">
+<form method="post"
   {% if report %}
-    <form class="edit-report" method="post" action="{% url 'studentgroups:edit_report' biosensor.id report.id %}">
+    action="{% url 'studentgroups:edit_report' biosensor.id report.id %}"
   {% else %}
-    <form class="new-report" method="post" action="{% url 'studentgroups:new_report' biosensor.id %}">
+    action="{% url 'studentgroups:new_report' biosensor.id %}"
   {% endif %}
+  enctype="multipart/form-data">
+
+  <div class="row">
+    <div class="col-md-8">
       {% csrf_token %}
       <div class="m-y-2">
         {% bootstrap_field form.resume %}
@@ -37,24 +40,47 @@
         {% bootstrap_field form.conclusion %}
       </div>
       {% if report %}
-      <button class="btn btn-primary" type="submit">Gem ændringer</button>
+        <button class="btn btn-primary" type="submit">Gem ændringer</button>
       {% else %}
-      <button class="btn btn-primary" type="submit">Opret rapport</button>
+        <button class="btn btn-primary" type="submit">Opret rapport</button>
       {% endif %}
       <a class="btn btn-link" href="{% url 'studentgroups:dashboard' %}">Annullér</a>
-    </form>
+    </div>
+
+    <div class="col-md-4">
+      <h2 class="m-t-2">Kategori</h2>
+      <p>{{biosensor.category.name}}</p>
+
+      <h2>Detektor gen</h2>
+      <p><a href="{% url 'biobricks:show' biosensor.detector.slug %}">{{biosensor.detector.name}}</a></p>
+
+      <h2>Respons gen</h2>
+      <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
+
+      <div class="form-group">
+        <h2>Billede</h2>
+        {% if report and report.image %}
+          <p>
+            <a target="_blank" href="{{report.image.url}}">Hent billede</a>
+            <span class="upload-mode">eller <a href="#">upload et nyt</a></span>
+          </p>
+        {% endif %}
+        <div class="row bootstrap3-multi-input" {% if report and report.image %}style="display: none" {% endif %}>
+          <div class="col-xs-12">
+            <input class="btn btn-secondary" name="image" title="" type="file" />
+          </div>
+        </div>
+      </div>
+
+      <h2>Fil</h2>
+      <a href="">
+        <svg role="img" class="icon" title="Opret ny biosensor">
+          <use xlink:href="/static/sprite.svg#sprite_description_add"/>
+        </svg>
+        Tilføj fil
+      </a>
+    </div>
   </div>
-
-  <div class="col-md-4">
-    <h2 class="m-t-2">Kategori</h2>
-    <p>{{biosensor.category.name}}</p>
-
-    <h2>Detektor gen</h2>
-    <p><a href="{% url 'biobricks:show' biosensor.detector.slug %}">{{biosensor.detector.name}}</a></p>
-
-    <h2>Respons gen</h2>
-    <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
-  </div>
-</div>
+</form>
 
 {% endblock %}
