@@ -47,6 +47,18 @@
     {{report.conclusion|safe}}
 
   </section>
+
+  <aside class="col-md-3 col-md-offset-1 col-sm-6 col-xs-12">
+
+    <h2>Kategori</h2>
+    <p>{{report.biosensor.category}}</p>
+
+    {% if report.attachment %}
+      <h2>Forsøgsdata</h2>
+      <a href="{{report.attachment.url}}">Regneark</a>
+    {% endif %}
+  </aside>
+
 </div>
 
 {% endblock %}
