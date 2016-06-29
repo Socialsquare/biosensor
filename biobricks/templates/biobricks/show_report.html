@@ -22,7 +22,7 @@
       <p>{{report.conclusion|safe }}</p>
 
       {% if report.image %}
-        <img width="{{report.image.width}}" height="{{report.image.height}}" src="{{report.image.url}}" />
+        <a class="cursor-zoom" href="{{report.image.url}}"><img src="{{report.image.url}}" /></a>
       {% endif %}
     </section>
   </div>
