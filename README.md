@@ -27,6 +27,7 @@ You need to have these installed on your development machine and on the server
 `npm install` *install required node modules*  
 `export DJANGO_SETTINGS_MODULE=biosensor.settings` *tell django where to find the configuration file*  
 `./manage.py migrate` *initialise the postgress database*  
+`./manage.py createsuperuser` *create admin user*  
 `./manage.py runserver` *start the app*  
 
 #### Environment variables
