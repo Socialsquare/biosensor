@@ -28,7 +28,14 @@
         <ul class="no-list-style">
           {% for r in student_reports %}
           <li>
-            <a href="{% url 'biobricks:show_report' r.id %}">{{r.student_group.name}}, {{r.student_group.teacher.school.name}} ({{r.created|date:'n. F o'}})</a>
+            <a href="{% url 'biobricks:show_report' r.id %}">
+              <svg role="img" class="icon inline-icon"
+                title="Rapport">
+                <use xlink:href="/static/sprite.svg#sprite_description"/>
+              </svg>
+              {{r.student_group.name}},
+              {{r.student_group.teacher.school.name}}
+              ({{r.created|date:'n. F o'}})</a>
           </li>
           {% endfor %}
         </ul>
