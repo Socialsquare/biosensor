@@ -52,8 +52,8 @@ textarea.form-control {
     content: 'Browse';
   }
 
-  .file-custom::after {
-    content: 'Vælg fil...';
+  .picture-upload.file-custom::after {
+    content: 'Vælg png/jpg...';
   }
 }
 
