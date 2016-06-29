@@ -7,6 +7,8 @@ from wagtail.wagtailadmin import urls as wagtailadmin_urls
 from wagtail.wagtaildocs import urls as wagtaildocs_urls
 from wagtail.wagtailcore import urls as wagtail_urls
 
+from django.conf import settings
+
 from . import views
 
 urlpatterns = [
@@ -20,4 +22,5 @@ urlpatterns = [
     url(r'^cms/', include(wagtailadmin_urls)),
     url(r'^$', views.homepage, name='homepage'),
     url(r'', include(wagtail_urls)),
-]
+] + static(settings.STATIC_URL_PATTERN, document_root=settings.STATIC_ROOT) +\
+    static(settings.MEDIA_URL_PATTERN, document_root=settings.MEDIA_ROOT)
