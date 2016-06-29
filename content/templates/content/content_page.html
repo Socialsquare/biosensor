@@ -3,5 +3,14 @@
 {% load wagtailcore_tags %}
 
 {% block main %}
+    <h1>Her skal titel stå</h1>
+    <div class="row">
+      <section class="col-md-7 col-sm-12">
+        Her skal tekstindholdet være
+      </section>
+      <aside class="col-md-4 col-md-offset-1 col-sm-12 sidebar">
+        Her skal sidebare være
+      </aside>
+    </div>
     {{ page.body|richtext }}
 {% endblock %}

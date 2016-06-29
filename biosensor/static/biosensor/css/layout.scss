@@ -13,3 +13,11 @@ body {
   // chrome bugfix
   width: 100%;
 }
+
+.sidebar {
+  margin-top: $spacer;
+
+  @media (min-width: map-get($grid-breakpoints, md)) {
+    margin-top: 0;
+  }
+}
