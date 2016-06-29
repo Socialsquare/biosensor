@@ -10,11 +10,10 @@ from studentgroups.models import StudentGroup
 
 def send_school_notice(school, password):
     # TODO: remove this when email is set up on staging
-    domain = Site.objects.get(id=settings.SITE_ID).domain
     ctx = {
         'school': school,
         'password': password,
-        'signup_link':'http://{}'.format(domain) + reverse('teachers:signup')
+        'signup_link':'http://{}'.format(settings.DOMAIN) + reverse('teachers:signup')
     }
     subject = 'Velkommen til Biosensor'
     txt_msg = render_to_string('bioadmin/email/school_notice.txt', ctx)

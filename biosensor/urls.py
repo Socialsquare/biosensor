@@ -13,7 +13,7 @@ urlpatterns = [
     url(r'^bruger/', include('allauth.urls')),
     url(r'^admin/', admin.site.urls),
     url(r'^summernote/', include('django_summernote.urls')),
-    url(r'^lærer/', include('teachers.urls', namespace='teachers')),
+    url(r'^laerere/', include('teachers.urls', namespace='teachers')),
     url(r'^elevgruppe/', include('studentgroups.urls', namespace='studentgroups')),
     url(r'^biobrick/', include('biobricks.urls', namespace='biobricks')),
     url(r'^bioadmin/', include('bioadmin.urls', namespace='bioadmin')),

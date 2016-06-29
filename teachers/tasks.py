@@ -8,7 +8,6 @@ import os
 from studentgroups.models import StudentGroup
 
 def send_student_group_notice(group_name, email, password):
-    domain = Site.objects.get(id=settings.SITE_ID).domain
     ctx = {
         'group_name': group_name,
         'email': email,
