@@ -64,7 +64,7 @@ class StudentGroupForm(forms.Form):
     subject = forms.fields.ChoiceField(
             label='Fag',
             widget=forms.Select,
-            choices=[(v, n.capitalize()) for (n, v) in
+            choices=[(v, n) for (n, v) in
                 [('', '')] + StudentGroup.SUBJECTS],
             required=True)
     grade = forms.fields.ChoiceField(

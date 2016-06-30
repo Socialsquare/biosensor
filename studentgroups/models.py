@@ -19,13 +19,13 @@ class StudentGroup(models.Model):
         ordering = ['name']
 
     SUBJECTS = Choices(
-        'biologi',
-        'bioteknologi',
-        'kemi',
-        'srp',
-        'teknikfag',
-        'teknologi',
-        'andet'
+        'Biologi',
+        'Bioteknologi',
+        'Kemi',
+        'SRP',
+        'Teknikfag',
+        'Teknologi',
+        'Andet'
     )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
