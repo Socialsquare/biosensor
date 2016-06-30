@@ -22,7 +22,7 @@
       <td>{{student_group.students_as_list|join:", "}}</td>
       <td>{{student_group.user.email}}</td>
       <td>{{student_group.teacher.school.name}}</td>
-      <td>{{student_group.subject}}</td>
+      <td>{{student_group.subject|capfirst}}</td>
       <td>{{student_group.grade}}.{{student_group.letter}} {{student_group.year}}</td>
     </tr>
   {% endfor %}
