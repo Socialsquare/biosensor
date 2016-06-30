@@ -11,8 +11,9 @@ import hashlib
 
 class TeacherSignupForm(SignupForm):
     school = forms.ModelChoiceField(label='Skole',
-                                   queryset=School.objects.all(),
-                                   required=True)
+            queryset=School.objects.all(),
+            empty_label='',
+            required=True)
     school_passwd = forms.fields.CharField(
             widget=forms.PasswordInput(),
             label='Skolens adgangskode',
@@ -27,11 +28,8 @@ class TeacherSignupForm(SignupForm):
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__(*args, **kwargs)
         self.fields['email'].label = 'Din email'
-        self.fields['email'].widget.attrs['placeholder'] = ''
         self.fields['password1'].label = 'Din adgangskode'
-        self.fields['password1'].widget.attrs['placeholder'] = ''
         self.fields['password2'].label = 'Gentag din adgangskode'
-        self.fields['password2'].widget.attrs['placeholder'] = ''
 
     def clean(self):
         school_id = self.cleaned_data['school'].id
