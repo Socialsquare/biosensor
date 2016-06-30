@@ -80,19 +80,9 @@
               </div>
             {% else %}
               <div class="dropdown dropdown-right">
-                <button class="btn btn-primary dropdown-toggle"
-                type="button" id="dropdownLogin" data-toggle="dropdown"
-                aria-haspopup="true" aria-expanded="false">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#loginModal">
                   Log ind
                 </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownLogin">
-                  <a class="dropdown-item" data-toggle="modal" data-target="#loginTeacher">
-                    Lærer
-                  </a>
-                  <a class="dropdown-item" data-toggle="modal" data-target="#loginStudent">
-                    Elevgruppe
-                  </a>
-                </div>
               </div>
             {% endif %}
           </li>
@@ -110,35 +100,7 @@
       </div>
     </div>
 
-    <!-- Teacher Modal -->
-    <div class="modal fade" id="loginTeacher" tabindex="-1" role="dialog"
-         aria-labelledby="loginModalLabel" aria-hidden="true">
-      <div class="modal-dialog " role="document">
-        <form class="login modal-content" method="POST" action="{% url 'account_login' %}">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-              <span aria-hidden="true">&times;</span>
-            </button>
-            <h2 class="modal-title" id="loginModalLabel">Log ind</h2>
-          </div>
-          <div class="modal-body p-t-2">
-              {% csrf_token %}
-              {% bootstrap_form login_form %}
-
-              {% if redirect_field_value %}
-                  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-              {% endif %}
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-link" data-dismiss="modal">Annullér</button>
-            <button class="btn btn-primary primaryAction" type="submit">Log ind</button>
-          </div>
-        </form>
-      </div>
-    </div>
-
-    <!-- Student Modal -->
-    <div class="modal fade" id="loginStudent" tabindex="-1" role="dialog"
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog"
          aria-labelledby="loginModalLabel" aria-hidden="true">
       <div class="modal-dialog " role="document">
         <form class="login modal-content" method="POST" action="{% url 'account_login' %}">
