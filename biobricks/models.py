@@ -76,8 +76,8 @@ class Biosensor(models.Model):
         return reverse('biobricks:show_biosensor', args=(self.id, ))
 
     def display(self):
-        # display if created by admin or at least has one report
-        return self.user.is_staff or self.student_report.exists()
+        # display if created by admin or has a report
+        return self.user.is_staff or self.student_report
 
     def has_student_report(self):
         return hasattr(self, 'student_report') or False
