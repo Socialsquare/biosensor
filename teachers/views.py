@@ -10,7 +10,7 @@ import hashlib
 from .models import Teacher, School
 from studentgroups.models import StudentGroup, StudentReport
 from .forms import TeacherSignupForm, StudentGroupForm
-from .decorators import teacher_required
+from .decorators import teacher_required, owns_student_group
 from .tasks import send_student_group_notice
 
 def signup(request):
@@ -77,7 +77,7 @@ def new_student_group(request):
     return render(request, 'teachers/student_group.html', context)
 
 @login_required
-@teacher_required
+@owns_student_group
 def delete_student_group(request, student_group_id):
     student_group = get_object_or_404(StudentGroup, id=student_group_id)
 
@@ -92,7 +92,7 @@ def delete_student_group(request, student_group_id):
         return redirect('teachers:dashboard')
 
 @login_required
-@teacher_required
+@owns_student_group
 def edit_student_group(request, student_group_id):
     student_group = get_object_or_404(StudentGroup, id=student_group_id)
     attributes = {
