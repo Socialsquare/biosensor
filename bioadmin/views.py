@@ -18,8 +18,17 @@ from biobricks.models import Category, Biobrick, Biosensor
 @login_required
 @staff_member_required
 def index(request):
-  context = {}
-  return render(request, 'bioadmin/index.html', context)
+    num_schools = School.objects.all().count()
+    num_teachers = Teacher.objects.all().count()
+    num_students = StudentGroup.objects.all().count()
+    num_biosensors = Biosensor.objects.all().count()
+    context = {
+            'num_schools': num_schools,
+            'num_teachers': num_teachers,
+            'num_students': num_students,
+            'num_biosensors': num_biosensors
+            }
+    return render(request, 'bioadmin/index.html', context)
 
 # teacher overview
 
