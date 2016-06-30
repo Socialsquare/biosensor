@@ -30,7 +30,7 @@ You need to have these installed on your development machine and on the server
 `./manage.py createsuperuser` *create admin user*  
 `./manage.py runserver` *start the app*  
 
-You can now sign into the Django admin interface by going to `/admin`. Go to "Sites" and update the default site with your domain.
+You can now sign into the Django admin interface by going to `/admin`. Go to "Sites" and update the example site with your own domain name.
 
 #### Environment variables
 
