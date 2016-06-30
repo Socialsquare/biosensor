@@ -5,11 +5,11 @@
 {% block main %}
 
 <section class="row">
-  <div class="col-md-6 col-xs-12">
+  <div class="col-md-6 col-xs-12 m-b-2">
     <h1>Velkommen til biosensor</h1>
     {{frontpage.body|richtext}}
   </div>
-  <div class="col-md-6 col-xs-12">
+  <div class="col-md-6 col-xs-12 m-b-2">
     <div class="embed-responsive embed-responsive-16by9">
       <iframe
         class="embed-responsive-item" allowfullscreen
@@ -19,7 +19,7 @@
   </div>
 </section>
 
-<section class="row m-t-3">
+<section class="row m-t-2">
 
   {% include "_categories.html" with heading='Biosensorer' categories=b_categories %}
   {% include "_categories.html" with heading='Detektorgener' categories=d_categories %}
