@@ -152,7 +152,6 @@ def edit_category(request, category_id):
 @staff_member_required
 def new_biobrick(request, biobrick_type):
     form = BiobrickForm()
-    biobrick_type = biobrick_type == 'responsgen' and 'responder' or 'detector'
 
     if request.method == 'POST':
         form = BiobrickForm(request.POST)
