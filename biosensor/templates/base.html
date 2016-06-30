@@ -117,6 +117,7 @@
               {% if redirect_field_value %}
                   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
               {% endif %}
+              <a href="{% url 'account_reset_password' %}">Har du glemt din adgangskode?</a>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-link" data-dismiss="modal">Annullér</button>
