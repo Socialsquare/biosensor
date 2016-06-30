@@ -4,47 +4,39 @@
 
 {% block main %}
 
-<section>
-  <h1>{{biosensor.name}}</h1>
-  <p>Biosensor</p>
-</section>
+<h1>{{biosensor.name}}</h1>
+<p>Biosensor</p>
 
 <div class="row">
-  <div class="col-md-7 col-sm-12">
+  <section class="col-md-7 col-sm-12">
 
-    <section>
+    <h2>Problemformulering</h2>
+    <p>{{biosensor.problem_description|safe}}</p>
 
-      <h2>Problembeskrivelse</h2>
-      <p>{{biosensor.problem_description|safe}}</p>
+    <h2>Risikobeskrivelse</h2>
+    <p>{{biosensor.risk_description|safe}}</p>
 
-      <h2>Risikobeskrivelse</h2>
-      <p>{{biosensor.risk_description|safe}}</p>
-    </section>
+    {% if student_reports %}
+      <h2>Rapport</h2>
 
-    <section>
-      {% if student_reports %}
-        <h2>Rapport</h2>
+      <ul class="no-list-style">
+        {% for r in student_reports %}
+        <li>
+          <a href="{% url 'biobricks:show_report' r.id %}">
+            <svg role="img" class="icon inline-icon"
+              title="Rapport">
+              <use xlink:href="/static/sprite.svg#sprite_description"/>
+            </svg>
+            {{r.student_group.name}},
+            {{r.student_group.teacher.school.name}}
+            ({{r.created|date:'n. F o'}})</a>
+        </li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+  </section>
 
-        <ul class="no-list-style">
-          {% for r in student_reports %}
-          <li>
-            <a href="{% url 'biobricks:show_report' r.id %}">
-              <svg role="img" class="icon inline-icon"
-                title="Rapport">
-                <use xlink:href="/static/sprite.svg#sprite_description"/>
-              </svg>
-              {{r.student_group.name}},
-              {{r.student_group.teacher.school.name}}
-              ({{r.created|date:'n. F o'}})</a>
-          </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </section>
-
-  </div>
-
-  <div class="col-md-4 col-md-offset-1 col-sm-6 col-xs-12">
+  <aside class="col-md-4 col-md-offset-1 col-sm-6 col-xs-12">
 
     {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
 
@@ -57,7 +49,7 @@
     <h2>Respons gen</h2>
     <p><a href="{% url 'biobricks:show' responder.slug %}">{{responder.name}}</a></p>
 
-  </div>
+  </aside>
 
 </div>
 

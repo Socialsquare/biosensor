@@ -35,5 +35,5 @@ class BiosensorForm(forms.Form):
         self.fields['detector'].label = 'Detektor gen'
         self.fields['responder'].label = 'Respons gen'
         self.fields['category'].label = 'Kategori'
-        self.fields['problem_description'].label = 'Problembeskrivelse'
+        self.fields['problem_description'].label = 'Problemformulering'
         self.fields['risk_description'].label = 'Risikobeskrivelse'

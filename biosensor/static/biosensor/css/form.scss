@@ -48,7 +48,9 @@ input[type=file] {
 
   .file-custom {
     border-color: $body-color;
-    border-right-width: 0;
+    line-height: 1.4;
+    overflow: hidden;
+    white-space: nowrap;
   }
 
   .file-custom::before {
