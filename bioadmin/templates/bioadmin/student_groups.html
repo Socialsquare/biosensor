@@ -19,7 +19,7 @@
   {% for student_group in student_groups %}
     <tr>
       <td>{{student_group.name}}</td>
-      <td>{{student_group.names}}</td>
+      <td>{{student_group.students_as_list|join:", "}}</td>
       <td>{{student_group.user.email}}</td>
       <td>{{student_group.teacher.school.name}}</td>
       <td>{{student_group.subject}}</td>
