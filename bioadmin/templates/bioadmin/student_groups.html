@@ -15,6 +15,7 @@
     <th>Skole</th>
     <th>Emne</th>
     <th>Klasse</th>
+    <th>Rapport</th>
   </tr>
   {% for student_group in student_groups %}
     <tr>
@@ -24,6 +25,15 @@
       <td>{{student_group.teacher.school.name}}</td>
       <td>{{student_group.subject|capfirst}}</td>
       <td>{{student_group.grade}}.{{student_group.letter}} {{student_group.year}}</td>
+      <td>
+        {% if student_group.student_reports %}
+          {% for r in student_group.student_reports.all %}
+            <a href="{% url 'biobricks:show_report' r.id %}">
+              <svg role="img" class="icon" title="Se rapport">
+                <use xlink:href="/static/sprite.svg#sprite_description"/>
+              </svg></a>
+          {% endfor %}
+        {% endif %}
     </tr>
   {% endfor %}
 </table>
