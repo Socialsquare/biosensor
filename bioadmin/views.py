@@ -161,17 +161,18 @@ def edit_category(request, category_id):
 @staff_member_required
 def new_biobrick(request, biobrick_type):
     form = BiobrickForm()
+    biobrick_type_ = biobrick_type == 'responsgen' and 'responder' or 'detector'
 
     if request.method == 'POST':
         form = BiobrickForm(request.POST)
         if form.is_valid():
             biobrick = Biobrick.objects.create(**form.cleaned_data)
-            biobrick.biobrick_type = biobrick_type
+            biobrick.biobrick_type = biobrick_type_
             biobrick.save()
             messages.success(request, "You created a biobrick")
         return redirect('bioadmin:catalog')
 
-    form.filter_categories(biobrick_type)
+    form.filter_categories(biobrick_type_)
     context = {
         'form': form,
         'biobrick_type': biobrick_type
