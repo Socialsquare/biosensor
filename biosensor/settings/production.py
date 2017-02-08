@@ -3,7 +3,7 @@ import dj_database_url
 
 from .base import *
 
-DEBUG = False
+DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
