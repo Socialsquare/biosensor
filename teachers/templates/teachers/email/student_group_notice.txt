@@ -9,6 +9,8 @@ Password: {{password}}
 Når du er logget ind kan du oprette din første biosensor. Hvis du mangler inspiration kan du finde masser af eksempler på biosensorer online. Du kan også læse andre rapporter og finde inspiration til din egen.
 
 Med venlig hilsen
-Pernille og Viktor
-Biotech Academy
+Biosensor-teamet og Biotech Academy
+http://biosensor.dk
 http://biotechacademy.dk/
+
+Biosensor projektet er støttet af Lundbeck fonden, Novozymes, New England Biolabs, BioNordika, SnapGene, Otto Mønsted Fond og Novo Nordisk Fonden.
