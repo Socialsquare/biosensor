@@ -14,5 +14,11 @@ from whitenoise.django import DjangoWhiteNoise
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "biosensor.settings")
 
-application = get_wsgi_application()
-application = DjangoWhiteNoise(application)
+ENVIRON_KEYS = ['DJANGO_ENV', 'DJANGO_SECRET_KEY', 'DATABASE_URL', 'SMTP_SERVER', 'SMTP_PORT']
+
+def application(environ, start_response):
+    # Moves environment variables from the apache config to the os.environ dict
+    for k in ENVIRON_KEYS:
+        os.environ[k] = environ.get(k, '')
+    application = get_wsgi_application()
+    return DjangoWhiteNoise(application)(environ, start_response)

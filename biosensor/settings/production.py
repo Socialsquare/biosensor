@@ -3,7 +3,7 @@ import dj_database_url
 
 from .base import *
 
-DEBUG = False
+DEBUG = True
 TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
@@ -35,7 +35,7 @@ SITE_ADMIN_EMAIL = 'pemye@bio.dtu.dk'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['SMTP_SERVER']
-EMAIL_HOST_USER = os.environ['SMTP_LOGIN']
-EMAIL_HOST_PASSWORD = os.environ['SMTP_PASSWORD']
+#EMAIL_HOST_USER = os.environ['SMTP_LOGIN']
+#EMAIL_HOST_PASSWORD = os.environ['SMTP_PASSWORD']
 EMAIL_PORT = os.environ['SMTP_PORT']
-EMAIL_USE_TLS = True
+EMAIL_USE_TLS = False
