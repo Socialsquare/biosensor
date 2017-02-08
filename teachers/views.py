@@ -7,7 +7,7 @@ from django.contrib.auth.hashers import make_password
 
 import hashlib
 
-from .models import Teacher, School
+from .models import Teacher, School, Invitation
 from studentgroups.models import StudentGroup, StudentReport
 from .forms import TeacherSignupForm, StudentGroupForm
 from .decorators import teacher_required, owns_student_group
@@ -41,8 +41,10 @@ def dashboard(request):
     teacher = Teacher.objects.get(user=request.user)
     student_groups = StudentGroup.objects.filter(teacher=teacher)
     student_groups = student_groups.order_by('year', 'grade', 'letter', 'name')
+    active_invitations = Invitation.active_objects.filter(teacher=teacher)
 
     context = {
+        'active_invitations': active_invitations,
         'student_groups': student_groups
     }
     return render(request, 'teachers/dashboard.html', context)
@@ -143,3 +145,12 @@ def show_student_report(request, report_id):
             'report': report,
             }
     return render(request, 'teachers/show_student_report.html', context)
+
+
+@login_required
+@teacher_required
+def new_invitation(request):
+    if request.method == 'POST':
+        teacher = Teacher.objects.get(user=request.user)
+        invitation = Invitation.create(teacher=teacher)
+    return redirect('teachers:dashboard')
