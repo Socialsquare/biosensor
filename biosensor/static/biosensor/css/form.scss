@@ -74,7 +74,7 @@ form {
     background-repeat: no-repeat;
     background-size: $icon-height;
     cursor: pointer;
-    height: calc(1rem * #{$line-height} + .375rem * 2 + 2px);
+    height: calc(1rem * #{$line-height-base} + .375rem * 2 + 2px);
   }
   @media screen and (-webkit-min-device-pixel-ratio:0) {
     select.form-control {
