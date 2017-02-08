@@ -228,6 +228,10 @@ STATICFILES_FINDERS = (
     'compressor.finders.CompressorFinder',
 )
 
+# Using gulp-cli as a non-global package
+GULP_DEVELOP_COMMAND = './node_modules/.bin/gulp'
+GULP_PRODUCTION_COMMAND = './node_modules/.bin/gulp build --production'
+
 LOGOUT_URL = 'account_logout'
 LOGIN_URL = 'account_login'
 
