@@ -35,23 +35,49 @@
               <button class="btn btn-secondary dropdown-toggle"
               type="button" id="dropdownTeacher" data-toggle="dropdown"
               aria-haspopup="true" aria-expanded="false">
-                Lærervejledning
+                Elev
               </button>
               <div class="dropdown-menu" aria-labelledby="dropdownTeacher">
-                <a class="dropdown-item" href="/laerervejledning/indberetningsskema/">Indberetningsskema</a>
-                <a class="dropdown-item" href="/laerervejledning/bestilling/">Bestilling af biosensor kit</a>
-                <a class="dropdown-item" href="/laerervejledning/rapporter/">Rapporter</a>
-                <a class="dropdown-item" href="/laerervejledning/forberedelse">Forberedelse til forsøg</a>
-                <a class="dropdown-item" href="/laerervejledning/manual">Forsøgsmanual og plan</a>
-                <a class="dropdown-item" href="{% url 'teachers:signup' %}">Tilmeld</a>
+                <a class="dropdown-item" href="/elev/introduktion/">Introduktion</a>
+                <a class="dropdown-item" href="/elev/teori/">Teori</a>
+                <a class="dropdown-item" href="/elev/forsoegsvejledning/">Forsøgsvejledning</a>
+                <a class="dropdown-item" href="/elev/loesninger/">Løsninger</a>
+                <a class="dropdown-item" href="/elev/konkurrence/">Konkurrence</a>
+              </div>
+            </div>
+          </li>
+	<li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle"
+              type="button" id="dropdownTeacher" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+                Lærer
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownTeacher">
+		<a class="dropdown-item" href="{% url 'teachers:signup' %}">Tilmeld</a>
+		<a class="dropdown-item" href="/laerer/bestil/">Bestil Biosensor-kit</a>
+                <a class="dropdown-item" href="/laerer/indberetningsskema/">Indberetningsskema</a>
+                <a class="dropdown-item" href="/laerer/sikkerhedsdatablade/">Sikkerhedsdatablade</a>
+		<a class="dropdown-item" href="/laerer/vejledninger">Vejledninger</a>
               </div>
             </div>
           </li>
           <li class="nav-item">
-            <a class="btn btn-secondary" href="/om-biosensor/">Om Biosensor</a>
-          </li>
-          <li class="nav-item">
             <a class="btn btn-secondary" href="/sponsorer/">Sponsorer</a>
+          </li>
+	  <li class="nav-item">
+            <div class="dropdown">
+              <button class="btn btn-secondary dropdown-toggle"
+              type="button" id="dropdownTeacher" data-toggle="dropdown"
+              aria-haspopup="true" aria-expanded="false">
+                Om Biosensor
+              </button>
+              <div class="dropdown-menu" aria-labelledby="dropdownTeacher">
+                <a class="dropdown-item" href="/om-biosensor/biotech-academy/">Biotech Academy</a>
+                <a class="dropdown-item" href="/om-biosensor/igem/">iGEM</a>
+                <a class="dropdown-item" href="/om-biosensor/kontakt/">Kontakt</a>
+              </div>
+            </div>
           </li>
           <li class="nav-item pull-xs-right">
             {% if user.is_authenticated %}
