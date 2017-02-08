@@ -17,12 +17,18 @@ NOSE_ARGS = [
      '--cover-branches',
      '--with-coverage',
      '--cover-erase',
-     '--cover-package=biosensor',
      '--cover-package=bioadmin',
-     '--cover-package=schools',
-     'biosensor',
+     '--cover-package=biobricks',
+     '--cover-package=biosensor',
+     '--cover-package=content',
+     '--cover-package=studentgroups',
+     '--cover-package=teachers',
      'bioadmin',
-     'schools',
+     'biobricks',
+     'biosensor',
+     'content',
+     'studentgroups',
+     'teachers'
 ]
 
 for arg in sys.argv:
