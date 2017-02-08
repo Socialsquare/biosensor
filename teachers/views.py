@@ -13,19 +13,20 @@ from .forms import TeacherSignupForm, StudentGroupForm
 from .decorators import teacher_required, owns_student_group
 from .tasks import send_student_group_notice
 
+
 def signup(request):
     form = TeacherSignupForm()
     if request.method == 'POST':
         form = TeacherSignupForm(request.POST)
         if form.is_valid():
-            new_user = form.save(request) #allauth creates a new user
+            new_user = form.save(request)  # allauth creates a new user
             teacher = Teacher.objects.create(
                     user=new_user,
                     school=form.cleaned_data['school'],
                     subjects=form.cleaned_data['subjects'])
             teacher.save()
             user = authenticate(username=form.cleaned_data['email'],
-                    password=form.cleaned_data['password1'])
+                                password=form.cleaned_data['password1'])
             login(request, user)
             return redirect('homepage')
     context = {
@@ -33,15 +34,19 @@ def signup(request):
     }
     return render(request, 'teachers/signup.html', context)
 
+
 @login_required
 @teacher_required
 def dashboard(request):
     teacher = Teacher.objects.get(user=request.user)
-    student_groups = StudentGroup.objects.filter(teacher=teacher).order_by('year', 'grade', 'letter', 'name')
+    student_groups = StudentGroup.objects.filter(teacher=teacher)
+    student_groups = student_groups.order_by('year', 'grade', 'letter', 'name')
+
     context = {
-            'student_groups': student_groups,
-            }
+        'student_groups': student_groups
+    }
     return render(request, 'teachers/dashboard.html', context)
+
 
 @login_required
 @teacher_required
@@ -76,6 +81,7 @@ def new_student_group(request):
     context = { 'form': form }
     return render(request, 'teachers/student_group.html', context)
 
+
 @login_required
 @owns_student_group
 def delete_student_group(request, student_group_id):
@@ -90,6 +96,7 @@ def delete_student_group(request, student_group_id):
             student_group.delete()
             messages.success(request, "Du har slettet en elevgruppe")
         return redirect('teachers:dashboard')
+
 
 @login_required
 @owns_student_group
@@ -126,6 +133,7 @@ def edit_student_group(request, student_group_id):
             'form': form
             }
     return render(request, 'teachers/student_group.html', context)
+
 
 @login_required
 @teacher_required
