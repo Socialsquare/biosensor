@@ -21,8 +21,8 @@ You need to have these installed on your development machine and on the server
 #### Command line
 
 `cd` into the project root dir  
-`virtualenv -p python3 venv` *initialise python 3 virtual environment*  
-`. venv/bin/activate` *start the virtual environment*  
+`virtualenv -p python3 .venv` *initialise python 3 virtual environment*  
+`. .venv/bin/activate` *start the virtual environment*  
 `pip install -r requirements.txt` *install required python modules*  
 `npm install` *install required node modules*  
 `export DJANGO_SETTINGS_MODULE=biosensor.settings` *tell django where to find the configuration file*  
@@ -64,20 +64,20 @@ In order for email notifications to be sent out, the following environment varia
 #### Run command
 
 `cd` into the project root dir and run
-`. venv/bin/activate && ./manage.py runserver`
+`. .venv/bin/activate && ./manage.py runserver`
 
 #### Database migations
 
 If you make changes to one of the models, make sure to also migrate the database to reflect your changes.
 
 `cd` into the project root dir and run  
-`. venv/bin/activate`  
+`. .venv/bin/activate`  
 `./manage.py makemigrations` *create new migrations based on the changes you have made to your models.*  
 `./manage.py migrate` *apply migrations to update the database*  
 
 #### Update server
 
-We recommend setting up continous deployment using github [webhooks](https://developer.github.com/webhooks/) so any changes pushed to master and/or production branch are automatically reflected on the server. 
+We recommend setting up continous deployment using github [webhooks](https://developer.github.com/webhooks/) so any changes pushed to master and/or production branch are automatically reflected on the server.
 
 &nbsp;
 
@@ -91,15 +91,15 @@ We use [Wagtail](wagtail.io) to serve all content pages, including the welcome t
 2. Create a new site named Biosensor as well as the Host and Port that you will be hosting Biosensor from (usually `localhost` and `8000` during development). Pick the page that has already been created as the root page for the site.
 3. Next go to the root page by clicking "Explorer" in the menu. First rename the root page to something more sensible, e.g. "Root page".
 4. Then create a child page of the root page and name it "Front" (make sure that the slug of this page is “front”, by going to the  "Promote" tab - this will ensure that it gets displayed on the front page as the welcome text).
-5. You can now go on and create more child pages of the root page to set up the pages needed in the main menu. 
+5. You can now go on and create more child pages of the root page to set up the pages needed in the main menu.
 
 #### Menu
 
-The menu is hard-coded within the div with the `navbar-nav` class in [base.html](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/base.html) 
+The menu is hard-coded within the div with the `navbar-nav` class in [base.html](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/base.html)
 
 #### Frontpage video
 
-Change the file ID e.g. `IvUU8joBb1Q` between `embed/` and `?` here on [this line](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/index.html#L16) 
+Change the file ID e.g. `IvUU8joBb1Q` between `embed/` and `?` here on [this line](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/index.html#L16)
 
 &nbsp;
 
