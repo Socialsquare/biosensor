@@ -10,6 +10,16 @@ class StudentSignUpForm(SignupForm):
             max_length=10,
             required=True)
 
+    first_name = forms.CharField(
+        max_length=30,
+        label='Dit fornavn',
+        required=True)
+    last_name = forms.CharField(
+        max_length=30,
+        label='Dit efternavn',
+        required=True)
+    school_class = forms.CharField(max_length=10, label='Din klasse')
+
     def clean(self):
         invitation = Invitation.objects.filter(code=self.cleaned_data['code'])
         if invitation:
