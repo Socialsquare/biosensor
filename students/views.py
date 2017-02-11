@@ -1,14 +1,27 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from teachers.models import Invitation
 from .forms import StudentSignUpForm
+from .models import Student
 
-def new_student(request):
+import logging
+
+logger = logging.getLogger(__name__)
+
+def signup(request):
     form = StudentSignUpForm()
 
     if request.method == 'POST':
-        invitation = Invitation.objects.get(code=code)
-        #if !invitation.has_expired?:
+        form = StudentSignUpForm(request.POST)
+
+        if form.is_valid():
+            new_user = form.save(request)
+            student = Student.objects.create(
+                user=new_user,
+                school=form.cleaned_data['school']
+            )
+            student.save()
+            return redirect('homepage')
 
     context = {
         'form': form
