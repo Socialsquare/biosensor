@@ -2,10 +2,6 @@ from django import forms
 
 from teachers.models import Teacher, Invitation
 from allauth.account.forms import SignupForm
-import logging
-
-logger = logging.getLogger(__name__)
-
 
 class StudentSignUpForm(SignupForm):
     code = forms.fields.CharField(

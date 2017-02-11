@@ -4,10 +4,6 @@ from teachers.models import Invitation
 from .forms import StudentSignUpForm
 from .models import Student
 
-import logging
-
-logger = logging.getLogger(__name__)
-
 def signup(request):
     form = StudentSignUpForm()
 
