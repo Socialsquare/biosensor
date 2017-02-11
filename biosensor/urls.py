@@ -16,6 +16,7 @@ urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^laerere/', include('teachers.urls', namespace='teachers')),
+    url(r'^elev/', include('students.urls', namespace='students')),
     url(r'^elevgruppe/', include('studentgroups.urls', namespace='studentgroups')),
     url(r'^biobrick/', include('biobricks.urls', namespace='biobricks')),
     url(r'^bioadmin/', include('bioadmin.urls', namespace='bioadmin')),

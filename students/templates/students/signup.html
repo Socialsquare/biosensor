@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load bootstrap3 %}
+{% block head_title %}Signup | {{ block.super }}{% endblock %}
+
+{% block main %}
+
+<div class="row">
+  <div class="col-md-6">
+    <h1>Oprettelse af elevkonto</h1>
+    <form class="signup p-t-1" id="signup_form" method="post" action="{% url 'students:signup' %}">
+      {% csrf_token %}
+      {% bootstrap_form_errors form %}
+      {% bootstrap_field form.code %}
+      <div class="p-y-1"></div>
+      {% bootstrap_field form.email %}
+      {% bootstrap_field form.password1 %}
+      {% bootstrap_field form.password2 %}
+      {% bootstrap_field form.confirmation_key %}
+      {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+      {% endif %}
+      <button id="user-signup" class="btn btn-primary m-t-2" type="submit">Opret lærerkonto</button>
+    </form>
+  </div>
+</div>
+
+{% endblock %}
