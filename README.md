@@ -8,6 +8,20 @@ Biosensor is a django based web app built as an open source project under a MIT 
 
 &nbsp;
 
+## Update the production server
+
+1. SSH into the server: `ssh biosensor.dk`
+2. Change directory: `cd /var/www/biosensor`
+3. Change user to pernye: `sudo su pernye` (optional)
+4. Check out the production branch: `git checkout production` (optional)
+5. Pull the latest changes from GitHub: `git pull origin production` (optional)
+6. Build the static assets using Gulp: `npm start build`
+7. Migrate the database (if something changed in the model):
+  1. Activate the virtual env `. .venv/bin/activate`
+  2. Migrate the database `./manage.py migrate`
+8. Restart the apache2 webserver `sudo service apache2 restart`
+
+
 ## Setup  
 
 #### Requirements  
@@ -77,7 +91,7 @@ If you make changes to one of the models, make sure to also migrate the database
 
 #### Update server
 
-We recommend setting up continous deployment using github [webhooks](https://developer.github.com/webhooks/) so any changes pushed to master and/or production branch are automatically reflected on the server. 
+We recommend setting up continous deployment using github [webhooks](https://developer.github.com/webhooks/) so any changes pushed to master and/or production branch are automatically reflected on the server.
 
 &nbsp;
 
@@ -91,15 +105,15 @@ We use [Wagtail](wagtail.io) to serve all content pages, including the welcome t
 2. Create a new site named Biosensor as well as the Host and Port that you will be hosting Biosensor from (usually `localhost` and `8000` during development). Pick the page that has already been created as the root page for the site.
 3. Next go to the root page by clicking "Explorer" in the menu. First rename the root page to something more sensible, e.g. "Root page".
 4. Then create a child page of the root page and name it "Front" (make sure that the slug of this page is “front”, by going to the  "Promote" tab - this will ensure that it gets displayed on the front page as the welcome text).
-5. You can now go on and create more child pages of the root page to set up the pages needed in the main menu. 
+5. You can now go on and create more child pages of the root page to set up the pages needed in the main menu.
 
 #### Menu
 
-The menu is hard-coded within the div with the `navbar-nav` class in [base.html](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/base.html) 
+The menu is hard-coded within the div with the `navbar-nav` class in [base.html](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/base.html)
 
 #### Frontpage video
 
-Change the file ID e.g. `IvUU8joBb1Q` between `embed/` and `?` here on [this line](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/index.html#L16) 
+Change the file ID e.g. `IvUU8joBb1Q` between `embed/` and `?` here on [this line](https://github.com/Socialsquare/biosensor/blob/master/biosensor/templates/index.html#L16)
 
 &nbsp;
 
