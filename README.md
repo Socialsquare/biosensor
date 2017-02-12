@@ -35,8 +35,8 @@ You need to have these installed on your development machine and on the server
 #### Command line
 
 `cd` into the project root dir  
-`virtualenv -p python3 venv` *initialise python 3 virtual environment*  
-`. venv/bin/activate` *start the virtual environment*  
+`virtualenv -p python3 .venv` *initialise python 3 virtual environment*  
+`. .venv/bin/activate` *start the virtual environment*  
 `pip install -r requirements.txt` *install required python modules*  
 `npm install` *install required node modules*  
 `export DJANGO_SETTINGS_MODULE=biosensor.settings` *tell django where to find the configuration file*  
@@ -78,14 +78,14 @@ In order for email notifications to be sent out, the following environment varia
 #### Run command
 
 `cd` into the project root dir and run
-`. venv/bin/activate && ./manage.py runserver`
+`. .venv/bin/activate && ./manage.py runserver`
 
 #### Database migations
 
 If you make changes to one of the models, make sure to also migrate the database to reflect your changes.
 
 `cd` into the project root dir and run  
-`. venv/bin/activate`  
+`. .venv/bin/activate`  
 `./manage.py makemigrations` *create new migrations based on the changes you have made to your models.*  
 `./manage.py migrate` *apply migrations to update the database*  
 
