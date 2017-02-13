@@ -76,20 +76,17 @@
 
   <div class="col-md-4">
     <h2>Elevinvitationer</h2>
-    {% if active_invitations %}
-      {% for invitation in active_invitations %}
-      <div class="card">
-        <div class="card-block">
-          Kode: <samp>{{ invitation.code }}</samp>
-        </div>
-        <div class="card-footer text-muted">
-          Udløber: {{ invitation.get_expiry|naturaltime }}
-        </div>
+    <p>En invitation kan deles med elever, som derigennem kan oprette brugere der tilknyttes jeres skole.</p>
+    {% for invitation in active_invitations %}
+    <div class="card">
+      <div class="card-block">
+        Kode: <samp>{{ invitation.code }}</samp>
       </div>
-      {% endfor %}
-    {% else %}
-      <p>En invitation kan deles med elever, som derigennem kan oprette brugere der tilknyttes jeres skole.</p>
-    {% endif %}
+      <div class="card-footer text-muted">
+        Udløber: {{ invitation.get_expiry|naturaltime }}
+      </div>
+    </div>
+    {% endfor %}
     <form action="{% url 'teachers:new_invitation' %}" method="POST">
       {% csrf_token %}
       <button class="m-y-1 btn btn-primary">

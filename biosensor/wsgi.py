@@ -19,6 +19,6 @@ ENVIRON_KEYS = ['DJANGO_ENV', 'DJANGO_SECRET_KEY', 'DATABASE_URL', 'SMTP_SERVER'
 def application(environ, start_response):
     # Moves environment variables from the apache config to the os.environ dict
     for k in ENVIRON_KEYS:
-        os.environ[k] = environ.get(k, '')
+        os.environ[k] = environ.get(k, os.environ.get(k, ''))
     application = get_wsgi_application()
     return DjangoWhiteNoise(application)(environ, start_response)
