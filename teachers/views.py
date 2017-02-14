@@ -28,6 +28,8 @@ def signup(request):
             user = authenticate(username=form.cleaned_data['email'],
                                 password=form.cleaned_data['password1'])
             login(request, user)
+            msg = "Velkommen til biosensor. Tjek %s for at bekræfte din konto." % form.cleaned_data['email']
+            messages.success(request, msg)
             return redirect('homepage')
     context = {
         'form': form

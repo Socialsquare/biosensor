@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib import messages
 
 from teachers.models import Invitation
 from .forms import StudentSignUpForm
@@ -17,6 +18,8 @@ def signup(request):
                 school=form.cleaned_data['school']
             )
             student.save()
+            msg = "Velkommen til biosensor. Tjek %s for at bekræfte din konto." % form.cleaned_data['email']
+            messages.success(request, msg)
             return redirect('homepage')
 
     context = {
