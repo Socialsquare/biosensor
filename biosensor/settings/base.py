@@ -80,6 +80,7 @@ INSTALLED_APPS = [
 
     'bioadmin',
     'teachers',
+    'students',
     'studentgroups',
     'biobricks',
     'content',
