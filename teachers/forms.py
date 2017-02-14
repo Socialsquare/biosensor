@@ -15,12 +15,13 @@ class TeacherSignupForm(SignupForm):
             empty_label='',
             required=True)
     school_passwd = forms.fields.CharField(
-            widget=forms.PasswordInput(),
             label='Skolens adgangskode',
+            widget=forms.PasswordInput(attrs={'placeholder': 'Skoleadgangskode'}),
             max_length=100,
             required=True)
     subjects = forms.fields.CharField(
         label='Dine fag',
+        widget=forms.TextInput(attrs={'placeholder': 'Fag'}),
         required=True,
         max_length=100
     )

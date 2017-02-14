@@ -5,18 +5,21 @@ from allauth.account.forms import SignupForm
 
 class StudentSignUpForm(SignupForm):
     code = forms.fields.CharField(
-            widget=forms.TextInput(),
-            label='Indtast klassekoden',
-            max_length=10,
-            required=True)
+        label='Indtast klassekoden',
+        widget=forms.TextInput(attrs={'placeholder': 'Klassekode'}),
+        max_length=10,
+        required=True)
 
     first_name = forms.CharField(
-        max_length=30,
         label='Dit fornavn',
-        required=True)
-    last_name = forms.CharField(
+        widget=forms.TextInput(attrs={'placeholder': 'Fornavn'}),
         max_length=30,
+        required=True)
+
+    last_name = forms.CharField(
         label='Dit efternavn',
+        widget=forms.TextInput(attrs={'placeholder': 'Efternavn'}),
+        max_length=30,
         required=True)
 
     def __init__(self, *args, **kwargs):
