@@ -9,16 +9,17 @@
     <h1>Oprettelse af elevkonto</h1>
     <form class="signup p-t-1" id="signup_form" method="post" action="{% url 'students:signup' %}">
       {% csrf_token %}
+      {% bootstrap_field form.code %}
+      <div class="p-y-1"></div>
+
       {% bootstrap_form_errors form %}
       {% bootstrap_field form.email %}
       {% bootstrap_field form.first_name %}
       {% bootstrap_field form.last_name %}
-      {% bootstrap_field form.school_class %}
       {% bootstrap_field form.password1 %}
       {% bootstrap_field form.password2 %}
       {% bootstrap_field form.confirmation_key %}
-      <div class="p-y-1"></div>
-      {% bootstrap_field form.code %}
+
       {% if redirect_field_value %}
       <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
       {% endif %}

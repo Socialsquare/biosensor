@@ -6,7 +6,7 @@ from allauth.account.forms import SignupForm
 class StudentSignUpForm(SignupForm):
     code = forms.fields.CharField(
             widget=forms.TextInput(),
-            label='Tilmeldingskoden fra din lærer',
+            label='Indtast klassekoden',
             max_length=10,
             required=True)
 
@@ -18,7 +18,12 @@ class StudentSignUpForm(SignupForm):
         max_length=30,
         label='Dit efternavn',
         required=True)
-    school_class = forms.CharField(max_length=10, label='Din klasse')
+
+    def __init__(self, *args, **kwargs):
+        super(SignupForm, self).__init__(*args, **kwargs)
+        self.fields['email'].label = 'Din email'
+        self.fields['password1'].label = 'Din adgangskode'
+        self.fields['password2'].label = 'Gentag din adgangskode'
 
     def clean(self):
         invitation = Invitation.objects.filter(code=self.cleaned_data['code'])

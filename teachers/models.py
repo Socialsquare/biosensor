@@ -9,7 +9,6 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
 
-
 class School(models.Model):
     class Meta:
         ordering = ['name']

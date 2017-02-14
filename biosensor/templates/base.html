@@ -90,6 +90,8 @@
                     Lærer
                   {% elif user.is_student_group %}
                     Elevgruppe
+                  {% elif user.is_student %}
+                    Elev
                   {% elif user.is_staff %}
                     Admin
                   {% endif %}
