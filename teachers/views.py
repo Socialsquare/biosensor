@@ -25,9 +25,7 @@ def signup(request):
                     school=form.cleaned_data['school'],
                     subjects=form.cleaned_data['subjects'])
             teacher.save()
-            user = authenticate(username=form.cleaned_data['email'],
-                                password=form.cleaned_data['password1'])
-            login(request, user)
+            
             msg = "Velkommen til biosensor. Tjek %s for at bekræfte din konto." % form.cleaned_data['email']
             messages.success(request, msg)
             return redirect('homepage')
