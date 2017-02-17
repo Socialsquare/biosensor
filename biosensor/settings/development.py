@@ -65,5 +65,9 @@ LOGGING = {
             'handlers': ['console'],
             'level': 'DEBUG',
         },
+        'biosensor-tests': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
     },
 }
