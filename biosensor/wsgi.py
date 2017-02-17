@@ -14,7 +14,14 @@ from whitenoise.django import DjangoWhiteNoise
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "biosensor.settings")
 
-ENVIRON_KEYS = ['DJANGO_ENV', 'DJANGO_SECRET_KEY', 'DATABASE_URL', 'SMTP_SERVER', 'SMTP_PORT']
+ENVIRON_KEYS = [
+    'DJANGO_ENV',
+    'DJANGO_SECRET_KEY',
+    'DATABASE_URL',
+    'SMTP_SERVER',
+    'SMTP_PORT'
+]
+
 
 def application(environ, start_response):
     # Moves environment variables from the apache config to the os.environ dict
