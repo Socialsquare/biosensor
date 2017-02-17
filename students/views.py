@@ -1,9 +1,14 @@
-from django.shortcuts import render, redirect
+from django.conf import settings
 from django.contrib import messages
+from django.shortcuts import render, redirect
+from django.core.urlresolvers import reverse
+
+from allauth.account.utils import complete_signup
 
 from teachers.models import Invitation
 from .forms import StudentSignUpForm
 from .models import Student
+
 
 def signup(request):
     form = StudentSignUpForm()
@@ -18,7 +23,12 @@ def signup(request):
                 school=form.cleaned_data['school']
             )
             student.save()
-            return redirect('account_email_verification_sent')
+            return complete_signup(
+                request,
+                new_user,
+                settings.ACCOUNT_EMAIL_VERIFICATION,
+                reverse('account_email_verification_sent')
+            )
 
     context = {
         'form': form

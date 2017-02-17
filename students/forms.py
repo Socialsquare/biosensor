@@ -9,19 +9,22 @@ class StudentSignUpForm(SignupForm):
         label='Indtast klassekoden',
         widget=forms.TextInput(attrs={'placeholder': 'Klassekode'}),
         max_length=10,
-        required=True)
+        required=True
+    )
 
     first_name = forms.CharField(
         label='Dit fornavn',
         widget=forms.TextInput(attrs={'placeholder': 'Fornavn'}),
         max_length=30,
-        required=True)
+        required=True
+    )
 
     last_name = forms.CharField(
         label='Dit efternavn',
         widget=forms.TextInput(attrs={'placeholder': 'Efternavn'}),
         max_length=30,
-        required=True)
+        required=True
+    )
 
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__(*args, **kwargs)

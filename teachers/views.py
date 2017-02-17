@@ -1,10 +1,13 @@
+from django.conf import settings
 from django.contrib import messages
-from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
+from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
+from django.shortcuts import render, redirect, get_object_or_404
 
+from allauth.account.utils import complete_signup
 import hashlib
 
 from .models import Teacher, School, Schoolclass, Invitation
@@ -25,8 +28,12 @@ def signup(request):
                     school=form.cleaned_data['school'],
                     subjects=form.cleaned_data['subjects'])
             teacher.save()
-
-            return redirect('account_email_verification_sent')
+            return complete_signup(
+                request,
+                new_user,
+                settings.ACCOUNT_EMAIL_VERIFICATION,
+                reverse('account_email_verification_sent')
+            )
     context = {
         'form': form
     }
