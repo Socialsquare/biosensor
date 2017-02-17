@@ -18,9 +18,7 @@ def signup(request):
                 school=form.cleaned_data['school']
             )
             student.save()
-            msg = "Velkommen til biosensor. Tjek %s for at bekræfte din konto." % form.cleaned_data['email']
-            messages.success(request, msg)
-            return redirect('homepage')
+            return redirect('account_email_verification_sent')
 
     context = {
         'form': form
