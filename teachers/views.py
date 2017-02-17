@@ -7,9 +7,9 @@ from django.contrib.auth.hashers import make_password
 
 import hashlib
 
-from .models import Teacher, School, Invitation
+from .models import Teacher, School, Schoolclass, Invitation
 from studentgroups.models import StudentGroup, StudentReport
-from .forms import TeacherSignupForm, StudentGroupForm
+from .forms import TeacherSignupForm, StudentGroupForm, SchoolclassForm
 from .decorators import teacher_required, owns_student_group
 from .tasks import send_student_group_notice
 
@@ -39,13 +39,37 @@ def dashboard(request):
     teacher = Teacher.objects.get(user=request.user)
     student_groups = StudentGroup.objects.filter(teacher=teacher)
     student_groups = student_groups.order_by('year', 'grade', 'letter', 'name')
-    active_invitations = Invitation.active_objects.filter(teacher=teacher)
-
+    school_classes = Schoolclass.objects.filter(school=teacher.school)
+    #active_invitations = Invitation.active_objects.filter(teacher=teacher)
+    #TODO add active invitations to school class overview
     context = {
-        'active_invitations': active_invitations,
+        'school_classes': school_classes,
         'student_groups': student_groups
     }
     return render(request, 'teachers/dashboard.html', context)
+
+
+@login_required
+@teacher_required
+def new_school_class(request):
+    form = SchoolclassForm()
+
+    if request.method == 'POST':
+        form = SchoolclassForm(request.POST)
+        school = Teacher.objects.get(user=request.user).school
+        if form.is_valid():
+            school_class = Schoolclass.objects.create(
+                enrollment_year=form.cleaned_data['enrollment_year'],
+                letter=form.cleaned_data['letter'],
+                study_field=form.cleaned_data['study_field'],
+                school=school
+            )
+
+            school_class.save()
+
+            return redirect('teachers:dashboard')
+    context = {'form': form}
+    return render(request, 'teachers/new_school_class.html', context)
 
 
 @login_required
@@ -78,7 +102,7 @@ def new_student_group(request):
                     passwd)
             return redirect('teachers:dashboard')
 
-    context = { 'form': form }
+    context = {'form': form}
     return render(request, 'teachers/student_group.html', context)
 
 
@@ -149,6 +173,6 @@ def show_student_report(request, report_id):
 @teacher_required
 def new_invitation(request):
     if request.method == 'POST':
-        teacher = Teacher.objects.get(user=request.user)
-        invitation = Invitation.create(teacher=teacher)
+        school_class = Schoolclass.objects.get(request.school_class)
+        invitation = Invitation.create(school_class=school_class)
     return redirect('teachers:dashboard')

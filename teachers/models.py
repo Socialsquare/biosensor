@@ -9,6 +9,7 @@ from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
 
+
 class School(models.Model):
     class Meta:
         ordering = ['name']
@@ -41,6 +42,13 @@ def is_teacher(user):
 auth.models.User.add_to_class('is_teacher', is_teacher)
 
 
+class Schoolclass(models.Model):
+    school = models.ForeignKey('School')
+    enrollment_year = models.PositiveIntegerField(blank=False)
+    letter = models.CharField(blank=False, max_length=10)
+    study_field = models.CharField(blank=False, max_length=20)
+
+
 class ActiveInvitationManager(models.Manager):
     def get_queryset(self):
         queryset = super(ActiveInvitationManager, self).get_queryset()
@@ -53,7 +61,9 @@ class Invitation(models.Model):
     EXPIRATION_DELTA = timedelta(days=7)
     CODE_LENGTH = 6
 
-    teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
+    school_class = models.OneToOneField(Schoolclass,
+                                        on_delete=models.CASCADE,
+                                        null=True)
     code = models.TextField(max_length=10, blank=False)
     created = models.DateTimeField(auto_now_add=True)
 
@@ -70,9 +80,9 @@ class Invitation(models.Model):
         LENGTH = Invitation.CODE_LENGTH
         return ''.join(random.choice(string.digits) for _ in range(LENGTH))
 
-    def create(teacher):
+    def create(school_class):
         code = Invitation.generate_code()
-        return Invitation.objects.create(teacher=teacher, code=code)
+        return Invitation.objects.create(school_class=school_class, code=code)
 
     def __str__(self):
         expired_maybe = ' (udløbet)' if self.has_expired() else ''

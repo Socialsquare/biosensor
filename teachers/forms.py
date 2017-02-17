@@ -9,16 +9,18 @@ from string import ascii_lowercase
 
 import hashlib
 
+
 class TeacherSignupForm(SignupForm):
-    school = forms.ModelChoiceField(label='Skole',
-            queryset=School.objects.all(),
-            empty_label='',
-            required=True)
+    school = forms.ModelChoiceField(
+        label='Skole',
+        queryset=School.objects.all(),
+        empty_label='',
+        required=True)
     school_passwd = forms.fields.CharField(
-            label='Skolens adgangskode',
-            widget=forms.PasswordInput(attrs={'placeholder': 'Skoleadgangskode'}),
-            max_length=100,
-            required=True)
+        label='Skolens adgangskode',
+        widget=forms.PasswordInput(attrs={'placeholder': 'Skoleadgangskode'}),
+        max_length=100,
+        required=True)
     subjects = forms.fields.CharField(
         label='Dine fag',
         widget=forms.TextInput(attrs={'placeholder': 'Fag'}),
@@ -39,11 +41,33 @@ class TeacherSignupForm(SignupForm):
         school = School.objects.filter(id=school_id).filter(password=hashed_passwd)
         if not school:
             raise forms.ValidationError({
-                'school_passwd': ["Du har angivet en forkert adgangskode",]
+                    'school_passwd': ["Du har angivet en forkert adgangskode",]
                 })
         return self.cleaned_data
 
-YEAR_CHOICES = [('', '')] + [(y, y) for y in range(datetime.datetime.now().year, (datetime.datetime.now().year + 4))]
+
+YEAR_CHOICES = [('', '')] + [(y, y) for y in range(datetime.datetime.now().year - 4, (datetime.datetime.now().year + 1))]
+
+
+class SchoolclassForm(forms.Form):
+    letter = forms.fields.CharField(
+        label='Bogstav/navn',
+        widget=forms.TextInput(),
+        required=True,
+        max_length=5
+    )
+    study_field = forms.fields.CharField(
+        label='Studieretning',
+        widget=forms.TextInput(),
+        required=True,
+        max_length=20
+    )
+    enrollment_year = forms.fields.ChoiceField(
+        widget=forms.Select, choices=YEAR_CHOICES,
+        label='Optagelsesår',
+        required=True)
+
+
 class StudentGroupForm(forms.Form):
     group_id = forms.fields.IntegerField(
             widget=forms.HiddenInput(),

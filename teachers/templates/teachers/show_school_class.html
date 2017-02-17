@@ -1,0 +1,68 @@
+<!-- This is the markup that was on the main page of the dashboard before,
+which you be reused here -->
+
+<div class="col-md-8">
+  <h2>Elevgrupper</h2>
+  <a class="m-y-1 btn btn-primary" href="{% url 'teachers:new_student_group' %}">
+    <span class="center-y">
+      Opret ny elevgruppe
+      <svg role="img" class="icon" title="Opret ny elevgruppe">
+        <use xlink:href="/static/sprite.svg#sprite_group_add"/>
+      </svg>
+    </span>
+  </a>
+
+  {% if student_groups %}
+  <button class="m-y-1 btn btn-secondary edit-mode">
+    <span class="center-y">
+      Redigér
+      <svg role="img" class="icon" title="Rediger gruppe">
+        <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
+      </svg>
+    </span>
+  </button>
+    <div class="row">
+    {% for group in student_groups %}
+      {% ifchanged group.grade group.letter group.year %}
+        <div class="m-t-2 col-xs-12">
+          <h2>{{group.grade}}.{{group.letter}} {{group.year}}</h2>
+        </div>
+      {% endifchanged %}
+      <div class="col-md-4 m-y-1">
+        <div class="student-group">
+          <h3 class="student-group__heading">{{group.name}}</h3>
+          <a class="student-group__delete" href="{% url 'teachers:delete_student_group' group.id %}">
+            <svg role="img" class="icon" title="Slet gruppe">
+              <use xlink:href="/static/sprite.svg#sprite_delete"/>
+            </svg>
+          </a>
+          <a class="student-group__edit" href="{% url 'teachers:edit_student_group' group.id %}">
+            <svg role="img" class="icon" title="Rediger gruppe">
+              <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
+            </svg>
+          </a>
+        </div>
+
+        {% if group.biosensors_ %}
+        <ul class="no-list-style">
+          {% for biosensor in group.biosensors_ %}
+          <li class="center-y">
+            {% if biosensor.has_student_report %}
+              <a href="{% url 'teachers:show_student_report' biosensor.student_report.id %}">
+            {% endif %}
+                <svg role="img" class="icon" title="Se rapport">
+                  <use xlink:href="/static/sprite.svg#sprite_description"/>
+                </svg>
+            {% if biosensor.has_student_report %}
+              </a>
+            {% endif %}
+            <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">{{biosensor.name}}</a>
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    {% endfor %}
+    </div>
+  {% endif %}
+</div>
