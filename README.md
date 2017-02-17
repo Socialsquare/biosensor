@@ -12,9 +12,9 @@ Biosensor is a django based web app built as an open source project under a MIT 
 
 1. SSH into the server: `ssh biosensor.dk`
 2. Change directory: `cd /var/www/biosensor`
-3. Change user to pernye: `sudo su pernye` (optional)
-4. Check out the production branch: `git checkout production` (optional)
-5. Pull the latest changes from GitHub: `git pull origin production` (optional)
+3. Change user to pernye: `sudo su pernye` (if you are not already pernye)
+4. Check out the production branch: `git checkout production` (if not already on that branch)
+5. Pull the latest changes from GitHub: `git pull origin production`
 6. Build the static assets using Gulp: `npm start build`
 7. Migrate the database (if something changed in the model):
   1. Activate the virtual env `. .venv/bin/activate`
