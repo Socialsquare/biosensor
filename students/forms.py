@@ -3,24 +3,28 @@ from django import forms
 from teachers.models import Teacher, Invitation
 from allauth.account.forms import SignupForm
 
+
 class StudentSignUpForm(SignupForm):
     code = forms.fields.CharField(
         label='Indtast klassekoden',
         widget=forms.TextInput(attrs={'placeholder': 'Klassekode'}),
         max_length=10,
-        required=True)
+        required=True
+    )
 
     first_name = forms.CharField(
         label='Dit fornavn',
         widget=forms.TextInput(attrs={'placeholder': 'Fornavn'}),
         max_length=30,
-        required=True)
+        required=True
+    )
 
     last_name = forms.CharField(
         label='Dit efternavn',
         widget=forms.TextInput(attrs={'placeholder': 'Efternavn'}),
         max_length=30,
-        required=True)
+        required=True
+    )
 
     def __init__(self, *args, **kwargs):
         super(SignupForm, self).__init__(*args, **kwargs)
@@ -33,12 +37,12 @@ class StudentSignUpForm(SignupForm):
         if invitation:
             if invitation[0].has_expired():
                 raise forms.ValidationError({
-                    'code': ["Tilmeldingskoden er udløbet",]
-                    })
+                    'code': ["Tilmeldingskoden er udløbet", ]
+                })
         else:
             raise forms.ValidationError({
-                'code': ["Du har angivet en forkert tilmeldingskode",]
-                })
+                'code': ["Du har angivet en forkert tilmeldingskode", ]
+            })
 
         self.cleaned_data['school'] = invitation[0].teacher.school
         return self.cleaned_data
