@@ -11,7 +11,7 @@ class Student(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '%s fra %s' % (self.user.email, self.school)
+        return '%s fra %s' % (self.user.email, self.school_class)
 
 
 def is_student(user):

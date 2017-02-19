@@ -5,7 +5,6 @@ from django.core.urlresolvers import reverse
 
 from allauth.account.utils import complete_signup
 
-from teachers.models import Invitation
 from .forms import StudentSignUpForm
 from .models import Student
 
@@ -20,7 +19,7 @@ def signup(request):
             new_user = form.save(request)
             student = Student.objects.create(
                 user=new_user,
-                school=form.cleaned_data['school']
+                school_class=form.cleaned_data['school_class']
             )
             student.save()
             return complete_signup(

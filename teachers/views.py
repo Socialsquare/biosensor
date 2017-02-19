@@ -10,7 +10,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from allauth.account.utils import complete_signup
 import hashlib
 
-from .models import Teacher, School, SchoolClass, Invitation
+from .models import Teacher, School, SchoolClass, SchoolClassCode
 from studentgroups.models import StudentGroup, StudentReport
 from .forms import TeacherSignupForm, StudentGroupForm, SchoolClassForm
 from .decorators import teacher_required, owns_student_group
@@ -47,8 +47,6 @@ def dashboard(request):
     student_groups = StudentGroup.objects.filter(teacher=teacher)
     student_groups = student_groups.order_by('year', 'grade', 'letter', 'name')
     school_classes = SchoolClass.objects.filter(school=teacher.school)
-    #active_invitations = Invitation.active_objects.filter(teacher=teacher)
-    #TODO add active invitations to school class overview
     context = {
         'school_classes': school_classes,
         'student_groups': student_groups
@@ -77,6 +75,17 @@ def new_school_class(request):
             return redirect('teachers:dashboard')
     context = {'form': form}
     return render(request, 'teachers/new_school_class.html', context)
+
+
+@login_required
+@teacher_required
+def show_school_class(request, school_class_id):
+    school_class = get_object_or_404(SchoolClass, id=school_class_id)
+    print(dir(school_class))
+    context = {
+        'school_class': school_class,
+    }
+    return render(request, 'teachers/show_school_class.html', context)
 
 
 @login_required
@@ -178,8 +187,11 @@ def show_student_report(request, report_id):
 
 @login_required
 @teacher_required
-def new_invitation(request):
+def new_school_class_code(request, school_class_id):
+    school_class = get_object_or_404(SchoolClass, id=school_class_id)
     if request.method == 'POST':
-        school_class = SchoolClass.objects.get(request.school_class)
-        invitation = Invitation.create(school_class=school_class)
-    return redirect('teachers:dashboard')
+        # Delete any class codes associated with the school
+        SchoolClassCode.objects.filter(school_class=school_class).delete()
+        # And then create a new
+        school_class_code = SchoolClassCode.create(school_class=school_class)
+    return redirect('teachers:show_school_class', school_class.id)

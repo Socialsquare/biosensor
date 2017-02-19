@@ -1,6 +1,6 @@
 from django import forms
 
-from teachers.models import Teacher, Invitation
+from teachers.models import Teacher, SchoolClassCode
 from allauth.account.forms import SignupForm
 
 
@@ -33,16 +33,18 @@ class StudentSignUpForm(SignupForm):
         self.fields['password2'].label = 'Gentag din adgangskode'
 
     def clean(self):
-        invitation = Invitation.objects.filter(code=self.cleaned_data['code'])
-        if invitation:
-            if invitation[0].has_expired():
+        school_class_code = SchoolClassCode.objects.filter(
+            code=self.cleaned_data['code']
+        )
+        if school_class_code:
+            if school_class_code[0].has_expired():
                 raise forms.ValidationError({
                     'code': ["Tilmeldingskoden er udløbet"]
-                    })
+                })
         else:
             raise forms.ValidationError({
                 'code': ["Du har angivet en forkert tilmeldingskode"]
-                })
+            })
 
-        self.cleaned_data['school_class'] = invitation[0].school_class
+        self.cleaned_data['school_class'] = school_class_code[0].school_class
         return self.cleaned_data

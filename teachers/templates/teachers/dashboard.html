@@ -7,51 +7,28 @@
 
 <h1>Dashboard</h1>
 
-<div class="row">
-  <div class="col-md-4">
-    <h2>Klasser</h2>
-    <a class="m-b-1 btn btn-primary" href="{% url 'teachers:new_school_class' %}">
-      <span class="center-y">
-        Opret ny klasse
-        <svg role="img" class="icon" title="Opret ny klasse">
-          <use xlink:href="/static/sprite.svg#sprite_group_add"/>
-        </svg>
-      </span>
-    </a>
-    {% for school_class in school_classes %}
-        <div class="card">
-          <div class="card-block">
-            <strong>{{ school_class.study_field }}</strong> - {{ school_class.enrollment_year }}{{ school_class.letter }}
-          </div>
-      </div>
-    {% endfor %}
-  </div>
+<h2>Klasser</h2>
 
-  <div class="col-md-4 col-md-offset-4">
-    <h2>Elevinvitationer</h2>
-    <p>En invitation kan deles med elever, som derigennem kan oprette brugere der tilknyttes jeres skole.</p>
-    {% for invitation in active_invitations %}
-    <div class="card">
+<div class="row">
+  {% for school_class in school_classes %}
+  <div class="col-md-4">
+    <a class="card" href="{% url 'teachers:show_school_class' school_class.id %}">
       <div class="card-block">
-        Kode: <samp>{{ invitation.code }}</samp>
+        <strong>{{ school_class.study_field }}</strong>
+         - {{ school_class.enrollment_year }}{{ school_class.letter }}
       </div>
-      <div class="card-footer text-muted">
-        Udløber: {{ invitation.get_expiry|naturaltime }}
-      </div>
-    </div>
-    {% endfor %}
-    <form action="{% url 'teachers:new_invitation' %}" method="POST">
-      {% csrf_token %}
-      <button class="m-y-1 btn btn-primary">
-        <span class="center-y">
-          Opret ny invitation
-          <svg role="img" class="icon" title="Opret ny invitation">
-            <use xlink:href="/static/sprite.svg#sprite_add"/>
-          </svg>
-        </span>
-      </button>
-    </form>
+    </a>
   </div>
+  {% endfor %}
 </div>
+
+<a class="m-b-1 btn btn-primary" href="{% url 'teachers:new_school_class' %}">
+  <span class="center-y">
+    Opret ny klasse
+    <svg role="img" class="icon" title="Opret ny klasse">
+      <use xlink:href="/static/sprite.svg#sprite_group_add"/>
+    </svg>
+  </span>
+</a>
 
 {% endblock %}

@@ -48,27 +48,36 @@ class SchoolClass(models.Model):
     letter = models.CharField(blank=False, max_length=10)
     study_field = models.CharField(blank=False, max_length=20)
 
+    def __str__(self):
+        return '%s %s-klasse årgang %d fra %s' % (
+            self.study_field,
+            self.letter,
+            self.enrollment_year,
+            self.school
+        )
 
-class ActiveInvitationManager(models.Manager):
+
+class ActiveSchoolClassCodeManager(models.Manager):
     def get_queryset(self):
-        queryset = super(ActiveInvitationManager, self).get_queryset()
+        queryset = super(ActiveSchoolClassCodeManager, self).get_queryset()
         now = timezone.now()
-        created_before = now - Invitation.EXPIRATION_DELTA
+        created_before = now - SchoolClassCode.EXPIRATION_DELTA
         return queryset.filter(created__gt=created_before)
 
 
-class Invitation(models.Model):
+class SchoolClassCode(models.Model):
     EXPIRATION_DELTA = timedelta(days=7)
     CODE_LENGTH = 6
 
     school_class = models.OneToOneField(SchoolClass,
                                         on_delete=models.CASCADE,
-                                        null=True)
+                                        null=True,
+                                        related_name='school_class_code')
     code = models.TextField(max_length=10, blank=False)
     created = models.DateTimeField(auto_now_add=True)
 
     objects = models.Manager()
-    active_objects = ActiveInvitationManager()
+    active_objects = ActiveSchoolClassCodeManager()
 
     def get_expiry(self):
         return self.created + self.EXPIRATION_DELTA
@@ -77,13 +86,14 @@ class Invitation(models.Model):
         return timezone.now() > self.get_expiry()
 
     def generate_code():
-        LENGTH = Invitation.CODE_LENGTH
+        LENGTH = SchoolClassCode.CODE_LENGTH
         return ''.join(random.choice(string.digits) for _ in range(LENGTH))
 
     def create(school_class):
-        code = Invitation.generate_code()
-        return Invitation.objects.create(school_class=school_class, code=code)
+        code = SchoolClassCode.generate_code()
+        return SchoolClassCode.objects.create(school_class=school_class,
+                                              code=code)
 
     def __str__(self):
         expired_maybe = ' (udløbet)' if self.has_expired() else ''
-        return 'Invitationskode %s%s' % (self.code, expired_maybe)
+        return 'Klassekode %s%s' % (self.code, expired_maybe)
