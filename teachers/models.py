@@ -42,7 +42,7 @@ def is_teacher(user):
 auth.models.User.add_to_class('is_teacher', is_teacher)
 
 
-class Schoolclass(models.Model):
+class SchoolClass(models.Model):
     school = models.ForeignKey('School')
     enrollment_year = models.PositiveIntegerField(blank=False)
     letter = models.CharField(blank=False, max_length=10)
@@ -61,7 +61,7 @@ class Invitation(models.Model):
     EXPIRATION_DELTA = timedelta(days=7)
     CODE_LENGTH = 6
 
-    school_class = models.OneToOneField(Schoolclass,
+    school_class = models.OneToOneField(SchoolClass,
                                         on_delete=models.CASCADE,
                                         null=True)
     code = models.TextField(max_length=10, blank=False)

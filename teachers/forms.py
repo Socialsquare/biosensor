@@ -49,7 +49,7 @@ class TeacherSignupForm(SignupForm):
 YEAR_CHOICES = [('', '')] + [(y, y) for y in range(datetime.datetime.now().year - 4, (datetime.datetime.now().year + 1))]
 
 
-class SchoolclassForm(forms.Form):
+class SchoolClassForm(forms.Form):
     letter = forms.fields.CharField(
         label='Bogstav/navn',
         widget=forms.TextInput(),

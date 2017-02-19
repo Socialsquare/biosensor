@@ -10,9 +10,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from allauth.account.utils import complete_signup
 import hashlib
 
-from .models import Teacher, School, Schoolclass, Invitation
+from .models import Teacher, School, SchoolClass, Invitation
 from studentgroups.models import StudentGroup, StudentReport
-from .forms import TeacherSignupForm, StudentGroupForm, SchoolclassForm
+from .forms import TeacherSignupForm, StudentGroupForm, SchoolClassForm
 from .decorators import teacher_required, owns_student_group
 from .tasks import send_student_group_notice
 
@@ -46,7 +46,7 @@ def dashboard(request):
     teacher = Teacher.objects.get(user=request.user)
     student_groups = StudentGroup.objects.filter(teacher=teacher)
     student_groups = student_groups.order_by('year', 'grade', 'letter', 'name')
-    school_classes = Schoolclass.objects.filter(school=teacher.school)
+    school_classes = SchoolClass.objects.filter(school=teacher.school)
     #active_invitations = Invitation.active_objects.filter(teacher=teacher)
     #TODO add active invitations to school class overview
     context = {
@@ -59,13 +59,13 @@ def dashboard(request):
 @login_required
 @teacher_required
 def new_school_class(request):
-    form = SchoolclassForm()
+    form = SchoolClassForm()
 
     if request.method == 'POST':
-        form = SchoolclassForm(request.POST)
+        form = SchoolClassForm(request.POST)
         school = Teacher.objects.get(user=request.user).school
         if form.is_valid():
-            school_class = Schoolclass.objects.create(
+            school_class = SchoolClass.objects.create(
                 enrollment_year=form.cleaned_data['enrollment_year'],
                 letter=form.cleaned_data['letter'],
                 study_field=form.cleaned_data['study_field'],
@@ -180,6 +180,6 @@ def show_student_report(request, report_id):
 @teacher_required
 def new_invitation(request):
     if request.method == 'POST':
-        school_class = Schoolclass.objects.get(request.school_class)
+        school_class = SchoolClass.objects.get(request.school_class)
         invitation = Invitation.create(school_class=school_class)
     return redirect('teachers:dashboard')
