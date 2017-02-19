@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.test import TestCase, Client
-from teachers.models import School, Teacher, Invitation
+from teachers.models import School, Teacher
 from django.core import mail
 
 import hashlib

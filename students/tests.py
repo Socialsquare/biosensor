@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.test import TestCase, Client
-from teachers.models import School, Teacher, Invitation
+from teachers.models import School, Teacher, SchoolClass, SchoolClassCode
 from django.core import mail
 
 import logging
@@ -28,10 +28,16 @@ class StudentSignupTestCase(TestCase):
             school=self.school,
             subjects='Great subjects'
         )
-        # And an active invitation
-        self.invitation = Invitation.objects.create(
-            teacher=self.teacher,
-            code='123456'
+        # A school class
+        self.school_class = SchoolClass.objects.create(
+            school=self.school,
+            enrollment_year=2017,
+            letter='x',
+            study_field='Testing'
+        )
+        # And an active school class code
+        self.school_class_code = SchoolClassCode.create(
+            school_class=self.school_class
         )
 
     def test_students_can_signup(self):
@@ -40,7 +46,7 @@ class StudentSignupTestCase(TestCase):
 
         mails_before = len(mail.outbox)
         response = client.post('/elev/tilmeld/', {
-            'code': '123456',
+            'code': self.school_class_code.code,
             'email': 'student@somewhere.com',
             'first_name': 'Student',
             'last_name': 'Somename',
