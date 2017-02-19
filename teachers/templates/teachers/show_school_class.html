@@ -77,11 +77,13 @@
     {% endif %}
 
     <h2>Elever i klassen</h2>
-    {% for student in school_class.student_set.all %}
+    {% if school_class.student_set.exists %}
       <ul>
-        <li>{{ student.user.first_name }} {{ student.user.last_name }}</li>
+        {% for student in school_class.student_set.all %}
+          <li>{{ student.user.first_name }} {{ student.user.last_name }}</li>
+        {% endfor %}
       </ul>
-    {% empty %}
+    {% else %}
       <p>
         Der er endnu ingen elever oprettet i klassen.
       {% if school_class.school_class_code and school_class.school_class_code.has_expired %}
@@ -92,7 +94,7 @@
         Opret og del klassekoden med klassens elever, så de selv kan oprette deres brugere.
       {% endif %}
       </p>
-    {% endfor %}
+    {% endif %}
   </div>
 
   <div class="col-md-4">
