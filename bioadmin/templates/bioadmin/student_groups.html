@@ -11,20 +11,18 @@
   <tr>
     <th>Gruppe</th>
     <th>Elever</th>
-    <th>Kontakt-email</th>
     <th>Skole</th>
-    <th>Emne</th>
-    <th>Klasse</th>
+    <th>Studieretning</th>
+    <th>Årgang</th>
     <th>Rapport</th>
   </tr>
   {% for student_group in student_groups %}
     <tr>
       <td>{{student_group.name}}</td>
       <td>{{student_group.students_as_list|join:", "}}</td>
-      <td>{{student_group.user.email}}</td>
-      <td>{{student_group.teacher.school.name}}</td>
-      <td>{{student_group.subject|capfirst}}</td>
-      <td>{{student_group.grade}}.{{student_group.letter}} {{student_group.year}}</td>
+      <td>{{student_group.school_class.school.name}}</td>
+      <td>{{student_group.school_class.study_field|capfirst}}</td>
+      <td>{{student_group.school_class.enrollment_year}}</td>
       <td>
         {% if student_group.student_reports %}
           {% for r in student_group.student_reports.all %}

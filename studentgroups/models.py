@@ -31,7 +31,11 @@ class StudentGroup(models.Model):
         return self.name
 
     def students_as_list(self):
-        return self.students.split('\n')
+        return [
+            '%s %s' %
+            (student.user.first_name, student.user.last_name)
+            for student in self.students.all()
+        ]
 
 
 def in_student_group(user):
