@@ -38,16 +38,25 @@ class TeacherSignupForm(SignupForm):
     def clean(self):
         school_id = self.cleaned_data['school'].id
         school_passwd = self.cleaned_data['school_passwd']
-        hashed_passwd = hashlib.sha512(school_passwd.encode('utf-8')).hexdigest()
-        school = School.objects.filter(id=school_id).filter(password=hashed_passwd)
+
+        hashed_passwd = hashlib.sha512(
+            school_passwd.encode('utf-8')
+        ).hexdigest()
+
+        school = School.objects.filter(id=school_id, password=hashed_passwd)
+
         if not school:
             raise forms.ValidationError({
-                    'school_passwd': ["Du har angivet en forkert adgangskode",]
-                })
+                'school_passwd': ["Du har angivet en forkert adgangskode", ]
+            })
         return self.cleaned_data
 
 
-YEAR_CHOICES = [('', '')] + [(y, y) for y in range(datetime.datetime.now().year - 4, (datetime.datetime.now().year + 1))]
+YEAR_CHOICES = [('', '')] + [
+    (y, y) for y in range(
+        datetime.datetime.now().year - 4, datetime.datetime.now().year + 1
+    )
+]
 
 
 class SchoolClassForm(forms.Form):
@@ -102,17 +111,39 @@ class StudentGroupForm(forms.Form):
     def clean_name(self):
         student_group_id = self.data['group_id']
         student_groups = self.school_class.student_groups
-        other_student_groups = student_groups.exclude(pk=student_group_id)
-        # The suggested name
-        name = self.cleaned_data['name']
-        if name in [group.name for group in other_student_groups]:
-            raise forms.ValidationError('Der eksisterer allerede en gruppe med det navn')
+
+        name = self.cleaned_data['name']  # The suggested name
+
+        similar_student_groups = student_groups.filter(
+            name=name
+        )
+        # If editing a group, we should be able to save it with the same name
+        if student_group_id:
+            similar_student_groups = similar_student_groups.exclude(
+                pk=student_group_id
+            )
+
+        if similar_student_groups.exists():
+            raise forms.ValidationError(
+                'Der eksisterer allerede en gruppe med det navn'
+            )
         return name
 
     @staticmethod
     def get_student_label(student, student_group_id):
-        other_groups = student.student_groups.exclude(id=student_group_id)
-        extra = ' (allerede i en anden gruppe)' if other_groups.exists() else ''
+        other_student_groups = student.student_groups
+
+        if student_group_id:
+            other_student_groups = other_student_groups.exclude(
+                pk=student_group_id
+            )
+
+        extra = (
+            ' (allerede i en anden gruppe)'
+            if other_student_groups.exists()
+            else ''
+        )
+
         return '%s %s%s' % (
             student.user.first_name,
             student.user.last_name,
