@@ -13,21 +13,24 @@ from .forms import SchoolForm, CategoryForm, BiobrickForm, BiosensorForm
 from .tasks import send_school_notice
 from teachers.models import School, Teacher
 from studentgroups.models import StudentGroup, StudentReport
+from students.models import Student
 from biobricks.models import Category, Biobrick, Biosensor
 
 @login_required
 @staff_member_required
 def index(request):
-    num_schools = School.objects.all().count()
-    num_teachers = Teacher.objects.all().count()
-    num_students = StudentGroup.objects.all().count()
-    num_biosensors = Biosensor.objects.all().count()
+    num_schools = School.objects.count()
+    num_teachers = Teacher.objects.count()
+    num_students = Student.objects.count()
+    num_student_groups = StudentGroup.objects.count()
+    num_biosensors = Biosensor.objects.count()
     context = {
-            'num_schools': num_schools,
-            'num_teachers': num_teachers,
-            'num_students': num_students,
-            'num_biosensors': num_biosensors
-            }
+        'num_schools': num_schools,
+        'num_teachers': num_teachers,
+        'num_students': num_students,
+        'num_student_groups': num_student_groups,
+        'num_biosensors': num_biosensors
+    }
     return render(request, 'bioadmin/index.html', context)
 
 # teacher overview
@@ -316,6 +319,3 @@ def show_student_report(request, report_id):
             'report': report,
             }
     return render(request, 'bioadmin/show_student_report.html', context)
-
-
-
