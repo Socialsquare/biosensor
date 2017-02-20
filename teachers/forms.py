@@ -88,6 +88,7 @@ class StudentGroupForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         school_class = kwargs.pop('school_class')
+        self.school_class = school_class
         super(StudentGroupForm, self).__init__(*args, **kwargs)
         students_qs = school_class.student_set
         self.fields['students'].queryset = students_qs
@@ -97,6 +98,16 @@ class StudentGroupForm(forms.Form):
             student_group_id = None
         self.fields['students'].label_from_instance = lambda student: \
             self.get_student_label(student, student_group_id)
+
+    def clean_name(self):
+        student_group_id = self.data['group_id']
+        student_groups = self.school_class.student_groups
+        other_student_groups = student_groups.exclude(pk=student_group_id)
+        # The suggested name
+        name = self.cleaned_data['name']
+        if name in [group.name for group in other_student_groups]:
+            raise forms.ValidationError('Der eksisterer allerede en gruppe med det navn')
+        return name
 
     @staticmethod
     def get_student_label(student, student_group_id):

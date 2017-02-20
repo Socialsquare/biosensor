@@ -148,7 +148,7 @@ def edit_student_group(request, school_class_id, student_group_id):
             student_group.students = form.cleaned_data['students']
             student_group.save()
             messages.success(request, "Dine ændringer er gemt")
-        return redirect('teachers:show_school_class', school_class.id)
+            return redirect('teachers:show_school_class', school_class.id)
 
     context = {
         'student_group': student_group,
