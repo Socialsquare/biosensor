@@ -27,6 +27,9 @@ class StudentGroup(models.Model):
     biosensors = models.ManyToManyField(Biosensor)
     created = models.DateTimeField(auto_now_add=True)
 
+    class Meta:
+        unique_together = ('name', 'school_class')
+
     def __str__(self):
         return self.name
 
