@@ -8,7 +8,7 @@
         <div class="student-group card">
           <div class="card-block">
             <h3 class="card-title">{{ group.name }}</h3>
-
+            <p class="card-text">{{ group.students_first_names }}</p>
             {% if group.biosensors.exists %}
               <ul class="no-list-style">
                 {% for biosensor in group.biosensors.all %}

@@ -76,6 +76,9 @@ form {
     cursor: pointer;
     height: calc(1rem * #{$line-height} + .375rem * 2 + 2px);
   }
+  select.form-control[multiple] {
+    overflow-y: auto;
+  }
   @media screen and (-webkit-min-device-pixel-ratio:0) {
     select.form-control {
       padding-right: 1rem;

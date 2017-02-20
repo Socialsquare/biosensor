@@ -40,6 +40,13 @@ class StudentGroup(models.Model):
             for student in self.students.all()
         ]
 
+    def students_first_names(self):
+        return ', '.join([
+            '%s' %
+            student.user.first_name
+            for student in self.students.all()
+        ])
+
 
 def in_student_group(user):
     student = user.student

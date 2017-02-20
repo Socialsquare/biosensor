@@ -10,7 +10,10 @@ h2 {
 
 h3 {
   font-weight: $h3-font-weight;
-  margin-top: $spacer;
+
+  &:not(.card-title) {
+    margin-top: $spacer;
+  }
 }
 
 pre {
