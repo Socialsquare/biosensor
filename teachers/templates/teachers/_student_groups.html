@@ -1,0 +1,60 @@
+
+  <h2>Elevgrupper i klassen</h2>
+
+  {% if student_groups %}
+    <div class="row">
+    {% for group in student_groups %}
+      <div class="col-md-6">
+        <div class="student-group card">
+          <div class="card-block">
+            <h3 class="card-title">{{ group.name }}</h3>
+
+            {% if group.biosensors.exists %}
+              <ul class="no-list-style">
+                {% for biosensor in group.biosensors.all %}
+                <li class="center-y">
+                  {% if biosensor.has_student_report %}
+                    <a href="{% url 'teachers:show_student_report' biosensor.student_report.id %}">
+                  {% endif %}
+                      <svg role="img" class="icon" title="Se rapport">
+                        <use xlink:href="/static/sprite.svg#sprite_description"/>
+                      </svg>
+                  {% if biosensor.has_student_report %}
+                    </a>
+                  {% endif %}
+                  <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">
+                    {{ biosensor.name }}
+                  </a>
+                </li>
+                {% endfor %}
+              </ul>
+            {% endif %}
+          </div>
+          <div class="card-footer">
+            <a href="{% url 'teachers:delete_student_group' school_class.id group.id %}">
+              Slet
+              <svg role="img" class="icon" title="Slet gruppe">
+                <use xlink:href="/static/sprite.svg#sprite_delete"/>
+              </svg>
+            </a>
+            <a href="{% url 'teachers:edit_student_group' school_class.id group.id %}">
+              Redigér
+              <svg role="img" class="icon" title="Rediger gruppe">
+                <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    </div>
+  {% endif %}
+
+  <a class="m-y-1 btn btn-primary" href="{% url 'teachers:new_student_group' school_class.id %}">
+    <span class="center-y">
+      Opret ny elevgruppe
+      <svg role="img" class="icon" title="Opret ny elevgruppe">
+        <use xlink:href="/static/sprite.svg#sprite_group_add"/>
+      </svg>
+    </span>
+  </a>

@@ -1,0 +1,24 @@
+<h2>{{ school_class.student_set.count }} elever i klassen</h2>
+{% if school_class.student_set.exists %}
+  <ul>
+    {% for student in school_class.student_set.all %}
+      <li>
+        {{ student.user.first_name }} {{ student.user.last_name }}
+        {% if not student.student_groups.exists %}
+          <em>(endnu ikke tilknyttet en gruppe)</em>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+{% else %}
+  <p>
+    Der er endnu ingen elever oprettet i klassen.
+  {% if school_class.school_class_code and school_class.school_class_code.has_expired %}
+    Klassekoden er udløbet, opret en ny og del den med klassens elever.
+  {% elif school_class.school_class_code %}
+    Del klassekoden med klassens elever, så de selv kan oprette deres brugere.
+  {% else %}
+    Opret og del klassekoden med klassens elever, så de selv kan oprette deres brugere.
+  {% endif %}
+  </p>
+{% endif %}

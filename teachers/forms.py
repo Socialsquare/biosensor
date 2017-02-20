@@ -5,6 +5,7 @@ import datetime
 
 from .models import School
 from studentgroups.models import StudentGroup
+from students.models import Student
 from string import ascii_lowercase
 
 import hashlib
@@ -70,51 +71,39 @@ class SchoolClassForm(forms.Form):
 
 class StudentGroupForm(forms.Form):
     group_id = forms.fields.IntegerField(
-            widget=forms.HiddenInput(),
-            required=False)
+        widget=forms.HiddenInput(),
+        required=False
+    )
     name = forms.fields.CharField(
-            label='Gruppenavn',
-            max_length=100,
-            required=True)
-    email = forms.fields.CharField(
-            label='Kontaktemail',
-            max_length=100,
-            required=True)
-    students = forms.fields.CharField(
-            label='Elever',
-            max_length=1000,
-            required=True,
-            widget=forms.Textarea()
-            )
-    subject = forms.fields.ChoiceField(
-            label='Fag',
-            widget=forms.Select,
-            choices=[(v, n) for (n, v) in
-                [('', '')] + StudentGroup.SUBJECTS],
-            required=True)
-    grade = forms.fields.ChoiceField(
-            widget=forms.Select, choices=[('','')]+[(i,i) for i in range(1,4)],
-            label='Klasse',
-            required=True)
-    letter = forms.fields.ChoiceField(
-            widget=forms.Select, choices=[(i,i) for i in ['']+list(ascii_lowercase)],
-            label='Bogstav',
-            required=True)
-    year = forms.fields.ChoiceField(
-            widget=forms.Select, choices=YEAR_CHOICES,
-            label='Afgangsår',
-            required=True)
+        label='Gruppenavn',
+        max_length=100,
+        required=True
+    )
+    students = forms.ModelMultipleChoiceField(
+        label='Elever',
+        queryset=None,
+        required=False,
+        help_text='Vælg gruppens elever (hold ctrl nede for at vælge flere).'
+    )
 
-    def clean_email(self):
-        email = self.cleaned_data['email']
-        group_id = self.cleaned_data['group_id']
-        if group_id:
-            group = StudentGroup.objects.get(id=group_id)
-            if email == group.user.email:
-                return email
+    def __init__(self, *args, **kwargs):
+        school_class = kwargs.pop('school_class')
+        super(StudentGroupForm, self).__init__(*args, **kwargs)
+        students_qs = school_class.student_set
+        self.fields['students'].queryset = students_qs
+        if 'group_id' in self.data:
+            student_group_id = self.data['group_id']
+        else:
+            student_group_id = None
+        self.fields['students'].label_from_instance = lambda student: \
+            self.get_student_label(student, student_group_id)
 
-        try:
-            user = User.objects.get(email=email)
-        except User.DoesNotExist:
-            return email
-        raise forms.ValidationError(u'Der findes allerede en elevgruppe med denne email')
+    @staticmethod
+    def get_student_label(student, student_group_id):
+        other_groups = student.student_groups.exclude(id=student_group_id)
+        extra = ' (allerede i en anden gruppe)' if other_groups.exists() else ''
+        return '%s %s%s' % (
+            student.user.first_name,
+            student.user.last_name,
+            extra
+        )

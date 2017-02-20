@@ -1,12 +1,10 @@
-Hej.
+Hej!
 
-Du er blevet oprettet som kontaktperson for biosensor-gruppen "{{group_name}}".
+Du er blevet tilknyttet biosensor-gruppen "{{group_name}}".
 
-Du kan nu logge ind på: http://biosensor.dk
-Email: {{email}}
-Password: {{password}}
-
-Når du er logget ind kan du oprette din første biosensor. Hvis du mangler inspiration kan du finde masser af eksempler på biosensorer online. Du kan også læse andre rapporter og finde inspiration til din egen.
+Når du er logget ind på http://biosensor.dk kan du oprette din første biosensor.
+Hvis du mangler inspiration kan du finde masser af eksempler på biosensorer online.
+Du kan også læse andre rapporter og finde inspiration til din egen.
 
 Med venlig hilsen
 Biosensor-teamet og Biotech Academy

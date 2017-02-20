@@ -9,18 +9,18 @@ from .forms import ReportForm
 from .decorators import student_group_required
 from biobricks.models import Biosensor
 
+
 @login_required
 @student_group_required
 def dashboard(request):
-    student_group = StudentGroup.objects.get(user=request.user)
-    biosensors = Biosensor.objects.filter(user=request.user)
+    student_group = request.user.student.student_groups.first()
     context = {
-            'student_group': student_group,
-            'biosensors': biosensors
-            }
+        'student_group': student_group
+    }
     return render(request, 'studentgroups/dashboard.html', context)
 
 # student reports
+
 
 @login_required
 @student_group_required
@@ -44,6 +44,7 @@ def new_report(request, biosensor_id):
             'form': form
             }
     return render(request, 'studentgroups/report.html', context)
+
 
 @login_required
 @student_group_required

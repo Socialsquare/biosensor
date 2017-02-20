@@ -51,8 +51,9 @@ def new_biosensor(request):
         if form.is_valid():
             biosensor = Biosensor.objects.create(user_id=request.user.id, **form.cleaned_data)
             biosensor.save()
-            if request.user.is_student_group():
-                student_group = StudentGroup.objects.get(user=request.user)
+            if request.user.in_student_group():
+                student = request.user.student
+                student_group = student.student_groups.first()
                 student_group.biosensors.add(biosensor)
             messages.success(request, "Du har oprettet en biosensor")
             return redirect('studentgroups:dashboard')

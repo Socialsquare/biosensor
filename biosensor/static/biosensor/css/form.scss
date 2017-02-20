@@ -64,7 +64,7 @@ input[type=file] {
 }
 
 form {
-  select.form-control {
+  select.form-control:not([multiple]) {
     $svg-color: str-replace(#{$body-color}, '#', '%23');
     -moz-appearance: none;
     -webkit-appearance: none;

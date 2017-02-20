@@ -6,11 +6,6 @@ $('[class^=circle-]').on( 'click', function() {
   window.location.href = "/biobrick/" + thisClass;
 });
 
-$('.edit-mode').on( 'click', function() {
-  $('body').addClass('edit-mode');
-  $(this).fadeOut();
-});
-
 // Hide image and show input on report edit pages
 $('.upload-mode').on( 'click', function(e) {
   e.preventDefault();

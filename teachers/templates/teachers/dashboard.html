@@ -15,7 +15,10 @@
     <a class="card" href="{% url 'teachers:show_school_class' school_class.id %}">
       <div class="card-block">
         <strong>{{ school_class.study_field }}</strong>
-         - {{ school_class.enrollment_year }}{{ school_class.letter }}
+        {{ school_class.letter }}-klassen årgang {{ school_class.enrollment_year }}
+      </div>
+      <div class="card-footer">
+        {{ school_class.student_set.count }} oprettede elever
       </div>
     </a>
   </div>

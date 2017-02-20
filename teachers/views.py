@@ -13,7 +13,7 @@ import hashlib
 from .models import Teacher, School, SchoolClass, SchoolClassCode
 from studentgroups.models import StudentGroup, StudentReport
 from .forms import TeacherSignupForm, StudentGroupForm, SchoolClassForm
-from .decorators import teacher_required, owns_student_group
+from .decorators import teacher_required, teaches_student_group
 from .tasks import send_student_group_notice
 
 
@@ -44,12 +44,9 @@ def signup(request):
 @teacher_required
 def dashboard(request):
     teacher = Teacher.objects.get(user=request.user)
-    student_groups = StudentGroup.objects.filter(teacher=teacher)
-    student_groups = student_groups.order_by('year', 'grade', 'letter', 'name')
     school_classes = SchoolClass.objects.filter(school=teacher.school)
     context = {
-        'school_classes': school_classes,
-        'student_groups': student_groups
+        'school_classes': school_classes
     }
     return render(request, 'teachers/dashboard.html', context)
 
@@ -81,97 +78,83 @@ def new_school_class(request):
 @teacher_required
 def show_school_class(request, school_class_id):
     school_class = get_object_or_404(SchoolClass, id=school_class_id)
-    print(dir(school_class))
+    student_groups = school_class.student_groups
+    student_groups = student_groups.order_by('name')
     context = {
         'school_class': school_class,
+        'student_groups': student_groups
     }
     return render(request, 'teachers/show_school_class.html', context)
 
 
 @login_required
 @teacher_required
-def new_student_group(request):
-    form = StudentGroupForm()
+def new_student_group(request, school_class_id):
+    school_class = get_object_or_404(SchoolClass, id=school_class_id)
+    form = StudentGroupForm(school_class=school_class)
     if request.method == 'POST':
-        form = StudentGroupForm(request.POST)
+        form = StudentGroupForm(request.POST, school_class=school_class)
         if form.is_valid():
-            username = form.cleaned_data['email']
-            passwd = User.objects.make_random_password()
-            user = User.objects.create_user(
-                username,
-                form.cleaned_data['email'],
-                passwd)
-            teacher = Teacher.objects.get(user=request.user)
             student_group = StudentGroup.objects.create(
-                    user=user,
-                    teacher=teacher,
-                    name=form.cleaned_data['name'],
-                    students=form.cleaned_data['students'],
-                    subject=form.cleaned_data['subject'],
-                    grade=form.cleaned_data['grade'],
-                    letter=form.cleaned_data['letter'],
-                    year=form.cleaned_data['year'])
+                name=form.cleaned_data['name'],
+                school_class=school_class
+            )
             student_group.save()
-            send_student_group_notice(
-                    student_group.name,
-                    student_group.user.email,
-                    passwd)
-            return redirect('teachers:dashboard')
+            student_pks = [student.pk for student in form.cleaned_data['students']]
+            student_group.students.add(*student_pks)
+            send_student_group_notice(student_group)
+            return redirect('teachers:show_school_class', school_class.id)
 
-    context = {'form': form}
+    context = {
+        'school_class': school_class,
+        'form': form
+    }
     return render(request, 'teachers/student_group.html', context)
 
 
 @login_required
-@owns_student_group
-def delete_student_group(request, student_group_id):
+@teaches_student_group
+def delete_student_group(request, school_class_id, student_group_id):
+    school_class = get_object_or_404(SchoolClass, id=school_class_id)
     student_group = get_object_or_404(StudentGroup, id=student_group_id)
 
     if request.method == 'GET':
-        context = {'student_group': student_group}
+        context = {
+            'student_group': student_group
+        }
         return render(request, 'teachers/delete_student_group.html', context)
     else:
         if 'yes' == request.POST.get('confirmation', 'no'):
-            student_group.user.delete()
             student_group.delete()
-            messages.success(request, "Du har slettet en elevgruppe")
-        return redirect('teachers:dashboard')
+            messages.success(request, "Du har slettet elevgruppen")
+        return redirect('teachers:show_school_class', school_class.id)
 
 
 @login_required
-@owns_student_group
-def edit_student_group(request, student_group_id):
+@teaches_student_group
+def edit_student_group(request, school_class_id, student_group_id):
+    school_class = get_object_or_404(SchoolClass, id=school_class_id)
     student_group = get_object_or_404(StudentGroup, id=student_group_id)
     attributes = {
         'group_id': student_group.id,
-        'email': student_group.user.email,
         'name': student_group.name,
-        'students': student_group.students,
-        'subject': student_group.subject,
-        'grade': student_group.grade,
-        'letter': student_group.letter,
-        'year': student_group.year
-        }
-    form = StudentGroupForm(attributes)
+        'students': student_group.students.all()
+    }
+    form = StudentGroupForm(attributes, school_class=school_class)
     if request.method == 'POST':
-        form = StudentGroupForm(request.POST)
+        form = StudentGroupForm(request.POST, school_class=school_class)
         if form.is_valid():
-            student_group.user.email = form.cleaned_data['email']
-            student_group.user.save()
             student_group.name = form.cleaned_data['name']
             student_group.students = form.cleaned_data['students']
-            student_group.subject = form.cleaned_data['subject']
-            student_group.grade = form.cleaned_data['grade']
-            student_group.letter = form.cleaned_data['letter']
-            student_group.year = form.cleaned_data['year']
             student_group.save()
             messages.success(request, "Dine ændringer er gemt")
-            return redirect('teachers:dashboard')
+        return redirect('teachers:show_school_class', school_class.id)
 
     context = {
-            'student_group': student_group,
-            'form': form
-            }
+        'student_group': student_group,
+        'school_class': school_class,
+        'form': form
+    }
     return render(request, 'teachers/student_group.html', context)
 
 

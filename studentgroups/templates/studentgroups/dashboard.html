@@ -6,12 +6,8 @@
 <div class="row">
   <div class="col-xs-12">
 
-    <h1>{{student_group.name}}
-      <span>
-        {{student_group.grade}}.{{student_group.letter}} {{student_group.year}},
-        {{student_group.subject}}
-      </span>
-    </h1>
+    <h1>{{student_group.name}}</h1>
+    <h3>{{student_group.school_class}}</h3>
     <a class="btn btn-primary m-y-1" href="{% url 'biobricks:new_biosensor' %}">
       <span class="center-y">
         Opret biosensor
@@ -24,9 +20,9 @@
   <section class="col-md-7 col-xs-12">
     <h2>Biosensorer</h2>
 
-    {% if biosensors %}
+    {% if student_group.biosensors.exists %}
       <table class="table table-zebra">
-        {% for biosensor in biosensors %}
+        {% for biosensor in student_group.biosensors.all %}
           <tr>
             <td colspan="2">
               <h3>
@@ -90,7 +86,7 @@
         {% endfor %}
       </table>
     {% else %}
-    <p><em>Du har ingen biosensorer</em></p>
+      <p><em>Din gruppe har ingen biosensorer</em></p>
     {% endif %}
   </section>
 
@@ -98,8 +94,8 @@
     <h2>Gruppemedlemmer</h2>
 
     <ul class="no-list-style">
-      {% for name in student_group.students_as_list %}
-      <li>{{name}}</li>
+      {% for student in student_group.students.all %}
+        <li>{{student.user.first_name}} {{student.user.last_name}}</li>
       {% endfor %}
     <ul>
   </aside>

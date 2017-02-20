@@ -5,7 +5,7 @@
 {% block main %}
 
 <h1 class="m-b-2">Er du sikker på du vil slette {{student_group.name}}?</h1>
-<form action="{% url 'teachers:delete_student_group' student_group.id%}" method='POST'>
+<form action="{% url 'teachers:delete_student_group' student_group.school_class.id student_group.id %}" method='POST'>
   {% csrf_token %}
   <button name='confirmation' type="submit" class="btn btn-primary" value="yes">Slet</button>
   <button type="submit" class="btn btn-link" value='no'>Annullér</button>

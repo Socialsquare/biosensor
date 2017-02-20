@@ -1,0 +1,30 @@
+{% load humanize %}
+
+<h2>Klassekode</h2>
+{% if school_class.school_class_code %}
+<div class="card">
+  <div class="card-block">
+    Kode: <samp>{{ school_class.school_class_code.code }}</samp>
+  </div>
+  <div class="card-footer text-muted">
+    Udløber: {{ school_class.school_class_code.get_expiry|naturaltime }}
+  </div>
+</div>
+{% endif %}
+<p>En klassekode kan deles med elever, som derigennem kan oprette brugere
+der tilknyttes jeres klasse.</p>
+<form action="{% url 'teachers:new_school_class_code' school_class.id  %}" method="POST">
+  {% csrf_token %}
+  <button class="m-y-1 btn btn-primary">
+    <span class="center-y">
+      {% if school_class.school_class_code %}
+        Forny klassekode
+      {% else %}
+        Opret klassekode
+        <svg role="img" class="icon" title="Opret ny invitation">
+          <use xlink:href="/static/sprite.svg#sprite_add"/>
+        </svg>
+      {% endif %}
+    </span>
+  </button>
+</form>

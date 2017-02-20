@@ -88,8 +88,6 @@
                 aria-haspopup="true" aria-expanded="false">
                   {% if user.is_teacher %}
                     Lærer
-                  {% elif user.is_student_group %}
-                    Elevgruppe
                   {% elif user.is_student %}
                     Elev
                   {% elif user.is_staff %}
@@ -99,7 +97,7 @@
                 <div class="dropdown-menu" aria-labelledby="dropdownMenu">
                   {% if user.is_teacher %}
                   <a class="dropdown-item" href="{% url 'teachers:dashboard' %}">Dashboard</a>
-                  {% elif user.is_student_group %}
+                  {% elif user.is_student %}
                   <a class="dropdown-item" href="{% url 'studentgroups:dashboard' %}">Dashboard</a>
                   {% elif user.is_staff %}
                   <a class="dropdown-item" href="{% url 'bioadmin:index' %}">Dashboard</a>
