@@ -59,7 +59,7 @@ def new_biosensor(request):
 
     context = {
         'form': form
-        }
+    }
     return render(request, 'studentgroups/biosensor.html', context)
 
 @login_required

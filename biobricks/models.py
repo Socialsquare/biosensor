@@ -59,6 +59,7 @@ class Biobrick(models.Model):
         b = Biobrick.objects.filter(coord_x=slug[0], coord_y=slug[1])
         return b and b[0] or None
 
+
 class Biosensor(models.Model):
     user = models.ForeignKey('auth.User')
     detector = models.ForeignKey('Biobrick', related_name='detectors')

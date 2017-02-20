@@ -1,5 +1,4 @@
 from django.contrib.auth.decorators import user_passes_test
-from studentgroups.models import is_student_group
 from django.http import HttpResponseForbidden
 
 from .models import Biosensor
