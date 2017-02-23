@@ -87,7 +87,11 @@ class SchoolClassCode(models.Model):
 
     def generate_code():
         LENGTH = SchoolClassCode.CODE_LENGTH
-        return ''.join(random.choice(string.digits) for _ in range(LENGTH))
+        while True:
+            code = ''.join(random.choice(string.digits) for _ in range(LENGTH))
+            # Check that this is actually unique
+            if not SchoolClassCode.objects.filter(code=code).exists():
+                return code
 
     def create(school_class):
         code = SchoolClassCode.generate_code()
