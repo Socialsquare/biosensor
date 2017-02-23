@@ -1,0 +1,112 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Biosensor\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-02-23 15:41+0000\n"
+"PO-Revision-Date: 2017-02-23 16:48+0100\n"
+"Last-Translator: Kræn Hansen <kraen@socialsquare.dk>\n"
+"Language-Team: Socialsquare <biosensor@bio.dtu.dk>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.5.4\n"
+"Language: da_DK\n"
+
+#: biosensor/settings/base.py:207
+msgid "Danish"
+msgstr "Dansk"
+
+#: biosensor/settings/base.py:208
+msgid "English"
+msgstr "Engelsk"
+
+#: biosensor/templates/_navigation.html:74
+msgid "My profile"
+msgstr "Min profil"
+
+#: biosensor/templates/account/verification_sent.html:5
+#: biosensor/templates/account/verification_sent.html:8
+msgid "Verify Your E-mail Address"
+msgstr "Verificér din e-mail adresse"
+
+#: users/templates/account/email.html:6
+msgid "Account"
+msgstr "Konto"
+
+#: users/templates/account/email.html:10
+msgid "E-mail Addresses"
+msgstr "E-mail adresser"
+
+#: users/templates/account/email.html:15
+msgid "The following e-mail addresses are associated with your account:"
+msgstr "De følgende emailadresser er tilknyttet din konto:"
+
+#: users/templates/account/email.html:28
+msgid "Verified"
+msgstr "Verificeret"
+
+#: users/templates/account/email.html:32
+msgid "Unverified"
+msgstr "Ikke-verificeret"
+
+#: users/templates/account/email.html:37
+msgid "Primary"
+msgstr "Primær"
+
+#: users/templates/account/email.html:44
+msgid "Make Primary"
+msgstr "Gør til primær"
+
+#: users/templates/account/email.html:47
+msgid "Re-send Verification"
+msgstr "Gen-send verifikation"
+
+#: users/templates/account/email.html:50
+msgid "Remove"
+msgstr "Fjern"
+
+#: users/templates/account/email.html:56
+msgid "Warning:"
+msgstr "Advarsel:"
+
+#: users/templates/account/email.html:57
+msgid ""
+"You currently do not have any e-mail address set up. You should really add "
+"an e-mail address so you can receive notifications, reset your password, etc."
+msgstr ""
+"Du har på nuværende tidspunkt ingen e-mail adresse. Du burde virkelig "
+"tilføje en e-mail adresse så du kan modtage notifikationer, nulstille dit "
+"kodeord, etc."
+
+#: users/templates/account/email.html:61
+msgid "Add E-mail Address"
+msgstr "Tilføj e-mail adresse"
+
+#: users/templates/account/email.html:67
+msgid "Add E-mail"
+msgstr "Tilføj e-mail"
+
+#: users/templates/users/profile_form.html:6
+msgid "Profile"
+msgstr "Profil"
+
+#: users/templates/users/profile_form.html:10
+msgid "Update your profile"
+msgstr "Opdatér din profil"
+
+#: users/templates/users/profile_form.html:15
+msgid "Update"
+msgstr "Opdatér"
+
+#: users/templates/users/profile_form.html:17
+msgid "Change your email"
+msgstr "Skift din email"
+
+#: users/templates/users/profile_form.html:20
+msgid "Change your password"
+msgstr "Skift dit kodeord"
