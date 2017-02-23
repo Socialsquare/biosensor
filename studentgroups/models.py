@@ -10,8 +10,6 @@ from django.core.files.storage import default_storage
 from model_utils.fields import StatusField
 from model_utils import Choices
 
-from biobricks.models import Biosensor
-
 # Student groups
 
 
@@ -25,7 +23,7 @@ class StudentGroup(models.Model):
     students = models.ManyToManyField('students.Student',
                                       related_name='student_groups',
                                       blank=True)
-    biosensors = models.ManyToManyField(Biosensor, blank=True)
+    biosensors = models.ManyToManyField('biobricks.Biosensor', blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
