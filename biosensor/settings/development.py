@@ -15,7 +15,6 @@ NOSE_ARGS = [
      '--verbosity=2',
      '--with-yanc',
      '--cover-branches',
-     '--with-coverage',
      '--cover-erase',
      '--cover-package=bioadmin',
      '--cover-package=biobricks',
