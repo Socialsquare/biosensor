@@ -53,6 +53,14 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
 
+    'users',
+    'bioadmin',
+    'teachers',
+    'students',
+    'studentgroups',
+    'biobricks',
+    'content',
+
     'allauth',
     'allauth.account',
     'allauth.socialaccount',
@@ -76,17 +84,11 @@ INSTALLED_APPS = [
     'wagtail.wagtailcore',
 
     'modelcluster',
-    'taggit',
-
-    'bioadmin',
-    'teachers',
-    'students',
-    'studentgroups',
-    'biobricks',
-    'content',
+    'taggit'
 ]
 
 LOCALE_PATHS = [
+    os.path.join(BASE_DIR, 'locale'),
     os.path.join(BASE_DIR, 'locale/allauth'),
 ]
 
@@ -194,7 +196,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/1.9/topics/i18n/
 
-LANGUAGE_CODE = 'da-dk'
+LANGUAGE_CODE = 'da_DK'
 TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_L10N = True
