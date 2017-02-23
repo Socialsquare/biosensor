@@ -73,7 +73,7 @@ class SchoolClassCode(models.Model):
                                         on_delete=models.CASCADE,
                                         null=True,
                                         related_name='school_class_code')
-    code = models.TextField(max_length=10, blank=False)
+    code = models.TextField(max_length=10, blank=False, unique=True)
     created = models.DateTimeField(auto_now_add=True)
 
     objects = models.Manager()
