@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from teachers.models import School, Teacher, SchoolClass, SchoolClassCode
+from students.forms import StudentSignUpForm
 from django.core import mail
 
 import logging
@@ -39,22 +40,39 @@ class StudentSignupTestCase(TestCase):
         self.school_class_code = SchoolClassCode.create(
             school_class=self.school_class
         )
-
-    def test_students_can_signup(self):
-        """Students can sign up using the password and an email is sent"""
-        client = Client()
-
-        mails_before = len(mail.outbox)
-        response = client.post('/elev/tilmeld/', {
+        # And some info about our student
+        self.student_info = {
             'code': self.school_class_code.code,
             'email': 'student@somewhere.com',
             'first_name': 'Student',
             'last_name': 'Somename',
             'password1': 'student-password',
             'password2': 'student-password'
-        })
+        }
+
+    def test_students_can_signup(self):
+        """Students can sign up using the password and an email is sent"""
+        client = Client()
+
+        mails_before = len(mail.outbox)
+
+        response = client.post('/elev/tilmeld/', self.student_info)
         mails_after = len(mail.outbox)
+
+        student = User.objects.get(email=self.student_info['email'])
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/bruger/confirm-email/')
+
+        self.assertTrue(student)
+        self.assertEqual(student.first_name, self.student_info['first_name'])
+
         self.assertEqual(mails_after, mails_before + 1)
+
+    def test_attributes_are_required(self):
+        """Not inputing required attributes results in failure"""
+        invalid_info = self.student_info
+        invalid_info['first_name'] = ''
+        form = StudentSignUpForm(invalid_info)
+
+        self.assertFalse(form.is_valid())

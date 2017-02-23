@@ -24,7 +24,8 @@ class StudentSignupTestCase(TestCase):
         client = Client()
 
         mails_before = len(mail.outbox)
-        response = client.post('/laerere/tilmeld', {
+
+        teacher_info = {
             'school': self.school.id,
             'school_passwd': 'school-w00t',
             'email': 'teacher@somewhere.com',
@@ -33,9 +34,17 @@ class StudentSignupTestCase(TestCase):
             'password1': 'teacher-password',
             'password2': 'teacher-password',
             'subjects': 'Great subjects!'
-        })
+        }
+
+        response = client.post('/laerere/tilmeld', teacher_info)
         mails_after = len(mail.outbox)
+
+        teacher = User.objects.get(email=teacher_info['email'])
 
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/bruger/confirm-email/')
+
+        self.assertTrue(teacher)
+        self.assertEqual(teacher.first_name, teacher_info['first_name'])
+
         self.assertEqual(mails_after, mails_before + 1)
