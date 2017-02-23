@@ -31,7 +31,14 @@ class Teacher(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '%s fra %s' % (self.user.email, self.school)
+        if self.user.first_name:
+            name = '%s %s' % (self.user.first_name, self.user.last_name)
+        else:
+            name = self.user.email
+        return '%s fra %s' % (
+            name,
+            self.school
+        )
 
 
 def is_teacher(user):
