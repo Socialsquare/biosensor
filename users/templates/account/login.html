@@ -1,0 +1,26 @@
+{% extends "narrow-base.html" %}
+
+{% load account %}
+{% load bootstrap3 %}
+{% load i18n %}
+
+{% block head_title %}{% trans "Login" %}{% endblock %}
+
+{% block main %}
+  <!-- TODO if time: håndtere formvalidering direkte i modal så man ikke havner på denne side -->
+  <h1>{% trans "Login" %}</h1>
+
+  <form class="login" method="POST" action="{% url 'account_login' %}">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+
+    {% if redirect_field_value %}
+      <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+    {% endif %}
+
+    <button class="btn btn-primary" type="submit">
+      {% trans "Login" %}
+    </button>
+    <a class="btn btn-secondary" href="{% url 'account_reset_password' %}">Har du glemt din adgangskode?</a>
+  </form>
+{% endblock %}
