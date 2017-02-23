@@ -13,6 +13,7 @@ from . import views
 
 urlpatterns = [
     url(r'^bruger/', include('allauth.urls')),
+    url(r'^bruger/', include('users.urls', namespace='users')),
     url(r'^admin/', admin.site.urls),
     url(r'^summernote/', include('django_summernote.urls')),
     url(r'^laerere/', include('teachers.urls', namespace='teachers')),
