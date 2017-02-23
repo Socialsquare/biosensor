@@ -23,8 +23,9 @@ class StudentGroup(models.Model):
     school_class = models.ForeignKey('teachers.SchoolClass',
                                      related_name='student_groups')
     students = models.ManyToManyField('students.Student',
-                                      related_name='student_groups')
-    biosensors = models.ManyToManyField(Biosensor)
+                                      related_name='student_groups',
+                                      blank=True)
+    biosensors = models.ManyToManyField(Biosensor, blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
