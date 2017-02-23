@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django.test import TestCase, Client
 from teachers.models import School, Teacher, SchoolClass, SchoolClassCode
 from django.core import mail
+from django.db.utils import IntegrityError
 
 import hashlib
 import logging
@@ -69,3 +70,25 @@ class StudentSignupTestCase(TestCase):
         self.assertEqual(len(codes_generated), 10)
         SchoolClassCode.CODE_LENGTH = 6
 
+        # Check that we cannot create two codes that are equal - even if we try
+        # Creating two school classes
+        school_class_a = SchoolClass.objects.create(
+            school=self.school,
+            enrollment_year=2017,
+            letter='Code School A',
+            study_field='Testing'
+        )
+        school_class_b = SchoolClass.objects.create(
+            school=self.school,
+            enrollment_year=2017,
+            letter='Code School A',
+            study_field='Testing'
+        )
+        # And the creating two school class codes
+        school_class_code_a = SchoolClassCode.create(school_class_a)
+        school_class_code_b = SchoolClassCode.create(school_class_b)
+        # Try overwriting the b code with a
+        msg = 'UNIQUE constraint failed: teachers_schoolclasscode.code'
+        with self.assertRaisesMessage(IntegrityError, msg):
+            school_class_code_b.code = school_class_code_a.code
+            school_class_code_b.save()
