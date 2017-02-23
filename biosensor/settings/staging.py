@@ -8,6 +8,7 @@ TEMPLATES[0]['OPTIONS']['debug'] = DEBUG
 
 SITE_ID = 1
 DOMAIN = 'biosensor-staging.herokuapp.com'
+EMAIL_DOMAIN = 'staging.biosensor.dk'
 ALLOWED_HOSTS = [DOMAIN, ]
 
 DATABASES = {
@@ -22,8 +23,8 @@ DATABASE_POOL_ARGS = {
 
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
-SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
+DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(EMAIL_DOMAIN)
+SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(EMAIL_DOMAIN)
 
 ADMINS = (
     ('Simon', 'simon.carstensen+biosensor-staging@socialsquare.dk',),
