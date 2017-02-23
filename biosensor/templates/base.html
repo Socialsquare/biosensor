@@ -32,7 +32,10 @@
       <div class="container-fluid">
 
         {% bootstrap_messages %}
+
+        {% block content %}
         {% block main %}
+        {% endblock %}
         {% endblock %}
 
       </div>
