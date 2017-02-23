@@ -1,0 +1,23 @@
+{% extends "narrow-base.html" %}
+{% load bootstrap3 %}
+
+{% load i18n %}
+
+{% block head_title %}{% trans "Profile" %}{% endblock %}
+
+{% block main %}
+<h1>
+  {% trans "Update your profile" %}
+</h1>
+
+<form action="" method="post">{% csrf_token %}
+    {% bootstrap_form form %}
+    <input class="btn btn-primary" type="submit" value="{% trans "Update" %}" />
+    <a class="btn btn-default" href="{% url 'account_email' %}">
+      {% trans "Change your email" %}
+    </a>
+    <a class="btn btn-default" href="{% url 'account_change_password' %}">
+      {% trans "Change your password" %}
+    </a>
+</form>
+{% endblock %}
