@@ -17,12 +17,12 @@ class BiosensorForm(forms.Form):
             empty_label='',
             required=True)
     problem_description = forms.fields.CharField(
-            max_length=1000,
+            max_length=10000,
             widget=forms.Textarea,
             help_text='Hvorfor er biosensoren vigtig? Hvilket problem løser den?',
             required=True)
     risk_description = forms.fields.CharField(
-            max_length=1000,
+            max_length=10000,
             widget=forms.Textarea,
             help_text='Er der nogen risiko forbundet med biosensoren? Er der '\
                     + 'noget som man skal være forsigtig med når '\
