@@ -13,6 +13,7 @@
     <th>Kontaktperson</th>
     <th>Email</th>
     <th>Adresse</th>
+    <th>Password</th>
   </tr>
   {% for school in schools %}
     <tr>
@@ -20,6 +21,11 @@
       <td>{{school.contact_name}}</td>
       <td>{{school.contact_email}}</td>
       <td>{{school.address}}</td>
+      <td>
+        <a href="{% url 'bioadmin:new_school_password' school.id %}">
+          Opdater og gensend
+        </a>
+      </td>
     </tr>
   {% endfor %}
 </table>

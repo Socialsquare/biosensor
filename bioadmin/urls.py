@@ -7,6 +7,7 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^skoler/$', views.schools, name='schools'),
     url(r'^skoler/ny$', views.new_school, name='new_school'),
+    url(r'^skoler/(\d+)/nytpassword$', views.new_school_password, name='new_school_password'),
     url(r'^laerere/$', views.teachers, name='teachers'),
     url(r'^elevgrupper/$', views.student_groups, name='student_groups'),
     url(r'^katalog/$', views.catalog, name='catalog'),

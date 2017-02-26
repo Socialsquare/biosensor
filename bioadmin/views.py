@@ -75,15 +75,26 @@ def new_school(request):
     form = SchoolForm(request.POST)
     if form.is_valid():
       school = School.objects.create(**form.cleaned_data)
-      passwd = User.objects.make_random_password().encode('utf-8')
-      school.password = hashlib.sha512(passwd).hexdigest()
+      password = school.set_random_password()
       school.save()
-      send_school_notice(school, passwd)
+      send_school_notice(school, password)
       messages.success(request, "You created a school")
       return redirect('bioadmin:schools')
 
   context = {'form': form}
   return render(request, 'bioadmin/new_school.html', context)
+
+@login_required
+@staff_member_required
+def new_school_password(request, school_id):
+    school = get_object_or_404(School, pk=school_id)
+    password = school.set_random_password()
+    school.save()
+    send_school_notice(school, password)
+    messages.success(request, "You updated a school password")
+
+    return redirect('bioadmin:schools')
+
 
 # catalog overview
 
