@@ -8,6 +8,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import auth
 from django.utils import timezone
+from django.utils.crypto import get_random_string
+import hashlib
 
 
 class School(models.Model):
@@ -22,6 +24,21 @@ class School(models.Model):
 
     def __str__(self):
         return self.name
+
+    # Generates a random password, hashes it and returns the original
+    # so we can send it by mail.
+    def set_random_password(self):
+        password = self.generate_random_password()
+        self.password = self.hash_password(password)
+        return password
+
+    @staticmethod
+    def generate_random_password():
+        return get_random_string()
+
+    @staticmethod
+    def hash_password(password):
+        return hashlib.sha512(password.encode('utf-8')).hexdigest()
 
 
 class Teacher(models.Model):

@@ -52,9 +52,7 @@ class TeacherSignupForm(SignupForm):
         school_id = self.cleaned_data['school'].id
         school_passwd = self.cleaned_data['school_passwd']
 
-        hashed_passwd = hashlib.sha512(
-            school_passwd.encode('utf-8')
-        ).hexdigest()
+        hashed_passwd = School.hash_password(school_passwd)
 
         school = School.objects.filter(id=school_id, password=hashed_passwd)
 

@@ -12,13 +12,14 @@ logger = logging.getLogger('biosensor-tests')
 class StudentSignupTestCase(TestCase):
     def setUp(self):
         # Create a school
-        self.school = School.objects.create(
+        self.school = School(
             name='Test school',
             contact_name='Someone',
             contact_email='someone@somewhere.com',
-            password=hashlib.sha512('school-w00t'.encode('utf-8')).hexdigest(),
             address='Somewhere'
         )
+        self.school_password = self.school.set_random_password()
+        self.school.save()
 
     def test_teachers_can_signup(self):
         """Teachers can sign up using the password and an email is sent"""
@@ -28,7 +29,7 @@ class StudentSignupTestCase(TestCase):
 
         teacher_info = {
             'school': self.school.id,
-            'school_passwd': 'school-w00t',
+            'school_passwd': self.school_password,
             'email': 'teacher@somewhere.com',
             'first_name': 'Teacher',
             'last_name': 'Somename',
@@ -40,15 +41,15 @@ class StudentSignupTestCase(TestCase):
         response = client.post('/laerere/tilmeld', teacher_info)
         mails_after = len(mail.outbox)
 
-        teacher = User.objects.get(email=teacher_info['email'])
-
         self.assertEqual(response.status_code, 302)
         self.assertEqual(response.url, '/bruger/confirm-email/')
 
+        teacher = User.objects.get(email=teacher_info['email'])
         self.assertTrue(teacher)
         self.assertEqual(teacher.first_name, teacher_info['first_name'])
 
         self.assertEqual(mails_after, mails_before + 1)
+
 
     def test_school_class_code_unique(self):
         """School class codes are unique"""
