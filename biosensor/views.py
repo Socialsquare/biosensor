@@ -9,11 +9,11 @@ def homepage(request):
         frontpage = { 'body': 'Fejl: Velkomstteksten til forsiden mangler!' }
     d_categories = Category.objects.filter(category_type='detector')
     r_categories = Category.objects.filter(category_type='responder')
-    b_categories = Category.objects.filter(category_type='biosensor')
+    biosensors = Biosensor.objects.all()
     context = {
             'frontpage': frontpage,
             'd_categories': d_categories,
             'r_categories': r_categories,
-            'b_categories': b_categories,
+            'biosensors': biosensors
     }
     return render(request, 'index.html', context)

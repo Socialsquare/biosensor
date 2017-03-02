@@ -21,7 +21,30 @@
 
 <section class="row m-t-2">
 
-  {% include "_categories.html" with heading='Biosensorer' categories=b_categories %}
+  <div class="col-md-4 col-xs-12 frontpage-list m-b-2">
+    <h2 class="frontpage-list__heading">Biosensorer</h2>
+    <div class="frontpage-list__content" role="tablist" aria-multiselectable="true">
+      <div class="panel">
+        <div class="panel-heading" role="tab" id="biosensorHeading{{cat.id}}">
+          <h3 class="panel-title panel-collapse">
+              Alle
+          </h3>
+        </div>
+      </div>
+      <div class="panel-collapse">
+        <ul class="no-list-style">
+          {% for biosensor in biosensors %}
+            <li>
+              <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">
+                {{biosensor.name}}
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+
   {% include "_categories.html" with heading='Detektorgener' categories=d_categories %}
   {% include "_categories.html" with heading='Responsgener' categories=r_categories %}
 
