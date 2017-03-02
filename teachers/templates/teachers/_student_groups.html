@@ -31,16 +31,16 @@
             {% endif %}
           </div>
           <div class="card-footer">
+            <a href="{% url 'teachers:edit_student_group' school_class.id group.id %}">
+              Redigér
+              <svg role="img" class="icon" title="Rediger gruppe">
+                <use xlink:href="/static/sprite.svg#sprite_pencil"/>
+              </svg>
+            </a>
             <a href="{% url 'teachers:delete_student_group' school_class.id group.id %}">
               Slet
               <svg role="img" class="icon" title="Slet gruppe">
                 <use xlink:href="/static/sprite.svg#sprite_delete"/>
-              </svg>
-            </a>
-            <a href="{% url 'teachers:edit_student_group' school_class.id group.id %}">
-              Redigér
-              <svg role="img" class="icon" title="Rediger gruppe">
-                <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
               </svg>
             </a>
           </div>
