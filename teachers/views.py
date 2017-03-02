@@ -82,7 +82,8 @@ def show_school_class(request, school_class_id):
     student_groups = student_groups.order_by('name')
     context = {
         'school_class': school_class,
-        'student_groups': student_groups
+        'student_groups': student_groups,
+        'code_expired': school_class.school_class_code.has_expired
     }
     return render(request, 'teachers/show_school_class.html', context)
 

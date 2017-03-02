@@ -21,8 +21,29 @@
   <form method="POST" action="{% url 'biobricks:new_biosensor' %}" class="form">
 {% endif %}
     {% csrf_token %}
+    {% bootstrap_form_errors form %}
 
-    {% bootstrap_form form %}
+    {% bootstrap_field form.name %}
+    {% bootstrap_field form.detector %}
+    {% bootstrap_field form.responder %}
+
+    {% if not biosensor.id %}
+      <p>
+        Biosensor-øvelsen er en GMO øvelse og det er derfor vigtigt,
+        at alle agarplader og kulturer med biosensor-bakterier autoklaveres.
+      </p>
+      {% bootstrap_field form.danger_informed %}
+      <p>
+        Biosensor-øvelsen er gratis, da den er støttet af danske og udenlandske
+        fonde og virksomheder. For at kunne blive ved med at tilbyde gratis
+        øvelseskit, har vi brug for jeres hjælp til at skrive et kort resumé og
+        et billede. Resuméet og billedet kan ses af andre elever. Det er også
+        muligt at vedhæfte en pdf med rapport eller journal, som andre elever kan
+        bruge som inspiration. Biotech Academy vil læse rapporterne og give en
+        præmie til den bedste (det er valgfrit om man ønsker at deltage).
+      </p>
+      {% bootstrap_field form.rapport_pledge %}
+    {% endif %}
     <button type="submit" class="btn btn-primary">
       <span class="center-y">
         {% if biosensor %}

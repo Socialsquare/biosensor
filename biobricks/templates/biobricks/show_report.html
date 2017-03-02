@@ -31,12 +31,6 @@
       </a>
     {% endif %}
 
-    <h2>Problemformulering</h2>
-    {{report.biosensor.problem_description|safe}}
-
-    <h2>Risikobeskrivelse</h2>
-    {{report.biosensor.risk_description|safe}}
-
     <h2>Metode</h2>
     {{report.method|safe}}
 
@@ -49,10 +43,6 @@
   </section>
 
   <aside class="col-md-3 col-md-offset-1 col-sm-6 col-xs-12">
-
-    <h2>Kategori</h2>
-    <p>{{report.biosensor.category}}</p>
-
     {% if report.attachment %}
       <h2>Forsøgsdata</h2>
       <a href="{{report.attachment.url}}">Regneark</a>

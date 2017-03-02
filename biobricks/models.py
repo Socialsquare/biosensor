@@ -39,8 +39,8 @@ class Biobrick(models.Model):
     biobrick_type = StatusField(choices_name='BIOBRICK_TYPES')
     category = models.ForeignKey('Category', related_name='biobricks')
     name = models.TextField(max_length=100, blank=False)
-    description = models.TextField(max_length=1000, blank=False)
-    design = models.TextField(max_length=1000, blank=False)
+    description = models.TextField(max_length=10000, blank=False)
+    design = models.TextField(max_length=10000, blank=False)
     igem_part = models.TextField(max_length=20, blank=False)
     team_website = models.TextField(max_length=200, blank=False)
     dna_sequence = models.TextField(max_length=200, blank=False)
@@ -64,10 +64,7 @@ class Biosensor(models.Model):
     user = models.ForeignKey('auth.User')
     detector = models.ForeignKey('Biobrick', related_name='detectors')
     responder = models.ForeignKey('Biobrick', related_name='responders')
-    category = models.ForeignKey('Category', related_name='biosensors')
     name = models.TextField(max_length=100, blank=False)
-    problem_description = models.TextField(max_length=10000, blank=False)
-    risk_description = models.TextField(max_length=10000, blank=False)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
