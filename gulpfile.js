@@ -25,8 +25,8 @@ var paths = {
       'bioadmin/static/bioadmin/css/bioadmin.scss',
     ],
     sassWatch: [
-      'biosensor/static/biosensor/css/*.scss',
-      'bioadmin/static/bioadmin/css/*.scss',
+      'biosensor/static/biosensor/css/**/*.scss',
+      'bioadmin/static/bioadmin/css/**/*.scss',
     ],
     js: [
       'node_modules/bootstrap/dist/js/bootstrap.js',
