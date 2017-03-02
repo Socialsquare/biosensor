@@ -1,0 +1,54 @@
+<div class="card biosensor-card">
+  <div class="card-block">
+    <h4 class="card-title">
+      <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">
+        {{biosensor.name}}
+      </a>
+    </h4>
+    <p class="card-text">
+      {{ biosensor.problem_description|truncatewords:10 }}
+    </p>
+  </div>
+  <div class="card-block biosensor-card__progress">
+    <button class="btn btn-secondary biosensor-card__progress-btn">
+      <svg role="img" class="biosensor-card__progress-icon" title="Upload billede">
+        <use xlink:href="/static/sprite.svg#sprite_photo"/>
+      </svg>
+      <span class="biosensor-card__progress-hint">
+        Tag et billede
+      </span>
+    </button>
+    <div class="biosensor-card__progress-seperator"></div>
+    <button class="btn btn-secondary biosensor-card__progress-btn">
+      <svg role="img" class="biosensor-card__progress-icon" title="Upload billede">
+        <use xlink:href="/static/sprite.svg#sprite_pencil"/>
+      </svg>
+      <span class="biosensor-card__progress-hint">
+        Skriv resumé
+      </span>
+    </button>
+    <div class="biosensor-card__progress-seperator"></div>
+    <button class="btn btn-secondary biosensor-card__progress-btn">
+      <svg role="img" class="biosensor-card__progress-icon" title="Upload billede">
+        <use xlink:href="/static/sprite.svg#sprite_description_add"/>
+      </svg>
+      <span class="biosensor-card__progress-hint">
+        Upload rapport
+      </span>
+    </button>
+  </div>
+  <div class="card-footer">
+    <a href="{% url 'biobricks:edit_biosensor' biosensor.id %}">
+      Rediger
+      <svg role="img" class="icon" title="Rediger biosensor">
+        <use xlink:href="/static/sprite.svg#sprite_pencil"/>
+      </svg>
+    </a>
+    <a href="{% url 'biobricks:delete_biosensor' biosensor.id %}">
+      Slet
+      <svg role="img" class="icon" title="Slet biosensor">
+        <use xlink:href="/static/sprite.svg#sprite_delete"/>
+      </svg>
+    </a>
+  </div>
+</div>

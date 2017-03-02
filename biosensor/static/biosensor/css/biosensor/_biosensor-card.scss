@@ -1,0 +1,50 @@
+$hint-width: 150px;
+$hint-width-half: $hint-width / 2;
+
+.biosensor-card {
+
+  &__progress {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__progress-btn {
+    padding: .3rem .5rem;
+    position: relative;
+  }
+
+  &__progress-icon {
+    height: 20px;
+    width: 20px;
+  }
+
+  &__progress-seperator {
+    align-self: center;
+    background: $gray-light;
+    display: inline-block;
+    flex-grow: 1;
+    height: 1rem;
+    width: $border-width;
+  }
+
+  @include media-breakpoint-up(sm) {
+    &__progress {
+      flex-direction: row;
+      justify-content: space-around;
+      padding: $card-spacer-y $hint-width-half 3rem;
+    }
+
+    &__progress-hint {
+      left: 50%;
+      margin-left: - $hint-width-half;
+      position: absolute;
+      text-align: center;
+      top: 2.5rem;
+      width: $hint-width;
+    }
+
+    &__progress-seperator {
+      height: $border-width;
+    }
+  }
+}
