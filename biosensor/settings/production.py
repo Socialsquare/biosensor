@@ -25,17 +25,17 @@ DATABASE_POOL_ARGS = {
 
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(DOMAIN)
-SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(DOMAIN)
+DEFAULT_FROM_EMAIL = 'Biosensor <info@{0}>'.format(DOMAIN)
+SERVER_EMAIL = 'Biosensor <alerts@{0}>'.format(DOMAIN)
 
 ADMINS = (
-    ('Simon', 'simon.carstensen+biosensor-productiong@socialsquare.dk',),
+    ('Pernille', 'pemye@bio.dtu.dk', ),
 )
 SITE_ADMIN_EMAIL = 'pemye@bio.dtu.dk'
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = os.environ['SMTP_SERVER']
-#EMAIL_HOST_USER = os.environ['SMTP_LOGIN']
-#EMAIL_HOST_PASSWORD = os.environ['SMTP_PASSWORD']
+# EMAIL_HOST_USER = os.environ['SMTP_LOGIN']
+# EMAIL_HOST_PASSWORD = os.environ['SMTP_PASSWORD']
 EMAIL_PORT = os.environ['SMTP_PORT']
 EMAIL_USE_TLS = False

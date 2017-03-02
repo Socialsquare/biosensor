@@ -14,7 +14,7 @@ ALLOWED_HOSTS = [DOMAIN, ]
 DATABASES = {
     'default': dj_database_url.config()
 }
-#DATABASES['default']['ENGINE'] = 'django_postgrespool'
+# DATABASES['default']['ENGINE'] = 'django_postgrespool'
 DATABASE_POOL_ARGS = {
     'max_overflow': 10,
     'pool_size': 5,
@@ -23,8 +23,8 @@ DATABASE_POOL_ARGS = {
 
 SECRET_KEY = os.environ['DJANGO_SECRET_KEY']
 
-DEFAULT_FROM_EMAIL = 'Info <info@{0}>'.format(EMAIL_DOMAIN)
-SERVER_EMAIL = 'Alerts <alerts@{0}>'.format(EMAIL_DOMAIN)
+DEFAULT_FROM_EMAIL = 'Biosensor (staging) <info@{0}>'.format(EMAIL_DOMAIN)
+SERVER_EMAIL = 'Biosensor (staging) <alerts@{0}>'.format(EMAIL_DOMAIN)
 
 ADMINS = (
     ('Simon', 'simon.carstensen+biosensor-staging@socialsquare.dk',),
