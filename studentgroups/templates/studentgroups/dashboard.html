@@ -5,25 +5,24 @@
 
 <div class="row">
   <div class="col-xs-12">
-
     <h1>{{student_group.name}}</h1>
     <h3>{{student_group.school_class}}</h3>
-    <a class="btn btn-primary m-y-1" href="{% url 'biobricks:new_biosensor' %}">
-      <span class="center-y">
-        Opret biosensor
-        <svg role="img" class="icon" title="Opret ny biosensor">
-          <use xlink:href="/static/sprite.svg#sprite_description_add"/>
-        </svg>
-      </span>
-    </a>
   </div>
+
   <section class="col-md-8 col-xs-12">
     <h2>Biosensorer</h2>
+
     {% for biosensor in student_group.biosensors.all %}
       {% include 'biosensor/_biosensor-card.html' %}
     {% empty %}
       <p><em>Din gruppe har ingen biosensorer</em></p>
     {% endfor %}
+
+    <a class="btn btn-primary" href="{% url 'biobricks:new_biosensor' %}">
+      <span class="center-y">
+        Opret biosensor
+      </span>
+    </a>
   </section>
 
   <aside class="col-md-4 col-xs-12">
