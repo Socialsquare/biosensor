@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 
 from .models import Biobrick, Biosensor
 from studentgroups.models import StudentGroup, StudentReport
-from .forms import BiosensorForm
+from .forms import BiosensorForm, BiosensorEditForm
 from .decorators import is_owner
 
 def show(request, slug):
@@ -49,7 +49,12 @@ def new_biosensor(request):
     if request.method == 'POST':
         form = BiosensorForm(request.POST)
         if form.is_valid():
-            biosensor = Biosensor.objects.create(user_id=request.user.id, **form.cleaned_data)
+            biosensor = Biosensor.objects.create(
+                user_id=request.user.id,
+                name=form.cleaned_data['name'],
+                responder=form.cleaned_data['responder'],
+                detector=form.cleaned_data['detector']
+            )
             biosensor.save()
             if request.user.in_student_group():
                 student = request.user.student
@@ -84,20 +89,14 @@ def edit_biosensor(request, biosensor_id):
     form = BiosensorForm({
         'name': biosensor.name,
         'detector': biosensor.detector.id,
-        'responder': biosensor.responder.id,
-        'category': biosensor.category.id,
-        'problem_description': biosensor.problem_description,
-        'risk_description': biosensor.risk_description
+        'responder': biosensor.responder.id
         })
     if request.method == 'POST':
-        form = BiosensorForm(request.POST)
+        form = BiosensorEditForm(request.POST)
         if form.is_valid():
             biosensor.name = form.cleaned_data['name']
             biosensor.detector = form.cleaned_data['detector']
             biosensor.responder = form.cleaned_data['responder']
-            biosensor.category = form.cleaned_data['category']
-            biosensor.problem_description = form.cleaned_data['problem_description']
-            biosensor.risk_description = form.cleaned_data['risk_description']
             biosensor.save()
             messages.success(request, "Du har opdateret biosensoren")
             return redirect('studentgroups:dashboard')
