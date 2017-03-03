@@ -80,10 +80,14 @@ def show_school_class(request, school_class_id):
     school_class = get_object_or_404(SchoolClass, id=school_class_id)
     student_groups = school_class.student_groups
     student_groups = student_groups.order_by('name')
+    code_expired = school_class.school_class_code.has_expired if(
+        hasattr(school_class, 'school_class_code')
+    ) else False
+    
     context = {
         'school_class': school_class,
         'student_groups': student_groups,
-        'code_expired': school_class.school_class_code.has_expired
+        'code_expired': code_expired
     }
     return render(request, 'teachers/show_school_class.html', context)
 
