@@ -33,6 +33,7 @@ def update_photo(request, biosensor_id):
             )
             report.image = form.cleaned_data.get('image', None)
             report.save()
+            messages.success(request, "Fotoet blev gemt")
             return redirect('studentgroups:dashboard')
     else:
         form = PhotoForm(initial={
@@ -63,6 +64,7 @@ def update_resume(request, biosensor_id):
             )
             report.resume = form.cleaned_data['resume']
             report.save()
+            messages.success(request, "Resuméet blev gemt")
             return redirect('studentgroups:dashboard')
     else:
         form = ResumeForm(initial={
@@ -93,6 +95,7 @@ def update_report(request, biosensor_id):
             )
             report.attachment = form.cleaned_data.get('attachment', None)
             report.save()
+            messages.success(request, "Rapporten blev gemt")
             return redirect('studentgroups:dashboard')
     else:
         form = ReportForm(initial={
