@@ -83,7 +83,7 @@ def generate_upload_path(instance, filename, dirname):
 class StudentReport(models.Model):
     biosensor = models.OneToOneField('biobricks.Biosensor',
                                      related_name='student_report')
-    resume = models.CharField(
+    resume = models.TextField(
         max_length=10000,
         blank=False
     )
