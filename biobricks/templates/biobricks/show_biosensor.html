@@ -23,6 +23,7 @@
         class="btn btn-primary m-b-1">
         Download
       </a>
+      {% include 'biosensor/_pdf-preview.html' with url=biosensor.student_report.attachment.url %}
     {% endif %}
   </section>
 
