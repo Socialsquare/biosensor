@@ -1,0 +1,12 @@
+<a class="btn biosensor-card__progress-btn {% if completed %}btn-success{% else %}btn-secondary{% endif %}" href="{{ url }}">
+  <svg role="img" class="biosensor-card__progress-icon" title="{{ text }}">
+    <use xlink:href="/static/sprite.svg#sprite_{{ sprite }}"/>
+  </svg>
+  <span class="biosensor-card__progress-hint">
+    {% if completed %}
+      {{ completed_text }}
+    {% else %}
+      {{ text }}
+    {% endif %}
+  </span>
+</a>

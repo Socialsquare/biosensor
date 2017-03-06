@@ -1,3 +1,4 @@
+$hint-color: #000;
 $hint-width: 150px;
 $hint-width-half: $hint-width / 2;
 
@@ -9,16 +10,12 @@ $hint-width-half: $hint-width / 2;
   }
 
   &__progress-btn {
+    align-items: center;
+    display: flex;
+    justify-content: center;
     padding: .5rem;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
-
-    &__progress-hint {
-      color: black;
-    }
 
   &__progress-icon {
     height: 20px;
@@ -34,6 +31,10 @@ $hint-width-half: $hint-width / 2;
     width: $border-width;
   }
 
+  &__progress-hint {
+    margin-left: .5em;
+  }
+
   @include media-breakpoint-up(sm) {
     &__progress {
       flex-direction: row;
@@ -42,6 +43,7 @@ $hint-width-half: $hint-width / 2;
     }
 
     &__progress-hint {
+      color: $hint-color;
       left: 50%;
       margin-left: - $hint-width-half;
       position: absolute;

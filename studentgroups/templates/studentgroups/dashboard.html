@@ -13,7 +13,7 @@
     <h2>Biosensorer</h2>
 
     {% for biosensor in student_group.biosensors.all %}
-      {% include 'biosensor/_biosensor-card.html' %}
+      {% include 'studentgroups/_biosensor-card.html' %}
     {% empty %}
       <p><em>Din gruppe har ingen biosensorer</em></p>
     {% endfor %}
