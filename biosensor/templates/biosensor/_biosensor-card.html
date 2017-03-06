@@ -10,32 +10,43 @@
     </p-->
   </div>
   <div class="card-block biosensor-card__progress">
-    <button class="btn btn-secondary biosensor-card__progress-btn">
+    <a class="btn btn-secondary biosensor-card__progress-btn">
       <svg role="img" class="biosensor-card__progress-icon" title="Upload billede">
         <use xlink:href="/static/sprite.svg#sprite_photo"/>
       </svg>
       <span class="biosensor-card__progress-hint">
         Tag et billede
       </span>
-    </button>
+    </a>
     <div class="biosensor-card__progress-seperator"></div>
-    <button class="btn btn-secondary biosensor-card__progress-btn">
+    {% if biosensor.student_report.resume %}
+    <a href="{% url 'biobricks:show_report' biosensor.student_report.id %}" class="btn btn-primary biosensor-card__progress-btn">
+      <svg role="img" class="biosensor-card__progress-icon" title="Upload billede">
+        <use xlink:href="/static/sprite.svg#sprite_pencil"/>
+      </svg>
+      <span class="biosensor-card__progress-hint">
+        Læs resumé
+      </span>
+    </a>
+    {% else %}
+    <a href="{% url 'studentgroups:new_report' biosensor.id %}" class="btn btn-secondary biosensor-card__progress-btn">
       <svg role="img" class="biosensor-card__progress-icon" title="Upload billede">
         <use xlink:href="/static/sprite.svg#sprite_pencil"/>
       </svg>
       <span class="biosensor-card__progress-hint">
         Skriv resumé
       </span>
-    </button>
+    </a>
+    {% endif %}
     <div class="biosensor-card__progress-seperator"></div>
-    <button class="btn btn-secondary biosensor-card__progress-btn">
+    <a class="btn btn-secondary biosensor-card__progress-btn">
       <svg role="img" class="biosensor-card__progress-icon" title="Upload billede">
         <use xlink:href="/static/sprite.svg#sprite_description_add"/>
       </svg>
       <span class="biosensor-card__progress-hint">
         Upload rapport
       </span>
-    </button>
+    </a>
   </div>
   <div class="card-footer">
     <a href="{% url 'biobricks:edit_biosensor' biosensor.id %}">

@@ -6,28 +6,10 @@ from biobricks.models import Category, Biobrick
 
 class ReportForm(forms.Form):
     resume = forms.fields.CharField(
-            label='Resumé',
-            max_length=4000,
+            label='',
+            max_length=10000,
             widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 tegn',
-            required=True)
-    method = forms.fields.CharField(
-            label='Metode',
-            max_length=4000,
-            widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 tegn',
-            required=True)
-    results = forms.fields.CharField(
-            label='Resultater',
-            max_length=4000,
-            widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 tegn',
-            required=True)
-    conclusion = forms.fields.CharField(
-            label='Diskussion og konklusion',
-            max_length=4000,
-            widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 tegn',
+            help_text='Max 10000 tegn',
             required=True)
     image = forms.fields.FileField(
             label='Billede',
@@ -71,4 +53,3 @@ class ReportForm(forms.Form):
         else:
             raise ValidationError('Du må kun uploade .xls og .xlsx filer')
         return attachment
-

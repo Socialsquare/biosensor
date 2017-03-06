@@ -9,9 +9,16 @@ $hint-width-half: $hint-width / 2;
   }
 
   &__progress-btn {
-    padding: .3rem .5rem;
+    padding: .5rem;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
+
+    &__progress-hint {
+      color: black;
+    }
 
   &__progress-icon {
     height: 20px;
