@@ -14,5 +14,4 @@ urlpatterns = [
     url(r'^biosensorer/ny$', views.new_biosensor, name='new_biosensor'),
     url(r'^biosensorer/slet/(\d+)$', views.delete_biosensor, name='delete_biosensor'),
     url(r'^biosensorer/rediger/(\d+)$', views.edit_biosensor, name='edit_biosensor'),
-    url(r'^rapporter/(\d+)$', views.show_report, name='show_report'),
 ]
