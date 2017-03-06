@@ -21,9 +21,9 @@
 
 <section class="row m-t-2">
 
-  {% include "_categories.html" with heading='Biosensorer' categories=b_categories %}
-  {% include "_categories.html" with heading='Detektorgener' categories=d_categories %}
-  {% include "_categories.html" with heading='Responsgener' categories=r_categories %}
+  {% include "_frontpage-list.html" with heading='Biosensorer' items=biosensors %}
+  {% include "_frontpage-categories-list.html" with heading='Detektorgener' categories=d_categories %}
+  {% include "_frontpage-categories-list.html" with heading='Responsgener' categories=r_categories %}
 
 </section>
 

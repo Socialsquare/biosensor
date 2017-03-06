@@ -1,0 +1,30 @@
+{% extends '_frontpage-list.html' %}
+
+{% block list-content %}
+  <div role="tablist" aria-multiselectable="true">
+    {% for cat in categories %}
+      {% if cat.items %}
+        <div class="card">
+          <div class="card-header" role="tab" id="frontpage-collapse-{{cat.id}}-heading">
+            <a href="#frontpage-collapse-{{cat.id}}"
+              class="card-link"
+              data-toggle="collapse"
+              aria-expanded="true"
+              aria-controls="frontpage-collapse-{{cat.id}}">
+              {{ cat.name }}
+            </a>
+          </div>
+
+          <div id="frontpage-collapse-{{cat.id}}"
+            class="collapse"
+            role="tabpanel"
+            aria-labelledby="frontpage-collapse-{{cat.id}}-heading">
+            <div class="list-group list-group-flush" id="frontpage-collapse-{{cat.id}}">
+              {% include '_frontpage-list-items.html' with items=cat.items %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+{% endblock %}
