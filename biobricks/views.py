@@ -31,7 +31,7 @@ def show_biosensor(request, biosensor_id):
             '{}{}'.format(detector.coord_x, detector.coord_y),
             '{}{}'.format(responder.coord_x, responder.coord_y)
             ]
-    student_reports = StudentReport.objects.filter(biosensor=biosensor)
+    student_reports = StudentReport.objects.filter(biosensor_id=biosensor.id)
     context = {
             'biosensor': biosensor,
             'detector': detector,

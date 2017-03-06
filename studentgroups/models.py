@@ -81,20 +81,9 @@ def generate_upload_path(instance, filename, dirname):
 
 
 class StudentReport(models.Model):
-    student_group = models.ForeignKey('studentgroups.StudentGroup',
-                                      related_name='student_reports')
     biosensor = models.OneToOneField('biobricks.Biosensor',
                                      related_name='student_report')
     resume = models.CharField(
-            max_length=4000,
-            blank=False)
-    method = models.CharField(
-            max_length=4000,
-            blank=False)
-    results = models.CharField(
-            max_length=4000,
-            blank=False)
-    conclusion = models.CharField(
             max_length=4000,
             blank=False)
     image = models.ImageField(

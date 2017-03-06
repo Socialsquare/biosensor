@@ -30,9 +30,7 @@ def new_report(request, biosensor_id):
     if request.method == 'POST':
         form = ReportForm(request.POST, request.FILES)
         if form.is_valid():
-            student_group = StudentGroup.objects.get(user=request.user)
             report = StudentReport.objects.create(
-                    student_group=student_group,
                     biosensor=biosensor,
                     **form.cleaned_data)
             report.save()
@@ -52,9 +50,6 @@ def edit_report(request, biosensor_id, report_id):
     report = get_object_or_404(StudentReport, id=report_id)
     attributes = {
         'resume': report.resume,
-        'method': report.method,
-        'results': report.results,
-        'conclusion': report.conclusion
         }
     if report.image and default_storage.exists(report.image.name):
         files = {
@@ -80,10 +75,6 @@ def edit_report(request, biosensor_id, report_id):
                 attachment = form.cleaned_data['attachment']
             else:
                 attachment = report.attachment
-            report.resume = form.cleaned_data['resume']
-            report.method = form.cleaned_data['method']
-            report.results = form.cleaned_data['results']
-            report.conclusion = form.cleaned_data['conclusion']
             report.image = image
             report.attachment = attachment
             report.save()
