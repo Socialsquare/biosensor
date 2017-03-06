@@ -56,6 +56,26 @@ class ReportForm(forms.Form):
         help_text='Gem rapporten som en .pdf og upload den her',
         required=True
     )
+    shareable_consent = forms.fields.BooleanField(
+        label='Andre elever må gerne læse rapporten/journalen',
+        help_text=(
+            'I kan evt. fjerne navne og skolenavn fra rapporten/journalen.'
+        ),
+        required=False
+    )
+    contest_consent = forms.fields.BooleanField(
+        label=(
+            'Min gruppe vil gerne deltage i biosensor-konkurrencen om en '
+            'præmie for den bedste rapport/journal.'
+        ),
+        help_text=(
+            'I kan læse mere her: '
+            '<a href="/elev/konkurrence">'
+            'http://biosensor.dk/elev/konkurrence'
+            '</a>.'
+        ),
+        required=False
+    )
 
     def clean_attachment(self):
         the_file = self.cleaned_data.get('attachment', None)
@@ -63,3 +83,19 @@ class ReportForm(forms.Form):
             'application/pdf': '.pdf'
         }
         return clean_file(the_file, file_types)
+
+    def clean_shareable_consent(self):
+        shareable_consent = self.cleaned_data.get('shareable_consent', None)
+        if not shareable_consent:
+            raise ValidationError(
+                'For at uploade rapporten, skal du acceptere dette.'
+            )
+        return shareable_consent
+
+    def clean_contest_consent(self):
+        contest_consent = self.cleaned_data.get('contest_consent', None)
+        if not contest_consent:
+            raise ValidationError(
+                'For at uploade rapporten, skal du acceptere dette.'
+            )
+        return contest_consent
