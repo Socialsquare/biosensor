@@ -11,12 +11,12 @@ def clean_file(the_file, content_types):
     if the_file:
         if the_file.content_type in content_types:
             if the_file.size > MAX_UPLOAD_SIZE:
-                raise ValidationError({
-                    'image': 'Størrelsen skal være under %s, filen er %s' % (
+                raise ValidationError(
+                    'Størrelsen skal være under %s, filen er %s' % (
                         filesizeformat(self.MAX_UPLOAD_SIZE),
                         filesizeformat(the_file.size)
                     )
-                })
+                )
         else:
             raise ValidationError('Du må kun uploade filer af typerne %s' % (
                 ' / '.join(content_types.values())
