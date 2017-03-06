@@ -1,0 +1,28 @@
+{% extends "narrow-base.html" %}
+{% load bootstrap3 %}
+
+{% block head_title %}
+  {{ title }} | {{ block.super }}
+{% endblock %}
+
+{% block summernote_scripts %}
+  {{ form.media }}
+{% endblock %}
+
+{% block main %}
+  <h1>
+    {{ title }}
+  </h1>
+
+  <form action="{{ url }}" method="post" enctype="multipart/form-data" class="form">
+    {% csrf_token %}
+    {% block before_form %}{% endblock %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+            {{ submit_text }}
+        </button>
+    {% endbuttons %}
+    {% block after_form %}{% endblock %}
+  </form>
+{% endblock %}

@@ -4,34 +4,33 @@
 
 {% block main %}
 
-<h1>{{biosensor.name}}</h1>
-<span class="label label-pill label-default">Biosensor</span>
-
 <div class="row">
-    {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
-
-    {% if student_reports %}
-      <h2>Rapport</h2>
-
-      <ul class="no-list-style">
-        {% for r in student_reports %}
-        <li>
-          <a href="{% url 'biobricks:show_report' r.id %}">
-            <svg role="img" class="icon inline-icon"
-              title="Rapport">
-              <use xlink:href="/static/sprite.svg#sprite_description"/>
-            </svg>
-            {{r.student_group.name}},
-            {{r.student_group.teacher.school.name}}
-            ({{r.created|date:'n. F o'}})</a>
-        </li>
-        {% endfor %}
-      </ul>
   <section class="col-md-8 col-sm-6 col-sx-12">
+    <h1>
+      {{biosensor.name}}
+      <span class="label label-pill label-default pull-right">Biosensor</span>
+    </h1>
+    {% if biosensor.student_report %}
+      {{ biosensor.student_report.resume|safe }}
+    {% else %}
+      <em>Der er endnu ikke skrevet et resumé af Biosensoren.</em>
+    {% endif %}
+    {% if biosensor.student_report and biosensor.student_report.attachment %}
+      <h2>
+        Rapport / journal
+      </h2>
+      <a href="{{ biosensor.student_report.attachment.url }}"
+        class="btn btn-primary m-b-1">
+        Download
+      </a>
     {% endif %}
   </section>
 
   <aside class="col-md-4 col-sm-6 col-xs-12">
+    {% if biosensor.student_report and biosensor.student_report.image %}
+      <img src="{{ biosensor.student_report.image.url }}" />
+    {% endif %}
+    {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
 
     <h2>Detektor gen</h2>
     <p><a href="{% url 'biobricks:show' detector.slug %}">{{detector.name}}</a></p>

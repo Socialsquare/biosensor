@@ -85,15 +85,18 @@ class StudentReport(models.Model):
                                      related_name='student_report')
     resume = models.CharField(
             max_length=4000,
-            blank=False)
+        blank=False
+    )
     image = models.ImageField(
-            upload_to=do_upload_image,
-            blank=True,
-            null=True)
+        upload_to=do_upload_image,
+        blank=True,
+        null=True
+    )
     attachment = models.FileField(
-            upload_to=do_upload_attachment,
-            blank=True,
-            null=True)
+        upload_to=do_upload_attachment,
+        blank=True,
+        null=True
+    )
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
