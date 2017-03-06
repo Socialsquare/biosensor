@@ -84,7 +84,7 @@ class StudentReport(models.Model):
     biosensor = models.OneToOneField('biobricks.Biosensor',
                                      related_name='student_report')
     resume = models.CharField(
-            max_length=4000,
+        max_length=10000,
         blank=False
     )
     image = models.ImageField(
