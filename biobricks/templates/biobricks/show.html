@@ -5,28 +5,26 @@
 {% block main %}
 
 <div class="row">
-  <div class="col-xs-12">
-    <h1>{{biobrick.name}}</h1>
-    <p>
-      {% if biobrick.biobrick_type == 'responder' %}
-        Responsgen
-      {% else %}
-        Detektorgen
-      {% endif %}
-    </p>
-  </div>
-  <div class="col-md-7 col-xs-12">
+  <section class="col-md-8 col-sm-6 col-xs-12">
+    <h1>
+      {{biobrick.name}}
+      <span class="label label-pill label-default pull-right">
+        {% if biobrick.biobrick_type == 'responder' %}
+          Responsgen
+        {% else %}
+          Detektorgen
+        {% endif %}
+      </span>
+    </h1>
 
     <h2>Beskrivelse</h2>
     <p>{{biobrick.description|safe}}</p>
 
     <h2>Detektion</h2>
     <p>{{biobrick.design|safe}}</p>
+  </section>
 
-  </div>
-
-  <div class="col-md-4 col-md-offset-1 col-sm-6 col-xs-12">
-
+  <aside class="col-md-4 col-sm-6 col-xs-12">
     {% include "biobricks/_mtp.html" with all_coords=all_coords activate_coords=active_coords%}
 
     <h2>Kategori</h2>
@@ -64,7 +62,7 @@
         </div>
       </div>
     </div>
-  </div>
+  </aside>
 </div>
 
 {% endblock %}

@@ -97,7 +97,7 @@ class StudentReport(models.Model):
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return '{}: {}'.format(self.student_group.name, self.biosensor.name)
+        return 'Report tilknyttet "{}"'.format(self.biosensor.name)
 
     def has_existing_image(self):
         return self.image and default_storage.exists(self.image.name)

@@ -22,24 +22,27 @@ def show(request, slug):
             }
     return render(request, 'biobricks/show.html', context)
 
+
 def show_biosensor(request, biosensor_id):
     biosensor = get_object_or_404(Biosensor, id=biosensor_id)
     detector = Biobrick.objects.get(id=biosensor.detector.id)
     responder = Biobrick.objects.get(id=biosensor.responder.id)
-    all_coords = ['{}{}'.format(b.coord_x, b.coord_y) for b in Biobrick.objects.all()]
+    all_coords = [
+        '{}{}'.format(b.coord_x, b.coord_y) for b in Biobrick.objects.all()
+    ]
     active_coords = [
-            '{}{}'.format(detector.coord_x, detector.coord_y),
-            '{}{}'.format(responder.coord_x, responder.coord_y)
-            ]
+        '{}{}'.format(detector.coord_x, detector.coord_y),
+        '{}{}'.format(responder.coord_x, responder.coord_y)
+    ]
     student_reports = StudentReport.objects.filter(biosensor_id=biosensor.id)
     context = {
-            'biosensor': biosensor,
-            'detector': detector,
-            'responder': responder,
-            'all_coords': all_coords,
-            'active_coords': active_coords,
-            'student_reports': student_reports
-            }
+        'biosensor': biosensor,
+        'detector': detector,
+        'responder': responder,
+        'all_coords': all_coords,
+        'active_coords': active_coords,
+        'student_reports': student_reports
+    }
     return render(request, 'biobricks/show_biosensor.html', context)
 
 @login_required

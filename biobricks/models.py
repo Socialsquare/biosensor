@@ -28,6 +28,7 @@ class Category(models.Model):
     def items(self):
         return self.category_type == 'biosensor' and self.biosensors.all() or self.biobricks.all()
 
+
 class Biobrick(models.Model):
     BIOBRICK_TYPES = Choices(
         'detector',
