@@ -8,7 +8,9 @@
   <section class="col-md-8 col-sm-6 col-sx-12">
     <h1>
       {{biosensor.name}}
-      <span class="label label-pill label-default pull-right">Biosensor</span>
+      <span class="label label-pill label-default pull-xs-right">
+        Biosensor
+      </span>
     </h1>
     {% if biosensor.student_report %}
       {{ biosensor.student_report.resume|safe }}
