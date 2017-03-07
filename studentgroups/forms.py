@@ -1,6 +1,7 @@
 from django import forms
 from django_summernote.widgets import SummernoteInplaceWidget
 from django.core.exceptions import ValidationError
+from django.template.defaultfilters import filesizeformat
 
 from biobricks.models import Category, Biobrick
 
@@ -13,7 +14,7 @@ def clean_file(the_file, content_types):
             if the_file.size > MAX_UPLOAD_SIZE:
                 raise ValidationError(
                     'Størrelsen skal være under %s, filen er %s' % (
-                        filesizeformat(self.MAX_UPLOAD_SIZE),
+                        filesizeformat(MAX_UPLOAD_SIZE),
                         filesizeformat(the_file.size)
                     )
                 )
@@ -91,11 +92,3 @@ class ReportForm(forms.Form):
                 'For at uploade rapporten, skal du acceptere dette.'
             )
         return shareable_consent
-
-    def clean_contest_consent(self):
-        contest_consent = self.cleaned_data.get('contest_consent', None)
-        if not contest_consent:
-            raise ValidationError(
-                'For at uploade rapporten, skal du acceptere dette.'
-            )
-        return contest_consent

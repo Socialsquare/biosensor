@@ -14,7 +14,9 @@
     <th>Navn</th>
     <th>Detektorgen</th>
     <th>Responsgen</th>
-    <th>Kategori</th>
+    <th>Skole</th>
+    <th>Gruppe</th>
+    <th>Konkurrerer</th>
     <th></th>
   </tr>
   {% for biosensor in biosensors %}
@@ -22,7 +24,15 @@
       <td><a href="{% url 'biobricks:show_biosensor' biosensor.id %}" target="_blank">{{biosensor.name}}</a></td>
       <td>{{biosensor.detector}}</td>
       <td>{{biosensor.responder}}</td>
-      <td>{{biosensor.category}}</td>
+      <td>{{biosensor.student_groups.first.school_class.school.name}}</td>
+      <td>{{biosensor.student_groups.first.name}}</td>
+      <td>
+        {% if biosensor.student_report.contending %}
+          Ja
+        {% else %}
+          Nej
+        {% endif %}
+      </td>
       <td class="text-xs-right nowrap">
         <a href="{% url 'bioadmin:delete_biosensor' biosensor.id %}">
           <svg role="img" class="icon" title="Slet">

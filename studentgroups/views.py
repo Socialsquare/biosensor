@@ -94,6 +94,7 @@ def update_report(request, biosensor_id):
                 biosensor=biosensor
             )
             report.attachment = form.cleaned_data.get('attachment', None)
+            report.contending = form.cleaned_data.get('contest_consent', False)
             report.save()
             messages.success(request, "Rapporten blev gemt")
             return redirect('studentgroups:dashboard')
