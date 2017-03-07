@@ -14,11 +14,17 @@
   }
 }
 
-.btn .icon {
-  margin-left: $spacer * (3 / 4);
-  margin-right: 0;
+.btn {
+  .icon {
+    margin-left: $spacer * (3 / 4);
+    margin-right: 0;
+  }
 }
 
 .inline-icon {
   margin-bottom: -$spacer / 5;
+}
+
+.alone-icon {
+  margin: 0;
 }
