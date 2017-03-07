@@ -83,7 +83,7 @@ def show_school_class(request, school_class_id):
     code_expired = school_class.school_class_code.has_expired if(
         hasattr(school_class, 'school_class_code')
     ) else False
-    
+
     context = {
         'school_class': school_class,
         'student_groups': student_groups,
@@ -161,16 +161,6 @@ def edit_student_group(request, school_class_id, student_group_id):
         'form': form
     }
     return render(request, 'teachers/student_group.html', context)
-
-
-@login_required
-@teacher_required
-def show_student_report(request, report_id):
-    report = get_object_or_404(StudentReport, id=report_id)
-    context = {
-            'report': report,
-            }
-    return render(request, 'teachers/show_student_report.html', context)
 
 
 @login_required
