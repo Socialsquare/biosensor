@@ -50,13 +50,17 @@ class Biobrick(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self):
+        return reverse('biobricks:show', args=(
+            '%s%s' % (self.coord_x, self.coord_y),
+        ))
+
     def slug(self):
         return '{}{}'.format(self.coord_x, self.coord_y)
 
     def get_biobrick(slug):
         if len(slug) < 2:
             return None
-
         b = Biobrick.objects.filter(coord_x=slug[0], coord_y=slug[1])
         return b and b[0] or None
 
