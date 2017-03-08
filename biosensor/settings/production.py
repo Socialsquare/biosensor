@@ -29,7 +29,7 @@ DEFAULT_FROM_EMAIL = 'Biosensor <info@{0}>'.format(DOMAIN)
 SERVER_EMAIL = 'Biosensor <alerts@{0}>'.format(DOMAIN)
 
 ADMINS = (
-    ('Pernille', 'pemye@bio.dtu.dk', ),
+    # ('Pernille', 'pemye@bio.dtu.dk', ),
 )
 SITE_ADMIN_EMAIL = 'pemye@bio.dtu.dk'
 
