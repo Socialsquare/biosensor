@@ -5,15 +5,14 @@
     <div class="card">
       {% for cat in categories %}
         {% if cat.items %}
-          <div class="card-header" role="tab" id="frontpage-collapse-{{cat.id}}-heading">
-            <a href="#frontpage-collapse-{{cat.id}}"
-              class="card-link"
+          <a class="card-header card-link list-group-item list-group-item-action" role="tab" id="frontpage-collapse-{{cat.id}}-heading"
+              href="#frontpage-collapse-{{cat.id}}"
               data-toggle="collapse"
               aria-expanded="true"
               aria-controls="frontpage-collapse-{{cat.id}}">
               {{ cat.name }}
-            </a>
-          </div>
+          </a>
+
 
           <div id="frontpage-collapse-{{cat.id}}"
             class="collapse"

@@ -23,7 +23,9 @@ class StudentGroup(models.Model):
     students = models.ManyToManyField('students.Student',
                                       related_name='student_groups',
                                       blank=True)
-    biosensors = models.ManyToManyField('biobricks.Biosensor', blank=True)
+    biosensors = models.ManyToManyField('biobricks.Biosensor',
+                                        related_name='student_groups',
+                                        blank=True)
     created = models.DateTimeField(auto_now_add=True)
 
     class Meta:
@@ -97,6 +99,7 @@ class StudentReport(models.Model):
         blank=True,
         null=True
     )
+    contending = models.BooleanField(default=False)
     created = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

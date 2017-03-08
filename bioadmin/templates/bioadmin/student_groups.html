@@ -14,7 +14,6 @@
     <th>Skole</th>
     <th>Studieretning</th>
     <th>Årgang</th>
-    <th>Rapport</th>
   </tr>
   {% for student_group in student_groups %}
     <tr>
@@ -23,15 +22,6 @@
       <td>{{student_group.school_class.school.name}}</td>
       <td>{{student_group.school_class.study_field|capfirst}}</td>
       <td>{{student_group.school_class.enrollment_year}}</td>
-      <td>
-        {% if student_group.student_reports %}
-          {% for r in student_group.student_reports.all %}
-            <a href="{% url 'biobricks:show_report' r.id %}">
-              <svg role="img" class="icon" title="Se rapport">
-                <use xlink:href="/static/sprite.svg#sprite_description"/>
-              </svg></a>
-          {% endfor %}
-        {% endif %}
     </tr>
   {% endfor %}
 </table>
