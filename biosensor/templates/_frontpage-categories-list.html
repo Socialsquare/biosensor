@@ -2,25 +2,28 @@
 
 {% block list-content %}
   <div role="tablist" aria-multiselectable="true">
-    <div class="card">
+    <div class="card" style="overflow:hidden;">
       {% for cat in categories %}
         {% if cat.items %}
-          <a class="card-header card-link list-group-item list-group-item-action" role="tab" id="frontpage-collapse-{{cat.id}}-heading"
+          <div class="list-group list-group-flush"
+            style="margin-bottom:-1px;">
+            <a id="frontpage-collapse-{{cat.id}}-heading"
+              class="list-group-item list-group-item-action"
+              role="tab"
               href="#frontpage-collapse-{{cat.id}}"
               data-toggle="collapse"
               aria-expanded="true"
               aria-controls="frontpage-collapse-{{cat.id}}">
-              {{ cat.name }}
-          </a>
-
+                {{ cat.name }}
+            </a>
+          </div>
 
           <div id="frontpage-collapse-{{cat.id}}"
-            class="collapse"
+            class="collapse list-group list-group-flush"
+            style="margin-bottom:-1px;"
             role="tabpanel"
             aria-labelledby="frontpage-collapse-{{cat.id}}-heading">
-            <div class="list-group list-group-flush" id="frontpage-collapse-{{cat.id}}">
-              {% include '_frontpage-list-items.html' with items=cat.items %}
-            </div>
+            {% include '_frontpage-list-items.html' with items=cat.items %}
           </div>
         {% endif %}
       {% endfor %}
