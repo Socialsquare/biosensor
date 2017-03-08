@@ -1,0 +1,14 @@
+{% extends 'biosensor/_biosensor-card.html' %}
+
+{% block 'extras' %}
+  <div class="card-block biosensor-card__progress">
+    {% url 'studentgroups:update_photo' biosensor.id as update_photo_url %}
+    {% include 'studentgroups/_biosensor-card-progress-btn.html' with completed=biosensor.student_report.image text="Tag et billede" completed_text="Skift billedet" url=update_photo_url sprite='photo' %}
+    <div class="biosensor-card__progress-seperator"></div>
+    {% url 'studentgroups:update_resume' biosensor.id as update_resume_url %}
+    {% include 'studentgroups/_biosensor-card-progress-btn.html' with completed=biosensor.student_report.resume text="Skriv resumé" completed_text="Opdater resumé" url=update_resume_url sprite='pencil' %}
+    <div class="biosensor-card__progress-seperator"></div>
+    {% url 'studentgroups:update_report' biosensor.id as update_report_url %}
+    {% include 'studentgroups/_biosensor-card-progress-btn.html' with completed=biosensor.student_report.attachment text="Upload rapport" completed_text="Opdater rapport" url=update_report_url sprite='description_add' %}
+  </div>
+{% endblock %}

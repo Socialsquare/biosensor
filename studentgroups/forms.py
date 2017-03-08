@@ -4,71 +4,98 @@ from django.core.exceptions import ValidationError
 
 from biobricks.models import Category, Biobrick
 
-class ReportForm(forms.Form):
-    resume = forms.fields.CharField(
-            label='Resumé',
-            max_length=4000,
-            widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 tegn',
-            required=True)
-    method = forms.fields.CharField(
-            label='Metode',
-            max_length=4000,
-            widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 tegn',
-            required=True)
-    results = forms.fields.CharField(
-            label='Resultater',
-            max_length=4000,
-            widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 tegn',
-            required=True)
-    conclusion = forms.fields.CharField(
-            label='Diskussion og konklusion',
-            max_length=4000,
-            widget=SummernoteInplaceWidget(),
-            help_text='Max 4000 tegn',
-            required=True)
-    image = forms.fields.FileField(
-            label='Billede',
-            required=False)
-    attachment = forms.fields.FileField(
-            label='Fil',
-            required=False)
+MAX_UPLOAD_SIZE = 2 * 1024 * 1024
 
-    MAX_UPLOAD_SIZE = 2 * 1024 * 1024
+
+def clean_file(the_file, content_types):
+    if the_file:
+        if the_file.content_type in content_types:
+            if the_file.size > MAX_UPLOAD_SIZE:
+                raise ValidationError(
+                    'Størrelsen skal være under %s, filen er %s' % (
+                        filesizeformat(self.MAX_UPLOAD_SIZE),
+                        filesizeformat(the_file.size)
+                    )
+                )
+        else:
+            raise ValidationError('Du må kun uploade filer af typerne %s' % (
+                ' / '.join(content_types.values())
+            ))
+    return the_file
+
+
+class ResumeForm(forms.Form):
+    resume = forms.fields.CharField(
+        label='',
+        max_length=10000,
+        widget=SummernoteInplaceWidget(),
+        help_text='Max 10000 tegn',
+        required=True
+    )
+
+
+class PhotoForm(forms.Form):
+    image = forms.fields.ImageField(
+        label='',
+        required=True
+    )
 
     def clean_image(self):
-        content_types = ['png', 'jpeg']
-        if 'image' not in self.cleaned_data or not self.cleaned_data['image']:
-            return
+        the_file = self.cleaned_data.get('image', None)
+        content_types = {
+            'image/png': '.png',
+            'image/jpeg': '.jpeg',
+            'image/gif': '.gif'
+        }
+        return clean_file(the_file, content_types)
 
-        image = self.cleaned_data['image']
-        content_type = image.name.split('.')[-1]
-        if content_type in content_types:
-            if image.size > self.MAX_UPLOAD_SIZE:
-                raise ValidationError({'image':
-                    'Filstørrelsen skal være under %s. Størrelsen på denne fil er %s' %
-                    (filesizeformat(self.MAX_UPLOAD_SIZE),
-                        filesizeformat(image.size))})
-        else:
-            raise ValidationError('Du må kun uploade .jpg og .png filer')
-        return image
+
+class ReportForm(forms.Form):
+    attachment = forms.fields.FileField(
+        label='',
+        help_text='Gem rapporten som en .pdf og upload den her',
+        required=True
+    )
+    shareable_consent = forms.fields.BooleanField(
+        label='Andre elever må gerne læse rapporten/journalen',
+        help_text=(
+            'I kan evt. fjerne navne og skolenavn fra rapporten/journalen.'
+        ),
+        required=False
+    )
+    contest_consent = forms.fields.BooleanField(
+        label=(
+            'Min gruppe vil gerne deltage i biosensor-konkurrencen om en '
+            'præmie for den bedste rapport/journal.'
+        ),
+        help_text=(
+            'I kan læse mere her: '
+            '<a href="/elev/konkurrence">'
+            'http://biosensor.dk/elev/konkurrence'
+            '</a>.'
+        ),
+        required=False
+    )
 
     def clean_attachment(self):
-        content_types = ['xls', 'xlsx']
-        if 'attachment' not in self.cleaned_data or not self.cleaned_data['attachment']:
-            return
+        the_file = self.cleaned_data.get('attachment', None)
+        file_types = {
+            'application/pdf': '.pdf'
+        }
+        return clean_file(the_file, file_types)
 
-        attachment = self.cleaned_data['attachment']
-        content_type = attachment.name.split('.')[-1]
-        if content_type in content_types:
-            if attachment.size > self.MAX_UPLOAD_SIZE:
-                raise ValidationError({'attachment':
-                    'Filstørrelsen skal være under %s. Størrelsen på denne fil er %s' %
-                    (filesizeformat(self.MAX_UPLOAD_SIZE),
-                        filesizeformat(attachment.size))})
-        else:
-            raise ValidationError('Du må kun uploade .xls og .xlsx filer')
-        return attachment
+    def clean_shareable_consent(self):
+        shareable_consent = self.cleaned_data.get('shareable_consent', None)
+        if not shareable_consent:
+            raise ValidationError(
+                'For at uploade rapporten, skal du acceptere dette.'
+            )
+        return shareable_consent
 
+    def clean_contest_consent(self):
+        contest_consent = self.cleaned_data.get('contest_consent', None)
+        if not contest_consent:
+            raise ValidationError(
+                'For at uploade rapporten, skal du acceptere dette.'
+            )
+        return contest_consent

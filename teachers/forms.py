@@ -50,10 +50,9 @@ class TeacherSignupForm(SignupForm):
 
     def clean(self):
         school_id = self.cleaned_data['school'].id
-        school_passwd = self.cleaned_data['school_passwd']
+        school_passwd = self.cleaned_data.get('school_passwd', '')
 
         hashed_passwd = School.hash_password(school_passwd)
-
         school = School.objects.filter(id=school_id, password=hashed_passwd)
 
         if not school:

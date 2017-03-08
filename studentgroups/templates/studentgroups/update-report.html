@@ -1,0 +1,7 @@
+{% extends "studentgroups/update-form.html" %}
+
+{% block before_form %}
+  {% if form.attachment.value and form.attachment.value.url %}
+    {% include 'biosensor/_pdf-preview.html' with url=form.attachment.value.url page=1 %}
+  {% endif %}
+{% endblock %}

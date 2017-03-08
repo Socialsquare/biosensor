@@ -13,7 +13,7 @@
 {% block main %}
 
 <h1>
-  {% if report %} Rediger rapport {% else %} Opret rapport for {{biosensor.name}}{% endif %}
+  {% if report %} Rediger rapport {% else %} Skriv resumé for {{biosensor.name}}{% endif %}
 </h1>
 
 <form method="post"
@@ -30,15 +30,6 @@
       <div class="m-y-2">
         {% bootstrap_field form.resume %}
       </div>
-      <div class="m-y-2">
-        {% bootstrap_field form.method %}
-      </div>
-      <div class="m-y-2">
-        {% bootstrap_field form.results %}
-      </div>
-      <div class="m-y-2">
-        {% bootstrap_field form.conclusion %}
-      </div>
       {% if report %}
         <button class="btn btn-primary" type="submit">Gem ændringer</button>
       {% else %}
@@ -48,46 +39,43 @@
     </div>
 
     <div class="col-md-4">
-      <h2 class="m-t-2">Kategori</h2>
-      <p>{{biosensor.category.name}}</p>
-
       <h2>Detektor gen</h2>
       <p><a href="{% url 'biobricks:show' biosensor.detector.slug %}">{{biosensor.detector.name}}</a></p>
 
       <h2>Respons gen</h2>
       <p><a href="{% url 'biobricks:show' biosensor.responder.slug %}">{{biosensor.responder.name}}</a></p>
 
-      <h2>Billede</h2>
-      <div class="form-group">
-        {% if report and report.image %}
-          <p>
-            <img src="{{report.image.url}}" />
-            <a href="#" class="upload-mode">Vælg andet billede</a>
-          </p>
-        {% endif %}
-        <label class="file" {% if report and report.image and not form.image.errors %} style="display:none" {% endif %}>
-          <input class="inputfile" type="file" name="image">
-          <span class="file-custom">Vælg png/jpg...</span>
-        </label>
-        {{form.image.errors}}
-      </div>
+      <!-- TODO: maybe reuse markup for new forms
+        <h2>Billede</h2>
+          <div class="form-group">
+            {% if report and report.image %}
+              <p>
+                <img src="{{report.image.url}}" />
+                <a href="#" class="upload-mode">Vælg andet billede</a>
+              </p>
+            {% endif %}
+            <label class="file" {% if report and report.image and not form.image.errors %} style="display:none" {% endif %}>
+              <input class="inputfile" type="file" name="image">
+              <span class="file-custom">Vælg png/jpg...</span>
+            </label>
+            {{form.image.errors}}
+          </div>
 
-      <h2>Regneark</h2>
-      <div class="form-group">
-        {% if report and report.attachment %}
-          <p>
-            <a href="{{report.attachment.url}}">Download fil</a>
-            <span class="upload-mode">eller <a href="#">upload en ny</a></span>
-          </p>
-        {% endif %}
-        <label class="file" {% if report and report.attachment and not form.attachment.errors %} style="display:none" {% endif %}>
-          <input class="inputfile" type="file" name="attachment">
-          <span class="file-custom">Vælg xls/xlsx...</span>
-        </label>
-        {{form.attachment.errors}}
-
-
-      </div>
+          <h2>Regneark</h2>
+          <div class="form-group">
+            {% if report and report.attachment %}
+              <p>
+                <a href="{{report.attachment.url}}">Download fil</a>
+                <span class="upload-mode">eller <a href="#">upload en ny</a></span>
+              </p>
+            {% endif %}
+            <label class="file" {% if report and report.attachment and not form.attachment.errors %} style="display:none" {% endif %}>
+              <input class="inputfile" type="file" name="attachment">
+              <span class="file-custom">Vælg xls/xlsx...</span>
+            </label>
+            {{form.attachment.errors}}
+          </div>
+        -->
     </div>
   </div>
 </form>

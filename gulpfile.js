@@ -25,16 +25,21 @@ var paths = {
       'bioadmin/static/bioadmin/css/bioadmin.scss',
     ],
     sassWatch: [
-      'biosensor/static/biosensor/css/*.scss',
-      'bioadmin/static/bioadmin/css/*.scss',
+      'biosensor/static/biosensor/css/**/*.scss',
+      'bioadmin/static/bioadmin/css/**/*.scss',
+      'studentgroups/static/studentgroups/css/**/*.scss',
     ],
     js: [
       'node_modules/bootstrap/dist/js/bootstrap.js',
       'node_modules/svg4everybody/dist/svg4everybody.js',
+      'node_modules/pdfjs-dist/build/pdf.js',
       'biosensor/static/biosensor/javascript/*.js'
     ],
     favicon: [
       'biosensor/static/biosensor/favicon.ico'
+    ],
+    pdfjsWorker: [
+      'node_modules/pdfjs-dist/build/pdf.worker.min.js',
     ],
     svg: [
       'biosensor/static/biosensor/images/sprite/*.svg'
@@ -94,6 +99,11 @@ gulp.task('copyfav', function() {
     .pipe(livereload());
 });
 
+gulp.task('copy-pdfjs-worker', function() {
+  return gulp.src(paths.pdfjsWorker)
+    .pipe(gulp.dest(paths.static + 'js'));
+});
+
 // Create SVG sprite
 gulp.task('svg-sprite', function() {
   return gulp.src(paths.svg)
@@ -132,7 +142,7 @@ gulp.task('watch', function() {
 gulp.task('build', function(callback) {
   runSequence(
     'clean',
-    ['sass', 'js', 'svg-sprite', 'copyfav'],
+    ['sass', 'js', 'svg-sprite', 'copyfav', 'copy-pdfjs-worker'],
     callback);
 });
 
@@ -140,7 +150,7 @@ gulp.task('build', function(callback) {
 gulp.task('default', function(callback) {
   runSequence(
     'clean',
-    ['sass', 'js', 'svg-sprite', 'copyfav'],
+    ['sass', 'js', 'svg-sprite', 'copyfav', 'copy-pdfjs-worker'],
     'watch',
     callback);
 });

@@ -2,8 +2,6 @@
   <tr>
     <th>Navn</th>
     <th>Kategori</th>
-    <th>Beskrivelse</th>
-    <th>Design</th>
     <th>iGEM del</th>
     <th>Team website</th>
     <th></th>
@@ -12,8 +10,6 @@
     <tr>
       <td>{{biobrick.name}}</td>
       <td>{{biobrick.category}}</td>
-      <td>{{biobrick.description|truncatechars_html:100}}</td>
-      <td>{{biobrick.design|truncatechars_html:100}}</td>
       <td><a target="_blank" href="http://parts.igem.org/Part:{{biobrick.igem_part}}">{{biobrick.igem_part}}</a></td>
       <td><a target="_blank" href="{{biobrick.team_website}}">{{biobrick.team_website}}</a></td>
       <td class="text-xs-right nowrap">
@@ -24,7 +20,7 @@
         </a>
         <a href="{% url 'bioadmin:edit_biobrick' biobrick.id %}">
           <svg role="img" class="icon" title="Redigér">
-            <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
+            <use xlink:href="/static/sprite.svg#sprite_pencil"/>
           </svg>
         </a>
       </td>

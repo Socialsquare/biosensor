@@ -1,0 +1,64 @@
+{% load static %}
+
+<script>
+var scale = 2;
+
+var scripts = document.getElementsByTagName( 'script' );
+var me = scripts[ scripts.length - 1 ];
+
+{% if page %}
+var singlePageNumber = parseInt('{{ page }}', 10);
+{% else %}
+var singlePageNumber = null;
+{% endif %}
+
+function renderPage(doc, pageNumber) {
+  doc.getPage(pageNumber).then(function(page) {
+    var card = document.createElement('div');
+    var footer = document.createElement('div');
+    var canvas = document.createElement('canvas');
+    // Insert the canvas just before this script.
+    me.parentNode.insertBefore(card, me);
+    card.appendChild(canvas);
+    card.appendChild(footer);
+
+    $(card).addClass('card');
+    // Get the context of the canvas
+    var context = canvas.getContext('2d');
+    // Display the canvas full width
+    $(canvas).css({
+      'width': '100%'
+    }).addClass('card-block');
+
+    var footerText = 'Side ' + pageNumber + ' af ' + doc.numPages;
+    $(footer).addClass('card-footer text-xs-center').text(footerText);
+
+    var viewport = page.getViewport(scale);
+    canvas.width = viewport.width;
+    canvas.height = viewport.height;
+    // Render the page on the canvas
+    page.render({
+      canvasContext: context,
+      viewport: viewport
+    });
+  });
+}
+
+$(function() {
+  if(window.PDFJS) {
+    PDFJS.workerSrc = '{% static "js/pdf.worker.min.js" %}';
+    var url = '{{url}}';
+    PDFJS.getDocument(url).then(function(doc) {
+      if(singlePageNumber && singlePageNumber <= doc.numPages) {
+        renderPage(doc, singlePageNumber);
+      } else if (singlePageNumber) {
+        throw new Error('Not enough pages to display page #' + singlePageNumber);
+      } else {
+        for(var pageNumber = 1; pageNumber <= doc.numPages; pageNumber++) {
+          renderPage(doc, pageNumber);
+        }
+      }
+    });
+  }
+});
+</script>

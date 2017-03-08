@@ -287,10 +287,7 @@ def edit_biosensor(request, biosensor_id):
     form = BiosensorForm({
         'name': biosensor.name,
         'detector': biosensor.detector.id,
-        'responder': biosensor.responder.id,
-        'category': biosensor.category.id,
-        'problem_description': biosensor.problem_description,
-        'risk_description': biosensor.risk_description
+        'responder': biosensor.responder.id
         })
     if request.method == 'POST':
         form = BiosensorForm(request.POST)
@@ -298,9 +295,6 @@ def edit_biosensor(request, biosensor_id):
             biosensor.name = form.cleaned_data['name']
             biosensor.detector = form.cleaned_data['detector']
             biosensor.responder = form.cleaned_data['responder']
-            biosensor.category = form.cleaned_data['category']
-            biosensor.problem_description = form.cleaned_data['problem_description']
-            biosensor.risk_description = form.cleaned_data['risk_description']
             biosensor.save()
             messages.success(request, "You updated this biosensor")
             return redirect('bioadmin:catalog')

@@ -1,0 +1,38 @@
+<div class="card biosensor-card">
+  <div class="card-block">
+    <h4 class="card-title">
+      <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">
+        {{ biosensor.name }}
+      </a>
+    </h4>
+    {% if biosensor.student_report and biosensor.student_report.resume %}
+      <p class="card-text">
+        {{ biosensor.student_report.resume|truncatewords_html:10|safe }}
+      </p>
+    {% endif %}
+  </div>
+
+  {% if biosensor.student_report and biosensor.student_report.image %}
+    <img class="biosensor-card__image"
+      src="{{ biosensor.student_report.image.url }}"
+      alt="Foto af {{ biosensor.name }}">
+  {% endif %}
+
+  {% block 'extras' %}
+  {% endblock %}
+
+  <div class="card-footer">
+    <a href="{% url 'biobricks:edit_biosensor' biosensor.id %}">
+      Rediger
+      <svg role="img" class="icon" title="Rediger biosensor">
+        <use xlink:href="/static/sprite.svg#sprite_pencil"/>
+      </svg>
+    </a>
+    <a href="{% url 'biobricks:delete_biosensor' biosensor.id %}">
+      Slet
+      <svg role="img" class="icon" title="Slet biosensor">
+        <use xlink:href="/static/sprite.svg#sprite_delete"/>
+      </svg>
+    </a>
+  </div>
+</div>

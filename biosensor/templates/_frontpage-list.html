@@ -1,0 +1,10 @@
+<div class="col-md-4 col-xs-12 frontpage-list m-b-2">
+  <h2 class="frontpage-list__heading">{{heading}}</h2>
+  <div class="frontpage-list__content" role="tablist" aria-multiselectable="true">
+    {% block list-content %}
+      <div class="list-group">
+        {% include '_frontpage-list-items.html' %}
+      </div>
+    {% endblock %}
+  </div>
+</div>

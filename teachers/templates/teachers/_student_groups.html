@@ -2,52 +2,73 @@
   <h2>Elevgrupper i klassen</h2>
 
   {% if student_groups %}
-    <div class="row">
     {% for group in student_groups %}
-      <div class="col-md-6">
+      {% with has_biosensors=group.biosensors.exists %}
         <div class="student-group card">
           <div class="card-block">
             <h3 class="card-title">{{ group.name }}</h3>
             <p class="card-text">{{ group.students_first_names }}</p>
-            {% if group.biosensors.exists %}
-              <ul class="no-list-style">
-                {% for biosensor in group.biosensors.all %}
-                <li class="center-y">
-                  {% if biosensor.has_student_report %}
-                    <a href="{% url 'teachers:show_student_report' biosensor.student_report.id %}">
-                  {% endif %}
-                      <svg role="img" class="icon" title="Se rapport">
-                        <use xlink:href="/static/sprite.svg#sprite_description"/>
-                      </svg>
-                  {% if biosensor.has_student_report %}
-                    </a>
-                  {% endif %}
-                  <a href="{% url 'biobricks:show_biosensor' biosensor.id %}">
-                    {{ biosensor.name }}
-                  </a>
-                </li>
-                {% endfor %}
-              </ul>
+            {% if not has_biosensors %}
+              <p class="card-text">Gruppen har endnu ikke oprettet en biosensor</p>
             {% endif %}
           </div>
+
+          {% if has_biosensors %}
+            <div class="list-group list-group-flush">
+              {% for biosensor in group.biosensors.all %}
+              <a class="list-group-item clearfix"
+                href="{% url 'biobricks:show_biosensor' biosensor.id %}">
+                {{ biosensor.name }}
+                <div class="pull-xs-right">
+                  {% with has_photo=biosensor.student_report.image %}
+                    <span class="label label-pill {% if has_photo %}label-success{% else %}label-default{% endif %}">
+                      <svg role="img" class="icon" title="Foto uploadet">
+                        <use xlink:href="/static/sprite.svg#sprite_photo"/>
+                      </svg>
+                      Foto
+                    </span>
+                  {% endwith %}
+                  &nbsp;
+                  {% with has_resume=biosensor.student_report.resume %}
+                    <span class="label label-pill {% if has_resume %}label-success{% else %}label-default{% endif %}">
+                      <svg role="img" class="icon" title="Resume skrevet">
+                        <use xlink:href="/static/sprite.svg#sprite_pencil"/>
+                      </svg>
+                      Resumé
+                    </span>
+                  {% endwith %}
+                  &nbsp;
+                  {% with has_report=biosensor.student_report.attachment %}
+                    <span class="label label-pill {% if has_report %}label-success{% else %}label-default{% endif %}">
+                      <svg role="img" class="icon" title="Rapporten/journalen uploadet">
+                        <use xlink:href="/static/sprite.svg#sprite_description_add"/>
+                      </svg>
+                      Rapport
+                    </span>
+                  {% endwith %}
+                </div>
+              </a>
+              {% endfor %}
+            </div>
+          {% endif %}
+
           <div class="card-footer">
+            <a href="{% url 'teachers:edit_student_group' school_class.id group.id %}">
+              Redigér
+              <svg role="img" class="icon" title="Rediger gruppe">
+                <use xlink:href="/static/sprite.svg#sprite_pencil"/>
+              </svg>
+            </a>
             <a href="{% url 'teachers:delete_student_group' school_class.id group.id %}">
               Slet
               <svg role="img" class="icon" title="Slet gruppe">
                 <use xlink:href="/static/sprite.svg#sprite_delete"/>
               </svg>
             </a>
-            <a href="{% url 'teachers:edit_student_group' school_class.id group.id %}">
-              Redigér
-              <svg role="img" class="icon" title="Rediger gruppe">
-                <use xlink:href="/static/sprite.svg#sprite_mode_edit"/>
-              </svg>
-            </a>
           </div>
         </div>
-      </div>
+      {% endwith %}
     {% endfor %}
-    </div>
   {% endif %}
 
   <a class="m-y-1 btn btn-primary" href="{% url 'teachers:new_student_group' school_class.id %}">
